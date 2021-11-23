@@ -15,6 +15,24 @@ class CreateSectionClassStudentsTable extends Migration
     {
         Schema::create('section_class_students', function (Blueprint $table) {
             $table->id();
+            $table->integer('section_class_id')
+            ->unsigned()
+            ->nullable()
+            ->foreign()
+            ->references('id')
+            ->on('section_classes')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->integer('student_id')
+            ->unsigned()
+            ->nullable()
+            ->foreign()
+            ->references('id')
+            ->on('students')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->string('status')->default('active');
+            
             $table->timestamps();
         });
     }

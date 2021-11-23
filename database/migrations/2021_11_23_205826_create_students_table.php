@@ -15,6 +15,24 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->integer('parent_id')
+            ->unsigned()
+            ->nullable()
+            ->foreign()
+            ->references('id')
+            ->on('parents')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->integer('section_class_id')
+            ->unsigned()
+            ->nullable()
+            ->foreign()
+            ->references('id')
+            ->on('section_classes')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->string('name');
+            $table->string('admission_no')->nullable();
             $table->timestamps();
         });
     }

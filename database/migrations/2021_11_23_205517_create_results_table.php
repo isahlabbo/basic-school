@@ -15,6 +15,14 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
+            $table->integer('section_class_student_id')
+            ->unsigned()
+            ->nullable()
+            ->foreign()
+            ->references('id')
+            ->on('section_class_students')
+            ->delete('restrict')
+            ->update('cascade');
             $table->timestamps();
         });
     }
