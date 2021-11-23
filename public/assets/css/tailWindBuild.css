@@ -1,0 +1,5 @@
+/* taillwindcss untilities classes */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

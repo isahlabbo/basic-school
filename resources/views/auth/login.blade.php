@@ -1,7 +1,10 @@
 <x-guest-layout>
+    @section('title')
+        login
+    @endsection
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <!-- <img src="{{asset('assets/images/logo.gif')}}"/> --> <h2 class="text text-bold">Login</h2>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -39,7 +42,7 @@
                     </a>
                 @endif
 
-                <x-jet-button class="ml-4">
+                <x-jet-button class="ml-4 active">
                     {{ __('Log in') }}
                 </x-jet-button>
             </div>
