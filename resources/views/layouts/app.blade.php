@@ -4,11 +4,13 @@
     <title>{{config('app.name')}} | @yield('title')</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/tailwind.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/appStyle.css')}}">
+    
     @livewireStyles
 </head>
-<body class="bg-green-100 text-green-900">
+<body class="bg-white">
     <div id="header">
         <div> <a href="{{url('/dashboard')}}"><img src="assets/images/logo.gif" alt=""></a>
             <ul>
@@ -26,14 +28,12 @@
                 </li>
             </ul>
         </div>
+        <hr class="separator">
     </div>
-    <main class="bg-white">
-        <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-            <div class="grid grid-cols-1 md:grid-cols-2">
-            @yield('content')
-            </div>
-        </div> 
-    </main>
+    <div class="content">  
+        @yield('content')
+         
+    </div>
     @stack('modals')
     @livewireScripts
 </body>
