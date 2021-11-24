@@ -41,7 +41,10 @@
 
 
 
-
+.btn-secondary{
+	background-color: #434a45;
+	border-color: #434a45;
+}
 
 .btn-primary{
 	background-color: #f39c12;
