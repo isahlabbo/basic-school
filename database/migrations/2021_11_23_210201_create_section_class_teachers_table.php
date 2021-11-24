@@ -15,12 +15,12 @@ class CreateSectionClassTeachersTable extends Migration
     {
         Schema::create('section_class_teachers', function (Blueprint $table) {
             $table->id();
-            $table->integer('class_section_id')
+            $table->integer('section_class_id')
             ->unsigned()
             ->nullable()
             ->foreign()
             ->references('id')
-            ->on('class_sections')
+            ->on('section_classes')
             ->delete('restrict')
             ->update('cascade');
             $table->integer('teacher_id')
@@ -31,7 +31,7 @@ class CreateSectionClassTeachersTable extends Migration
             ->on('teachers')
             ->delete('restrict')
             ->update('cascade');
-            $table->string('status')->default('active');
+            $table->string('status')->default('Active');
             $table->timestamps();
         });
     }

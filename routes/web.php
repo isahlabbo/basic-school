@@ -20,3 +20,35 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard',['sections'=>Section::all()]);
 })->name('dashboard');
+
+
+Route::name('dashboard.')
+->prefix('dashboard')
+->middleware(['auth:sanctum', 'verified'])
+->group(function (){
+    // school section routes
+    Route::namespace('Section')
+    ->name('section.')
+    ->prefix('/section')
+    ->group(function (){
+        Route::get('/{sectionId}', 'SectionController@index')->name('index');
+        // section class teacers routes
+        Route::name('class-teacher.')
+        ->prefix('{sectionClassId}/class-teacher')
+        ->group(function (){
+            Route::get('create/', 'ClassTeacherController@create')->name('create');
+            Route::get('re-create/', 'ClassTeacherController@reCreate')->name('reCreate');
+            Route::post('register/', 'ClassTeacherController@register')->name('register');
+        });
+    });
+    Route::namespace('School')
+    ->name('teacher.')
+    ->prefix('/teacher')
+    ->group(function (){
+        Route::get('/', 'TeacherController@index')->name('index');
+        Route::get('/create', 'TeacherController@create')->name('create');
+        Route::post('/register', 'TeacherController@register')->name('register');
+        // section class teacers routes
+        
+    });
+});

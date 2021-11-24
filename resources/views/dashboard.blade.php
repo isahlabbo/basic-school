@@ -3,14 +3,8 @@
         Dashboard
     @endsection
 
-    @section('menu')
-        @if(Auth::user()->role == 'Admin')
-            @include('menu.admin')
-        @elseif(Auth::user()->role == 'Teacher')
-            @include('menu.teacher')
-        @else
-        <!-- other user here -->
-        @endif
+    @section('breadcrumb')
+       {{Breadcrumbs::render('dashboard')}}
     @endsection
     
     @section('content')

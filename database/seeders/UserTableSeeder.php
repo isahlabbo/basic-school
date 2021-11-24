@@ -31,7 +31,11 @@ class UserTableSeeder extends Seeder
         ];
 
         foreach($users as $user){
-            User::firstOrCreate($user);
+            $user = User::firstOrCreate($user);
+
+            if($user->role == 'Teacher'){
+                $user->teacher()->create(['address'=>config('app.name'),'phone'=>'08000000000']);
+            }
         }
     }
 }

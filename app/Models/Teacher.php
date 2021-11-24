@@ -16,4 +16,9 @@ class Teacher extends BaseModel
     {
         return $this->hasMany(TeacherSubject::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -12,10 +12,17 @@
 </head>
 <body >
     <div id="header">
-        <div> <a href="{{url('/dashboard')}}"><img src="assets/images/logo.gif" alt=""></a>
+        <div> <a href="{{url('/dashboard')}}"><img src="{{asset('assets/images/logo.gif')}}" alt=""></a>
             <ul>
                 <li class="current"><a href="{{ url('/dashboard') }}">Dasborad</a></li>
-                @yield('menu')
+                
+                    @if(Auth::user()->role == 'Admin')
+                        @include('menu.admin')
+                    @elseif(Auth::user()->role == 'Teacher')
+                        @include('menu.teacher')
+                    @else
+                    <!-- other user here -->
+                    @endif
                 <li class="">
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
@@ -30,8 +37,8 @@
         </div>
         <hr class="separator">
     </div>
-    <div style="backgroung-color: white;">
-        {{ Breadcrumbs::render() }}
+    <div >
+        @yield('breadcrumb')
     </div>
     <div class="container"> 
         @include('sweetalert::alert') 

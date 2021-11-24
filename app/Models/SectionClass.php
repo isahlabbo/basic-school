@@ -16,4 +16,20 @@ class SectionClass extends BaseModel
     {
         return $this->hasMany(SectionClassStudent::class);
     }
+
+    public function sectionClassTeachers()
+    {
+        return $this->hasMany(SectionClassTeacher::class);
+    }
+
+    public function activeClassTeacher()
+    {
+        $teacher = null;
+        foreach($this->sectionClassTeachers as $teacher){
+            if($teacher->status == 'Active'){
+                return $teacher;
+            }
+        }
+        return $teacher;
+    }
 }

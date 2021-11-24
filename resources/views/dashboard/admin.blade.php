@@ -13,7 +13,7 @@
                         </tr>
                         
                     </table>
-                    <div class=""><button class="btn btn-primary">View</button></div>
+                    <div class=""><a href="{{route('dashboard.section.index',[$section->id])}}"><button class="btn btn-primary">View</button></a></div>
                 </div>
             </div>
         </div>
