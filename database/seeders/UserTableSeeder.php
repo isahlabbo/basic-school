@@ -18,13 +18,13 @@ class UserTableSeeder extends Seeder
         $users = [
             [
                 'name'=>'Admin',
-                'email'=>'admin@school.com',
+                'email'=>'admin@wayforward.com',
                 'password'=>Hash::make('admin'),
                 'role'=>'Admin',
             ],
             [
                 'name'=>'Teacher',
-                'email'=>'teacher@school.com',
+                'email'=>'teacher@wayforward.com',
                 'password'=>Hash::make('teacher'),
                 'role'=>'Teacher',
             ]

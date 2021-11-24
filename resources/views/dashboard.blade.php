@@ -14,7 +14,13 @@
     @endsection
     
     @section('content')
-        <h1>{{Auth::user()->role}} Dashboard</h1> 
+        @if(Auth::user()->role == 'Admin')
+            @include('dashboard.admin')
+        @elseif(Auth::user()->role == 'Teacher')
+            @include('dashboard.teacher')
+        @else
+        <!-- other user here -->
+        @endif
     @endsection
     
 </x-app-layout>
