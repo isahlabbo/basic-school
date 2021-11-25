@@ -7,7 +7,8 @@
 
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/appStyle.css')}}">
-
+    <!-- jquery -->
+    <script src="{{asset('js/jquery-1.8.2.min.js')}}"></script>
     @livewireStyles
 </head>
 <body >
@@ -45,6 +46,7 @@
         @yield('content')
     </div>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/Ajax/sectionClasses.js')}}"></script>
     @livewireScripts
 </body>
 </html>

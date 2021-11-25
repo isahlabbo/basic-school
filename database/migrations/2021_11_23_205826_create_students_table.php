@@ -15,12 +15,12 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->integer('parent_id')
+            $table->integer('guardian_id')
             ->unsigned()
             ->nullable()
             ->foreign()
             ->references('id')
-            ->on('parents')
+            ->on('guardians')
             ->delete('restrict')
             ->update('cascade');
             $table->integer('section_class_id')
@@ -32,6 +32,7 @@ class CreateStudentsTable extends Migration
             ->delete('restrict')
             ->update('cascade');
             $table->string('name');
+            $table->string('date_of_birth');
             $table->string('admission_no')->nullable();
             $table->timestamps();
         });

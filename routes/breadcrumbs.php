@@ -30,3 +30,13 @@ Breadcrumbs::for('dashboard.teacher.create', function ($trail) {
     $trail->parent('dashboard.teacher');
     $trail->push('Create', route('dashboard.teacher.create'));
 });
+
+Breadcrumbs::for('dashboard.student', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Students', route('dashboard.student.index'));
+});
+
+Breadcrumbs::for('dashboard.student.create', function ($trail) {
+    $trail->parent('dashboard.student');
+    $trail->push('Create', route('dashboard.student.create'));
+});

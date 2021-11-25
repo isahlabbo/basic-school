@@ -12,6 +12,11 @@ use App\Models\Section;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix('ajax')
+   ->group(function() {
+    Route::get('/section/{sectionId}/get-classes', 'AjaxController@getSectionClasses');
+});
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,6 +46,8 @@ Route::name('dashboard.')
             Route::post('register/', 'ClassTeacherController@register')->name('register');
         });
     });
+
+    // teachers routes
     Route::namespace('School')
     ->name('teacher.')
     ->prefix('/teacher')
@@ -48,7 +55,15 @@ Route::name('dashboard.')
         Route::get('/', 'TeacherController@index')->name('index');
         Route::get('/create', 'TeacherController@create')->name('create');
         Route::post('/register', 'TeacherController@register')->name('register');
-        // section class teacers routes
-        
+    });
+    
+    // student routes
+    Route::namespace('School')
+    ->name('student.')
+    ->prefix('/student')
+    ->group(function (){
+        Route::get('/', 'StudentController@index')->name('index');
+        Route::get('/create', 'StudentController@create')->name('create');
+        Route::post('/register', 'StudentController@register')->name('register');
     });
 });

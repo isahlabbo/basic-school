@@ -31,7 +31,7 @@ class CreateSectionClassStudentsTable extends Migration
             ->on('students')
             ->delete('restrict')
             ->update('cascade');
-            $table->string('status')->default('active');
+            $table->string('status')->default('Active');
             
             $table->timestamps();
         });
