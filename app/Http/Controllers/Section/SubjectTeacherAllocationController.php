@@ -10,6 +10,11 @@ use App\Models\SectionClassSubjectTeacher;
 
 class SubjectTeacherAllocationController extends Controller
 {
+    public function index($teacherId)
+    {
+        return view('section.class.subject.allocation.index',['teacher'=>Teacher::find($teacherId)]);
+    }
+
     public function create($sectionClassSubjectId)
     {
         return view('section.class.subject.allocation.create',['teachers'=>Teacher::all(), 'sectionClassSubject'=>SectionClassSubject::find($sectionClassSubjectId)]);
@@ -21,6 +26,8 @@ class SubjectTeacherAllocationController extends Controller
 
     public function register(Request $request, $sectionClassSubjectId)
     {
+        $request->validate(['teacher'=>'required']);
+
         $teacher = Teacher::find($request->teacher);
 
         $sectionClassSubject = SectionClassSubject::find($sectionClassSubjectId);

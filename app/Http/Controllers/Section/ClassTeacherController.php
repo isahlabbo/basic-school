@@ -18,13 +18,9 @@ class ClassTeacherController extends Controller
     public function register(Request $request, $sectionClassId)
     {
 
-        $validator = Validator::make($request->all(), [
-            'teacher' => 'required',
+        $request->validate([
+            'teacher' => 'required'
         ]);
-        
-        if ($validator->fails()) {
-            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
-        }
         
         $teacher = Teacher::find($request->teacher);
 

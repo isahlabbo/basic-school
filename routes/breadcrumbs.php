@@ -24,7 +24,7 @@ Breadcrumbs::for('dashboard.section.class.subject', function ($trail, $sectionCl
 // dashboard/section/class/subject/create-allocation
 Breadcrumbs::for('dashboard.section.class.subject.allocation.create', function ($trail, $sectionClassSubject) {
     $trail->parent('dashboard.section.class',$sectionClassSubject->sectionClass);
-    $trail->push('create-allocation', route('dashboard.section.class.subject.allocation/create',[$sectionClassSubject->id]));
+    $trail->push('create-allocation', route('dashboard.section.class.subject.allocation.create',[$sectionClassSubject->id]));
 });
 
 // dashboard/section/class/subject/allocation

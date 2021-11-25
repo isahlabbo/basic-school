@@ -16,4 +16,12 @@ class SectionClassSubjectTeacher extends BaseModel
     {
         return $this->belongsTo(SectionClassSubject::class);
     }
+
+    public function getDownloadableName()
+    {
+        
+        return strtolower(str_replace(' ','_',$this->sectionClassSubject->subject->name.'_of_'.
+        $this->sectionClassSubject->sectionClass->name.'_for_'
+        .$this->teacher->name));
+    }
 }

@@ -19,7 +19,7 @@
                        <input type="hidden" value="{{$sectionClass->id}}" name="sectionClassId">
                         <div class="col-md-8">
                             <select name="teacher" id="" class="form-control">
-                                <option>Select Teacher</option>
+                                <option value="">Select Teacher</option>
                                 @foreach($teachers as $teacher)
                                 <option value="{{$teacher->id}}">{{$teacher->user->name}}</option>
                                 @endforeach

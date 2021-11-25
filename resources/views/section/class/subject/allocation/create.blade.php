@@ -3,7 +3,7 @@
         {{$sectionClassSubject->subject->name}} subject teacher allocation
     @endsection
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard.section.class.subject.allocation.create',$sectionClassSubjectTeacher->sectionClassSubject)}}
+       {{Breadcrumbs::render('dashboard.section.class.subject.allocation.create',$sectionClassSubject)}}
     @endsection
     @section('content')
     <div class="row">
@@ -19,7 +19,7 @@
                        <input type="hidden" value="{{$sectionClassSubject->id}}" name="sectionClassSubjectId">
                         <div class="col-md-8">
                             <select name="teacher" id="" class="form-control">
-                                <option>Select Teacher</option>
+                                <option value="">Select Teacher</option>
                                 @foreach($teachers as $teacher)
                                 <option value="{{$teacher->id}}">{{$teacher->user->name}}</option>
                                 @endforeach

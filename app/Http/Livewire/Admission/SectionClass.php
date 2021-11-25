@@ -14,4 +14,6 @@ class SectionClass extends Component
     {
         return view('livewire.admission.section-class');
     }
+
+    
 }

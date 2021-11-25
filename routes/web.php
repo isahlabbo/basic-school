@@ -55,10 +55,16 @@ Route::name('dashboard.')
                 Route::get('/', 'SubjectController@index')->name('index');
                 
             });
+
+            Route::name('subject.allocation.')
+                ->prefix('/subject/teacher/{teacherId}/allocations')
+                ->group(function (){
+                    Route::get('/', 'SubjectTeacherAllocationController@index')->name('index');
+            });
+
             Route::name('subject.allocation.')
                 ->prefix('/subject/{sectionClassSubjectId}/allocation')
                 ->group(function (){
-                    Route::get('/', 'SubjectTeacherAllocationController@index')->name('index');
                     Route::get('/create', 'SubjectTeacherAllocationController@create')->name('create');
                     Route::get('/re-create', 'SubjectTeacherAllocationController@reCreate')->name('reCreate');
                     Route::post('/regidter', 'SubjectTeacherAllocationController@register')->name('register');
@@ -71,6 +77,11 @@ Route::name('dashboard.')
     ->name('teacher.')
     ->prefix('/teacher')
     ->group(function (){
+        // score sheet route
+        Route::get('/{sectionClassSubjecTeacherId}/download-score', 'ScoreSheetController@download')
+        ->name('download.scoresheet');
+
+
         Route::get('/', 'TeacherController@index')->name('index');
         Route::get('/create', 'TeacherController@create')->name('create');
         Route::post('/register', 'TeacherController@register')->name('register');

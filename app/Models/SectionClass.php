@@ -37,4 +37,13 @@ class SectionClass extends BaseModel
         }
         return $teacher;
     }
+
+    public function currentStudents()
+    {
+        $students = [];
+        foreach ($this->sectionClassStudents->where('status','Active') as $classStudent) {
+            $students[] = $classStudent->student;
+        }
+        return $students;
+    }
 }

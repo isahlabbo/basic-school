@@ -14,6 +14,7 @@
                 <th>EMAIL</th>
                 <th>PHONE</th>
                 <th>ADDRESS</th>
+                <th>SUBJECTS</th>
                 <th></th>
                 <th><a href="{{route('dashboard.teacher.create')}}">
                 <button class="btn btn-primary">New Teacher</button></a></th>
@@ -28,6 +29,10 @@
                     <td>{{$teacher->phone}}</td>
                     <td>
                         {{$teacher->address}}
+                    </td>
+                    <td>
+                    <a href="{{route('dashboard.section.class.subject.allocation.index',[$teacher->id])}}">
+                    <button class="btn btn-primary">{{count($teacher->sectionClassSubjectTeachers)}}</button></a>
                     </td>
                     <td>
                         
