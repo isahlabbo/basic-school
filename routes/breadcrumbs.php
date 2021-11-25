@@ -9,9 +9,32 @@ Breadcrumbs::for('dashboard.section', function ($trail, $section) {
     $trail->parent('dashboard');
     $trail->push($section->name, route('dashboard.section.index',[$section->id]));
 });
+// dashboard/section/class
+Breadcrumbs::for('dashboard.section.class', function ($trail, $sectionClass) {
+    $trail->parent('dashboard.section',$sectionClass->section);
+    $trail->push($sectionClass->name, route('dashboard.section.class.index',[$sectionClass->id]));
+});
+
+// dashboard/section/class/subject
+Breadcrumbs::for('dashboard.section.class.subject', function ($trail, $sectionClass) {
+    $trail->parent('dashboard.section.class',$sectionClass);
+    $trail->push('Subjects', route('dashboard.section.class.subject.index',[$sectionClass->id]));
+});
+
+// dashboard/section/class/subject/create-allocation
+Breadcrumbs::for('dashboard.section.class.subject.allocation.create', function ($trail, $sectionClassSubject) {
+    $trail->parent('dashboard.section.class',$sectionClassSubject->sectionClass);
+    $trail->push('create-allocation', route('dashboard.section.class.subject.allocation/create',[$sectionClassSubject->id]));
+});
+
+// dashboard/section/class/subject/allocation
+Breadcrumbs::for('dashboard.section.class.subject.allocation.reCreate', function ($trail, $sectionClassSubject) {
+    $trail->parent('dashboard.section.class',$sectionClassSubject->sectionClass);
+    $trail->push('re-allocation', route('dashboard.section.class.subject.allocation.reCreate',[$sectionClassSubject->id]));
+});
 
 Breadcrumbs::for('dashboard.section.class-teacher.create', function ($trail, $sectionClass) {
-    $trail->parent('dasboard.section',$sectionClass->section);
+    $trail->parent('dashboard.section',$sectionClass->section);
     $trail->push('create-class-teacher', route('dashboard.section.class-teacher.create',[$sectionClass->id]));
 });
 

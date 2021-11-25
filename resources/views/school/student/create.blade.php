@@ -24,7 +24,7 @@
                                         <div class="form-group row">
                                             <div class="col-md-3"><label for="">Name</label></div>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" name="father_name" value="{{old('guardian_name')}}" placeholder="Enter Guardian's Name">
+                                                <input type="text" class="form-control" name="guardian_name" value="{{old('guardian_name')}}" placeholder="Enter Guardian's Name">
                                             </div>
                                         </div>
                                         <div class="form-group row">

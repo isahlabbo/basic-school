@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends BaseModel
 {
-    public function sectionClassSubject()
+    public function sectionClassSubjects()
     {
         return $this->hasMany(SectionClassSubject::class);
     }

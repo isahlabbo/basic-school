@@ -12,7 +12,7 @@ class ClassTeacherController extends Controller
 {
     public function create($sectionClassId)
     {
-        return view('section.classTeacher.create',['teachers'=>Teacher::all(),'sectionClass'=>SectionClass::find($sectionClassId)]);
+        return view('section.class.classTeacher.create',['teachers'=>Teacher::all(),'sectionClass'=>SectionClass::find($sectionClassId)]);
     }
 
     public function register(Request $request, $sectionClassId)
@@ -47,6 +47,6 @@ class ClassTeacherController extends Controller
 
     public function reCreate($sectionClassTeacherId)
     {
-        return view('section.classTeacher.reCreate',['teachers'=>Teacher::all(),'sectionClassTeacher'=>SectionClassTeacher::find($sectionClassTeacherId)]);
+        return view('section.class.classTeacher.reCreate',['teachers'=>Teacher::all(),'sectionClassTeacher'=>SectionClassTeacher::find($sectionClassTeacherId)]);
     }
 }

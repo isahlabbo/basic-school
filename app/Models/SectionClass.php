@@ -17,6 +17,11 @@ class SectionClass extends BaseModel
         return $this->hasMany(SectionClassStudent::class);
     }
 
+    public function sectionClassSubjects()
+    {
+        return $this->hasMany(SectionClassSubject::class);
+    }
+
     public function sectionClassTeachers()
     {
         return $this->hasMany(SectionClassTeacher::class);

@@ -11,6 +11,7 @@
             <tr>
                 <th>S/N</th>
                 <th>CLASS</th>
+                <th>SUBJECTS</th>
                 <th>CURRENT STUDENTS</th>
                 <th>REPEATING STUDENTS</th>
                 <th>CLASS TEACHER</th>
@@ -23,6 +24,7 @@
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$sectionClass->name}}</td>
+                    <td><a href="{{route('dashboard.section.class.subject.index',[$sectionClass->id])}}">{{count($sectionClass->sectionClassSubjects)}}</a></td>
                     <td>{{count($sectionClass->sectionClassStudents->where('status','Active'))}}</td>
                     <td>{{count($sectionClass->sectionClassStudents->where('status','Repeat'))}}</td>
                     <td>

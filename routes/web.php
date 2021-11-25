@@ -45,6 +45,25 @@ Route::name('dashboard.')
             Route::get('re-create/', 'ClassTeacherController@reCreate')->name('reCreate');
             Route::post('register/', 'ClassTeacherController@register')->name('register');
         });
+        Route::name('class.')
+        ->prefix('/class')
+        ->group(function (){
+            Route::get('/{sectionClassId}', 'SectionClassController@index')->name('index');
+            Route::name('subject.')
+            ->prefix('/{classId}/subject')
+            ->group(function (){
+                Route::get('/', 'SubjectController@index')->name('index');
+                
+            });
+            Route::name('subject.allocation.')
+                ->prefix('/subject/{sectionClassSubjectId}/allocation')
+                ->group(function (){
+                    Route::get('/', 'SubjectTeacherAllocationController@index')->name('index');
+                    Route::get('/create', 'SubjectTeacherAllocationController@create')->name('create');
+                    Route::get('/re-create', 'SubjectTeacherAllocationController@reCreate')->name('reCreate');
+                    Route::post('/regidter', 'SubjectTeacherAllocationController@register')->name('register');
+            });
+        }); 
     });
 
     // teachers routes

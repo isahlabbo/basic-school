@@ -12,9 +12,9 @@ class Teacher extends BaseModel
         return $this->hasMany(SectionClassTeacher::class);
     }
 
-    public function teacherSubjects()
+    public function sectionClassSubjectTeachers()
     {
-        return $this->hasMany(TeacherSubject::class);
+        return $this->hasMany(SectionClassSubjectTeacher::class);
     }
 
     public function user()
