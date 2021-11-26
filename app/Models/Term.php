@@ -11,4 +11,9 @@ class Term extends BaseModel
     {
         return $this->hasMany(TermSubjectResult::class);
     }
+
+    public function subjectTeacherTermylUpload()
+    {
+        return $this->hasMany(SubjectTeacherTermlyUpload::class);
+    }
 }

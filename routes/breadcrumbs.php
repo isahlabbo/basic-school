@@ -1,14 +1,41 @@
 <?php
 
-// Home
+// Dashboard
 Breadcrumbs::for('dashboard', function ($trail) {
     $trail->push('Dashboard', route('dashboard'));
 });
 
+// Dashboard/Check  Result
+Breadcrumbs::for('dashboard.result', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Check Result', route('dashboard.section.class.subject.result.index'));
+});
+
+// Dashboard/Check  Result/subject class
+Breadcrumbs::for('dashboard.result.summary', function ($trail, $sectionClassSubject) {
+    $trail->parent('dashboard.result');
+    $trail->push($sectionClassSubject->sectionClass->name.' '.$sectionClassSubject->name, route('dashboard.section.class.subject.result.summary',[$sectionClassSubject->id]));
+});
+
+// Dashboard/Check  Result/subject class/detail
+Breadcrumbs::for('dashboard.result.summary.detail', function ($trail, $sectionClassSubject) {
+    $trail->parent('dashboard.result.summary',$sectionClassSubject);
+    $trail->push('Detail', route('dashboard.section.class.subject.result.summary.detail',[$sectionClassSubject->id]));
+});
+
+// Dashboard/Check  Result/subject class/detail/edit
+Breadcrumbs::for('dashboard.result.summary.detail.edit', function ($trail, $studentResult) {
+    $trail->parent('dashboard.result.summary.detail',$studentResult->subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject);
+    $trail->push('Detail', route('dashboard.section.class.subject.result.summary.detail',[$studentResult->id]));
+});
+
+
+// Dashboard/Section
 Breadcrumbs::for('dashboard.section', function ($trail, $section) {
     $trail->parent('dashboard');
     $trail->push($section->name, route('dashboard.section.index',[$section->id]));
 });
+
 // dashboard/section/class
 Breadcrumbs::for('dashboard.section.class', function ($trail, $sectionClass) {
     $trail->parent('dashboard.section',$sectionClass->section);
@@ -43,11 +70,24 @@ Breadcrumbs::for('dashboard.section.class-teacher.reCreate', function ($trail, $
     $trail->push('change-class-teacher', route('dashboard.section.class-teacher.reCreate',[$sectionClass->id]));
 });
 
-
+// Daashboard/Teacher
 Breadcrumbs::for('dashboard.teacher', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Teachers', route('dashboard.teacher.index'));
 });
+
+// Daashboard/Teacher/Subject
+Breadcrumbs::for('dashboard.teacher.subject', function ($trail,$teacher) {
+    $trail->parent('dashboard.teacher');
+    $trail->push('Subjects', route('dashboard.section.class.subject.allocation.index',[$teacher->id]));
+});
+
+// Daashboard/Teacher/Subject/upload-result
+Breadcrumbs::for('dashboard.teacher.subject.upload', function ($trail,$teacher) {
+    $trail->parent('dashboard.teacher.subject',$teacher);
+    $trail->push('Upload Result', route('dashboard.teacher.upload.scoresheet',[$teacher->id]));
+});
+
 
 Breadcrumbs::for('dashboard.teacher.create', function ($trail) {
     $trail->parent('dashboard.teacher');

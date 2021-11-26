@@ -22,6 +22,18 @@ class SectionClassSubject extends BaseModel
         return $this->belongsTo(SectionClass::class);
     }
 
+    public function availableResultUploads()
+    {
+        $uploads = [];
+        foreach ($this->sectionClassSubjectTeachers as $classTeacher) {
+            foreach($classTeacher->subjectTeacherTermlyUploads as $upload){
+                $uploads[] = $upload;
+            }
+        }
+        return $uploads;
+    }
+
+    
     public function activeSectionClassSubjectTeacher()
     {
         $sectionClassSubjectTeacher = null;

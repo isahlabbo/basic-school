@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class SectionClassStudent extends BaseModel
 {
-    public function sectionClass()
+    public function studentResults()
     {
-        return $this->belongsTo(SectionClass::class);
+        return $this->hasMany(StudentResult::class);
     }
 
     public function student()

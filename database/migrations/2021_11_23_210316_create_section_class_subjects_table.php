@@ -31,6 +31,7 @@ class CreateSectionClassSubjectsTable extends Migration
             ->on('subjects')
             ->delete('restrict')
             ->update('cascade');
+            $table->string('name');
             $table->string('status')->default('Active');
             $table->timestamps();
         });

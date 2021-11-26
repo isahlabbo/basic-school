@@ -15,6 +15,7 @@ use App\Models\Section;
 Route::prefix('ajax')
    ->group(function() {
     Route::get('/section/{sectionId}/get-classes', 'AjaxController@getSectionClasses');
+    Route::get('/section/class/{sectionClassId}/get-subjects', 'AjaxController@getClassSubjects');
 });
 
 
@@ -53,9 +54,18 @@ Route::name('dashboard.')
             ->prefix('/{classId}/subject')
             ->group(function (){
                 Route::get('/', 'SubjectController@index')->name('index');
-                
             });
-
+            // subject results routes
+            Route::name('subject.result.')
+                ->prefix('/subject/result')
+                ->group(function (){
+                    Route::get('/', 'SubjectResultController@index')->name('index');
+                    Route::post('/check-result', 'SubjectResultController@checkResult')->name('check');
+                    Route::get('/{sectionClassSubjectId}/summary', 'SubjectResultController@viewResultSummary')->name('summary');
+                    Route::get('/summary/{subjectTeacherUploadId}/detail', 'SubjectResultController@viewDetail')->name('summary.detail');
+                    Route::get('/summary/detail/{studentResultId}/edit', 'SubjectResultController@editResult')->name('summary.detail.edit');
+                    Route::post('/summary/detail/{studentResultId}/update', 'SubjectResultController@updateResult')->name('summary.detail.update');
+            });
             Route::name('subject.allocation.')
                 ->prefix('/subject/teacher/{teacherId}/allocations')
                 ->group(function (){
@@ -80,6 +90,12 @@ Route::name('dashboard.')
         // score sheet route
         Route::get('/{sectionClassSubjecTeacherId}/download-score', 'ScoreSheetController@download')
         ->name('download.scoresheet');
+
+        Route::get('/{sectionClassSubjecId}/upload-score', 'ScoreSheetController@upload')
+        ->name('upload.scoresheet');
+
+        Route::post('/{sectionClassSubjecId}/upload-now', 'ScoreSheetController@uploadNow')
+        ->name('scoresheet.uploadNow');
 
 
         Route::get('/', 'TeacherController@index')->name('index');

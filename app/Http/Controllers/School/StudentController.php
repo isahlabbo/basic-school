@@ -29,20 +29,7 @@ class StudentController extends Controller
             'date_of_birth' => ['required'],
         ]);
         
-        $guardian = Guardian::create([
-            'name'=>$request->guardian_name,
-            'address'=>$request->address,
-            'phone'=>$request->phone,
-            'email'=>$request->email
-        ]);
-
-        $student = $guardian->students()->create([
-            'name'=>$request->name,
-            'date_of_birth'=>$request->date_of_birth,
-            'section_class_id'=>$request->class
-        ]);
-
-        $student->sectionClassStudents()->create(['section_class_id'=>$request->class]);
+    
 
         return redirect()->route('dashboard.student.index')->withSuccess('Student Registered Successfully');
     }

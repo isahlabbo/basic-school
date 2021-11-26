@@ -47,6 +47,7 @@
     </div>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/Ajax/sectionClasses.js')}}"></script>
+    <script src="{{asset('js/Ajax/classSubjects.js')}}"></script>
     @livewireScripts
 </body>
 </html>

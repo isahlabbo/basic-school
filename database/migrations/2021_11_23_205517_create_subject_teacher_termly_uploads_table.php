@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTermSubjectResultsTable extends Migration
+class CreateSubjectTeacherTermlyUploadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,16 @@ class CreateTermSubjectResultsTable extends Migration
      */
     public function up()
     {
-        Schema::create('term_subject_results', function (Blueprint $table) {
+        Schema::create('subject_teacher_termly_uploads', function (Blueprint $table) {
             $table->id();
+            $table->integer('section_class_subject_teacher_id')
+            ->unsigned()
+            ->nullable()
+            ->foreign()
+            ->references('id')
+            ->on('section_class_subject_teachers')
+            ->delete('restrict')
+            ->update('cascade');
             $table->integer('term_id')
             ->unsigned()
             ->nullable()
@@ -23,25 +31,6 @@ class CreateTermSubjectResultsTable extends Migration
             ->on('terms')
             ->delete('restrict')
             ->update('cascade');
-            $table->integer('subject_id')
-            ->unsigned()
-            ->nullable()
-            ->foreign()
-            ->references('id')
-            ->on('subjects')
-            ->delete('restrict')
-            ->update('cascade');
-            $table->integer('result_id')
-            ->unsigned()
-            ->nullable()
-            ->foreign()
-            ->references('id')
-            ->on('results')
-            ->delete('restrict')
-            ->update('cascade');
-            $table->string('ca')->default('0');
-            $table->string('exam')->default('0');
-            $table->string('total')->default('0');
             $table->timestamps();
         });
     }
@@ -53,6 +42,6 @@ class CreateTermSubjectResultsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('term_subject_results');
+        Schema::dropIfExists('subject_teacher_termly_uploads');
     }
 }

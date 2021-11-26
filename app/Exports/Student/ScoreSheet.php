@@ -19,7 +19,7 @@ class ScoreSheet implements FromView
     
     public function view(): View
     {
-        return view('school.student.scoreSheet', ['students' => $this->students
+        return view('school.teacher.scoreSheet.sheet', ['students' => $this->students
         ]);
     }
 }

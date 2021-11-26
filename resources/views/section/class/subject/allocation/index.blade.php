@@ -3,7 +3,7 @@
         {{$teacher->user->name}} allocated subjects
     @endsection
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard')}}
+       {{Breadcrumbs::render('dashboard.teacher.subject',$teacher)}}
     @endsection
     @section('content')
         <table class="table">
@@ -28,7 +28,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="#"><button class="btn btn-secondary">Upload Result</button></a>
+                        <a href="{{route('dashboard.teacher.upload.scoresheet',[$sectionClassSubjectTeacher->sectionClassSubject->id])}}"><button class="btn btn-secondary">Upload Result</button></a>
                     </td>
                 </tr>
             @endforeach

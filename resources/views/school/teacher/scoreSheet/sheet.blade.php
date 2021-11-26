@@ -9,13 +9,15 @@
     </tr>
     </thead>
     <tbody>
+    
     @foreach($students as $student)
+    
         <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $student->user->name }}</td>
+            <td>{{ $student->name }}</td>
             <td>{{ $student->admission_no }}</td>
-            <td></td>
-            <td></td>
+            <td>{{rand(10,40)}}</td>
+            <td>{{rand(15,60)}}</td>
         </tr>
     @endforeach
     </tbody>

@@ -15,7 +15,7 @@ class Student extends BaseModel
     public function activeSectionClass()
     {
         $sectionClass = null;
-        foreach($this->sectionClassStudents->where('status', 'active') as $sectionClassStudent){
+        foreach($this->sectionClassStudents->where('status', 'Active') as $sectionClassStudent){
             $sectionClass = $sectionClassStudent->sectionClass;
         }
         return $sectionClass;

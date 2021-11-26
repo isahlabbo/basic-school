@@ -17,6 +17,10 @@ class SectionClassSubjectTeacher extends BaseModel
         return $this->belongsTo(SectionClassSubject::class);
     }
 
+    public function subjectTeacherTermlyUploads ()
+    {
+        return $this->hasMany(SubjectTeacherTermlyUpload::class);
+    }
     public function getDownloadableName()
     {
         

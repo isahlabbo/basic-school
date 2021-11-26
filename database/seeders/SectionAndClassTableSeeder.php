@@ -85,7 +85,7 @@ class SectionAndClassTableSeeder extends Seeder
                 $newClass = $newSection->sectionClasses()->create(['name'=>$class['name']]);
                 foreach($class['subjects'] as $subject){
                     $newSubject = Subject::firstOrCreate(['name'=>$subject]);
-                    $newSubject->sectionClassSubjects()->create(['section_class_id'=>$newClass->id]);
+                    $newSubject->sectionClassSubjects()->create(['name'=>$newSubject->name,'section_class_id'=>$newClass->id]);
                 }
             }
         }

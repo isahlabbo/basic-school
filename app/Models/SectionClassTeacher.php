@@ -16,4 +16,5 @@ class SectionClassTeacher extends BaseModel
     {
         return $this->belongsTo(Teacher::class);
     }
+    
 }

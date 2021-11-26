@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SectionClassSubjectTeacher;
 use App\Exports\Student\ScoreSheet;
+use App\Models\SectionClassSubject;
+use App\Models\Term;
+use App\Imports\School\ScoreSheet as ScoreSheetImport;
 
 class ScoreSheetController extends Controller
 {
@@ -17,4 +20,21 @@ class ScoreSheetController extends Controller
         ->sectionClass
         ->currentStudents()), $sectionClassSubjectTeacher->getDownloadableName().'_score_sheet.xlsx');
     }
+    
+    public function upload($sectionClassSubjectId)
+    {
+        return view('school.teacher.scoreSheet.upload',['terms'=>Term::all(),'sectionClassSubject'=>SectionClassSubject::find($sectionClassSubjectId)]);
+    }
+    public function uploadNow(Request $request, $sectionClassSubjectId)
+    {
+        $request->validate([
+            'term'=>'required',
+            'score_sheet'=>'required',
+        ]);
+        Excel::import(new ScoreSheetImport(SectionClassSubject::find($request->sectionClassSubjectId), Term::find($request->term)), request()->file('score_sheet'));
+
+        return redirect()->route('dashboard.teacher.upload.scoresheet',[$sectionClassSubjectId])->withSuccess('Result Uploaded Success fully');
+    }
+
+
 }

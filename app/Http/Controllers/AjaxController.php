@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Ward;
 use App\Models\SectionClass;
+use App\Models\SectionClassSubject;
 
 class AjaxController extends Controller
 {
@@ -13,8 +14,11 @@ class AjaxController extends Controller
         return response()->json(SectionClass::where('section_id',$sectionId)->pluck('name','id'));
     }
 
-    public function getWardPollingUnits($wardId)
+    public function getClassSubjects($sectionClassId)
     {
-        return response()->json(PollingUnit::where(['ward_id'=>$wardId])->pluck('name','id'));
+        return response()->json(SectionClassSubject::where(['section_class_id'=>$sectionClassId,'status'=>'Active'])->pluck('name','id'));
     }
+
+    
+    
 }
