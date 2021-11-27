@@ -119,4 +119,14 @@ Route::name('dashboard.')
         Route::get('/create', 'StudentController@create')->name('create');
         Route::post('/register', 'StudentController@register')->name('register');
     });
+
+    Route::namespace('School')
+    ->name('session.')
+    ->prefix('/academic-session')
+    ->group(function (){
+        Route::get('/', 'AcademicSessionController@index')->name('index');
+        Route::get('/{academicSessionId}/activate', 'AcademicSessionController@saveAsCurrentSession')->name('activate');
+        Route::get('/{academicSessionId}/configure', 'AcademicSessionController@configure')->name('configure');
+        Route::post('/configuration/update', 'AcademicSessionController@update')->name('configuration.update');
+    });
 });

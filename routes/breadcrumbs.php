@@ -5,6 +5,18 @@ Breadcrumbs::for('dashboard', function ($trail) {
     $trail->push('Dashboard', route('dashboard'));
 });
 
+// Dashboard/Academic Session
+Breadcrumbs::for('dashboard.session', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Academic Session', route('dashboard.session.index'));
+});
+
+// Dashboard/Academic Session/Configure
+Breadcrumbs::for('dashboard.session.configure', function ($trail,$academicSession) {
+    $trail->parent('dashboard.session',$academicSession->id);
+    $trail->push($academicSession->name.' Configuration', route('dashboard.session.configure',$academicSession->id));
+});
+
 // Dashboard/Check  Result
 Breadcrumbs::for('dashboard.result', function ($trail) {
     $trail->parent('dashboard');
