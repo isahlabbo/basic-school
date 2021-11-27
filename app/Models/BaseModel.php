@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class BaseModel extends Model
 {
     protected $guarded = [];
+
+    public function currentSession()
+    {
+        return AcademicSession::where('status','Active')->first();
+    }
+
 }

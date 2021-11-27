@@ -45,7 +45,7 @@ class ScoreSheet implements ToModel
                     ]);
             }else{
                 $subjectTeacherTermlyUpload->studentResults()->create([
-                    'section_class_student_id'  => $this->getThisStudent($row[2])->sectionClassStudents->where('status','Active')->first()->id,
+                    'section_class_student_term_id'  => $this->getThisStudent($row[2])->sectionClassStudents->where('status','Active')->first()->sectionClassStudentTerms->where('status','Active')->first()->id,
                     'first_ca' => $row[3],
                     'second_ca' => $row[4],
                     'exam' => $row[5],

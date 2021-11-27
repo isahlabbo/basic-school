@@ -63,12 +63,17 @@ class SubjectResultController extends Controller
 
     public function updateResult(Request $request)
     {
-        $request->validate(['ca'=>'required','exam'=>'required']);
+        $request->validate([
+            'first_ca'=>'required',
+            'second_ca'=>'required',
+            'exam'=>'required'
+            ]);
         $studentResult = StudentResult::find($request->studentResultId);
         $studentResult->update([
-            'ca'=>$request->ca,
+            'first_ca'=>$request->first_ca,
+            'second_ca'=>$request->second_ca,
             'exam'=>$request->exam,
-            'total'=>$request->exam+$request->ca
+            'total'=>$request->exam + $request->first_ca + $request->second_ca
         ]);
 
         $studentResult->reComputeGrade();

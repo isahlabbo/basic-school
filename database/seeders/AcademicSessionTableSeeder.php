@@ -29,6 +29,9 @@ class AcademicSessionTableSeeder extends Seeder
 
         foreach ($sessions as $session) {
             $academicSession = AcademicSession::firstOrCreate(['name'=>$session]);
+            if($academicSession->id == 1){
+                $academicSession->update(['status'=>'Active']);
+            }
             foreach ([1,2,3] as $term_id) {
                $academicSession->academicSessionTerms()->create(['term_id'=>$term_id]);
             }

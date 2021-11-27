@@ -39,11 +39,11 @@ class GenerateStudents extends Command
      */
     public function handle()
     {
-        $this->output->progressStart(6000);
+        $this->output->progressStart(1200);
         foreach (Section::all() as $section) {
             foreach($section->sectionClasses as $sectionClass){
                 $number = '08162460000';
-               for($i = 1; $i <= 200; $i++){
+               for($i = 1; $i <= 40; $i++){
 
                     $guardian = Guardian::create([
                         'name'=>'guardian test name '.$i,
@@ -58,7 +58,16 @@ class GenerateStudents extends Command
                         'date_of_birth'=>'2020/12/12',
                         'section_class_id'=>$sectionClass->id
                     ]);
-                    $student->sectionClassStudents()->create(['section_class_id'=>$sectionClass->id]);
+                    $classStudent = $student->sectionClassStudents()->create(['section_class_id'=>$sectionClass->id]);
+                    $count = 1;
+                    foreach($student->currentSession()->academicSessionTerms as $academicSessionTerm){
+                        if($count == 1){
+                            $academicSessionTerm->sectionClassStudentTerms()->create(['status'=>'Active','section_class_student_id'=>$classStudent->id]);
+                        }else{
+                            $academicSessionTerm->sectionClassStudentTerms()->create(['section_class_student_id'=>$classStudent->id]);
+                        }
+                        $count++;
+                    }
                     $number++;
                     $this->output->progressAdvance();
                 }

@@ -7,7 +7,7 @@
     @endsection
     @section('content')
         @foreach($student->sectionClassStudents as $sectionClassStudent)
-            @foreach($terms as $term)<br><br>
+            @foreach($sectionClassStudent->sectionClassStudentTerms->where('status','Active') as $sectionClassStudentTerm)<br><br>
             <div class="card shadow">
                 <div class="card-body">
                     <div class="row">
@@ -22,7 +22,7 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-md-12 text text-center"><hr style="background-color: gray; height: 2px;"><b>REPORT SHEET FOR SECOND TERM 2020/2021 ACADEMIC SESSION</b><hr style="background-color: orange; height: 3px;"></div>
+                        <div class="col-md-12 text text-center"><hr style="background-color: gray; height: 2px;"><b>REPORT SHEET FOR SECOND TERM {{$sectionClassStudentTerm->academicSessionTerm->academicSession->name}} ACADEMIC SESSION</b><hr style="background-color: orange; height: 3px;"></div>
                         
                         <div class="col-md-3 text text-right">
                             <p class="mb-0">Admission No:</p>
@@ -48,9 +48,9 @@
 
                         <div class="col-md-3">
                             <p class="mb-0">Next Term Begins:</p>
-                            <p class="mb-0">Term: <b>{{strtoupper($term->name)}}</b></p>
+                            <p class="mb-0">Term: <b>{{strtoupper($sectionClassStudentTerm->academicSessionTerm->term->name)}}</b></p>
                             <p class="mb-0">Class: <b>{{$sectionClassStudent->sectionClass->name}}</b></p>
-                            <p class="mb-0">Session: <b>2021/2020</b></p>
+                            <p class="mb-0">Session: <b>{{$sectionClassStudentTerm->academicSessionTerm->academicSession->name}}</b></p>
                             <p class="mb-0"><b>ATTENDANCE:</b></p>
                             <p class="mb-0">
                                 <tr>
@@ -60,9 +60,9 @@
                             </p>
                             <p class="mb-0">
                             <tr>
-                                    <td>Day(s) Present:</td>
-                                    <td><b>0</b></td>
-                                </tr>
+                                <td>Day(s) Present:</td>
+                                <td><b>0</b></td>
+                            </tr>
                             
                             </p>
                             <p class="mb-0">
@@ -99,8 +99,7 @@
                                     $subjects = 0;
                                     $obtainedMarks = 0;
                                 @endphp
-                                @foreach($sectionClassStudent->studentResults as $studentResult)
-                                    @if($studentResult->subjectTeacherTermlyUpload->term->id == $term->id)
+                                @foreach($sectionClassStudentTerm->studentResults as $studentResult)
                                     @php
                                         $subjects++;
                                         $obtainedMarks = $obtainedMarks + $studentResult->total;
@@ -116,7 +115,6 @@
                                         <td class="text text-center"></td>
                                         <td class="text text-center">{{$studentResult->remark()}}</td>
                                     </tr>
-                                    @endif
                                 @endforeach
                                 <table class="table-bordered">
                                 <tr>

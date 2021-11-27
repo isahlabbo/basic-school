@@ -16,4 +16,10 @@ class AcademicSessionTerm extends BaseModel
     {
         return $this->belongsTo(Term::class);
     }
+
+    public function sectionClassStudentTerms()
+    {
+        return $this->hasMany(SectionClassStudentTerm::class);
+    }
+
 }

@@ -30,8 +30,8 @@
                     @foreach($subjectTeacherTermlyUpload->studentResults as $studentResult)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$studentResult->sectionClassStudent->student->name}}</td>
-                        <td>{{$studentResult->sectionClassStudent->student->admission_no}}</td>
+                        <td>{{$studentResult->sectionClassStudentTerm->sectionClassStudent->student->name}}</td>
+                        <td>{{$studentResult->sectionClassStudentTerm->sectionClassStudent->student->admission_no}}</td>
                         <td>{{$studentResult->first_ca}}</td>
                         <td>{{$studentResult->second_ca}}</td>
                         <td>{{$studentResult->exam}}</td>

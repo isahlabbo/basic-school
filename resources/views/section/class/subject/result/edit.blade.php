@@ -18,20 +18,27 @@
                         <div class="form-group row">
                             <div class="col-md-3"><label for="">Name</label></div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="name" disabled value="{{$studentResult->sectionClassStudent->student->name}}" placeholder="Enter Teacher's Name">
+                                <input type="text" class="form-control" name="name" disabled value="{{$studentResult->sectionClassStudentTerm->sectionClassStudent->student->name}}" placeholder="Enter Teacher's Name">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-3"><label for="">Admission NO</label></div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" disabled name="admission_no" value="{{$studentResult->sectionClassStudent->student->admission_no}}" placeholder="Enter Teacher's Phone number">
+                                <input type="text" class="form-control" disabled name="admission_no" value="{{$studentResult->sectionClassStudentTerm->sectionClassStudent->student->admission_no}}" placeholder="Enter Teacher's Phone number">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-3"><label for="">CA</label></div>
+                            <div class="col-md-3"><label for="">1ST CA</label></div>
                             <div class="col-md-9">
-                                <input type="number" class="form-control" name="ca" value="{{$studentResult->ca}}">
+                                <input type="number" class="form-control" name="first_ca" value="{{$studentResult->first_ca}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3"><label for="">2ND CA</label></div>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control" name="second_ca" value="{{$studentResult->second_ca}}">
                             </div>
                         </div>
 

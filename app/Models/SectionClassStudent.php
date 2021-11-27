@@ -16,11 +16,13 @@ class SectionClassStudent extends BaseModel
     {
         return $this->belongsTo(SectionClass::class);
     }
-
+    public function sectionClassStudentTerms ()
+    {
+        return $this->hasMany(SectionClassStudentTerm::class);
+    }
     public function student()
     {
         return $this->belongsTo(Student::class);
     }
 
-    
 }

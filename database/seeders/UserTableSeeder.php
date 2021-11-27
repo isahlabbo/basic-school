@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\SectionClassSubject;
 use Illuminate\Support\Facades\Hash;
 
 class UserTableSeeder extends Seeder
@@ -22,12 +23,6 @@ class UserTableSeeder extends Seeder
                 'password'=>Hash::make('admin'),
                 'role'=>'Admin',
             ],
-            [
-                'name'=>'Teacher',
-                'email'=>'teacher@wayforward.com',
-                'password'=>Hash::make('teacher'),
-                'role'=>'Teacher',
-            ]
         ];
 
         foreach($users as $user){
@@ -36,6 +31,22 @@ class UserTableSeeder extends Seeder
             if($user->role == 'Teacher'){
                 $user->teacher()->create(['address'=>config('app.name'),'phone'=>'08000000000']);
             }
+        }
+
+        for ($i=1; $i <=16 ; $i++) { 
+            $user = User::firstOrCreate([
+                'name'=>'teacher '.$i,
+                'email'=>'teacher'.$i.'@wayforward.com',
+                'password'=>Hash::make('teacher'),
+                'role'=>'Teacher',
+            ],);
+
+            $teacher = $user->teacher()->create(['address'=>config('app.name'),'phone'=>'08162463010'.$i]);
+            
+        }
+
+        foreach(SectionClassSubject::all() as $classSubject){
+            $classSubject->sectionClassSubjectTeachers()->firstOrCreate(['teacher_id'=>rand(1,16)]);
         }
     }
 }

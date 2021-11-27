@@ -27,7 +27,7 @@
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$student->name}}</td>
-                    <td>{{$student->adnission_no}}</td>
+                    <td>{{$student->admission_no}}</td>
                     <td>{{$student->activeSectionClass()->name ?? 'Not Available'}}</td>
                     <td>{{$student->guardian->name}}</td>
                     <td>{{$student->guardian->phone}}</td>

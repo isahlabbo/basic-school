@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class StudentResult extends BaseModel
 {
-    public function sectionClassStudent()
+    public function sectionClassStudentTerm()
     {
-        return $this->belongsTo(SectionClassStudent::class);
+        return $this->belongsTo(SectionClassStudentTerm::class);
     }
 
     public function subjectTeacherTermlyUpload()

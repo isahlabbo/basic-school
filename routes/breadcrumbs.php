@@ -44,7 +44,7 @@ Breadcrumbs::for('dashboard.result.summary.detail', function ($trail, $sectionCl
 // Dashboard/Check  Result/subject class/detail/edit
 Breadcrumbs::for('dashboard.result.summary.detail.edit', function ($trail, $studentResult) {
     $trail->parent('dashboard.result.summary.detail',$studentResult->subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject);
-    $trail->push('Detail', route('dashboard.section.class.subject.result.summary.detail',[$studentResult->id]));
+    $trail->push('Edit', route('dashboard.section.class.subject.result.summary.detail',[$studentResult->id]));
 });
 
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentResultsTable extends Migration
+class CreateSectionClassStudentTermsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,29 +13,25 @@ class CreateStudentResultsTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_results', function (Blueprint $table) {
+        Schema::create('section_class_student_terms', function (Blueprint $table) {
             $table->id();
-            $table->integer('section_class_student_term_id')
+            $table->integer('section_class_student_id')
             ->unsigned()
             ->nullable()
             ->foreign()
             ->references('id')
-            ->on('section_class_student_terms')
+            ->on('section_class_students')
             ->delete('restrict')
             ->update('cascade');
-            $table->integer('subject_teacher_termly_upload_id')
+            $table->integer('academic_session_term_id')
             ->unsigned()
             ->nullable()
             ->foreign()
             ->references('id')
-            ->on('subject_teacher_termly_uploads')
+            ->on('academic_session_terms')
             ->delete('restrict')
             ->update('cascade');
-            $table->string('first_ca')->default('0');
-            $table->string('second_ca')->default('0');
-            $table->string('exam')->default('0');
-            $table->string('total')->default('0');
-            $table->string('grade')->default('F');
+            $table->string('status')->default('Not Active');
             $table->timestamps();
         });
     }
@@ -47,6 +43,6 @@ class CreateStudentResultsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_results');
+        Schema::dropIfExists('section_class_student_terms');
     }
 }
