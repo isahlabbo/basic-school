@@ -44,6 +44,7 @@
             @endforeach
         </tbody>
         </table>
+        {{$students->onEachSide(5)->links()}}
     @endsection
     
 </x-app-layout>

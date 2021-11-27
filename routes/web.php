@@ -55,6 +55,13 @@ Route::name('dashboard.')
             ->group(function (){
                 Route::get('/', 'SubjectController@index')->name('index');
             });
+
+            // subject results routes
+            Route::name('student.result.')
+                ->prefix('/student/result')
+                ->group(function (){
+                    Route::get('/{studentId}/view', 'StudentResultController@view')->name('view');
+            });
             // subject results routes
             Route::name('subject.result.')
                 ->prefix('/subject/result')

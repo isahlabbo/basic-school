@@ -18,7 +18,8 @@
                         <th>S/N</th>
                         <th>NAME</th>
                         <th>ADMISSION NO</th>
-                        <th>CA</th>
+                        <th>1ST CA</th>
+                        <th>2ND CA</th>
                         <th>EXAM</th>
                         <th>TOTAL</th>
                         <th>GRADE</th>
@@ -31,7 +32,8 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$studentResult->sectionClassStudent->student->name}}</td>
                         <td>{{$studentResult->sectionClassStudent->student->admission_no}}</td>
-                        <td>{{$studentResult->ca}}</td>
+                        <td>{{$studentResult->first_ca}}</td>
+                        <td>{{$studentResult->second_ca}}</td>
                         <td>{{$studentResult->exam}}</td>
                         <td>{{$studentResult->total}}</td>
                         <td>{{$studentResult->grade}}</td>

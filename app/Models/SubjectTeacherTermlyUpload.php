@@ -26,11 +26,30 @@ class SubjectTeacherTermlyUpload extends BaseModel
     public function gradePercentage($grade)
     {
         
-        return ((count($this->studentResults)/100)*$this->gradeCount($grade)) * count($this->studentResults);
+        return 100 * ($this->gradeCount($grade)/count($this->studentResults));
     }
 
     public function gradeCount($grade)
     {
         return count($this->studentResults->where('grade',$grade));
+    }
+
+    public function position($total)
+    {
+        $scoreBoard = [];
+        foreach ($this->studentResults as $studentResult) {
+            $scoreBoard[] = $studentResult->total;
+        }
+        
+        // remove the duplicate score from the array
+        array_unique($scoreBoard);
+       
+        // soret array decending order
+        rsort($scoreBoard);
+        foreach($scoreBoard as $key => $value){
+            if($total == $value){
+                return ($key+1);
+            }
+        }
     }
 }

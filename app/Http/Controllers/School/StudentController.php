@@ -12,7 +12,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-       return view('school.student.index',['students'=>Student::all()]);
+       return view('school.student.index',['students'=>Student::paginate(5)]);
     }
 
     public function create()

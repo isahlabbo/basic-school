@@ -37,27 +37,29 @@ class ScoreSheet implements ToModel
             }
             if($result){
                 $result->update([
-                    'ca' => $row[3],
-                    'exam' => $row[4],
-                    'total' => $row[3] + $row[4],
-                    'grade' => $this->computeGrade($row[3],$row[4])
+                    'first_ca' => $row[3],
+                    'second_ca' => $row[4],
+                    'exam' => $row[5],
+                    'total' => $row[4] + $row[5] + $row[3],
+                    'grade' => $this->computeGrade($row[4],$row[5],$row[3])
                     ]);
             }else{
                 $subjectTeacherTermlyUpload->studentResults()->create([
                     'section_class_student_id'  => $this->getThisStudent($row[2])->sectionClassStudents->where('status','Active')->first()->id,
-                    'ca' => $row[3],
-                    'exam' => $row[4],
-                    'total' => $row[3] + $row[4],
-                    'grade' => $this->computeGrade($row[3],$row[4]),
+                    'first_ca' => $row[3],
+                    'second_ca' => $row[4],
+                    'exam' => $row[5],
+                    'total' => $row[4] + $row[5] + $row[3],
+                    'grade' => $this->computeGrade($row[3],$row[4], $row[5]),
                 ]);
             }
         }
 
     }
 
-    public function computeGrade($ca, $exam)
+    public function computeGrade($ca1, $ca2, $exam)
     {
-        $total = $ca + $exam;
+        $total = $ca1 + $ca2 + $exam;
         $grade = 'F';
         if($total >= 70){
             $grade = 'A';

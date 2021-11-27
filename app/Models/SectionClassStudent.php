@@ -12,8 +12,15 @@ class SectionClassStudent extends BaseModel
         return $this->hasMany(StudentResult::class);
     }
 
+    public function sectionClass(Type $var = null)
+    {
+        return $this->belongsTo(SectionClass::class);
+    }
+
     public function student()
     {
         return $this->belongsTo(Student::class);
     }
+
+    
 }

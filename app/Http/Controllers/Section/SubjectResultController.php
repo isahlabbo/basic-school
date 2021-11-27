@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Section;
 use App\Models\Term;
+use App\Models\Student;
 use App\Models\StudentResult;
 use App\Models\SectionClassSubject;
 use App\Models\SubjectTeacherTermlyUpload;
@@ -20,7 +21,12 @@ class SubjectResultController extends Controller
     public function checkResult(Request $request)
     {
         if($request->admission_no){
-            dd($request->admission_no);
+            $student = Student::where('admission_no',$request->admission_no)->first();
+            if($student){
+                return redirect()->route('dashboard.section.class.student.result.view',[$student->id]);
+            }else{
+                return redirect()->route('dashboard.section.class.subject.result.index');
+            }
         }elseif($request->subject){
 
             $sectionClassSubject = SectionClassSubject::find($request->subject);

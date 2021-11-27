@@ -35,4 +35,29 @@ class StudentResult extends BaseModel
         }
         $this->update(['grade'=>$grade]);
     }
+
+    public function remark()
+    {
+        switch ($this->grade) {
+            case 'A':
+                $remark = 'Excellence';
+                break;
+            case 'B':
+                $remark = 'Very Good';
+                break;
+            case 'C':
+                $remark = 'Good';
+                break;
+            case 'D':
+                $remark = 'Fair';
+                break;
+            case 'E':
+                $remark = 'Poor';
+                break;
+            default:
+                $remark = 'Fair';
+                break;
+        }
+        return $remark;
+    }
 }

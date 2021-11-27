@@ -31,7 +31,8 @@ class CreateStudentResultsTable extends Migration
             ->on('subject_teacher_termly_uploads')
             ->delete('restrict')
             ->update('cascade');
-            $table->string('ca')->default('0');
+            $table->string('first_ca')->default('0');
+            $table->string('second_ca')->default('0');
             $table->string('exam')->default('0');
             $table->string('total')->default('0');
             $table->string('grade')->default('F');

@@ -20,25 +20,65 @@ class SectionAndClassTableSeeder extends Seeder
                 'name'=>'Nursery',
                 'classes'=>[
                     [
-                        'name'=>'Nursery 1 yellow','subjects'=>[
+                        'name'=>'Nursery 1 Yellow','subjects'=>[
                             'Mathematics', 
                             'English'
                         ]
                     ],
                     [
-                        'name'=>'Nursery 1 yellow',
+                        'name'=>'Nursery 1 Ash',
                         'subjects'=>[
                             'Mathematics',
                             'English'
                         ]
                     ],
                     [
-                        'name'=>'Nursery 1 yellow',
+                        'name'=>'Nursery 1 Orange',
                         'subjects'=>[
                             'Mathematics',
                             'English'
                         ]
-                    ]
+                        ],
+                        [
+                            'name'=>'Nursery 2 Yellow','subjects'=>[
+                                'Mathematics', 
+                                'English'
+                            ]
+                        ],
+                        [
+                            'name'=>'Nursery 2 Ash',
+                            'subjects'=>[
+                                'Mathematics',
+                                'English'
+                            ]
+                        ],
+                        [
+                            'name'=>'Nursery 2 Orange',
+                            'subjects'=>[
+                                'Mathematics',
+                                'English'
+                            ]
+                            ],
+                            [
+                                'name'=>'Nursery 3 Yellow','subjects'=>[
+                                    'Mathematics', 
+                                    'English'
+                                ]
+                            ],
+                            [
+                                'name'=>'Nursery 3 Ash',
+                                'subjects'=>[
+                                    'Mathematics',
+                                    'English'
+                                ]
+                            ],
+                            [
+                                'name'=>'Nursery 3 Orange',
+                                'subjects'=>[
+                                    'Mathematics',
+                                    'English'
+                                ]
+                            ]
                 ]
             ],
             [
@@ -51,26 +91,140 @@ class SectionAndClassTableSeeder extends Seeder
                         ]
                     ],
                     [
-                        'name'=>'Basic 1 yellow',
+                        'name'=>'Basic 1 Ash',
                         'subjects'=>[
                             'Mathematics',
                             'English'
                         ]
                     ],
                     [
-                        'name'=>'Basic 1 yellow',
+                        'name'=>'Basic 1 Orange',
                         'subjects'=>[
                             'Mathematics',
                             'English'
                         ]
-                    ]
+                    ],
+                    [
+                        'name'=>'Basic 2 yellow','subjects'=>[
+                            'Mathematics', 
+                            'English'
+                        ]
+                    ],
+                    [
+                        'name'=>'Basic 2 Ash',
+                        'subjects'=>[
+                            'Mathematics',
+                            'English'
+                        ]
+                    ],
+                    [
+                        'name'=>'Basic 2 Orange',
+                        'subjects'=>[
+                            'Mathematics',
+                            'English'
+                        ]
+                    ],
+                    [
+                        'name'=>'Basic 3 yellow','subjects'=>[
+                            'Mathematics', 
+                            'English'
+                        ]
+                    ],
+                    [
+                        'name'=>'Basic 3 Ash',
+                        'subjects'=>[
+                            'Mathematics',
+                            'English'
+                        ]
+                    ],
+                    [
+                        'name'=>'Basic 3 Orange',
+                        'subjects'=>[
+                            'Mathematics',
+                            'English'
+                        ]
+                        ],
+                        [
+                            'name'=>'Basic 4 yellow','subjects'=>[
+                                'Mathematics', 
+                                'English'
+                            ]
+                        ],
+                        [
+                            'name'=>'Basic 4 Ash',
+                            'subjects'=>[
+                                'Mathematics',
+                                'English'
+                            ]
+                        ],
+                        [
+                            'name'=>'Basic 4 Orange',
+                            'subjects'=>[
+                                'Mathematics',
+                                'English'
+                            ]
+                            ],
+                            [
+                                'name'=>'Basic 5 yellow','subjects'=>[
+                                    'Mathematics', 
+                                    'English'
+                                ]
+                            ],
+                            [
+                                'name'=>'Basic 5 Ash',
+                                'subjects'=>[
+                                    'Mathematics',
+                                    'English'
+                                ]
+                            ],
+                            [
+                                'name'=>'Basic 5 Orange',
+                                'subjects'=>[
+                                    'Mathematics',
+                                    'English'
+                                ]
+                                ],
+                                [
+                                    'name'=>'Basic 6 yellow','subjects'=>[
+                                        'Mathematics', 
+                                        'English'
+                                    ]
+                                ],
+                                [
+                                    'name'=>'Basic 6 Ash',
+                                    'subjects'=>[
+                                        'Mathematics',
+                                        'English'
+                                    ]
+                                ],
+                                [
+                                    'name'=>'Basic 6 Orange',
+                                    'subjects'=>[
+                                        'Mathematics',
+                                        'English'
+                                    ]
+                                ]
                 ]
             ],
             [
                 'name'=>'Secondary',
                 'classes'=>[
                     [
-                        'name'=>'Basic 1 yellow',
+                        'name'=>'JSS 1 Yellow',
+                        'subjects'=>[
+                            'Mathematics',
+                            'English'
+                        ]
+                        ],
+                    [
+                        'name'=>'JSS 1 Ash',
+                        'subjects'=>[
+                            'Mathematics',
+                            'English'
+                        ]
+                    ],
+                    [
+                        'name'=>'JSS 1 Orange',
                         'subjects'=>[
                             'Mathematics',
                             'English'

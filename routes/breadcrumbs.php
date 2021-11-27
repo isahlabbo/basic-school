@@ -11,6 +11,12 @@ Breadcrumbs::for('dashboard.result', function ($trail) {
     $trail->push('Check Result', route('dashboard.section.class.subject.result.index'));
 });
 
+// Dashboard/Check  Result
+Breadcrumbs::for('dashboard.result.student', function ($trail, $student) {
+    $trail->parent('dashboard.result');
+    $trail->push($student->admission_no.' Result', route('dashboard.section.class.student.result.view',[$student->id]));
+});
+
 // Dashboard/Check  Result/subject class
 Breadcrumbs::for('dashboard.result.summary', function ($trail, $sectionClassSubject) {
     $trail->parent('dashboard.result');
