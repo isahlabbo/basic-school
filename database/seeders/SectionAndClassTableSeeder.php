@@ -37,7 +37,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'N1Y'
                     ],
                     [
                         'name'=>'Nursery 1 Ash',
@@ -58,7 +59,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'N1A'
                     ],
                     [
                         'name'=>'Nursery 1 Orange',
@@ -79,13 +81,29 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'N1O'
                         ],
                         [
                             'name'=>'Nursery 2 Yellow','subjects'=>[
-                                'Mathematics', 
-                                'English'
-                            ]
+                                "Alqur'an",
+                            "Mathematics",
+                            "English Studies",
+                            "basic Science and Technology",
+                            "CCA",
+                            "Handwriting",
+                            "IRK",
+                            "Al,azkar",
+                            "Al-arabiyya",
+                            "Al-huruf",
+                            "Al-kitaba",
+                            "Alhadith",
+                            "Ulumul Amma",
+                            "RNV",
+                            "PVS",
+                            "Hausa",
+                            ],
+                            'code'=>'N2Y'
                         ],
                         [
                             'name'=>'Nursery 2 Ash',
@@ -106,7 +124,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                            ]
+                            ],
+                            'code'=>'N2A'
                         ],
                         [
                             'name'=>'Nursery 2 Orange',
@@ -127,69 +146,73 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                            ]
+                            ],
+                            'code'=>'N2O'
                             ],
                             [
                                 'name'=>'Nursery 3 Yellow','subjects'=>[
                                     "Alqur'an",
-                            "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
-                            "CCA",
-                            "Handwriting",
-                            "IRK",
-                            "Al,azkar",
-                            "Al-arabiyya",
-                            "Al-huruf",
-                            "Al-kitaba",
-                            "Alhadith",
-                            "Ulumul Amma",
-                            "RNV",
-                            "PVS",
-                            "Hausa",
-                                ]
+                                    "Mathematics",
+                                    "English Studies",
+                                    "basic Science and Technology",
+                                    "CCA",
+                                    "Handwriting",
+                                    "IRK",
+                                    "Al,azkar",
+                                    "Al-arabiyya",
+                                    "Al-huruf",
+                                    "Al-kitaba",
+                                    "Alhadith",
+                                    "Ulumul Amma",
+                                    "RNV",
+                                    "PVS",
+                                    "Hausa",
+                                ],
+                                'code'=>'N3Y'
                             ],
                             [
                                 'name'=>'Nursery 3 Ash',
                                 'subjects'=>[
                                     "Alqur'an",
-                            "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
-                            "CCA",
-                            "Handwriting",
-                            "IRK",
-                            "Al,azkar",
-                            "Al-arabiyya",
-                            "Al-huruf",
-                            "Al-kitaba",
-                            "Alhadith",
-                            "Ulumul Amma",
-                            "RNV",
-                            "PVS",
-                            "Hausa",
-                                ]
+                                    "Mathematics",
+                                    "English Studies",
+                                    "basic Science and Technology",
+                                    "CCA",
+                                    "Handwriting",
+                                    "IRK",
+                                    "Al,azkar",
+                                    "Al-arabiyya",
+                                    "Al-huruf",
+                                    "Al-kitaba",
+                                    "Alhadith",
+                                    "Ulumul Amma",
+                                    "RNV",
+                                    "PVS",
+                                    "Hausa",
+                                ],
+                                'code'=>'N3A'
                             ],
                             [
                                 'name'=>'Nursery 3 Orange',
                                 'subjects'=>[
                                     "Alqur'an",
-                            "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
-                            "CCA",
-                            "Handwriting",
-                            "IRK",
-                            "Al,azkar",
-                            "Al-arabiyya",
-                            "Al-huruf",
-                            "Al-kitaba",
-                            "Alhadith",
-                            "Ulumul Amma",
-                            "RNV",
-                            "PVS",
-                            "Hausa",
-                                ]
+                                    "Mathematics",
+                                    "English Studies",
+                                    "basic Science and Technology",
+                                    "CCA",
+                                    "Handwriting",
+                                    "IRK",
+                                    "Al,azkar",
+                                    "Al-arabiyya",
+                                    "Al-huruf",
+                                    "Al-kitaba",
+                                    "Alhadith",
+                                    "Ulumul Amma",
+                                    "RNV",
+                                    "PVS",
+                                    "Hausa",
+                                ],
+                                'code'=>'N3O'
                             ]
                 ]
             ],
@@ -214,7 +237,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'B1Y'
                     ],
                     [
                         'name'=>'Basic 1 Ash',
@@ -235,7 +259,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'B1A'
                     ],
                     [
                         'name'=>'Basic 1 Orange',
@@ -256,7 +281,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'B1O'
                     ],
                     [
                         'name'=>'Basic 2 yellow','subjects'=>[
@@ -276,7 +302,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'B2Y'
                     ],
                     [
                         'name'=>'Basic 2 Ash',
@@ -297,7 +324,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'B2A'
                     ],
                     [
                         'name'=>'Basic 2 Orange',
@@ -318,7 +346,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'B2O'
                     ],
                     [
                         'name'=>'Basic 3 yellow','subjects'=>[
@@ -338,7 +367,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'B3Y'
                     ],
                     [
                         'name'=>'Basic 3 Ash',
@@ -359,7 +389,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'B3A'
                     ],
                     [
                         'name'=>'Basic 3 Orange',
@@ -380,7 +411,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'B3O'
                         ],
                         [
                             'name'=>'Basic 4 yellow','subjects'=>[
@@ -400,7 +432,8 @@ class SectionAndClassTableSeeder extends Seeder
                                 "RNV",
                                 "PVS",
                                 "Hausa",
-                            ]
+                            ],
+                            'code'=>'B4Y'
                         ],
                         [
                             'name'=>'Basic 4 Ash',
@@ -421,7 +454,8 @@ class SectionAndClassTableSeeder extends Seeder
                                 "RNV",
                                 "PVS",
                                 "Hausa",
-                            ]
+                            ],
+                            'code'=>'B4A'
                         ],
                         [
                             'name'=>'Basic 4 Orange',
@@ -442,7 +476,8 @@ class SectionAndClassTableSeeder extends Seeder
                                 "RNV",
                                 "PVS",
                                 "Hausa",
-                            ]
+                            ],
+                            'code'=>'B4O'
                             ],
                             [
                                 'name'=>'Basic 5 yellow','subjects'=>[
@@ -462,7 +497,8 @@ class SectionAndClassTableSeeder extends Seeder
                                     "RNV",
                                     "PVS",
                                     "Hausa",
-                                ]
+                                ],
+                                'code'=>'B5Y'
                             ],
                             [
                                 'name'=>'Basic 5 Ash',
@@ -483,7 +519,8 @@ class SectionAndClassTableSeeder extends Seeder
                                     "RNV",
                                     "PVS",
                                     "Hausa",
-                                ]
+                                ],
+                                'code'=>'B5A'
                             ],
                             [
                                 'name'=>'Basic 5 Orange',
@@ -504,7 +541,8 @@ class SectionAndClassTableSeeder extends Seeder
                                     "RNV",
                                     "PVS",
                                     "Hausa",
-                                ]
+                                ],
+                                'code'=>'B5O'
                                 ],
                                 [
                                     'name'=>'Basic 6 yellow','subjects'=>[
@@ -524,7 +562,8 @@ class SectionAndClassTableSeeder extends Seeder
                                         "RNV",
                                         "PVS",
                                         "Hausa",
-                                    ]
+                                    ],
+                                    'code'=>'B6Y'
                                 ],
                                 [
                                     'name'=>'Basic 6 Ash',
@@ -545,7 +584,8 @@ class SectionAndClassTableSeeder extends Seeder
                                         "RNV",
                                         "PVS",
                                         "Hausa",
-                                    ]
+                                    ],
+                                    'code'=>'B6A'
                                 ],
                                 [
                                     'name'=>'Basic 6 Orange',
@@ -566,7 +606,8 @@ class SectionAndClassTableSeeder extends Seeder
                                         "RNV",
                                         "PVS",
                                         "Hausa",
-                                    ]
+                                    ],
+                                    'code'=>'B6O'
                                 ]
                 ]
             ],
@@ -592,7 +633,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'S1Y'
                         ],
                     [
                         'name'=>'JSS 1 Ash',
@@ -613,7 +655,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'S1A'
                     ],
                     [
                         'name'=>'JSS 1 Orange',
@@ -634,7 +677,8 @@ class SectionAndClassTableSeeder extends Seeder
                             "RNV",
                             "PVS",
                             "Hausa",
-                        ]
+                        ],
+                        'code'=>'S1O'
                     ]
                 ]
             ]
@@ -642,7 +686,7 @@ class SectionAndClassTableSeeder extends Seeder
         foreach($sections as $section){
             $newSection = Section::firstOrCreate(['name'=>$section['name']]);
             foreach($section['classes'] as $class){
-                $newClass = $newSection->sectionClasses()->create(['name'=>$class['name']]);
+                $newClass = $newSection->sectionClasses()->create(['code'=>$class['code'],'name'=>$class['name']]);
                 foreach($class['subjects'] as $subject){
                     $newSubject = Subject::firstOrCreate(['name'=>$subject]);
                     $newSubject->sectionClassSubjects()->create(['name'=>$newSubject->name,'section_class_id'=>$newClass->id]);

@@ -25,6 +25,7 @@ class CreateSectionClassesTable extends Migration
             ->delete('restrict')
             ->update('cascade');
             $table->integer('capacity')->default('20');
+            $table->string('code');
             $table->timestamps();
         });
     }

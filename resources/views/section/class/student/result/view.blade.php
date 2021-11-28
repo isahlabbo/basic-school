@@ -38,7 +38,7 @@
                         <div class="col-md-3">
                             <p class="mb-0"><b>{{$student->admission_no}}</b></p>
                             <p class="mb-0"><b>{{$student->name}}</b></p>
-                            <p class="mb-0"><b>Sex:</b></p>
+                            <p class="mb-0"><b>$student->gender()</b></p>
                             <p class="mb-0"><b>{{count($sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'))}}:</b></p>
                             <p class="mb-0"><b>Position:</b></p>
                             <p class="mb-0"><b>Class Average:</b></p>

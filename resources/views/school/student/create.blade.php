@@ -80,6 +80,17 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <div class="col-md-3"><label for="">Gender</label></div>
+                                            <div class="col-md-9">
+                                                <select name="gender" id="" class="form-control">
+                                                    <option>Select Gender</option>
+                                                    <option value="1">Male</option>
+                                                    <option value="2">Female</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <div class="col-md-3"><label for="">Date Of Birth</label></div>
                                             <div class="col-md-9">
                                                 <input type="date" class="form-control" name="date_of_birth" value="{{old('date_of_birth')}}" placeholder="Teacher's Date of birth">

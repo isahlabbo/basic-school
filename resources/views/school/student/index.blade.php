@@ -12,6 +12,7 @@
                 <th>S/N</th>
                 <th>NAME</th>
                 <th>ADMISSION NO</th>
+                <th>GENDER</th>
                 <th>CURRENT CLASS</th>
                 <th>GUARDIAN NAME</th>
                 <th>GUARDIAN PHONE</th>
@@ -28,6 +29,7 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$student->name}}</td>
                     <td>{{$student->admission_no}}</td>
+                    <td>{{$student->gender()}}</td>
                     <td>{{$student->activeSectionClass()->name ?? 'Not Available'}}</td>
                     <td>{{$student->guardian->name}}</td>
                     <td>{{$student->guardian->phone}}</td>

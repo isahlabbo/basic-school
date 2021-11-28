@@ -26,4 +26,13 @@ class Student extends BaseModel
         return $this->belongsTo(Guardian::class);
     }
 
+    public function gender()
+    {
+        $gender = 'Male';
+        if($this->gender==2){
+            $gender = 'Female';
+        }
+        return $gender;
+    }
+
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Section;
+use App\Models\SectionClass;
 use App\Models\Guardian;
 
 class StudentController extends Controller
@@ -22,14 +23,41 @@ class StudentController extends Controller
 
     public function register(Request $request)
     {
+       
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'guardian_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             'date_of_birth' => ['required'],
         ]);
+        $sectionClass = SectionClass::find($request->class);
         
-    
+        $guardian = Guardian::create([
+            'name'=>$request->guardian_name,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+            'address'=>$request->address
+        ]);
+
+        $student = $guardian->students()->create([
+            'name'=>$request->name,
+            'date_of_birth'=>$request->date_of_birth,
+            'admission_no'=>$sectionClass->generateAdmissionNo(),
+            'section_class_id'=>$request->class,
+            'gender'=>$request->gender
+        ]);
+
+        $classStudent = $student->sectionClassStudents()->create(['section_class_id'=>$sectionClass->id]);
+        
+        $count = 1;
+        foreach($student->currentSession()->academicSessionTerms as $academicSessionTerm){
+            if($count == 1){
+                $academicSessionTerm->sectionClassStudentTerms()->create(['status'=>'Active','section_class_student_id'=>$classStudent->id]);
+            }else{
+                $academicSessionTerm->sectionClassStudentTerms()->create(['section_class_student_id'=>$classStudent->id]);
+            }
+            $count++;
+        }
 
         return redirect()->route('dashboard.student.index')->withSuccess('Student Registered Successfully');
     }

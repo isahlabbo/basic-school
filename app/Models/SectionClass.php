@@ -46,4 +46,19 @@ class SectionClass extends BaseModel
         }
         return $students;
     }
+
+    public function generateAdmissionNo()
+    {
+        return 'WFIA/'.$this->code.'/'.substr($this->currentSession()->name,2,2).'/'.$this->formatSerialNo(count($this->sectionClassStudents->where('status','Active'))+1);
+    }
+
+    public function formatSerialNo($number)
+    {
+        if($number < 10){
+            $number = '00'.$number;
+        }elseif($number < 100){
+            $number = '0'.$number;
+        }
+        return $number;
+    }
 }

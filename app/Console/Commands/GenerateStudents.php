@@ -54,7 +54,7 @@ class GenerateStudents extends Command
 
                     $student = $guardian->students()->create([
                         'name'=>"student test name",
-                        'admission_no'=>$number,
+                        'admission_no'=>$sectionClass->generateAdmissionNo(),
                         'date_of_birth'=>'2020/12/12',
                         'section_class_id'=>$sectionClass->id
                     ]);
