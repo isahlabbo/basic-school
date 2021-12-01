@@ -55,20 +55,20 @@
                             <p class="mb-0">
                                 <tr>
                                     <td>Days school open:</td>
-                                    <td><b>0</b></td>
+                                    <td><b>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->days_school_open ?? 0}}</b></td>
                                 </tr>
                             </p>
                             <p class="mb-0">
                             <tr>
                                 <td>Day(s) Present:</td>
-                                <td><b>0</b></td>
+                                <td><b>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->days_present ?? 0}}</b></td>
                             </tr>
                             
                             </p>
                             <p class="mb-0">
                                 <tr>
                                     <td>Day(s) Absent:</td>
-                                    <td><b>0</b></td>
+                                    <td><b>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->days_absent ?? 0}}</b></td>
                                 </tr>
                             </p>
                         </div>
@@ -147,43 +147,43 @@
                             <tbody>
                                 <tr>
                                     <td>Punctuality</td>
-                                    <td>0</td>
+                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->punctuality ?? 0}}</td>
                                 </tr>
                                 <tr>
                                     <td>Attendance</td>
-                                    <td>0</td>
+                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->attendance ?? 0}}</td>
                                 </tr>
                                 <tr>
                                     <td>Reliability</td>
-                                    <td>0</td>
+                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->reliability ?? 0}}</td>
                                 </tr>
                                 <tr>
                                     <td>Neatness</td>
-                                    <td>0</td>
+                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->neatness ?? 0}}</td>
                                 </tr>
                                 <tr>
                                     <td>Politeness</td>
-                                    <td>0</td>
+                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->politeness ?? 0}}</td>
                                 </tr>
                                 <tr>
                                     <td>Honesty</td>
-                                    <td>0</td>
+                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->honesty ?? 0}}</td>
                                 </tr>
                                 <tr>
                                     <td>Relationship with Pupils</td>
-                                    <td>0</td>
+                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->relationship_with_pupils ?? 0}}</td>
                                 </tr>
                                 <tr>
                                     <td>Self-Control</td>
-                                    <td>0</td>
+                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->self_control ?? 0}}</td>
                                 </tr>
                                 <tr>
                                     <td>Attentiveness</td>
-                                    <td>0</td>
+                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->attentiveness ?? 0}}</td>
                                 </tr>
                                 <tr>
                                     <td>Perseverance</td>
-                                    <td>0</td>
+                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->perseverance ?? 0}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -206,23 +206,23 @@
                                                 <tbody>
                                                 <tr>
                                                     <td>Handwriting</td>
-                                                    <td>0</td>
+                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->handwriting ?? 0}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Games</td>
-                                                    <td>0</td>
+                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->games ?? 0}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Sports</td>
-                                                    <td>0</td>
+                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->sports ?? 0}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Drawing & Painting</td>
-                                                    <td>0</td>
+                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->drawing_and_painting ?? 0}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Crafts</td>
-                                                    <td>0</td>
+                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->crafts ?? 0}}</td>
                                                 </tr>
                                             </tbody>
                                        </table>
@@ -301,7 +301,7 @@
                         <div class="col-md-12">
                             <tr>
                                 <td>FORM TEACHER'S REMARKS: </td>
-                                <td>shshsssj</td>
+                                <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->teacherComment->name ?? 0}}</td>
                             </tr>
                         </div>
                         <div class="col-md-12">

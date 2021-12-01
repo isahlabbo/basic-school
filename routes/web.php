@@ -70,12 +70,12 @@ Route::name('dashboard.')
                 Route::name('result.')
                     ->prefix('/result')
                     ->group(function (){
-                        Route::get('/', 'ResultSearch@index')->name('index');
-                        Route::post('/check-result', 'ResultSearch@checkResult')->name('check');
-                        Route::get('/{sectionClassSubjectId}/summary', 'ResultSearch@viewResultSummary')->name('summary');
-                        Route::get('/summary/{subjectTeacherUploadId}/detail', 'ResultSearch@viewDetail')->name('summary.detail');
-                        Route::get('/summary/detail/{studentResultId}/edit', 'ResultSearch@editResult')->name('summary.detail.edit');
-                        Route::post('/summary/detail/{studentResultId}/update', 'ResultSearch@updateResult')->name('summary.detail.update');
+                        Route::get('/', 'ResultSearchController@index')->name('index');
+                        Route::post('/check-result', 'ResultSearchController@checkResult')->name('check');
+                        Route::get('/{sectionClassSubjectId}/summary', 'ResultSearchController@viewResultSummary')->name('summary');
+                        Route::get('/summary/{subjectTeacherUploadId}/detail', 'ResultSearchController@viewDetail')->name('summary.detail');
+                        Route::get('/summary/detail/{studentResultId}/edit', 'ResultSearchController@editResult')->name('summary.detail.edit');
+                        Route::post('/summary/detail/{studentResultId}/update', 'ResultSearchController@updateResult')->name('summary.detail.update');
                 });
             });
             Route::name('subject.allocation.')

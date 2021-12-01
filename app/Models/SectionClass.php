@@ -39,7 +39,7 @@ class SectionClass extends BaseModel
                 }
             }
         }
-        return $classStudentAverages/$count;
+        return number_format($classStudentAverages/$count,2);
     }
 
     public function activeClassTeacher()

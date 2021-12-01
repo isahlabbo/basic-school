@@ -33,6 +33,6 @@ class SectionClassStudentTerm extends BaseModel
         foreach($this->studentResults as $result){
             $total = $total = $result->total;
         }
-        return $total/count($this->sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'));
+        return number_format($total/count($this->sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active')),2);
     }
 }
