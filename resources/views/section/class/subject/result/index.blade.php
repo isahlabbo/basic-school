@@ -1,71 +1,47 @@
 <x-app-layout>
     @section('title')
-        {{config('app.name')}} checking Result Center
+        {{$sectionClass->name}}  subjects results
     @endsection
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard.result')}}
+       {{Breadcrumbs::render('dashboard')}}
     @endsection
     @section('content')
-    <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-    <div class="card shadow">
-        <div class="card-body">
-        <div class="card-header text text-bold"><b>Check All {{config('app.name')}} Result Here</b></div><br>
-        <form action="{{route('dashboard.section.class.subject.result.check')}}" method="post">
-                @csrf
-                <div class="form-group row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-2"><label for="">Section</label></div>
-                    <div class="col-md-8">
-                        <select name="section" id="" class="form-control">
-                            <option value="">Select Section</option>
-                            @foreach($sections as $section)
-                            <option value="{{$section->id}}">{{$section->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-2"><label for="">Class</label></div>
-                    <div class="col-md-8">
-                        <select name="class" id="" class="form-control">
-                            <option value="">Select Class</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-2"><label for="">Subject</label></div>
-                    <div class="col-md-8">
-                        <select name="subject" id="" class="form-control">
-                            <option value="">Select Subject</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-2"><label for="">Admission No</label></div>
-                    <div class="col-md-8">
-                        <input type="text" placeholder="Enter Admission No" class="form-control" name="admission_no">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    
-                    <div class="col-md-3"></div>
-                        
-                        <div class="col-md-8">
-                            <button class="btn btn-secondary">Check Result</button>
-                        </div>
-                    </div>    
-                </div>    
-            </form>
-        </div>
+    <div class="card">
+    <div class="card-body">
+        <div class="card-header h4">{{$sectionClass->name}} Subject Results Information</div>
     </div>
+    
     </div>
-    </div>   
-        
+        <table class="table">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>SUBJECTS</th>
+                <th></th>
+                <th>DOWNLOADS</th>
+                <th></th>
+                <th>UPLOADS</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($sectionClass->sectionClassSubjects as $sectionClassSubject)
+                <tr>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$sectionClassSubject->subject->name}}</td>
+                    <td>
+                        <a href="{{route('dashboard.teacher.download.scoresheet',[$sectionClassSubject->activeSectionClassSubjectTeacher()->id])}}">
+                        <button class="btn btn-primary">Download Score Sheet</button>
+                        </a>
+                    </td>
+                    <td><button class="btn btn-success">0</button></td>
+                    <td>
+                        <a href="{{route('dashboard.teacher.upload.scoresheet',[$sectionClassSubject->activeSectionClassSubjectTeacher()->sectionClassSubject->id])}}"><button class="btn btn-secondary">Upload Result</button></a>
+                    </td>
+                    <td><button class="btn btn-success">0</button></td>
+                </tr>
+            @endforeach
+        </tbody>
+        </table>
     @endsection
     
 </x-app-layout>

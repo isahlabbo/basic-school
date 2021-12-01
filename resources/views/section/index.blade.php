@@ -16,6 +16,7 @@
                 <th>REPEATING STUDENTS</th>
                 <th>CLASS TEACHER</th>
                 <th></th>
+                <th></th>
                 <th><button class="btn btn-primary">Add Class</button></th>
             </tr>
         </thead>
@@ -30,6 +31,7 @@
                     <td>
                         {{$sectionClass->activeClassTeacher() ? $sectionClass->activeClassTeacher()->teacher->user->name : 'Not available'}}
                     </td>
+                    <td><a href="{{route('dashboard.section.class.subject.result',[$sectionClass->id])}}"><button class="btn btn-secondary">{{$sectionClass->name}} RESULT</button></a></td>
                     <td>
                         @if($sectionClass->activeClassTeacher())
                         <a href="{{route('dashboard.section.class-teacher.reCreate',[$sectionClass->activeClassTeacher()->id])}}">

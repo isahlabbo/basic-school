@@ -41,8 +41,8 @@
                             <p class="mb-0"><b>$student->gender()</b></p>
                             <p class="mb-0"><b>{{count($sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'))}}:</b></p>
                             <p class="mb-0"><b>Position:</b></p>
-                            <p class="mb-0"><b>Class Average:</b></p>
-                            <p class="mb-0"><b>Pupils Average:</b></p>
+                            <p class="mb-0"><b>{{$sectionClassStudent->sectionClass->classAverage($sectionClassStudentTerm->academicSessionTerm->term)}}</b></p>
+                            <p class="mb-0"><b>{{$sectionClassStudentTerm->studentAverage()}}</b></p>
                             <p class="mb-0"><b>{{count($sectionClassStudent->sectionClass->sectionClassSubjects)}}</b></p>
                         </div>
 
@@ -112,7 +112,7 @@
                                         <td class="text text-center">{{$studentResult->total}}</td>
                                         <td class="text text-center">{{$studentResult->grade}}</td>
                                         <td class="text text-center">{{$studentResult->subjectTeacherTermlyUpload->position($studentResult->total)}}</td>
-                                        <td class="text text-center"></td>
+                                        <td class="text text-center">{{$studentResult->effort()}}</td>
                                         <td class="text text-center">{{$studentResult->remark()}}</td>
                                     </tr>
                                 @endforeach

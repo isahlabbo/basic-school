@@ -15,7 +15,6 @@ class SubjectTeacherTermlyUpload extends BaseModel
     public function term()
     {
         return $this->belongsTo(Term::class);
-        
     }
 
     public function studentResults()
@@ -44,7 +43,7 @@ class SubjectTeacherTermlyUpload extends BaseModel
         // remove the duplicate score from the array
         array_unique($scoreBoard);
        
-        // soret array decending order
+        // sort array decending order
         rsort($scoreBoard);
         foreach($scoreBoard as $key => $value){
             if($total == $value){

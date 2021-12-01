@@ -27,6 +27,21 @@ class SectionClass extends BaseModel
         return $this->hasMany(SectionClassTeacher::class);
     }
 
+    public function classAverage($term)
+    {
+        $classStudentAverages = 0;
+        $count = 0;
+        foreach ($this->sectionClassStudents as $sectionClassStudent) {
+            foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm){
+                if($term->id == $sectionClassStudentTerm->academicSessionTerm->term->id){
+                    $count++;
+                    $classStudentAverages = $classStudentAverages + $sectionClassStudentTerm->studentAverage();
+                }
+            }
+        }
+        return $classStudentAverages/$count;
+    }
+
     public function activeClassTeacher()
     {
         $teacher = null;

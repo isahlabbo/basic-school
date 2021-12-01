@@ -15,20 +15,21 @@ class CreateAcademicSessionTermsTable extends Migration
     {
         Schema::create('academic_session_terms', function (Blueprint $table) {
             $table->id();
-            $table->integer('academic_session_id')
-            ->unsigned()
-            ->nullable()
-            ->foreign()
-            ->references('id')
-            ->on('academic_sessions')
-            ->delete('restrict')
-            ->update('cascade');
+            
             $table->integer('term_id')
             ->unsigned()
             ->nullable()
             ->foreign()
             ->references('id')
             ->on('terms')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->integer('academic_session_id')
+            ->unsigned()
+            ->nullable()
+            ->foreign()
+            ->references('id')
+            ->on('academic_sessions')
             ->delete('restrict')
             ->update('cascade');
             $table->string('status')->default('Not Active');

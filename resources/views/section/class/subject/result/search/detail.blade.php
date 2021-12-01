@@ -23,6 +23,7 @@
                         <th>EXAM</th>
                         <th>TOTAL</th>
                         <th>GRADE</th>
+                        <th>POSITION</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -37,6 +38,7 @@
                         <td>{{$studentResult->exam}}</td>
                         <td>{{$studentResult->total}}</td>
                         <td>{{$studentResult->grade}}</td>
+                        <td>{{$studentResult->subjectTeacherTermlyUpload->position($studentResult->total)}}</td>
                         <td>
                             <a href="{{route('dashboard.section.class.subject.result.summary.detail.edit',[$studentResult->id])}}">
                                 <button class="btn btn-success">Edit</button>

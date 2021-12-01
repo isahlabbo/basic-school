@@ -12,4 +12,9 @@ class SubjectController extends Controller
     {
         return view('section.class.subject.index',['sectionClass'=>SectionClass::find($sectionClassId)]);
     }
+
+    public function result($sectionClassId)
+    {
+        return view('section.class.subject.result.index',['sectionClass'=>SectionClass::find($sectionClassId)]);
+    }
 }

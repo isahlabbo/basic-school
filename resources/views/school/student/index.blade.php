@@ -5,8 +5,9 @@
     @section('breadcrumb')
        {{Breadcrumbs::render('dashboard.student')}}
     @endsection
+    
     @section('content')
-        <table class="table">
+        <table class="table table-striped " id="datatable-buttons">
         <thead>
             <tr>
                 <th>S/N</th>

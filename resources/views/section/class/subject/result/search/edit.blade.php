@@ -63,6 +63,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <div class="col-md-3"><label for="">Position</label></div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="grade" disabled value="{{$studentResult->subjectTeacherTermlyUpload->position($studentResult->total)}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <div class="col-md-2"></div>
                             <div class="col-md-9">
                                 <button class="btn btn-secondary">Update</button>

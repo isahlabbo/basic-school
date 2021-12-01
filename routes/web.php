@@ -54,6 +54,7 @@ Route::name('dashboard.')
             ->prefix('/{classId}/subject')
             ->group(function (){
                 Route::get('/', 'SubjectController@index')->name('index');
+                Route::get('/result', 'SubjectController@result')->name('result');
             });
 
             // subject results routes
@@ -63,15 +64,19 @@ Route::name('dashboard.')
                     Route::get('/{studentId}/view', 'StudentResultController@view')->name('view');
             });
             // subject results routes
-            Route::name('subject.result.')
-                ->prefix('/subject/result')
-                ->group(function (){
-                    Route::get('/', 'SubjectResultController@index')->name('index');
-                    Route::post('/check-result', 'SubjectResultController@checkResult')->name('check');
-                    Route::get('/{sectionClassSubjectId}/summary', 'SubjectResultController@viewResultSummary')->name('summary');
-                    Route::get('/summary/{subjectTeacherUploadId}/detail', 'SubjectResultController@viewDetail')->name('summary.detail');
-                    Route::get('/summary/detail/{studentResultId}/edit', 'SubjectResultController@editResult')->name('summary.detail.edit');
-                    Route::post('/summary/detail/{studentResultId}/update', 'SubjectResultController@updateResult')->name('summary.detail.update');
+            Route::name('subject.')
+            ->prefix('/subject')
+            ->group(function (){
+                Route::name('result.')
+                    ->prefix('/result')
+                    ->group(function (){
+                        Route::get('/', 'ResultSearch@index')->name('index');
+                        Route::post('/check-result', 'ResultSearch@checkResult')->name('check');
+                        Route::get('/{sectionClassSubjectId}/summary', 'ResultSearch@viewResultSummary')->name('summary');
+                        Route::get('/summary/{subjectTeacherUploadId}/detail', 'ResultSearch@viewDetail')->name('summary.detail');
+                        Route::get('/summary/detail/{studentResultId}/edit', 'ResultSearch@editResult')->name('summary.detail.edit');
+                        Route::post('/summary/detail/{studentResultId}/update', 'ResultSearch@updateResult')->name('summary.detail.update');
+                });
             });
             Route::name('subject.allocation.')
                 ->prefix('/subject/teacher/{teacherId}/allocations')
@@ -115,9 +120,16 @@ Route::name('dashboard.')
     ->name('student.')
     ->prefix('/student')
     ->group(function (){
+        
         Route::get('/', 'StudentController@index')->name('index');
         Route::get('/create', 'StudentController@create')->name('create');
         Route::post('/register', 'StudentController@register')->name('register');
+        Route::name('accessment.')
+        ->prefix('/accessment')
+        ->group(function (){
+            Route::get('/{sectionClassId}', 'StudentAccessmentController@index')->name('index');
+            Route::get('/{sectionClassStudentId}/create', 'StudentAccessmentController@create')->name('create');
+        });
     });
 
     Route::namespace('School')

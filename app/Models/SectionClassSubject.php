@@ -16,6 +16,15 @@ class SectionClassSubject extends BaseModel
     {
         return $this->belongsTo(Subject::class);
     }
+    public function sectionClassSubjectDownloads()
+    {
+        return $this->hasMany(SectionClassSubjectDownload::class);
+    }
+
+    public function sectionClassSubjectUploads()
+    {
+        return $this->hasMany(SectionClassSubjectUpload::class);
+    }
 
     public function sectionClass()
     {

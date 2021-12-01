@@ -21,4 +21,18 @@ class SectionClassStudentTerm extends BaseModel
     {
         return $this->belongsTo(AcademicSessionTerm::class);
     }
+
+    public function sectionClassStudentTermAccessment()
+    {
+        return $this->hasOne(SectionClassStudentTermAccessment::class);
+    }
+
+    public function studentAverage()
+    {
+        $total = 0;
+        foreach($this->studentResults as $result){
+            $total = $total = $result->total;
+        }
+        return $total/count($this->sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'));
+    }
 }

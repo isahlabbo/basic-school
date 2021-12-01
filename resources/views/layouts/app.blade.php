@@ -4,12 +4,13 @@
     <title>{{config('app.name')}} | @yield('title')</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    @yield('styles')
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/appStyle.css')}}">
     <!-- jquery -->
     <script src="{{asset('js/jquery-1.8.2.min.js')}}"></script>
     @livewireStyles
+    
 </head>
 <body >
     <div id="header">
@@ -48,6 +49,7 @@
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/Ajax/sectionClasses.js')}}"></script>
     <script src="{{asset('js/Ajax/classSubjects.js')}}"></script>
+    @yield('scripts')
     @livewireScripts
 </body>
 </html>

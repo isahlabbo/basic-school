@@ -48,5 +48,6 @@ class UserTableSeeder extends Seeder
         foreach(SectionClassSubject::all() as $classSubject){
             $classSubject->sectionClassSubjectTeachers()->firstOrCreate(['teacher_id'=>rand(1,16)]);
         }
+        
     }
 }
