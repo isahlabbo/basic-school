@@ -129,6 +129,7 @@ Route::name('dashboard.')
         ->group(function (){
             Route::get('/{sectionClassId}', 'StudentAccessmentController@index')->name('index');
             Route::get('/{sectionClassStudentId}/create', 'StudentAccessmentController@create')->name('create');
+            Route::post('/{sectionClassStudentTermId}/register', 'StudentAccessmentController@register')->name('register');
         });
     });
 

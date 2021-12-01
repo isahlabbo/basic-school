@@ -1,4 +1,4 @@
-@foreach(['Handwriting','Games','Sports',"Drwing And Painting",'Crafts'] as $psycho)
+@foreach(['Handwriting','Games','Sports',"Drawing And Painting",'Crafts'] as $psycho)
 <div class="form-group">
   <div class="row">
        <div class="col-md-6"><b>{{$psycho}}</b></div>

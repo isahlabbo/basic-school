@@ -1,4 +1,4 @@
-@foreach(['Punctuality','Attendance','Reliability','Neaness','Politeness','Honesty','Relationship with Pupils','Self Control','Attentiveness','Perseverance'] as $trait)
+@foreach(['Punctuality','Attendance','Reliability','Neatness','Politeness','Honesty','Relationship with Pupils','Self Control','Attentiveness','Perseverance'] as $trait)
 <div class="form-group">
   <div class="row">
        <div class="col-md-6"><b>{{$trait}}</b></div>

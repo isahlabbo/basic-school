@@ -12,8 +12,10 @@
     <div class="card shadow">
     <div class="card-body ">
     <div class="card-header shadow h5 text-center"><b>{{$sectionClassStudent->student->name}} Accessment</b></div><br>
-        <form action="">
+        <form action="{{route('dashboard.student.accessment.register',[$sectionClassStudent->currentStudentTerm()->id])}}" method="post">
+            @csrf
             <div class="row">
+            <input type="hidden" name="sectionClassStudentTermId" value="{{$sectionClassStudent->currentStudentTerm()->id}}">
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
@@ -42,6 +44,7 @@
                         <div class="card-body">
                             <div class="card-header shadow text-center">FORM TEACHER REMARK</div><br>
                             @include('school.student.accessment.forms.comment')
+                            <button class="btn btn-secondary">Submit</button>
                         </div>
                     </div>
                 </div>

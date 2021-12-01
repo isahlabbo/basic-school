@@ -29,9 +29,13 @@
                     <td>{{$sectionClassStudent->student->name}}</td>
                     <td>{{$sectionClassStudent->student->admission_no}}</td>
                     <td>{{$sectionClassStudent->student->gender()}}</td>
-                    <td>Pending</td>
+                    <td>{{$sectionClassStudent->currentStudentTerm()->sectionClassStudentTermAccessment ? 'Accessed' :'Pending'}}</td>
                     <td>
+                        @if($sectionClassStudent->currentStudentTerm()->sectionClassStudentTermAccessment)
+
+                        @else
                         <a href="{{route('dashboard.student.accessment.create',[$sectionClassStudent->id])}}"><button class="btn btn-secondary" >MAKE ACCESSMENT</button></a>
+                        @endif
                     </td>
                 </tr>
             @endforeach

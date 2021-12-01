@@ -41,7 +41,7 @@ class CreateSectionClassStudentTermAccessmentsTable extends Migration
             ->update('cascade');
             $table->integer('punctuality');
             $table->integer('Attendance');
-            $table->integer('reliabilty');
+            $table->integer('reliability');
             $table->integer('neatness');
             $table->integer('politeness');
             $table->integer('honesty');

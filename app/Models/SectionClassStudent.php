@@ -25,4 +25,9 @@ class SectionClassStudent extends BaseModel
         return $this->belongsTo(Student::class);
     }
 
+    public function currentStudentTerm()
+    {
+        return $this->sectionClassStudentTerms->where('status','Active')->first();
+    }
+
 }
