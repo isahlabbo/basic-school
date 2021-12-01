@@ -9,6 +9,7 @@ use App\Exports\Student\ScoreSheet;
 use App\Models\SectionClassSubject;
 use App\Models\Term;
 use App\Imports\School\ScoreSheet as ScoreSheetImport;
+use Auth;
 
 class ScoreSheetController extends Controller
 {
@@ -32,7 +33,9 @@ class ScoreSheetController extends Controller
             'score_sheet'=>'required',
         ]);
         Excel::import(new ScoreSheetImport(SectionClassSubject::find($request->sectionClassSubjectId), Term::find($request->term)), request()->file('score_sheet'));
-
+        if(Auth::user()->role =='Teacher'){
+            return redirect()->route('dashboard')->withSuccess('Result Uploaded Success fully');
+        }
         return redirect()->route('dashboard.teacher.upload.scoresheet',[$sectionClassSubjectId])->withSuccess('Result Uploaded Success fully');
     }
 

@@ -7,7 +7,6 @@
         <tr>
             <th>S/N</th>
             <th>SUBJECT</th>
-            <th>UPLOAD STATUS</th>
             <th>UPLOAD ATTEMPTS</th>
             <th>DOWNLOADS ATTEMPTS</th>
             <th></th>
@@ -23,10 +22,9 @@
                 <td>{{$sectionClassSubject->name}}</td>
                 <td></td>
                 <td></td>
-                <td></td>
                 <td><a href="#"><button class="btn btn-success">View Result</button></a></td>
-                <td><a href="#"><button class="btn btn-secondary">Download Score Sheet</button></a></td>
-                <td><a href="#"><button class="btn btn-primary">Upload Result</button></a></td>
+                <td><a href="{{route('dashboard.teacher.download.scoresheet',[$sectionClassSubject->activeSectionClassSubjectTeacher()->id])}}"><button class="btn btn-secondary">Download Score Sheet</button></a></td>
+                <td><a href="{{route('dashboard.teacher.upload.scoresheet',[$sectionClassSubject->activeSectionClassSubjectTeacher()->sectionClassSubject->id])}}"><button class="btn btn-primary">Upload Result</button></a></td>
             </tr>
         @endforeach
     @endforeach
