@@ -76,4 +76,13 @@ class SectionClass extends BaseModel
         }
         return $number;
     }
+
+    public function availableResultUploads(Type $var = null)
+    {
+        $uploadCounts = 0;
+        foreach($this->sectionClassSubjects as $sectionClassSubject){
+            $uploadCounts = $uploadCounts + count($sectionClassSubject->availableResultUploads());
+        }
+        return $uploadCounts;
+    }
 }

@@ -9,6 +9,16 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/appStyle.css')}}">
     <!-- jquery -->
     <script src="{{asset('js/jquery-1.8.2.min.js')}}"></script>
+
+    <script>
+        function printContent(el){
+        var restorepage = $('body').html();
+        var printcontent = $('#' + el).clone();
+        $('body').empty().html(printcontent);
+        window.print();
+        $('body').html(restorepage);
+        }
+    </script>
     @livewireStyles
     
 </head>

@@ -8,6 +8,7 @@ use App\Models\Section;
 use App\Models\Term;
 use App\Models\Student;
 use App\Models\StudentResult;
+use App\Models\SectionClass;
 use App\Models\SectionClassSubject;
 use App\Models\SubjectTeacherTermlyUpload;
 
@@ -37,7 +38,12 @@ class ResultSearchController extends Controller
             }
 
         }elseif($request->class){
-
+            $sectionClass = SectionClass::find($request->class);
+            if($sectionClass->availableResultUploads()>0){
+                return redirect()->route('dashboard.section.class.result.summary',[$sectionClass->id])->withSuccess($sectionClass->availableResultUploads().' Result Summary Found');
+            }else{
+                return redirect()->route('dashboard.section.class.subject.result.index')->withWarning('No Result uploaded for '.$sectionClass->name.' at '.$sectionClass->currentSession()->name);
+            }
         }elseif($request->section){
 
         }else{

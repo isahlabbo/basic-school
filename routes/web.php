@@ -49,6 +49,12 @@ Route::name('dashboard.')
         Route::name('class.')
         ->prefix('/class')
         ->group(function (){
+            Route::name('result.')
+            ->prefix('/{sectionClassId}/result')
+            ->group(function (){
+                Route::get('/summary', 'ClassResultController@summary')->name('summary');
+                Route::get('/report', 'ClassResultController@report')->name('report');
+            });
             Route::get('/{sectionClassId}', 'SectionClassController@index')->name('index');
             Route::name('subject.')
             ->prefix('/{classId}/subject')
