@@ -9,6 +9,8 @@ use App\Models\SectionClassStudent;
 use App\Models\TeacherComment;
 use App\Models\SectionClassStudentTerm;
 
+
+
 class StudentAccessmentController extends Controller
 {
     public function index($sectionClassId)
@@ -22,6 +24,8 @@ class StudentAccessmentController extends Controller
             'sectionClassStudent'=>SectionClassStudent::find($sectionClassStudentId),'comments'=>TeacherComment::all()
             ]);
     }
+    
+    
 
     public function register(Request $request)
     {
