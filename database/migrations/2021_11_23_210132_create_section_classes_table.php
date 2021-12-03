@@ -24,6 +24,7 @@ class CreateSectionClassesTable extends Migration
             ->on('sections')
             ->delete('restrict')
             ->update('cascade');
+            $table->string('year_sequence');
             $table->integer('capacity')->default('20');
             $table->string('code');
             $table->timestamps();
