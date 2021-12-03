@@ -31,6 +31,14 @@ class CreateStudentsTable extends Migration
             ->on('section_classes')
             ->delete('restrict')
             ->update('cascade');
+            $table->integer('academic_session_id')
+            ->unsigned()
+            ->nullable()
+            ->foreign()
+            ->references('id')
+            ->on('academic_sessions')
+            ->delete('restrict')
+            ->update('cascade');
             $table->integer('gender');
             $table->string('name');
             $table->string('date_of_birth');

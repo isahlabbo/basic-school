@@ -12,6 +12,11 @@ class Student extends BaseModel
         return $this->hasMany(SectionClassStudent::class);
     }
 
+    public function sectionClass()
+    {
+        return $this->belongsTo(SectionClass::class);
+    }
+
     public function activeSectionClass()
     {
         $sectionClass = null;
@@ -21,7 +26,7 @@ class Student extends BaseModel
         return $sectionClass;
     }
 
-    public function guardian(Type $var = null)
+    public function guardian()
     {
         return $this->belongsTo(Guardian::class);
     }

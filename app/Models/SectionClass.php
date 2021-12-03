@@ -64,7 +64,7 @@ class SectionClass extends BaseModel
 
     public function generateAdmissionNo()
     {
-        return 'WFIA/'.$this->code.'/'.substr($this->currentSession()->name,2,2).'/'.$this->formatSerialNo(count($this->sectionClassStudents->where('status','Active'))+1);
+        return 'DSA/'.date('Y').$this->code.'/'.$this->formatSerialNo(count($this->sectionClassStudents->where('status','Active'))+1);
     }
 
     public function formatSerialNo($number)
