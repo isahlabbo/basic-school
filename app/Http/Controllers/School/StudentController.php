@@ -27,23 +27,23 @@ class StudentController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'guardian_name' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
             'date_of_birth' => ['required'],
         ]);
         $sectionClass = SectionClass::find($request->class);
         
         $guardian = Guardian::create([
-            'name'=>$request->guardian_name,
+            'name'=>strtoupper($request->guardian_name),
             'phone'=>$request->phone,
             'email'=>$request->email,
             'address'=>$request->address
         ]);
 
         $student = $guardian->students()->create([
-            'name'=>$request->name,
+            'name'=>strtoupper($request->name),
             'date_of_birth'=>$request->date_of_birth,
             'admission_no'=>$sectionClass->generateAdmissionNo(),
             'section_class_id'=>$request->class,
+            'academic_session_id'=>$sectionClass->classAdmissionSession()->id,
             'gender'=>$request->gender
         ]);
 

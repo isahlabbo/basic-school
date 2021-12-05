@@ -26,12 +26,15 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$sectionClass->name}}</td>
                     <td><a href="{{route('dashboard.section.class.subject.index',[$sectionClass->id])}}">{{count($sectionClass->sectionClassSubjects)}}</a></td>
-                    <td>{{count($sectionClass->sectionClassStudents->where('status','Active'))}}</td>
+                    <td>
+                        <a href="{{route('dashboard.section.class.student',[$sectionClass->id])}}">
+                        {{count($sectionClass->sectionClassStudents->where('status','Active'))}}</a>
+                    </td>
                     <td>{{count($sectionClass->sectionClassStudents->where('status','Repeat'))}}</td>
                     <td>
                         {{$sectionClass->activeClassTeacher() ? $sectionClass->activeClassTeacher()->teacher->user->name : 'Not available'}}
                     </td>
-                    <td><a href="{{route('dashboard.section.class.subject.result',[$sectionClass->id])}}"><button class="btn btn-secondary">{{$sectionClass->name}} RESULT</button></a></td>
+                    <td><a href="{{route('dashboard.section.class.subject.result',[$sectionClass->id])}}"><button class="btn btn-secondary"> RESULT</button></a></td>
                     <td>
                         @if($sectionClass->activeClassTeacher())
                         <a href="{{route('dashboard.section.class-teacher.reCreate',[$sectionClass->activeClassTeacher()->id])}}">

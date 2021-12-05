@@ -13,13 +13,15 @@
             <b>{{$sectionClass->name}} of {{$sectionClass->currentSession()->name}} Academic Session  Result Summary</b> 
             <a href="{{route('dashboard.section.class.result.report',[$sectionClass->id])}}"><button class="btn btn-secondary">View Report Sheets</button></a>
             </div><br>
-            <div class="row">st
+            <div class="row">
             @foreach($sectionClass->sectionClassSubjects as $sectionClassSubject)
                 @foreach($sectionClassSubject->availableResultUploads() as $result)
                 <div class="col-md-3"><br>
                         <div class="card shadow">
                             <div class="card-body">
                             <p><b>Session :</b></p>
+                            <p><b>Term :</b> {{$result->term->name ?? 'Not Available'}}</p>
+                            <p><b>Subject :</b> {{$result->sectionClassSubjectTeacher->sectionClassSubject->name ?? 'Not Available'}}</p>
                             <p><b>Teacher :</b> {{$result->sectionClassSubjectTeacher->teacher->user->name ?? 'Not Available'}}</p>
                                 <table class="table">
                                     <tr>

@@ -5,7 +5,7 @@
         <div class="col-md-4">
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="card-header">{{$section->name}} Section</div>
+                    <div class="card-header shadow">{{$section->name}} SECTION</div>
                     <table class="table">
                         <tr>
                             <td>Classes</td>

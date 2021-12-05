@@ -8,7 +8,10 @@
     @section('content')
     <div class="card">
     <div class="card-body">
-        <div class="card-header h4">{{$sectionClass->name}} Subject Results Information</div>
+        <div class="card-header h4">{{$sectionClass->name}} Subject Results Information 
+        <a href="{{route('dashboard.section.class.result.accessment.download',[$sectionClass->id])}}"><button class="btn btn-secondary">Download Accessment</button></a>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#class_{{$sectionClass->id}}">Upload Accessment</button>
+        </div>
     </div>
     
     </div>
@@ -25,6 +28,7 @@
         </thead>
         <tbody>
             @foreach($sectionClass->sectionClassSubjects as $sectionClassSubject)
+                @include('section.class.result.access')
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$sectionClassSubject->subject->name}}</td>

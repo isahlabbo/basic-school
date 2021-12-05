@@ -4,7 +4,7 @@
     @endsection
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <!-- <img src="{{asset('assets/images/logo.gif')}}"/> --> <h2 class="text text-bold">Login</h2>
+        <img src="{{asset('assets/images/logo.jpg')}}"> 
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />

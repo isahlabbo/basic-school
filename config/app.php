@@ -13,7 +13,17 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'School'),
+
+    'title' => env('APP_TITLE', 'School'),
+
+    'motto' => env('APP_MOTTO', 'School Motto'),
+
+    'address' => env('APP_ADDRESS', 'School Adress'),
+
+    'code' => env('APP_CODE', 'School Code'),
+    
+
 
     /*
     |--------------------------------------------------------------------------

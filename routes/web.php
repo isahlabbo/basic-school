@@ -54,8 +54,17 @@ Route::name('dashboard.')
             ->group(function (){
                 Route::get('/summary', 'ClassResultController@summary')->name('summary');
                 Route::get('/report', 'ClassResultController@report')->name('report');
+                Route::get('/accessment/download', 'ClassResultController@downloadAccessment')->name('accessment.download');
+                Route::post('/accessment/upload', 'ClassResultController@uploadAccessment')->name('accessment.upload');
             });
+            Route::get('/{sectionClassId}/student-admission-no', 'SectionClassController@reGenerateAdmissionNo')->name('admission.number.regenerate');
             Route::get('/{sectionClassId}', 'SectionClassController@index')->name('index');
+            Route::get('/{sectionClassId}/students', 'SectionClassController@student')->name('student');
+            Route::get('/student/{studentId}/delete', 'SectionClassController@delete')->name('student.delete');
+            Route::get('/student/{studentId}/edit', 'SectionClassController@edit')->name('student.edit');
+            Route::post('/student/{studentId}/update', 'SectionClassController@update')->name('student.update');
+            Route::get('/{sectionClassId}/student-template-downlod', 'SectionClassController@downloadTemplate')->name('student.template.download');
+            Route::post('/{sectionClassId}/student-template-upload', 'SectionClassController@uploadTemplate')->name('student.template.upload');
             Route::name('subject.')
             ->prefix('/{classId}/subject')
             ->group(function (){

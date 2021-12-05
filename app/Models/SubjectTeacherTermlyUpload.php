@@ -25,7 +25,7 @@ class SubjectTeacherTermlyUpload extends BaseModel
     public function gradePercentage($grade)
     {
         
-        return 100 * ($this->gradeCount($grade)/count($this->studentResults));
+        return number_format(100 * ($this->gradeCount($grade)/count($this->studentResults)),2);
     }
 
     public function gradeCount($grade)

@@ -29,5 +29,44 @@ class SectionClassStudent extends BaseModel
     {
         return $this->sectionClassStudentTerms->where('status','Active')->first();
     }
+    public function nextSectionClassStudentTerm()
+    {
+        switch ($this->currentStudentTerm()->academicSessionTerm->term_id) {
+            case '1':
+                // second term
+                foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
+                    if($sectionClassStudentTerm->academicSessionTerm->term_id == 2){
+                        $sectionTerm = $sectionClassStudentTerm;
+                    }
+                }
+                break;
+            case '2':
+                // third term
+                foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
+                    if($sectionClassStudentTerm->academicSessionTerm->term_id == 3){
+                        $sectionTerm = $sectionClassStudentTerm;
+                    }
+                }
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+        
+        return $sectionTerm;
+    }
+    public function totalExamScore($term)
+    {
+        $total = 0;
+        foreach ($this->sectionClassStudentTerms as $sectionClassStudentTerm) {
+            if($sectionClassStudentTerm->academicSessionTerm->term->id == $term->id){
+                foreach ($sectionClassStudentTerm->studentResults as $studentResult) {
+                    $total = $total + $studentResult->total;
+                }
+            }
+        }
+        return $total;
+    }
 
 }

@@ -30,33 +30,20 @@ class ScoreSheet implements ToModel
                 'term_id'=>$this->term->id,
                 'section_class_subject_teacher_id'=>$this->sectionClassSubject->activeSectionClassSubjectTeacher()->id,
             ]);
-            $result = null;
             
-            foreach ($subjectTeacherTermlyUpload->studentResults->where('section_class_student_id', $this->getThisStudent($row[2])->sectionClassStudents->where('status','Active')->first()->id) as $result) {
-                
-            }
-            if($result){
-                $result->update([
-                    'first_ca' => $row[3],
-                    'second_ca' => $row[4],
-                    'exam' => $row[5],
-                    'total' => $row[4] + $row[5] + $row[3],
-                    'grade' => $this->computeGrade($row[4],$row[5],$row[3])
-                    ]);
-            }else{
-                $subjectTeacherTermlyUpload->studentResults()->create([
-                    'section_class_student_term_id'  => $this->getThisStudent($row[2])->sectionClassStudents->where('status','Active')->first()->sectionClassStudentTerms->where('status','Active')->first()->id,
-                    'first_ca' => $row[3],
-                    'second_ca' => $row[4],
-                    'exam' => $row[5],
-                    'total' => $row[4] + $row[5] + $row[3],
-                    'grade' => $this->computeGrade($row[3],$row[4], $row[5]),
+            $result = $subjectTeacherTermlyUpload->studentResults()->firstOrCreate([
+                'section_class_student_term_id'  => $this->getThisStudent($row[2])->sectionClassStudents->where('status','Active')->first()->sectionClassStudentTerms->where('status','Active')->first()->id,
                 ]);
-            }
+            $result->update([ 
+                'first_ca' => $row[3],
+                'second_ca' => $row[4],
+                'exam' => $row[5],
+                'total' => $row[4] + $row[5] + $row[3],
+                'grade' => $this->computeGrade($row[3],$row[4], $row[5]),
+            ]);    
         }
-
     }
-
+    
     public function computeGrade($ca1, $ca2, $exam)
     {
         $total = $ca1 + $ca2 + $exam;
