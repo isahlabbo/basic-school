@@ -49,6 +49,9 @@ Route::name('dashboard.')
         Route::name('class.')
         ->prefix('/class')
         ->group(function (){
+            Route::post('/{sectionId}/register', 'SectionClassController@register')->name('register');
+            Route::post('/{sectionClassId}/update', 'SectionClassController@updateClass')->name('update');
+            Route::get('/{sectionClassId}/delete', 'SectionClassController@deleteClass')->name('delete');
             Route::name('result.')
             ->prefix('/{sectionClassId}/result')
             ->group(function (){
@@ -57,6 +60,7 @@ Route::name('dashboard.')
                 Route::get('/accessment/download', 'ClassResultController@downloadAccessment')->name('accessment.download');
                 Route::post('/accessment/upload', 'ClassResultController@uploadAccessment')->name('accessment.upload');
             });
+            
             Route::get('/{sectionClassId}/student-admission-no', 'SectionClassController@reGenerateAdmissionNo')->name('admission.number.regenerate');
             Route::get('/{sectionClassId}', 'SectionClassController@index')->name('index');
             Route::get('/{sectionClassId}/students', 'SectionClassController@student')->name('student');

@@ -20,6 +20,7 @@
                 <th></th>
                 <th><a href="{{route('dashboard.student.create')}}">
                 <button class="btn btn-primary">New Admission</button></a></th>
+               
             </tr>
         </thead>
         <tbody>

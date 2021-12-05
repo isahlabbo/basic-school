@@ -101,7 +101,7 @@ class SectionClass extends BaseModel
     public function generateAdmissionNo()
     {
 
-        return config('app.code').$this->getAdmissionYear().$this->code.'/'.$this->getAdmissionSerialNo();
+        return config('app.code').'/'.$this->getAdmissionYear().$this->code.'/'.$this->getAdmissionSerialNo();
     }
 
     public function getAdmissionSerialNo()

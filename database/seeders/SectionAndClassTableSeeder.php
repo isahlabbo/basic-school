@@ -20,357 +20,118 @@ class SectionAndClassTableSeeder extends Seeder
                 'name'=>'Nursery',
                 'classes'=>[
                     [
-                        'name'=>'Nursery one orange','subjects'=>[
+                        'name'=>'Nursery one a','subjects'=>[
                             "Mathematics",
                             "English",
-                            "Science",
+                            "basic Science",
                             "Handwriting",
                             "IRK",
                             "qur'An",
-                            "Azkar",
-                            "arbiyya",
-                            "kitabba",
-                            "huruf",
-                        ],
-                        'code'=>'NO',
-                        'year_sequence'=>'First',
-                    ],
-                    [
-                        'name'=>'Nursery one ash','subjects'=>[
-                            "Mathematics",
-                            "English",
-                            "Science",
-                            "Handwriting",
-                            "IRK",
-                            "qur'An",
-                            "Azkar",
-                            "arbiyya",
-                            "kitabba",
+                            "qira'at",
+                            "social habit",
                             "huruf",
                         ],
                         'code'=>'NA',
                         'year_sequence'=>'First',
                     ],
                     [
-                        'name'=>'Nursery one green','subjects'=>[
+                        'name'=>'Nursery one B','subjects'=>[
                             "Mathematics",
                             "English",
-                            "Science",
+                            "basic Science",
                             "Handwriting",
                             "IRK",
                             "qur'An",
-                            "Azkar",
-                            "arbiyya",
-                            "kitabba",
+                            "qira'at",
+                            "social habit",
                             "huruf",
                         ],
-                        'code'=>'NG',
+                        'code'=>'NB',
                         'year_sequence'=>'First',
                     ],
                     [
-                        'name'=>'Nursery one white','subjects'=>[
+                        'name'=>'Nursery TWO A','subjects'=>[
                             "Mathematics",
                             "English",
-                            "Science",
+                            "basic Science",
                             "Handwriting",
                             "IRK",
                             "qur'An",
-                            "Azkar",
-                            "arbiyya",
-                            "kitabba",
-                            "huruf",
-                        ],
-                        'code'=>'NW',
-                        'year_sequence'=>'First',
-                    ],
-                    [
-                        'name'=>'Nursery two ash','subjects'=>[
-                            "Mathematics",
-                            "English",
-                            "Science",
-                            "Handwriting",
-                            "IRK",
-                            "qur'An",
-                            "Azkar",
-                            "arbiyya",
-                            "kitabba",
+                            "qira'at",
+                            "social habit",
                             "huruf",
                         ],
                         'code'=>'NA',
                         'year_sequence'=>'Second',
-                    ],
-                    [
-                        'name'=>'Nursery two green','subjects'=>[
-                            "Mathematics",
-                            "English",
-                            "Science",
-                            "Handwriting",
-                            "IRK",
-                            "qur'An",
-                            "Azkar",
-                            "arbiyya",
-                            "kitabba",
-                            "huruf",
-                        ],
-                        'code'=>'NG',
-                        'year_sequence'=>'Second',
-                    ],
-                    [
-                        'name'=>'Nursery two orange','subjects'=>[
-                            "Mathematics",
-                            "English",
-                            "Science",
-                            "Handwriting",
-                            "IRK",
-                            "qur'An",
-                            "Azkar",
-                            "arbiyya",
-                            "kitabba",
-                            "huruf",
-                        ],
-                        'code'=>'NO',
-                        'year_sequence'=>'Second',
-                    ],
-                    [
-                        'name'=>'Nursery three ash','subjects'=>[
-                            "Mathematics",
-                            "English",
-                            "Science",
-                            "Handwriting",
-                            "IRK",
-                            "qur'An",
-                            "Azkar",
-                            "arbiyya",
-                            "kitabba",
-                            "huruf",
-                            "hadith",
-                        ],
-                        'code'=>'NA',
-                        'year_sequence'=>'Third',
-                    ],
-                    [
-                        'name'=>'Nursery three orange','subjects'=>[
-                            "Mathematics",
-                            "English",
-                            "Science",
-                            "Handwriting",
-                            "IRK",
-                            "qur'An",
-                            "Azkar",
-                            "arbiyya",
-                            "kitabba",
-                            "huruf",
-                            "hadith",
-                        ],
-                        'code'=>'NO',
-                        'year_sequence'=>'Third',
-                    ],
-                    [
-                        'name'=>'Nursery three green','subjects'=>[
-                            "Mathematics",
-                            "English",
-                            "Science",
-                            "Handwriting",
-                            "IRK",
-                            "qur'An",
-                            "Azkar",
-                            "arbiyya",
-                            "kitabba",
-                            "huruf",
-                            "hadith",
-                        ],
-                        'code'=>'NG',
-                        'year_sequence'=>'Third',
                     ],
                 ]
             ],
             [
-                'name'=>'BASIC',
+                'name'=>'PRIMARY',
                 'classes'=>[
                     [
-                        'name'=>'BASIC ONE ASH','subjects'=>[
-                            "AL-qur'an",
+                        'name'=>'PRIMARY ONE','subjects'=>[
                             "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
+                            "English",
+                            "basic Science",
                             "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
                             "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
+                            "qur'An",
+                            "qira'at",
+                            "NATIONAL VALUE",
+                            "huruf"              
                         ],
-                        'code'=>'BA',
+                        'code'=>'PA',
                         'year_sequence'=>'First'
                     ],
                     [
-                        'name'=>'BASIC ONE orange','subjects'=>[
-                            "AL-qur'an",
+                        'name'=>'PRIMARY TWO','subjects'=>[
                             "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
+                            "English",
+                            "basic Science",
                             "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
                             "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
+                            "qur'An",
+                            "qira'at",
+                            "NATIONAL VALUE",
+                            "huruf"              
                         ],
-                        'code'=>'BO',
-                        'year_sequence'=>'First'
-                    ],
-                    [
-                        'name'=>'BASIC ONE GREEN','subjects'=>[
-                            "AL-qur'an",
-                            "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
-                            "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
-                            "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
-                        ],
-                        'code'=>'BG',
-                        'year_sequence'=>'First'
-                    ],
-                    [
-                        'name'=>'BASIC TWO ASH','subjects'=>[
-                            "AL-qur'an",
-                            "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
-                            "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
-                            "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
-                        ],
-                        'code'=>'BA',
+                        'code'=>'PA',
                         'year_sequence'=>'Second'
                     ],
                     [
-                        'name'=>'BASIC TWO orange','subjects'=>[
-                            "AL-qur'an",
+                        'name'=>'PRIMARY three','subjects'=>[
                             "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
+                            "English",
+                            "basic Science",
                             "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
                             "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
+                            "qur'An",
+                            "qira'at",
+                            "NATIONAL VALUE",
+                            "huruf"              
                         ],
-                        'code'=>'BO',
-                        'year_sequence'=>'Second'
-                    ],
-                    [
-                        'name'=>'BASIC three ASH','subjects'=>[
-                            "AL-qur'an",
-                            "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
-                            "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
-                            "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
-                        ],
-                        'code'=>'BA',
+                        'code'=>'PA',
                         'year_sequence'=>'Third'
                     ],
                     [
-                        'name'=>'BASIC three orange','subjects'=>[
-                            "AL-qur'an",
+                        'name'=>'PRIMARY four','subjects'=>[
                             "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
+                            "English",
+                            "basic Science",
                             "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
                             "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
+                            "qur'An",
+                            "qira'at",
+                            "NATIONAL VALUE",
+                            "huruf"              
                         ],
-                        'code'=>'BO',
-                        'year_sequence'=>'Third'
-                    ],
-                    [
-                        'name'=>'BASIC FOUR ORANGE','subjects'=>[
-                            "AL-qur'an",
-                            "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
-                            "Handwriting",
-                            "PRE-VOCATIONAL STUDIES",
-                            "CULTURAL AND CREATIVE ART",
-                            "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
-                        ],
-                        'code'=>'BO',
+                        'code'=>'PA',
                         'year_sequence'=>'Forth'
                     ],
-                    [
-                        'name'=>'BASIC five ORANGE','subjects'=>[
-                            "AL-qur'an",
-                            "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
-                            "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
-                            "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "PRE-VOCATIONAL STUDIES",
-                            "AL-AZKAR"
-                        ],
-                        'code'=>'BO',
-                        'year_sequence'=>'Fifth'
-                    ],
                 ]
             ],
-            [
-                'name'=>'SECONDARY',
-                'classes'=>[
-                    [
-                        'name'=>'JSS1','subjects'=>[
-                            "AL-qur'an",
-                            "Mathematics",
-                            "English Studies",
-                            "PRE-VOCATIONAL STUDIES",
-                            "NATIONAL VALUE",
-                            "HAUSA",
-                            "ISLAMIC RELIGION STUDIES",
-                            "HISTORY",
-                            "BUSINESS STUDIES",
-                            "BASIC SCIENCE AND TECHNOLOGY",
-                            "AS-SIRAH",
-                            "CULTURAL AND CREATIVE ART",
-                            "AL-FIQHA",
-                            "AT-TAJWEED",
-                            "AL-TAUHEED",
-                            
-                        ],
-                        'code'=>'SJ',
-                        'year_sequence'=>'First'
-                    ],
-                ]
-            ]
+            
         ];
         foreach($sections as $section){
             $newSection = Section::firstOrCreate(['name'=>strtoupper($section['name'])]);

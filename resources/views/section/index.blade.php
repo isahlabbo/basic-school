@@ -17,11 +17,13 @@
                 <th>CLASS TEACHER</th>
                 <th></th>
                 <th></th>
-                <th><button class="btn btn-primary">Add Class</button></th>
+                <th><button data-toggle="modal" data-target="#addClass" class="btn btn-primary">Add Class</button></th>
+                @include('section.class.create')
             </tr>
         </thead>
         <tbody>
             @foreach($section->sectionClasses as $sectionClass)
+                @include('section.class.edit')
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$sectionClass->name}}</td>
@@ -45,7 +47,9 @@
                             <button class="btn btn-primary">Asign Class Teacher</button></a>
                         @endif
                     </td>
-                    <td><button class="btn btn-secondary">Edit</button><button class="btn btn-danger">Delete</button></td>
+                    <td>
+                    <button data-toggle="modal" data-target="#class_{{$sectionClass->id}}" class="btn btn-secondary">Edit</button>
+                    <a href="{{route('dashboard.section.class.delete',[$sectionClass->id])}}" onclick="confirm('Are you sure, you want to delete this class')"><button class="btn btn-danger">Delete</button></a></td>
                 </tr>
             @endforeach
         </tbody>
