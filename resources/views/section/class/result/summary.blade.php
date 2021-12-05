@@ -20,6 +20,8 @@
                         <div class="card shadow">
                             <div class="card-body">
                             <p><b>Session :</b></p>
+                            <p><b>Term :</b> {{$result->term->name ?? 'Not Available'}}</p>
+                            <p><b>Subject :</b> {{$result->sectionClassSubjectTeacher->sectionClassSubject->name ?? 'Not Available'}}</p>
                             <p><b>Teacher :</b> {{$result->sectionClassSubjectTeacher->teacher->user->name ?? 'Not Available'}}</p>
                                 <table class="table">
                                     <tr>

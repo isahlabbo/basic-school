@@ -32,11 +32,14 @@ class ScoreSheetController extends Controller
             'term'=>'required',
             'score_sheet'=>'required',
         ]);
-        Excel::import(new ScoreSheetImport(SectionClassSubject::find($request->sectionClassSubjectId), Term::find($request->term)), request()->file('score_sheet'));
+        $sectionClassSubject = SectionClassSubject::find($request->sectionClassSubjectId);
+
+        Excel::import(new ScoreSheetImport($sectionClassSubject, Term::find($request->term)), request()->file('score_sheet'));
+        
         if(Auth::user()->role =='Teacher'){
             return redirect()->route('dashboard')->withSuccess('Result Uploaded Success fully');
         }
-        return redirect()->route('dashboard.teacher.upload.scoresheet',[$sectionClassSubjectId])->withSuccess('Result Uploaded Success fully');
+        return redirect()->route('dashboard.section.class.subject.result',[$sectionClassSubject->sectionClass->id])->withSuccess('Result Uploaded Success fully');
     }
 
 

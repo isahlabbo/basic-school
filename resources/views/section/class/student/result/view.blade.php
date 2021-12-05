@@ -12,38 +12,62 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-2">
-                            school logo
+                            <img src="{{asset('assets/images/logo.jpg')}}">
                         </div>
                         <div class="col-md-10">
-                            <p class="h5 text text-center"><b>Way Foward International Academy</b></p>
-                            <p class="text text-center mb-0">Guide us to the right path</p>
-                            <p class="text text-center mb-0">Gidan Dikko Sarda Quaters Area, Sokoto. </p>
+                            <p class="h1 text text-center"><b>{{config('app.title')}}</b></p>
+                            <p class="text text-center mb-0 h2">{{config('app.motto')}}</p>
+                            <p class="text text-center mb-0 h3">{{config('app.address')}}</p>
                         </div>
                     </div>
                     <div class="row">
 
                         <div class="col-md-12 text text-center"><hr style="background-color: gray; height: 2px;"><b>REPORT SHEET FOR SECOND TERM {{$sectionClassStudentTerm->academicSessionTerm->academicSession->name}} ACADEMIC SESSION</b><hr style="background-color: orange; height: 3px;"></div>
-                        
-                        <div class="col-md-3 text text-right">
-                            <p class="mb-0">Admission No:</p>
-                            <p class="mb-0">Student Name:</p>
-                            <p class="mb-0">Sex:</p>
-                            <p class="mb-0">No in class:</p>
-                            <p class="mb-0">Position:</p>
-                            <p class="mb-0">Class Average:</p>
-                            <p class="mb-0">Pupils Average:</p>
-                            <p class="mb-0">No of subjects:</p>
-                        </div>
-
-                        <div class="col-md-3">
-                            <p class="mb-0"><b>{{$student->admission_no}}</b></p>
-                            <p class="mb-0"><b>{{$student->name}}</b></p>
-                            <p class="mb-0"><b>$student->gender()</b></p>
-                            <p class="mb-0"><b>{{count($sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'))}}:</b></p>
-                            <p class="mb-0"><b>Position:</b></p>
-                            <p class="mb-0"><b>{{$sectionClassStudent->sectionClass->classAverage($sectionClassStudentTerm->academicSessionTerm->term)}}</b></p>
-                            <p class="mb-0"><b>{{$sectionClassStudentTerm->studentAverage()}}</b></p>
-                            <p class="mb-0"><b>{{count($sectionClassStudent->sectionClass->sectionClassSubjects)}}</b></p>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5 text">
+                        <table style="width: 100%">
+                        <tr>
+                            
+                            <td><p class="mb-0">Admission No:</p></td>
+                            <td><p class="mb-0 text-right"><b>{{$student->admission_no}}</b></p></td>
+                        </tr>
+                        <tr>
+                            
+                            <td> <p class="mb-0">Student Name:</p></td>
+                            <td><p class="mb-0 text-right"><b>{{$student->name}}</b></p></td>
+                        </tr>
+                        <tr>
+                            
+                            <td><p class="mb-0">Sex:</p></td>
+                            <td><p class="mb-0 text-right"><b>{{$student->gender()}}</b></p></td>
+                        </tr>
+                        <tr>
+                            
+                            <td><p class="mb-0">No in class:</p></td>
+                            <td><p class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'))}}:</b></p></td>
+                        </tr>
+                        <tr>
+                            
+                            <td><p class="mb-0">Position:</p></td>
+                            <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->studentPosition($sectionClassStudentTerm) ?? 0}}</b></p></b></p></td>
+                        </tr>
+                        <tr>
+                            
+                            <td><p class="mb-0">Class Average:</p></td>
+                            <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->classAverage($sectionClassStudentTerm->academicSessionTerm->term)}}</b></p></td>
+                        </tr>
+                        <tr>
+                            
+                            <td><p class="mb-0">Pupils Average:</p></td>
+                            <td><p class="mb-0 text-right"><b>{{$sectionClassStudentTerm->studentAverage()}}</b></p></td>
+                        </tr>
+                        <tr>
+                            
+                            <td><p class="mb-0">No of subjects:</p></td>
+                            <td><p class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassSubjects)}}</b></p></td>
+                        </tr>
+                                 
+                        </table>
                         </div>
 
                         <div class="col-md-3">

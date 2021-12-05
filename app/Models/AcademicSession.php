@@ -11,4 +11,14 @@ class AcademicSession extends BaseModel
     {
         return $this->hasMany(AcademicSessionTerm::class);
     }
+    
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    public function classAdmissions(SectionClass $class)
+    {
+        return $this->students->where('section_class_id',$class->id);
+    }
 }

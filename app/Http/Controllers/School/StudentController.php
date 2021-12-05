@@ -43,7 +43,7 @@ class StudentController extends Controller
             'date_of_birth'=>$request->date_of_birth,
             'admission_no'=>$sectionClass->generateAdmissionNo(),
             'section_class_id'=>$request->class,
-            'academic_session_id'=>$guardian->currentSession()->id,
+            'academic_session_id'=>$sectionClass->classAdmissionSession()->id,
             'gender'=>$request->gender
         ]);
 

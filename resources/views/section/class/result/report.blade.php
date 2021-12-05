@@ -15,13 +15,14 @@
             <div class="card shadow" style="page-break-inside: avoid;">
                 <div class="card-body">
                     <div class="row">
+                        <div class="col-md-1"></div>
                         <div class="col-md-2">
-                            school logo
+                            <img src="{{asset('assets/images/logo.jpg')}}">
                         </div>
-                        <div class="col-md-10">
-                            <p class="h5 text text-center"><b>Way Foward International Academy</b></p>
-                            <p class="text text-center mb-0">Guide us to the right path</p>
-                            <p class="text text-center mb-0">Gidan Dikko Sarda Quaters Area, Sokoto. </p>
+                        <div class="col-md-9">
+                            <p class="h1 text text-center"><b>{{config('app.title')}}</b></p>
+                            <p class="text text-center mb-0 h2">{{config('app.motto')}}</p>
+                            <p class="text text-center mb-0 h3">{{config('app.address')}} </p>
                         </div>
                     </div>
                     <div class="row">
@@ -44,9 +45,9 @@
                             <p class="mb-0"><b>{{$sectionClassStudent->student->name}}</b></p>
                             <p class="mb-0"><b>{{$sectionClassStudent->student->gender()}}</b></p>
                             <p class="mb-0"><b>{{count($sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'))}}:</b></p>
-                            <p class="mb-0"><b>Position:</b></p>
+                            <p class="mb-0"><b>{{$sectionClass->studentPosition($sectionClassStudentTerm) ?? 0}}:</b></p>
                             <p class="mb-0"><b>{{$sectionClassStudent->sectionClass->classAverage($sectionClassStudentTerm->academicSessionTerm->term)}}</b></p>
-                            <p class="mb-0"><b>{{$sectionClassStudentTerm->studentAverage()}}</b></p>
+                            <p class="mb-0"><b>{{$sectionClassStudentTerm->studentAverage($sectionClassStudentTerm)}}</b></p>
                             <p class="mb-0"><b>{{count($sectionClassStudent->sectionClass->sectionClassSubjects)}}</b></p>
                         </div>
 
@@ -77,7 +78,7 @@
                             </p>
                         </div>
                         <div class="col-md-3 text-center">
-                            <p class="mb-0 text text-center"><b>1st of feb 2021</b></p>
+                            <p class="mb-0 text text-center"><b>{{strtoupper(date('d-M-Y',strtotime($sectionClassStudent->nextSectionClassStudentTerm()->academicSessionTerm->end_at))) ?? 'Not available'}}</b></p>
                             <img src="{{asset('assets/images/user.jpg')}}" width="170" height="150" class="rounded" alt="">
                         </div>
                     </div>
@@ -311,7 +312,7 @@
                         <div class="col-md-12">
                             <tr>
                                 <td style="width: 300px;">HEAD TEACHER REMARKS:</td>
-                                <td>hdddhdddh</td>
+                                <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->headTeacherComment->name ?? 0}}</td>
                             </tr>
                         </div>
                     </table>

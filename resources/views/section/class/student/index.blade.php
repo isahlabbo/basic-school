@@ -17,9 +17,12 @@
                 <th>CURRENT CLASS</th>
                 <th>GUARDIAN NAME</th>
                 <th>GUARDIAN PHONE</th>
-                <th>GUARDIAN EMAIL</th>
                 <th>ADDRESS</th>
                 <th></th>
+                <th>
+                    <a href="{{route('dashboard.section.class.admission.number.regenerate',[$sectionClass->id])}}">
+                    <button class="btn btn-primary">Re Generate Admission Number</button></a>
+                </th>
                 <th>
                     <a href="{{route('dashboard.section.class.student.template.download',[$sectionClass->id])}}">
                     <button class="btn btn-primary">Download Template</button></a>

@@ -21,7 +21,7 @@ class SectionClassController extends Controller
     public function downloadTemplate($sectionClassId)
     {
         $sectionClass = SectionClass::find($sectionClassId);
-        return Excel::download(new SectionClassStudentExport(), strtolower(str_replace(' ','_',$sectionClass->name)).'_'.str_replace('/','_',$sectionClass->currentSession()->name).'_admitted_list.xlsx');
+        return Excel::download(new SectionClassStudentExport($sectionClass), strtolower(str_replace(' ','_',$sectionClass->name)).'_'.str_replace('/','_',$sectionClass->currentSession()->name).'_admitted_list.xlsx');
     }
 
     public function uploadTemplate(Request $request, $sectionClassId)
@@ -30,8 +30,11 @@ class SectionClassController extends Controller
         $request->validate([
             'template'=>'required',
         ]);
-        Excel::import(new SectionClassStudentImport(SectionClass::find($sectionClassId)), request()->file('template'));
+        $sectionClass = SectionClass::find($sectionClassId);
+        Excel::import(new SectionClassStudentImport($sectionClass), request()->file('template'));
         
+        $sectionClass->updateAdmissionNo();
+
         return redirect()->route('dashboard.section.class.student',[$sectionClassId])->withSuccess('All Students Uploaded');
     }
 
@@ -97,5 +100,12 @@ class SectionClassController extends Controller
         return redirect()->route('dashboard.section.class.student',[$student->sectionClass->id])
         ->withSuccess('Updated');
         
+    }
+
+    public function reGenerateAdmissionNo($sectionClassId)
+    {
+        $sectionClass = SectionClass::find($sectionClassId);
+        $sectionClass->updateAdmissionNo();
+        return back()->withSuccess('All admission number regenerated');
     }
 }

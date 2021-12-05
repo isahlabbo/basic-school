@@ -11,6 +11,16 @@
         </tr>
     </thead>
     <tbody>
-    
+    @foreach($sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent)
+        <tr>
+            <td>{{$sectionClassStudent->student->guardian->name}}</td>
+            <td>{{$sectionClassStudent->student->guardian->phone}}</td>
+            <td>{{$sectionClassStudent->student->guardian->email}}</td>
+            <td>{{$sectionClassStudent->student->guardian->address}}</td>
+            <td>{{$sectionClassStudent->student->name}}</td>
+            <td>{{$sectionClassStudent->student->date_of_birth}}</td>
+            <td>{{$sectionClassStudent->student->gender()}}</td>
+        </tr>
+    @endforeach
     </tbody>
 </table>

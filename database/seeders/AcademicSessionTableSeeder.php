@@ -15,7 +15,6 @@ class AcademicSessionTableSeeder extends Seeder
     public function run()
     {
         $sessions = [
-            '2020/2021',
             '2021/2022',
             '2022/2023',
             '2023/2024',

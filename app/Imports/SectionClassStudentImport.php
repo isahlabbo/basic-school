@@ -5,6 +5,7 @@ namespace App\Imports;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use App\Models\SectionClass;
+use App\Models\Guardian;
 
 class SectionClassStudentImport implements ToModel
 {
@@ -25,8 +26,9 @@ class SectionClassStudentImport implements ToModel
         // student gender = $row[2];
         // student date_of_birth = $row[3];
        if($row[0] != 'Guardian Name'){
-            $sectionClass = SectionClass::find($request->class);
-            
+           if(!$row[0]){
+               $row[0] = 'Guardian';
+           }
             $guardian = Guardian::create([
                 'name'=>strtoupper($row[0]),
                 'phone'=>$row[1],
@@ -39,7 +41,7 @@ class SectionClassStudentImport implements ToModel
                 'date_of_birth'=>$row[5],
                 'admission_no'=>$this->sectionClass->generateAdmissionNo(),
                 'section_class_id'=>$this->sectionClass->id,
-                'academic_session_id'=>$guardian->currentSession()->id,
+                'academic_session_id'=>$this->sectionClass->classAdmissionSession()->id,
                 'gender'=>$this->getGenderId($row[6])
             ]);
 
@@ -55,8 +57,11 @@ class SectionClassStudentImport implements ToModel
                 $count++;
             }
         }
+
+        
     }
 
+    
     public function getGenderId($gender)
     {
         switch ($gender) {
@@ -76,6 +81,6 @@ class SectionClassStudentImport implements ToModel
                 $genderId = 3;
                 break;
         }
-        return $gender;
+        return $genderId;
     }
 }

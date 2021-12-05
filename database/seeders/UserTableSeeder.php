@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
         $users = [
             [
                 'name'=>'Admin',
-                'email'=>'admin@darussunnah.com',
+                'email'=>'admin@wayforward.com',
                 'password'=>Hash::make('admin'),
                 'role'=>'Admin',
             ],
@@ -36,7 +36,7 @@ class UserTableSeeder extends Seeder
         for ($i=1; $i <=16 ; $i++) { 
             $user = User::firstOrCreate([
                 'name'=>'teacher '.$i,
-                'email'=>'teacher'.$i.'@darussunnah.com',
+                'email'=>'teacher'.$i.'@wayforward.com',
                 'password'=>Hash::make('teacher'),
                 'role'=>'Teacher',
             ],);

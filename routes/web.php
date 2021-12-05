@@ -54,9 +54,10 @@ Route::name('dashboard.')
             ->group(function (){
                 Route::get('/summary', 'ClassResultController@summary')->name('summary');
                 Route::get('/report', 'ClassResultController@report')->name('report');
-                Route::get('/accessment/download', 'ClassResultController@download')->name('accessment.download');
-                Route::post('/accessment/upload', 'ClassResultController@upload')->name('accessment.upload');
+                Route::get('/accessment/download', 'ClassResultController@downloadAccessment')->name('accessment.download');
+                Route::post('/accessment/upload', 'ClassResultController@uploadAccessment')->name('accessment.upload');
             });
+            Route::get('/{sectionClassId}/student-admission-no', 'SectionClassController@reGenerateAdmissionNo')->name('admission.number.regenerate');
             Route::get('/{sectionClassId}', 'SectionClassController@index')->name('index');
             Route::get('/{sectionClassId}/students', 'SectionClassController@student')->name('student');
             Route::get('/student/{studentId}/delete', 'SectionClassController@delete')->name('student.delete');
