@@ -73,6 +73,9 @@ Route::name('dashboard.')
             ->prefix('/{classId}/subject')
             ->group(function (){
                 Route::get('/', 'SubjectController@index')->name('index');
+                Route::post('/register', 'SubjectController@register')->name('register');
+                Route::post('/{sectionClassSubjectId}/update', 'SubjectController@update')->name('update');
+                Route::get('/{sectionClassSubjectId}/delete', 'SubjectController@delete')->name('delete');
                 Route::get('/result', 'SubjectController@result')->name('result');
             });
 

@@ -49,7 +49,7 @@
                     </td>
                     <td>
                     <button data-toggle="modal" data-target="#class_{{$sectionClass->id}}" class="btn btn-secondary">Edit</button>
-                    <a href="{{route('dashboard.section.class.delete',[$sectionClass->id])}}" onclick="confirm('Are you sure, you want to delete this class')"><button class="btn btn-danger">Delete</button></a></td>
+                    <a href="{{route('dashboard.section.class.delete',[$sectionClass->id])}}" onclick="return confirm('Are you sure, you want to delete this class')"><button class="btn btn-danger">Delete</button></a></td>
                 </tr>
             @endforeach
         </tbody>

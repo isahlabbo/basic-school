@@ -54,7 +54,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="{{route('dashboard.section.class.student.delete',[$sectionClassStudent->student->id])}}" onclick="confirm('Are you sure, you want delete this student record')"><button class="btn btn-danger">Delete</button></a>
+                        <a href="{{route('dashboard.section.class.student.delete',[$sectionClassStudent->student->id])}}" onclick="return confirm('Are you sure, you want delete this student record')"><button class="btn btn-danger">Delete</button></a>
                     </td>
                 </tr>
             @endforeach
