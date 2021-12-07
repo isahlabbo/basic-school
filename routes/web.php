@@ -135,6 +135,8 @@ Route::name('dashboard.')
         Route::get('/', 'TeacherController@index')->name('index');
         Route::get('/create', 'TeacherController@create')->name('create');
         Route::post('/register', 'TeacherController@register')->name('register');
+        Route::post('/{teacherId}/update', 'TeacherController@update')->name('update');
+        Route::get('/{teacherId}/delete', 'TeacherController@delete')->name('delete');
     });
     
     // student routes
