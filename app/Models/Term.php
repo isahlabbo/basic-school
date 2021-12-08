@@ -12,6 +12,11 @@ class Term extends BaseModel
         return $this->hasMany(SectionClassPayment::class);
     }
 
+    public function sectionClassStudentPayments()
+    {
+        return $this->hasMany(SectionClassStudentPayment::class);
+    }
+
     public function subjectTeacherTermylUpload()
     {
         return $this->hasMany(SubjectTeacherTermlyUpload::class);

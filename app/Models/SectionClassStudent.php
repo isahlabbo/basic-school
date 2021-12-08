@@ -20,6 +20,12 @@ class SectionClassStudent extends BaseModel
     {
         return $this->hasMany(SectionClassStudentTerm::class);
     }
+
+    public function sectionClassStudentPayments ()
+    {
+        return $this->hasMany(SectionClassStudentPayment::class);
+    }
+
     public function student()
     {
         return $this->belongsTo(Student::class);
@@ -28,6 +34,15 @@ class SectionClassStudent extends BaseModel
     public function currentStudentTerm()
     {
         return $this->sectionClassStudentTerms->where('status','Active')->first();
+    }
+
+    public function paidAmount($term)
+    {
+        $amount = 0;
+        foreach ($this->SectionClassStudentPayments->where('term_id',$term->id) as $payment) {
+            $amount = $amount + $payment->amount;
+        }
+        return $amount;
     }
 
     public function feeAmount($term)
