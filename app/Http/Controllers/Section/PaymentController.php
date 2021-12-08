@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Section;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Term;
 use App\Models\Section;
 use App\Models\SectionClass;
 class PaymentController extends Controller
@@ -26,6 +27,6 @@ class PaymentController extends Controller
 
     public function classStudentPayment ($sectionClassId)
     {
-        return view('section.payment.class.index',['sectionClass'=>SectionClass::find($sectionClassId)]);
+        return view('section.payment.class.index',['sectionClass'=>SectionClass::find($sectionClassId),'terms'=>Term::all()]);
     }
 }

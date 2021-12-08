@@ -29,6 +29,17 @@ class SectionClassStudent extends BaseModel
     {
         return $this->sectionClassStudentTerms->where('status','Active')->first();
     }
+
+    public function feeAmount($term)
+    {
+        $amount = 0;
+        foreach ($this->SectionClass->sectionClassPayments->where('term_id',$term->id) as $payment) {
+            if($payment->gender = $this->student->gender || $payment->gender == 3){
+                $amount = $amount + $payment->amount;
+            }
+        }
+        return $amount;
+    }
     public function nextSectionClassStudentTerm()
     {
         switch ($this->currentStudentTerm()->academicSessionTerm->term_id) {

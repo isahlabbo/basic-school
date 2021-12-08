@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Term extends BaseModel
 {
-    public function termSubjectResults()
+    public function sectionClassPayments()
     {
-        return $this->hasMany(TermSubjectResult::class);
+        return $this->hasMany(SectionClassPayment::class);
     }
 
     public function subjectTeacherTermylUpload()
