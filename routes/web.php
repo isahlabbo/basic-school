@@ -27,11 +27,26 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard',['sections'=>Section::all()]);
 })->name('dashboard');
 
-
 Route::name('dashboard.')
 ->prefix('dashboard')
 ->middleware(['auth:sanctum', 'verified'])
 ->group(function (){
+    Route::namespace('Section')
+    ->name('payment.')
+    ->prefix('/payment')
+    ->group(function (){
+        Route::get('/', 'PaymentController@index')->name('index');
+        Route::get('/class/{sectionClassId}', 'PaymentController@classStudentPayment')->name('class.index');
+        Route::post('/search', 'PaymentController@search')->name('search');
+        Route::name('class.fee.')
+        ->prefix('/class/{classId}/fee')
+        ->group(function (){
+            Route::get('/', 'ClassFeeController@index')->name('index');
+            Route::post('/register', 'ClassFeeController@register')->name('register');
+            Route::post('/{feeId}/update', 'ClassFeeController@update')->name('update');
+            Route::get('/{feeId}/delete', 'ClassFeeController@delete')->name('delete');
+        });
+    });
     Route::namespace('Section')
     ->name('comment.')
     ->prefix('/comment')

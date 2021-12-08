@@ -37,6 +37,9 @@
                         {{$sectionClass->activeClassTeacher() ? $sectionClass->activeClassTeacher()->teacher->user->name : 'Not available'}}
                     </td>
                     <td><a href="{{route('dashboard.section.class.subject.result',[$sectionClass->id])}}"><button class="btn btn-secondary"> RESULT</button></a></td>
+                    <td><a href="{{route('dashboard.payment.class.fee.index',[$sectionClass->id])}}">
+                        <button class="btn btn-primary"> Fee</button></a>
+                    </td>
                     <td>
                         @if($sectionClass->activeClassTeacher())
                         <a href="{{route('dashboard.section.class-teacher.reCreate',[$sectionClass->activeClassTeacher()->id])}}">
