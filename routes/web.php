@@ -32,6 +32,12 @@ Route::name('dashboard.')
 ->prefix('dashboard')
 ->middleware(['auth:sanctum', 'verified'])
 ->group(function (){
+    Route::namespace('Section')
+    ->name('comment.')
+    ->prefix('/comment')
+    ->group(function (){
+        Route::get('/', 'CommentController@index')->name('index');
+    });
     // school section routes
     Route::namespace('Section')
     ->name('section.')

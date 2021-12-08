@@ -16,6 +16,7 @@ class ScoreSheetController extends Controller
     public function download($sectionClassSubjectTeacherId)
     {
         $sectionClassSubjectTeacher = SectionClassSubjectTeacher::find($sectionClassSubjectTeacherId);
+        $sectionClassSubjectTeacher->sectionClassSubject->sectionClassSubjectDownloads()->create(['academic_session_term_id'=>$sectionClassSubjectTeacher->currentSessionTerm()->id]);
         return Excel::download(new ScoreSheet($sectionClassSubjectTeacher
         ->sectionClassSubject
         ->sectionClass
@@ -33,7 +34,7 @@ class ScoreSheetController extends Controller
             'score_sheet'=>'required',
         ]);
         $sectionClassSubject = SectionClassSubject::find($request->sectionClassSubjectId);
-
+        $sectionClassSubject->sectionClassSubjectUploads()->create(['academic_session_term_id'=>$sectionClassSubject->currentSessionTerm()->id]);
         Excel::import(new ScoreSheetImport($sectionClassSubject, Term::find($request->term)), request()->file('score_sheet'));
         
         if(Auth::user()->role =='Teacher'){

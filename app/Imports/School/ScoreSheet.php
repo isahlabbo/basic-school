@@ -25,7 +25,15 @@ class ScoreSheet implements ToModel
     {
 
         if($row[2] != "Admission No" && $this->getThisStudent($row[2])){
-            
+            if(!is_int($row[3])){
+                $row[3] = 0;
+            }
+            if(!is_int($row[4])){
+                $row[4] = 0;
+            }
+            if(!is_int($row[5])){
+                $row[5] = 0;
+            }
             $subjectTeacherTermlyUpload = SubjectTeacherTermlyUpload::firstOrCreate([
                 'term_id'=>$this->term->id,
                 'section_class_subject_teacher_id'=>$this->sectionClassSubject->activeSectionClassSubjectTeacher()->id,

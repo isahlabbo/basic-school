@@ -37,11 +37,11 @@
                         <button class="btn btn-primary">Download Score Sheet</button>
                         </a>
                     </td>
-                    <td><button class="btn btn-success">0</button></td>
+                    <td><button class="btn btn-success">{{count($sectionClassSubject->sectionClassSubjectDownloads->where('academic_session_term_id',$sectionClassSubject->currentSessionTerm()->id))}}</button></td>
                     <td>
                         <a href="{{route('dashboard.teacher.upload.scoresheet',[$sectionClassSubject->activeSectionClassSubjectTeacher()->sectionClassSubject->id])}}"><button class="btn btn-secondary">Upload Result</button></a>
                     </td>
-                    <td><button class="btn btn-success">0</button></td>
+                    <td><button class="btn btn-success">{{count($sectionClassSubject->sectionClassSubjectUploads->where('academic_session_term_id',$sectionClassSubject->currentSessionTerm()->id))}}</button></td>
                 </tr>
             @endforeach
         </tbody>
