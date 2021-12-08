@@ -20,9 +20,9 @@
                        <input type="hidden" value="{{$sectionClassTeacher->sectionClass->id}}" name="sectionClassId">
                         <div class="col-md-8">
                             <select name="teacher" id="" class="form-control">
-                                <option value="">{{$sectionClassTeacher->teacher->user->name}}</option>
+                                <option value="">{{$sectionClassTeacher->teacher->user->name ?? 'Select Teacher'}}</option>
                                 @foreach($teachers as $teacher)
-                                    @if($sectionClassTeacher->teacher->user->id != $teacher->user->id)
+                                    @if($sectionClassTeacher->teacher && $sectionClassTeacher->teacher->user->id != $teacher->user->id)
                                         <option value="{{$teacher->id}}">{{$teacher->user->name}}</option>
                                     @endif
                                 @endforeach

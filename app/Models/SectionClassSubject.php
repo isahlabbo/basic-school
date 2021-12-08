@@ -18,12 +18,12 @@ class SectionClassSubject extends BaseModel
     }
     public function sectionClassSubjectDownloads()
     {
-        return $this->hasMany(SectionClassSubjectDownload::class);
+        return $this->hasMany(SectionClassSubjectDownloads::class);
     }
 
     public function sectionClassSubjectUploads()
     {
-        return $this->hasMany(SectionClassSubjectUpload::class);
+        return $this->hasMany(SectionClassSubjectUploads::class);
     }
 
     public function sectionClass()

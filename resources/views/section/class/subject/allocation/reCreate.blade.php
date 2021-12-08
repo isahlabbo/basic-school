@@ -20,11 +20,9 @@
                        <input type="hidden" value="{{$sectionClassSubjectTeacher->id}}" name="change">
                         <div class="col-md-8">
                             <select name="teacher" id="" class="form-control">
-                                <option value="" >{{$sectionClassSubjectTeacher->sectionClassSubject->activeSectionClassSubjectTeacher()->teacher->user->name}}</option>
+                                <option value="" >{{$sectionClassSubjectTeacher->sectionClassSubject->activeSectionClassSubjectTeacher()->teacher->user->name ?? 'Select Teacher'}}</option>
                                 @foreach($teachers as $teacher)
-                                    @if($sectionClassSubjectTeacher->sectionClassSubject->activeSectionClassSubjectTeacher()->teacher->user->id != $teacher->user->id)
-                                        <option value="{{$teacher->id}}">{{$teacher->user->name}}</option>
-                                    @endif
+                                    <option value="{{$teacher->id}}">{{$teacher->user->name}}</option>
                                 @endforeach
                             </select>
                         </div>

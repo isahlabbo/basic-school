@@ -22,6 +22,7 @@
         </thead>
         <tbody>
             @foreach($teachers as $teacher)
+            @include('school.teacher.edit')
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$teacher->user->name}}</td>
@@ -37,7 +38,8 @@
                     <td>
                         
                     </td>
-                    <td><button class="btn btn-secondary">Edit</button><button class="btn btn-danger">Delete</button></td>
+                    <td><button data-toggle="modal" data-target="#teacher_{{$teacher->id}}" class="btn btn-secondary">Edit</button>
+                    <a href="{{route('dashboard.teacher.delete',[$teacher->id])}}" onclick="return confirm('Are you sure you want delete this teacher from teachers records')"><button class="btn btn-danger">Delete</button></a></td>
                 </tr>
             @endforeach
         </tbody>

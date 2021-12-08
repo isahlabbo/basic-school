@@ -13,7 +13,8 @@
                 <th>SUBJECTS</th>
                 <th>TEACHER</th>
                 <th></th>
-                <th><button class="btn btn-primary">Add Subject</button></th>
+                <th><button data-toggle="modal" data-target="#addSubject" class="btn btn-primary">Add Subject</button></th>
+                @include('section.class.subject.create')
             </tr>
         </thead>
         <tbody>
@@ -29,8 +30,11 @@
                         <a href="{{route('dashboard.section.class.subject.allocation.create',[$sectionClassSubject->id])}}"><button class="btn btn-secondary">Add Teacher</button></a>
                     @endif
                     </td>
-                    <td><button class="btn btn-secondary">Edit</button><button class="btn btn-danger">Delete</button></td>
+                    <td>
+                    <button data-toggle="modal" data-target="#subject_{{$sectionClassSubject->id}}" class="btn btn-secondary">Edit</button>
+                    <a href="{{route('dashboard.section.class.subject.delete',[$sectionClass->id,$sectionClassSubject->id])}}" onclick="return confirm('are sure, you want to delete this subject')"><button  class="btn btn-danger">Delete</button></a></td>
                 </tr>
+                @include('section.class.subject.edit')
             @endforeach
         </tbody>
         </table>

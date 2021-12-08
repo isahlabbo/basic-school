@@ -18,10 +18,56 @@ class SectionClassController extends Controller
         return view('section.class.index',['sectionClass'=>SectionClass::find($sectionClassId)]);
     }
 
+<<<<<<< HEAD
     public function downloadTemplate($sectionClassId)
     {
         $sectionClass = SectionClass::find($sectionClassId);
         return Excel::download(new SectionClassStudentExport(), strtolower(str_replace(' ','_',$sectionClass->name)).'_'.str_replace('/','_',$sectionClass->currentSession()->name).'_admitted_list.xlsx');
+=======
+    public function register(Request $request, $sectionId)
+    {
+        $request->validate([
+            'class'=>'required|string',
+            'code'=>'required|string',
+            ]);
+        $section = Section::find($sectionId);
+
+        foreach($section->sectionClasses->where('name',$request->class) as $sectionClass){
+            return redirect()->route('dashboard.section.index',$sectionId)->withWarning('Class has All ready exist');
+        }
+        $section->sectionClasses()->create(['name'=>strtoupper($request->class),'code'=>strtoupper($request->code),'year_sequence'=>$section->getYearSequence()]);
+        return redirect()->route('dashboard.section.index',$sectionId)->withSuccess('Class Registered');
+        
+    }
+
+    public function updateClass(Request $request, $sectionClassId)
+    {
+        $request->validate([
+            'class'=>'required|string',
+            'code'=>'required|string',
+            ]);
+        $class = SectionClass::find($sectionClassId);
+        $class->update([
+            'name'=>strtoupper($request->class),'code'=>strtoupper($request->code)]);
+            return redirect()->route('dashboard.section.index',$class->section->id)->withSuccess('Class Updated');
+    }
+
+    public function deleteClass($sectionClassId)
+    {
+        $class = SectionClass::find($sectionClassId);
+        if(count($class->sectionClassStudents)==0){
+            $class->delete();
+            return redirect()->route('dashboard.section.index',$class->section->id)->withSuccess('Class Deleted');            
+        }else{
+            return redirect()->route('dashboard.section.index',$class->section->id)->withSuccess('Sorry this class cant be deleted, it has some student inside');
+        }
+    }
+
+    public function downloadTemplate($sectionClassId)
+    {
+        $sectionClass = SectionClass::find($sectionClassId);
+        return Excel::download(new SectionClassStudentExport($sectionClass), strtolower(str_replace(' ','_',$sectionClass->name)).'_'.str_replace('/','_',$sectionClass->currentSession()->name).'_admitted_list.xlsx');
+>>>>>>> effb797dd2c4667d7dec899ed0d8164733225652
     }
 
     public function uploadTemplate(Request $request, $sectionClassId)
@@ -32,8 +78,11 @@ class SectionClassController extends Controller
         ]);
         $sectionClass = SectionClass::find($sectionClassId);
         Excel::import(new SectionClassStudentImport($sectionClass), request()->file('template'));
+<<<<<<< HEAD
         
         $sectionClass->updateAdmissionNo();
+=======
+>>>>>>> effb797dd2c4667d7dec899ed0d8164733225652
 
         return redirect()->route('dashboard.section.class.student',[$sectionClassId])->withSuccess('All Students Uploaded');
     }

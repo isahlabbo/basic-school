@@ -32,6 +32,12 @@ Route::name('dashboard.')
 ->prefix('dashboard')
 ->middleware(['auth:sanctum', 'verified'])
 ->group(function (){
+    Route::namespace('Section')
+    ->name('comment.')
+    ->prefix('/comment')
+    ->group(function (){
+        Route::get('/', 'CommentController@index')->name('index');
+    });
     // school section routes
     Route::namespace('Section')
     ->name('section.')
@@ -49,6 +55,9 @@ Route::name('dashboard.')
         Route::name('class.')
         ->prefix('/class')
         ->group(function (){
+            Route::post('/{sectionId}/register', 'SectionClassController@register')->name('register');
+            Route::post('/{sectionClassId}/update', 'SectionClassController@updateClass')->name('update');
+            Route::get('/{sectionClassId}/delete', 'SectionClassController@deleteClass')->name('delete');
             Route::name('result.')
             ->prefix('/{sectionClassId}/result')
             ->group(function (){
@@ -57,6 +66,7 @@ Route::name('dashboard.')
                 Route::get('/accessment/download', 'ClassResultController@downloadAccessment')->name('accessment.download');
                 Route::post('/accessment/upload', 'ClassResultController@uploadAccessment')->name('accessment.upload');
             });
+            
             Route::get('/{sectionClassId}/student-admission-no', 'SectionClassController@reGenerateAdmissionNo')->name('admission.number.regenerate');
             Route::get('/{sectionClassId}', 'SectionClassController@index')->name('index');
             Route::get('/{sectionClassId}/students', 'SectionClassController@student')->name('student');
@@ -69,6 +79,9 @@ Route::name('dashboard.')
             ->prefix('/{classId}/subject')
             ->group(function (){
                 Route::get('/', 'SubjectController@index')->name('index');
+                Route::post('/register', 'SubjectController@register')->name('register');
+                Route::post('/{sectionClassSubjectId}/update', 'SubjectController@update')->name('update');
+                Route::get('/{sectionClassSubjectId}/delete', 'SubjectController@delete')->name('delete');
                 Route::get('/result', 'SubjectController@result')->name('result');
             });
 
@@ -128,6 +141,8 @@ Route::name('dashboard.')
         Route::get('/', 'TeacherController@index')->name('index');
         Route::get('/create', 'TeacherController@create')->name('create');
         Route::post('/register', 'TeacherController@register')->name('register');
+        Route::post('/{teacherId}/update', 'TeacherController@update')->name('update');
+        Route::get('/{teacherId}/delete', 'TeacherController@delete')->name('delete');
     });
     
     // student routes

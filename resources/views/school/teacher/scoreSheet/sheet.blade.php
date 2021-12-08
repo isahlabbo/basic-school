@@ -1,4 +1,4 @@
-<table>
+<table class="table" >
     <thead>
     <tr>
         <th>S/N</th>
@@ -12,14 +12,13 @@
     <tbody>
     
     @foreach($students as $student)
-    
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $student->name }}</td>
             <td>{{ $student->admission_no }}</td>
-            <td>{{rand(10,20)}}</td>
-            <td>{{rand(10,20)}}</td>
-            <td>{{rand(15,60)}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     @endforeach
     </tbody>

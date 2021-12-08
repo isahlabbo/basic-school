@@ -54,7 +54,11 @@
                         </a>
                     </td>
                     <td>
+<<<<<<< HEAD
                         <a href="{{route('dashboard.section.class.student.delete',[$sectionClassStudent->student->id])}}" onclick="confirm('Are you sure, you want delete this student record')"><button class="btn btn-danger">Delete</button></a>
+=======
+                        <a href="{{route('dashboard.section.class.student.delete',[$sectionClassStudent->student->id])}}" onclick="return confirm('Are you sure, you want delete this student record')"><button class="btn btn-danger">Delete</button></a>
+>>>>>>> effb797dd2c4667d7dec899ed0d8164733225652
                     </td>
                 </tr>
             @endforeach
