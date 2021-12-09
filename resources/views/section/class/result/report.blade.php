@@ -20,15 +20,9 @@
                             <img src="{{asset('assets/images/logo.jpg')}}">
                         </div>
                         <div class="col-md-9">
-<<<<<<< HEAD
-                            <p class="h1 text text-center"><b>{{config('app.title')}}</b></p>
-                            <p class="text text-center mb-0 h2">{{config('app.motto')}}</p>
-                            <p class="text text-center mb-0 h3">{{config('app.address')}} </p>
-=======
                             <p class="h3 text text-center"><b>{{config('app.title')}}</b></p>
                             <p class="text text-center mb-0 h4">{{config('app.motto')}}</p>
                             <p class="text text-center mb-0 h5">{{config('app.address')}} </p>
->>>>>>> effb797dd2c4667d7dec899ed0d8164733225652
                         </div>
                     </div>
                     <div class="row">
