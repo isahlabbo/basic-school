@@ -25,6 +25,7 @@
                         <th>PENDING PAYMENT</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,13 +38,16 @@
                         <td>{{$sectionClassStudent->student->guardian->address}}</td>
                         <td><b>#</b>{{$sectionClassStudent->feeAmount($term)}}</td>
                         <td><b>#</b>{{$sectionClassStudent->paidAmount($term)}}</td>
-                        <td>{{$sectionClassStudent->feeAmount($term)-$sectionClassStudent->paidAmount($term)}}</td>
+                        <td><b>#</b>{{$sectionClassStudent->feeAmount($term)-$sectionClassStudent->paidAmount($term)}}</td>
                         <td>
-                        @if($sectionClassStudent->feeAmount($term)-$sectionClassStudent->paidAmount($term) == 0)
-                        <button class="btn btn-success">Reciept</button>
-                        @else
-                        <button data-toggle="modal" data-target="#payment_{{$sectionClassStudent->id}}" class="btn btn-secondary">Add Payment</button>
-                        @endif
+                            <button data-toggle="modal" data-target="#info_{{$sectionClassStudent->id}}" class="btn btn-info">Detail</button>
+                        </td>
+                        <td>
+                            @if($sectionClassStudent->feeAmount($term)-$sectionClassStudent->paidAmount($term) == 0)
+                            <button class="btn btn-success">Reciept</button>
+                            @else
+                            <button data-toggle="modal" data-target="#payment_{{$sectionClassStudent->id}}" class="btn btn-secondary">Add Payment</button>
+                            @endif
                         </td>
                         <td><button class="btn btn-success">Report</button></td>
                     </tr>

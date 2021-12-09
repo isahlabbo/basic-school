@@ -103,15 +103,14 @@ class SectionClass extends BaseModel
         return $students;
     }
 
-    public function generateAdmissionNo()
+    public function generateAdmissionNo($number = null)
     {
-
-        return config('app.code').'/'.$this->getAdmissionYear().$this->code.'/'.$this->getAdmissionSerialNo();
+        return config('app.code').'/'.$this->getAdmissionYear().$this->code.'/'.$this->getAdmissionSerialNo($number);
     }
 
-    public function getAdmissionSerialNo()
+    public function getAdmissionSerialNo($number)
     {
-        return $this->formatSerialNo(count($this->classAdmissionSession()->classAdmissions($this))+1);
+        return $this->formatSerialNo($number ?? count($this->classAdmissionSession()->classAdmissions($this))+1);
     }
 
     public function classAdmissionSession()
@@ -155,9 +154,7 @@ class SectionClass extends BaseModel
     {
         $count = 1;
         foreach ($this->sectionClassStudents->where('status','Active') as $sectionClassStudent) {
-            $begin = substr($sectionClassStudent->student->admission_no,0,12);
-            $newNo =$begin.$this->formatSerialNo($count);
-            $sectionClassStudent->student->update(['admission_no'=>$newNo]);
+            $sectionClassStudent->student->update(['admission_no'=>$this->generateAdmissionNo($count)]);
             $count++;
         }
     }

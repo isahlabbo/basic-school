@@ -18,12 +18,6 @@ class SectionClassController extends Controller
         return view('section.class.index',['sectionClass'=>SectionClass::find($sectionClassId)]);
     }
 
-<<<<<<< HEAD
-    public function downloadTemplate($sectionClassId)
-    {
-        $sectionClass = SectionClass::find($sectionClassId);
-        return Excel::download(new SectionClassStudentExport(), strtolower(str_replace(' ','_',$sectionClass->name)).'_'.str_replace('/','_',$sectionClass->currentSession()->name).'_admitted_list.xlsx');
-=======
     public function register(Request $request, $sectionId)
     {
         $request->validate([
@@ -67,7 +61,6 @@ class SectionClassController extends Controller
     {
         $sectionClass = SectionClass::find($sectionClassId);
         return Excel::download(new SectionClassStudentExport($sectionClass), strtolower(str_replace(' ','_',$sectionClass->name)).'_'.str_replace('/','_',$sectionClass->currentSession()->name).'_admitted_list.xlsx');
->>>>>>> effb797dd2c4667d7dec899ed0d8164733225652
     }
 
     public function uploadTemplate(Request $request, $sectionClassId)
@@ -78,11 +71,6 @@ class SectionClassController extends Controller
         ]);
         $sectionClass = SectionClass::find($sectionClassId);
         Excel::import(new SectionClassStudentImport($sectionClass), request()->file('template'));
-<<<<<<< HEAD
-        
-        $sectionClass->updateAdmissionNo();
-=======
->>>>>>> effb797dd2c4667d7dec899ed0d8164733225652
 
         return redirect()->route('dashboard.section.class.student',[$sectionClassId])->withSuccess('All Students Uploaded');
     }
