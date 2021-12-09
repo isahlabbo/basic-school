@@ -25,15 +25,7 @@ class ScoreSheet implements ToModel
     {
 
         if($row[2] != "Admission No" && $this->getThisStudent($row[2])){
-            if(!is_int(trim($row[3]))){
-                $row[3] = 0;
-            }
-            if(!is_int(trim($row[4]))){
-                $row[4] = 0;
-            }
-            if(!is_int(trim($row[5]))){
-                $row[5] = 0;
-            }
+            
             $subjectTeacherTermlyUpload = SubjectTeacherTermlyUpload::firstOrCreate([
                 'term_id'=>$this->term->id,
                 'section_class_subject_teacher_id'=>$this->sectionClassSubject->activeSectionClassSubjectTeacher()->id,
@@ -46,29 +38,12 @@ class ScoreSheet implements ToModel
                 'first_ca' => $row[3],
                 'second_ca' => $row[4],
                 'exam' => $row[5],
-                'total' => $row[4] + $row[5] + $row[3],
-                'grade' => $this->computeGrade($row[3],$row[4], $row[5]),
-            ]);    
+            ]);
+            $result->updateTotalAndComputeGrade();    
         }
     }
     
-    public function computeGrade($ca1, $ca2, $exam)
-    {
-        $total = $ca1 + $ca2 + $exam;
-        $grade = 'F';
-        if($total >= 70){
-            $grade = 'A';
-        }elseif($total >=60){
-            $grade = 'B';
-        }elseif($total >=50){
-            $grade = 'C';
-        }elseif($total >=45){
-            $grade = 'D';
-        }elseif($total >=40){
-            $grade = 'E';
-        }
-        return $grade;
-    }
+    
 
     public function getThisStudent($admissionNo)
     {

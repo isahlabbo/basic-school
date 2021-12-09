@@ -16,23 +16,45 @@ class StudentResult extends BaseModel
     {
         return $this->belongsTo(SubjectTeacherTermlyUpload::class);
     }
-
+    public function updateTotalAndComputeGrade()
+    {
+        $total = 0;
+        $first_ca = $this->_second_ca;
+        $second_ca = $this->second_ca;
+        $exam = $this->exam;
+        if(is_numeric($first_ca)){
+            $total = $total+$first_ca;
+        }
+        if(is_numeric($second_ca)){
+            $total = $total+$second_ca;
+        }
+        if(is_numeric($exam)){
+            $total = $total+$exam;
+        }else{
+            $total = 'Absent';
+        }
+        $this->update(['total'=>$total]);
+        $this->reComputeGrade();
+    }
     public function reComputeGrade()
     {
         $total = $this->total;
-
-        $grade = 'F';
-        if($total >= 70){
-            $grade = 'A';
-        }elseif($total >=60){
-            $grade = 'B';
-        }elseif($total >=50){
-            $grade = 'C';
-        }elseif($total >=45){
-            $grade = 'D';
-        }elseif($total >=40){
-            $grade = 'E';
-        }
+        if(is_numeric($total)){
+            $grade = 'F';
+            if($total >= 70){
+                $grade = 'A';
+            }elseif($total >=60){
+                $grade = 'B';
+            }elseif($total >=50){
+                $grade = 'C';
+            }elseif($total >=45){
+                $grade = 'D';
+            }elseif($total >=40){
+                $grade = 'E';
+            }
+        }else{
+            $grade = $this->total;
+        }    
         $this->update(['grade'=>$grade]);
     }
     public function effort()
