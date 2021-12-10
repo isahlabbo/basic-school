@@ -23,8 +23,8 @@ class ScoreSheet implements ToModel
     */
     public function model(array $row)
     {
-
-        if($row[2] != "Admission No" && $this->getThisStudent($row[2])){
+       
+        if(isset($row[2]) && $this->getThisStudent($row[2])){
             
             $subjectTeacherTermlyUpload = SubjectTeacherTermlyUpload::firstOrCreate([
                 'term_id'=>$this->term->id,
