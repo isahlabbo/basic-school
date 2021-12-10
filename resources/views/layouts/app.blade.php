@@ -24,7 +24,7 @@
 </head>
 <body >
     <div id="header">
-        <div> <a href="{{url('/dashboard')}}"><img src="{{asset('assets/images/logo.jpg')}}" alt=""></a>
+        <div> <a href="{{url('/dashboard')}}"><img src="{{asset(config('app.logo'))}}" alt=""></a>
             <ul>
                 <li class="current"><a href="{{ url('/dashboard') }}">Dasborad</a></li>
                 
