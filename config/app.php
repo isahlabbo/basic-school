@@ -22,6 +22,8 @@ return [
     'address' => env('APP_ADDRESS', 'School Adress'),
 
     'code' => env('APP_CODE', 'School Code'),
+
+    'logo' => env('APP_LOGO', 'School Logo'),
     
 
 
