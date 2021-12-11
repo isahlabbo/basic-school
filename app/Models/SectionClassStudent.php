@@ -88,7 +88,9 @@ class SectionClassStudent extends BaseModel
         foreach ($this->sectionClassStudentTerms as $sectionClassStudentTerm) {
             if($sectionClassStudentTerm->academicSessionTerm->term->id == $term->id){
                 foreach ($sectionClassStudentTerm->studentResults as $studentResult) {
-                    $total = $total + $studentResult->total;
+                    if(is_numeric($studentResult->total)){
+                        $total = $total + $studentResult->total;
+                    }
                 }
             }
         }
