@@ -31,7 +31,7 @@ class SectionClassStudentTerm extends BaseModel
     {
         $total = 0;
         foreach($this->studentResults as $result){
-            if(is_numeric($result->total)){
+            if(is_int($result->total)){
                 $total = $total = $result->total;
             }
         }

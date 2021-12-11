@@ -18,28 +18,13 @@ class StudentResult extends BaseModel
     }
     public function updateTotalAndComputeGrade()
     {
-        $total = 0;
-        $first_ca = $this->_second_ca;
-        $second_ca = $this->second_ca;
-        $exam = $this->exam;
-        if(is_numeric($first_ca)){
-            $total = $total+$first_ca;
-        }
-        if(is_numeric($second_ca)){
-            $total = $total+$second_ca;
-        }
-        if(is_numeric($exam)){
-            $total = $total+$exam;
-        }else{
-            $total = 'Absent';
-        }
-        $this->update(['total'=>$total]);
+        $this->update(['total'=>$this->first_ca+ $this->second_ca+$this->exam]);
         $this->reComputeGrade();
     }
     public function reComputeGrade()
     {
         $total = $this->total;
-        if(is_numeric($total)){
+        if($total > 0){
             $grade = 'F';
             if($total >= 70){
                 $grade = 'A';
@@ -53,7 +38,7 @@ class StudentResult extends BaseModel
                 $grade = 'E';
             }
         }else{
-            $grade = $this->total;
+            $grade = 'Absent';
         }    
         $this->update(['grade'=>$grade]);
     }

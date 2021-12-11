@@ -75,8 +75,8 @@ class SectionClass extends BaseModel
         foreach ($this->sectionClassStudents as $sectionClassStudent) {
             foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm){
                 if($term->id == $sectionClassStudentTerm->academicSessionTerm->term->id){
-                    $count++;
                     $classStudentAverages = $classStudentAverages + $sectionClassStudentTerm->studentAverage();
+                    $count++;
                 }
             }
         }
