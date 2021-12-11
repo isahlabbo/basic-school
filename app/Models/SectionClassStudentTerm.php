@@ -30,11 +30,12 @@ class SectionClassStudentTerm extends BaseModel
     public function studentAverage()
     {
         $total = 0;
+        $count = 0;
         foreach($this->studentResults as $result){
-            if(is_int($result->total)){
-                $total = $total = $result->total;
-            }
+            $count++;
+            $total = $total + $result->total;
         }
-        return number_format($total/count($this->sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active')),2);
+        
+        return number_format($total/$count,2);
     }
 }

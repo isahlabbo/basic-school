@@ -34,6 +34,7 @@ class ScoreSheet implements ToModel
             $result = $subjectTeacherTermlyUpload->studentResults()->firstOrCreate([
                 'section_class_student_term_id'  => $this->getThisStudent($row[2])->sectionClassStudents->where('status','Active')->first()->sectionClassStudentTerms->where('status','Active')->first()->id,
                 ]);
+
             if($row[3] == null || !is_numeric($row[3])){
                 $row[3] = 0;
             }
@@ -42,7 +43,8 @@ class ScoreSheet implements ToModel
             }
             if($row[5] == null || !is_numeric($row[5])){
                 $row[5] = 0;
-            }    
+            } 
+
             $result->update([ 
                 'first_ca' => $row[3],
                 'second_ca' => $row[4],
@@ -52,8 +54,6 @@ class ScoreSheet implements ToModel
         }
     }
     
-    
-
     public function getThisStudent($admissionNo)
     {
         return Student::where('admission_no',$admissionNo)->first();
