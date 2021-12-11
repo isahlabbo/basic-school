@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="header">
-  <div> <a href="index.html"><img src="assets/images/logo.gif" alt=""></a>
+  <div> <a href="index.html"><img src="{{asset(config('app.logo'))}}" alt=""></a>
     <ul>
         <li class="current"><a href="#">Home</a></li>
         <li><a href="#">About us</a></li>

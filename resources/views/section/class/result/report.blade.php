@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-2">
-                            <img src="{{asset('assets/images/logo.jpg')}}">
+                            <img src="{{asset(config('app.logo'))}}">
                         </div>
                         <div class="col-md-9">
                             <p class="h3 text text-center"><b>{{config('app.title')}}</b></p>

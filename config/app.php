@@ -25,7 +25,6 @@ return [
 
     'logo' => env('APP_LOGO', 'School Logo'),
     
-    'logo' => env('APP_LOGO', 'School Logo'),
     
 
 

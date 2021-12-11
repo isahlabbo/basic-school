@@ -34,6 +34,15 @@ class ScoreSheet implements ToModel
             $result = $subjectTeacherTermlyUpload->studentResults()->firstOrCreate([
                 'section_class_student_term_id'  => $this->getThisStudent($row[2])->sectionClassStudents->where('status','Active')->first()->sectionClassStudentTerms->where('status','Active')->first()->id,
                 ]);
+            if($row[3] == null){
+                $row[3] = 0;
+            }
+            if($row[4] == null){
+                $row[4] = 0;
+            }
+            if($row[5] == null){
+                $row[5] = 0;
+            }    
             $result->update([ 
                 'first_ca' => $row[3],
                 'second_ca' => $row[4],
