@@ -31,7 +31,9 @@ class SectionClassStudentTerm extends BaseModel
     {
         $total = 0;
         foreach($this->studentResults as $result){
-            $total = $total = $result->total;
+            if(is_numeric($result->total)){
+                $total = $total = $result->total;
+            }
         }
         return number_format($total/count($this->sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active')),2);
     }
