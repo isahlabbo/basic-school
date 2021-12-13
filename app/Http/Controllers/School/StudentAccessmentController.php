@@ -51,27 +51,52 @@ class StudentAccessmentController extends Controller
             "comment" => "required"
         ]);
         $sectionClassStudentTerm = SectionClassStudentTerm::find($request->sectionClassStudentTermId);
-        $sectionClassStudentTerm->sectionClassStudentTermAccessment()->firstOrCreate([
-            "punctuality" => $request->punctuality,
-            "attendance" => $request->attendance,
-            "reliability" => $request->reliability,
-            "neatness" => $request->neatness,
-            "politeness" => $request->politeness,
-            "honesty" => $request->honesty,
-            "relationship_with_pupils" => $request->relationship_with_pupils,
-            "self_control" => $request->self_control,
-            "attentiveness" => $request->attentiveness,
-            "perseverance" => $request->perseverance,
-            "handwriting" => $request->handwriting,
-            "games" => $request->games,
-            "sports" => $request->sports,
-            "drawing_and_painting" => $request->drawing_and_painting,
-            "crafts" => $request->crafts,
-            "days_school_open" => $request->days_school_open,
-            "days_present" => $request->days_present,
-            "days_absent" => $request->days_absent,
-            "teacher_comment_id" => $request->comment
-        ]);
+        $accessment = $sectionClassStudentTerm->sectionClassStudentTermAccessment;
+        if($accessment){
+            $accessment->update([
+                "punctuality" => $request->punctuality,
+                "attendance" => $request->attendance,
+                "reliability" => $request->reliability,
+                "neatness" => $request->neatness,
+                "politeness" => $request->politeness,
+                "honesty" => $request->honesty,
+                "relationship_with_pupils" => $request->relationship_with_pupils,
+                "self_control" => $request->self_control,
+                "attentiveness" => $request->attentiveness,
+                "perseverance" => $request->perseverance,
+                "handwriting" => $request->handwriting,
+                "games" => $request->games,
+                "sports" => $request->sports,
+                "drawing_and_painting" => $request->drawing_and_painting,
+                "crafts" => $request->crafts,
+                "days_school_open" => $request->days_school_open,
+                "days_present" => $request->days_present,
+                "days_absent" => $request->days_absent,
+                "teacher_comment_id" => $request->comment
+            ]);
+        }else
+            $sectionClassStudentTerm->sectionClassStudentTermAccessment()->create([
+                "punctuality" => $request->punctuality,
+                "attendance" => $request->attendance,
+                "reliability" => $request->reliability,
+                "neatness" => $request->neatness,
+                "politeness" => $request->politeness,
+                "honesty" => $request->honesty,
+                "relationship_with_pupils" => $request->relationship_with_pupils,
+                "self_control" => $request->self_control,
+                "attentiveness" => $request->attentiveness,
+                "perseverance" => $request->perseverance,
+                "handwriting" => $request->handwriting,
+                "games" => $request->games,
+                "sports" => $request->sports,
+                "drawing_and_painting" => $request->drawing_and_painting,
+                "crafts" => $request->crafts,
+                "days_school_open" => $request->days_school_open,
+                "days_present" => $request->days_present,
+                "days_absent" => $request->days_absent,
+                "teacher_comment_id" => $request->comment
+            ]);
+        }
         return redirect()->route('dashboard.student.accessment.index',[$sectionClassStudentTerm->sectionClassStudent->sectionClass->id])
         ->withSuccess('Student Accessed Successfully');
     }
