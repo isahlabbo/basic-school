@@ -26,7 +26,7 @@ return [
     'logo' => env('APP_LOGO', 'School Logo'),
     
     
-
+    'nursery_class_position' => env('NURSERY_CLASS_REMARK', ),
 
     /*
     |--------------------------------------------------------------------------

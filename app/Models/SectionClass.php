@@ -33,7 +33,7 @@ class SectionClass extends BaseModel
     }
     public function studentPosition($sectionClassStudentTerm)
     {
-        if($this->section->name == 'NURSERY'){
+        if(config('app.nursery_class_position') == true && $this->section->name == 'NURSERY'){
             $score = $sectionClassStudentTerm->studentTermTotalScore();
             $totalMarks = count($this->sectionClassSubjects)*100;
             $percentage = 100 * ($score/$totalMarks);
