@@ -80,9 +80,36 @@ class SectionClass extends BaseModel
             case '2':
                 $position = $position.'ND';
                 break;
-                case '3':
+            case '3':
                 $position = $position.'RD';
                 break;
+            case '21':
+                $position = $position.'ST';
+                break;
+            case '22':
+                $position = $position.'ND';
+                break;
+            case '23':
+                $position = $position.'RD';
+                break;
+            case '31':
+                $position = $position.'ST';
+                break;
+            case '32':
+                $position = $position.'ND';
+                break;
+            case '33':
+                $position = $position.'RD';
+                break;  
+            case '41':
+                $position = $position.'ST';
+                break;
+            case '42':
+                $position = $position.'ND';
+                break;
+            case '43':
+                $position = $position.'RD';
+                break;           
             default:
                 $position = $position.'TH';
                 break;
