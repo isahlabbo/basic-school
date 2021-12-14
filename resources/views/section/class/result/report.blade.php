@@ -103,7 +103,7 @@
                             </p>
                         </div>
                         <div class="col-md-3 text-center">
-                            <p class="mb-0 text text-center"><b>{{strtoupper(date('d-M-Y',strtotime($sectionClassStudent->nextSectionClassStudentTerm()->academicSessionTerm->end_at))) ?? 'Not available'}}</b></p>
+                            <p class="mb-0 text text-center"><b>{{strtoupper(date('d-M-Y',strtotime($sectionClassStudent->nextSectionClassStudentTerm()->academicSessionTerm->start_at))) ?? 'Not available'}}</b></p>
                             <img src="{{asset('assets/images/user.jpg')}}" width="170" height="150" class="rounded" alt="">
                         </div>
                     </div>
@@ -181,7 +181,7 @@
                                 </tr>
                                 <tr>
                                     <td>Attendance</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->attendance ?? 0}}</td>
+                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->Attendance ?? 0}}</td>
                                 </tr>
                                 <tr>
                                     <td>Reliability</td>

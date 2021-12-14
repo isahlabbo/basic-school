@@ -11,6 +11,15 @@ class SectionClassStudentTerm extends BaseModel
     {
         return $this->hasMany(StudentResult::class);
     }
+
+    public function studentTermTotalScore()
+    {
+        $total = 0;
+        foreach($this->studentResults as $studentResult){
+            $total = $total+$studentResult->total;
+        }
+        return $total;
+    }
     
     public function sectionClassStudent()
     {

@@ -33,19 +33,40 @@ class SectionClass extends BaseModel
     }
     public function studentPosition($sectionClassStudentTerm)
     {
-        $studentScores = [];
-        foreach($this->sectionClassStudents->where('status','Active') as $sectionClassStudent){
-            $studentScores[] = $sectionClassStudent->totalExamScore($sectionClassStudent->currentStudentTerm()->academicSessionTerm->term);
-        }
+        if($this->section->name == 'NURSERY'){
+            $score = $sectionClassStudentTerm->studentTermTotalScore();
+            $totalMarks = count($this->sectionClassSubjects)*100;
+            $percentage = 100 * ($score/$totalMarks);
+            
+            if($percentage >= 90){
+                $position = 'Distinction';
+            }elseif ($percentage >= 70) {
+                $position = 'Excellent';
+            }elseif ($percentage >= 60) {
+                $position = 'Very Good';
+            }elseif ($percentage >= 50) {
+                $position = 'Good';
+            }elseif ($percentage >= 40) {
+                $position = 'Pass';
+            }else {
+                $position = 'Poor';
+            }
+            return $position;
+        }else{
+            $studentScores = [];
+            foreach($this->sectionClassStudents->where('status','Active') as $sectionClassStudent){
+                $studentScores[] = $sectionClassStudent->totalExamScore($sectionClassStudent->currentStudentTerm()->academicSessionTerm->term);
+            }
+            
+            // remove the duplicate score from the array
+            array_unique($studentScores);
         
-        // remove the duplicate score from the array
-        array_unique($studentScores);
-       
-        // sort array decending order
-        rsort($studentScores);
-        foreach($studentScores as $key => $value){
-            if($sectionClassStudentTerm->sectionClassStudent->totalExamScore($sectionClassStudentTerm->academicSessionTerm->term) == $value){
-                return $this->getValidPositionName(($key+1));
+            // sort array decending order
+            rsort($studentScores);
+            foreach($studentScores as $key => $value){
+                if($sectionClassStudentTerm->sectionClassStudent->totalExamScore($sectionClassStudentTerm->academicSessionTerm->term) == $value){
+                    return $this->getValidPositionName(($key+1));
+                }
             }
         }
     }

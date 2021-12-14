@@ -73,22 +73,22 @@ class StudentResult extends BaseModel
     {
         switch ($this->grade) {
             case 'A':
-                $remark = 'Distinction';
-                break;
-            case 'B':
                 $remark = 'Excellence';
                 break;
-            case 'C':
+            case 'B':
                 $remark = 'Very Good';
                 break;
-            case 'D':
+            case 'C':
                 $remark = 'Good';
+                break;
+            case 'D':
+                $remark = 'Pass';
                 break;
             case 'E':
                 $remark = 'Fair';
                 break;
             default:
-                $remark = 'Foor';
+                $remark = 'Poor';
                 break;
         }
         return $remark;

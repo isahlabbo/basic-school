@@ -54,6 +54,11 @@
                                     <td>{{$result->gradeCount('F')}}</td>
                                     <td>{{$result->gradePercentage('F')}}%</td>
                                     </tr>
+                                    <tr>
+                                    <td>Absent</td>
+                                    <td>{{$result->gradeCount('Absent')}}</td>
+                                    <td>{{$result->gradePercentage('Absent')}}%</td>
+                                    </tr>
                                 </table>
                                 <a href="{{route('dashboard.section.class.subject.result.summary.detail',[$result->id])}}"<button class="btn btn-primary">View Detail</button></a>
                             </div>

@@ -78,11 +78,10 @@ class ResultSearchController extends Controller
         $studentResult->update([
             'first_ca'=>$request->first_ca,
             'second_ca'=>$request->second_ca,
-            'exam'=>$request->exam,
-            'total'=>$request->exam + $request->first_ca + $request->second_ca
+            'exam'=>$request->exam
         ]);
 
-        $studentResult->reComputeGrade();
+        $studentResult->updateTotalAndComputeGrade();
 
         return redirect()->route('dashboard.section.class.subject.result.summary.detail.edit',[$request->studentResultId])->withSuccess('Result Updated');
 

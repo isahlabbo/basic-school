@@ -72,9 +72,10 @@ class StudentAccessmentController extends Controller
                 "days_school_open" => $request->days_school_open,
                 "days_present" => $request->days_present,
                 "days_absent" => $request->days_absent,
-                "teacher_comment_id" => $request->comment
+                "teacher_comment_id" => $request->comment,
+                'head_teacher_comment_id'=> rand(1,10)
             ]);
-        }else
+        }else{
             $sectionClassStudentTerm->sectionClassStudentTermAccessment()->create([
                 "punctuality" => $request->punctuality,
                 "attendance" => $request->attendance,
@@ -94,9 +95,11 @@ class StudentAccessmentController extends Controller
                 "days_school_open" => $request->days_school_open,
                 "days_present" => $request->days_present,
                 "days_absent" => $request->days_absent,
-                "teacher_comment_id" => $request->comment
+                "teacher_comment_id" => $request->comment,
+                'head_teacher_comment_id'= rand(1,10)
             ]);
         }
+
         return redirect()->route('dashboard.student.accessment.index',[$sectionClassStudentTerm->sectionClassStudent->sectionClass->id])
         ->withSuccess('Student Accessed Successfully');
     }

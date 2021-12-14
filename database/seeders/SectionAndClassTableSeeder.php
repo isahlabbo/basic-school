@@ -20,55 +20,50 @@ class SectionAndClassTableSeeder extends Seeder
                 'name'=>'Nursery',
                 'classes'=>[
                     [
-                        'name'=>'Nursery one','subjects'=>[
+                        'name'=>'Nursery one A','subjects'=>[
+                            "AL-qur'an",
                             "Mathematics",
-                            "English",
-                            "Science",
+                            "English Studies",
+                            "basic Science and Technology",
                             "Handwriting",
+                            "social habit",
                             "IRK",
-                            "qur'An",
-                            "Azkar",
-                            "arbiyya",
-                            "kitabba",
                             "huruf",
+                            "qira'at",
                         ],
-                        'code'=>'N',
+                        'code'=>'NA',
+                        'year_sequence'=>'First',
+                    ],
+                    [
+                        'name'=>'Nursery one B','subjects'=>[
+                            "AL-qur'an",
+                            "Mathematics",
+                            "English Studies",
+                            "basic Science and Technology",
+                            "Handwriting",
+                            "social habit",
+                            "IRK",
+                            "huruf",
+                            "qira'at",
+                        ],
+                        'code'=>'NB',
                         'year_sequence'=>'First',
                     ],
                     
                     [
                         'name'=>'Nursery two','subjects'=>[
+                            "AL-qur'an",
                             "Mathematics",
-                            "English",
-                            "Science",
+                            "English Studies",
+                            "basic Science and Technology",
                             "Handwriting",
+                            "social habit",
                             "IRK",
-                            "qur'An",
-                            "Azkar",
-                            "arbiyya",
-                            "kitabba",
                             "huruf",
+                            "qira'at",
                         ],
-                        'code'=>'N',
+                        'code'=>'NA',
                         'year_sequence'=>'Second',
-                    ],
-                    
-                    [
-                        'name'=>'Nursery three','subjects'=>[
-                            "Mathematics",
-                            "English",
-                            "Science",
-                            "Handwriting",
-                            "IRK",
-                            "qur'An",
-                            "Azkar",
-                            "arbiyya",
-                            "kitabba",
-                            "huruf",
-                            "hadith",
-                        ],
-                        'code'=>'N',
-                        'year_sequence'=>'Third',
                     ],
                     
                 ]
@@ -83,14 +78,12 @@ class SectionAndClassTableSeeder extends Seeder
                             "English Studies",
                             "basic Science and Technology",
                             "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
+                            "national value",
                             "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
+                            "huruf",
+                            "qira'at",
                         ],
-                        'code'=>'P',
+                        'code'=>'PA',
                         'year_sequence'=>'First'
                     ],
                     [
@@ -100,14 +93,12 @@ class SectionAndClassTableSeeder extends Seeder
                             "English Studies",
                             "basic Science and Technology",
                             "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
+                            "national value",
                             "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
+                            "huruf",
+                            "qira'at",
                         ],
-                        'code'=>'P',
+                        'code'=>'PA',
                         'year_sequence'=>'Second'
                     ],
                     [
@@ -117,14 +108,12 @@ class SectionAndClassTableSeeder extends Seeder
                             "English Studies",
                             "basic Science and Technology",
                             "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
+                            "national value",
                             "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
+                            "huruf",
+                            "qira'at",
                         ],
-                        'code'=>'P',
+                        'code'=>'PA',
                         'year_sequence'=>'Third'
                     ],
                     [
@@ -133,51 +122,15 @@ class SectionAndClassTableSeeder extends Seeder
                             "Mathematics",
                             "English Studies",
                             "basic Science and Technology",
-                            "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
+                            "national value",
                             "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
+                            "huruf",
+                            "qira'at",
                         ],
-                        'code'=>'P',
-                        'year_sequence'=>'forth'
+                        'code'=>'PA',
+                        'year_sequence'=>'Forth'
                     ],
-                    [
-                        'name'=>'PRIMARY FIVE','subjects'=>[
-                            "AL-qur'an",
-                            "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
-                            "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
-                            "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
-                        ],
-                        'code'=>'P',
-                        'year_sequence'=>'Second'
-                    ],
-                    [
-                        'name'=>'PRIMARY SIX','subjects'=>[
-                            "AL-qur'an",
-                            "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
-                            "Handwriting",
-                            "CULTURAL AND CREATIVE ART",
-                            "IRK",
-                            "AL-HADITH",
-                            "AL-KHATHU",
-                            "AL-ARABIYYA",
-                            "AL-AZKAR"
-                        ],
-                        'code'=>'P',
-                        'year_sequence'=>'Last'
-                    ],
+                    
                 ]
             ],
             

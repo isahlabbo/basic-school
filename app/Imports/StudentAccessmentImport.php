@@ -27,7 +27,7 @@ class StudentAccessmentImport implements ToModel
                 if($accessment){
                     $accessment->update([
                     "punctuality" => $row[2],
-                    "attendance" => $row[3],
+                    "Attendance" => $row[3],
                     "reliability" => $row[4],
                     "neatness" => $row[5],
                     "politeness" => $row[6],
@@ -50,7 +50,7 @@ class StudentAccessmentImport implements ToModel
                 }else{
                     $sectionClassStudentTerm->sectionClassStudentTermAccessment()->firstOrCreate([
                         "punctuality" => $row[2],
-                        "attendance" => $row[3],
+                        "Attendance" => $row[3],
                         "reliability" => $row[4],
                         "neatness" => $row[5],
                         "politeness" => $row[6],
