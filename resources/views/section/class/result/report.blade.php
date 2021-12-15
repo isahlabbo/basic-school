@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <p class="mb-0">Next Term Begins:</p>
+                            <p class="mb-0">Next Term Begins: <b>{{strtoupper(date('d-M-Y',strtotime($sectionClassStudent->nextSectionClassStudentTerm()->academicSessionTerm->start_at))) ?? 'Not available'}}</b></p>
                             <p class="mb-0">Term: <b>{{strtoupper($sectionClassStudentTerm->academicSessionTerm->term->name)}}</b></p>
                             <p class="mb-0">Class: <b>{{$sectionClassStudent->sectionClass->name}}</b></p>
                             <p class="mb-0">Session: <b>{{$sectionClassStudentTerm->academicSessionTerm->academicSession->name}}</b></p>
@@ -103,7 +103,7 @@
                             </p>
                         </div>
                         <div class="col-md-3 text-center">
-                            <p class="mb-0 text text-center"><b>{{strtoupper(date('d-M-Y',strtotime($sectionClassStudent->nextSectionClassStudentTerm()->academicSessionTerm->start_at))) ?? 'Not available'}}</b></p>
+                            <p class="mb-0 text text-center"></p>
                             <img src="{{asset('assets/images/user.jpg')}}" width="170" height="150" class="rounded" alt="">
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                                         <th>EXAM</th>
                                         <th>TOTAL</th>
                                         <th>GRADE</th>
-                                        <th>POSIOTION</th>
+                                        <th>POSITION</th>
                                         <th>EFFORT</th>
                                         <th>REMARK</th>
                                     </tr>
@@ -170,7 +170,7 @@
                         <table class="table-bordered" style="width: 100%; height: 20px;">
                             <thead class="text text-center">
                                 <tr>
-                                    <th>EFECTIVE TRAITS</th>
+                                    <th>AFFECTIVE TRAITS</th>
                                     <th>RATING</th>
                                 </tr>
                             </thead>
@@ -330,13 +330,13 @@
                     <table >
                         <div class="col-md-12">
                             <tr>
-                                <td>FORM TEACHER'S REMARKS: </td>
+                                <td>FORM TEACHER'S REMARK: </td>
                                 <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->teacherComment->name ?? 0}}</td>
                             </tr>
                         </div>
                         <div class="col-md-12">
                             <tr>
-                                <td style="width: 300px;">HEAD TEACHER REMARKS:</td>
+                                <td style="width: 300px;">HEAD TEACHER'S REMARK:</td>
                                 <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->headTeacherComment->name ?? 0}}</td>
                             </tr>
                         </div>
