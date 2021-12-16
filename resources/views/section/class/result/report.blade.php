@@ -54,7 +54,13 @@
                         </tr>
                         <tr>
                             
-                            <td><p class="mb-0">Position:</p></td>
+                            <td><p class="mb-0">
+                            @if(config('nursery_class_position') == true && $sectionClassStudent->sectionClass->section->name == 'Nursery')
+                                Remark:
+                            @else
+                                Position:
+                            @endif
+                            </p></td>
                             <td><p class="mb-0 text-left"><b>{{$sectionClassStudent->sectionClass->studentPosition($sectionClassStudentTerm) ?? 0}}</b></p></b></p></td>
                         </tr>
                         <tr>
