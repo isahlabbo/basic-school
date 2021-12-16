@@ -29,7 +29,7 @@
 
                         <div class="col-md-12 text text-center"><hr style="background-color: gray; height: 2px;"><b>REPORT SHEET FOR {{strtoupper($sectionClassStudentTerm->academicSessionTerm->term->name)}} {{$sectionClassStudentTerm->academicSessionTerm->academicSession->name}} ACADEMIC SESSION</b><hr style="background-color: orange; height: 3px;"></div>
                         
-                        <div class="col-md-1"></div>
+                        
                         <div class="col-md-4 text">
                         <table style="width: 100%">
                         <tr>
