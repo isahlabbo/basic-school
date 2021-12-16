@@ -20,50 +20,41 @@ class SectionAndClassTableSeeder extends Seeder
                 'name'=>'Nursery',
                 'classes'=>[
                     [
-                        'name'=>'Nursery one A','subjects'=>[
-                            "AL-qur'an",
+                        'name'=>'Nursery one','subjects'=>[
+                            "qur'an",
                             "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
+                            "English",
+                            "Nursery Science",
                             "Handwriting",
-                            "social habit",
-                            "IRK",
-                            "huruf",
-                            "qira'at",
+                            "arabic",
                         ],
-                        'code'=>'NA',
+                        'code'=>'N',
                         'year_sequence'=>'First',
                     ],
                     [
-                        'name'=>'Nursery one B','subjects'=>[
-                            "AL-qur'an",
+                        'name'=>'Nursery two','subjects'=>[
+                            "qur'an",
                             "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
+                            "English",
+                            "Nursery Science",
                             "Handwriting",
-                            "social habit",
-                            "IRK",
-                            "huruf",
-                            "qira'at",
+                            "arabic",
                         ],
-                        'code'=>'NB',
-                        'year_sequence'=>'First',
+                        'code'=>'N',
+                        'year_sequence'=>'Second',
                     ],
                     
                     [
-                        'name'=>'Nursery two','subjects'=>[
-                            "AL-qur'an",
+                        'name'=>'Nursery three','subjects'=>[
+                            "qur'an",
                             "Mathematics",
-                            "English Studies",
-                            "basic Science and Technology",
+                            "English",
+                            "Nursery Science",
                             "Handwriting",
-                            "social habit",
-                            "IRK",
-                            "huruf",
-                            "qira'at",
+                            "arabic",
                         ],
-                        'code'=>'NA',
-                        'year_sequence'=>'Second',
+                        'code'=>'N',
+                        'year_sequence'=>'Third',
                     ],
                     
                 ]
@@ -73,66 +64,204 @@ class SectionAndClassTableSeeder extends Seeder
                 'classes'=>[
                     [
                         'name'=>'PRIMARY ONE','subjects'=>[
-                            "AL-qur'an",
+                            "qur'an",
                             "Mathematics",
-                            "English Studies",
+                            "English",
                             "basic Science and Technology",
                             "Handwriting",
                             "national value",
-                            "IRK",
-                            "huruf",
-                            "qira'at",
+                            "arabic",
+                            "hadith",
                         ],
-                        'code'=>'PA',
+                        'code'=>'P',
                         'year_sequence'=>'First'
                     ],
                     [
                         'name'=>'PRIMARY TWO','subjects'=>[
-                            "AL-qur'an",
+                            "qur'an",
                             "Mathematics",
-                            "English Studies",
+                            "English",
                             "basic Science and Technology",
                             "Handwriting",
                             "national value",
-                            "IRK",
-                            "huruf",
-                            "qira'at",
+                            "arabic",
+                            "hadith",
                         ],
-                        'code'=>'PA',
+                        'code'=>'P',
                         'year_sequence'=>'Second'
                     ],
                     [
                         'name'=>'primary three','subjects'=>[
-                            "AL-qur'an",
+                            "qur'an",
                             "Mathematics",
-                            "English Studies",
+                            "English",
                             "basic Science and Technology",
                             "Handwriting",
                             "national value",
-                            "IRK",
-                            "huruf",
-                            "qira'at",
+                            "arabic",
+                            "hadith",
                         ],
-                        'code'=>'PA',
+                        'code'=>'P',
                         'year_sequence'=>'Third'
                     ],
                     [
                         'name'=>'primary four','subjects'=>[
-                            "AL-qur'an",
+                            "qur'an",
                             "Mathematics",
-                            "English Studies",
+                            "English",
                             "basic Science and Technology",
                             "national value",
-                            "IRK",
-                            "huruf",
-                            "qira'at",
+                            "arabic",
+                            "hadith"
                         ],
-                        'code'=>'PA',
+                        'code'=>'P',
                         'year_sequence'=>'Forth'
+                    ],
+
+                    [
+                        'name'=>'primary five','subjects'=>[
+                            "qur'an",
+                            "Mathematics",
+                            "English",
+                            "basic Science and Technology",
+                            "national value",
+                            "arabic",
+                            "hadith"
+                        ],
+                        'code'=>'P',
+                        'year_sequence'=>'Fifth'
+                    ],
+                    [
+                        'name'=>'primary six','subjects'=>[
+                            "qur'an",
+                            "Mathematics",
+                            "English",
+                            "basic Science and Technology",
+                            "national value",
+                            "arabic",
+                            "hadith"
+                        ],
+                        'code'=>'P',
+                        'year_sequence'=>'Last'
+                    ],
+                ]
+            ],
+            [
+                'name'=>'JUNIOR SECONDARY',
+                'classes'=>[
+                    [
+                        'name'=>'JSS one','subjects'=>[
+                            "qur'an",
+                            "Mathematics",
+                            "English",
+                            "BASIC SCIENCE AND TECHNOLOGY",
+                            "RNV",
+                            "IRK",
+                            "FIQH",
+                            "HADITH",
+                            "ISLAMIC HISTORY",
+                        ],
+                        'code'=>'JS',
+                        'year_sequence'=>'First',
+                    ],
+                    [
+                        'name'=>'JSS two','subjects'=>[
+                            "qur'an",
+                            "Mathematics",
+                            "English",
+                            "BASIC SCIENCE AND TECHNOLOGY",
+                            "RNV",
+                            "IRK",
+                            "FIQH",
+                            "HADITH",
+                            "ISLAMIC HISTORY",
+                        ],
+                        'code'=>'JS',
+                        'year_sequence'=>'Second',
+                    ],
+                    
+                    [
+                        'name'=>'JSS three','subjects'=>[
+                            "qur'an",
+                            "Mathematics",
+                            "English",
+                            "BASIC SCIENCE AND TECHNOLOGY",
+                            "RNV",
+                            "IRK",
+                            "FIQH",
+                            "HADITH",
+                            "ISLAMIC HISTORY",
+                        ],
+                        'code'=>'JS',
+                        'year_sequence'=>'Third',
+                    ],
+                ]
+            ],
+            [
+            'name'=>'SENIOR SECONDARY',
+            'classes'=>[
+                    [
+                        'name'=>'SS one','subjects'=>[
+                            "qur'an",
+                            "Mathematics",
+                            "English",
+                            "BASIC SCIENCE AND TECHNOLOGY",
+                            "RNV",
+                            "IRK",
+                            "FIQH",
+                            "HADITH",
+                            "ISLAMIC HISTORY",
+                        ],
+                        'code'=>'SS',
+                        'year_sequence'=>'First',
+                    ],
+                    [
+                        'name'=>'SS two','subjects'=>[
+                            "qur'an",
+                            "Mathematics",
+                            "English",
+                            "BASIC SCIENCE AND TECHNOLOGY",
+                            "RNV",
+                            "IRK",
+                            "FIQH",
+                            "HADITH",
+                            "ISLAMIC HISTORY",
+                        ],
+                        'code'=>'SS',
+                        'year_sequence'=>'Second',
+                    ],
+                    
+                    [
+                        'name'=>'SS three','subjects'=>[
+                            "qur'an",
+                            "Mathematics",
+                            "English",
+                            "BASIC SCIENCE AND TECHNOLOGY",
+                            "RNV",
+                            "IRK",
+                            "FIQH",
+                            "HADITH",
+                            "ISLAMIC HISTORY",
+                        ],
+                        'code'=>'SS',
+                        'year_sequence'=>'Third',
                     ],
                     
                 ]
             ],
+            [
+            'name'=>'TAHFEEZ',
+            'classes'=>[
+                    [
+                        'name'=>'Halqatu abubakar','subjects'=>[
+                            "qur'an",
+                        ],
+                        'code'=>'ABK',
+                        'year_sequence'=>'First',
+                    ],
+                    
+                ]
+            ]
             
         ];
         foreach($sections as $section){
