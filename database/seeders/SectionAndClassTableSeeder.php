@@ -197,6 +197,7 @@ class SectionAndClassTableSeeder extends Seeder
                     ],
                 ]
             ],
+            [
             'name'=>'SENIOR SECONDARY',
             'classes'=>[
                     [
@@ -248,6 +249,7 @@ class SectionAndClassTableSeeder extends Seeder
                     
                 ]
             ],
+            [
             'name'=>'TAHFEEZ',
             'classes'=>[
                     [
@@ -259,7 +261,7 @@ class SectionAndClassTableSeeder extends Seeder
                     ],
                     
                 ]
-            ],
+            ]
             
         ];
         foreach($sections as $section){
