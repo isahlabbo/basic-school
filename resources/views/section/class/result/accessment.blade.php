@@ -30,26 +30,26 @@
     <tr>
         <td>{{$sectionClassStudent->student->name}}</td>
         <td>{{$sectionClassStudent->student->admission_no}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(3,5)}}</td>
-        <td>{{rand(1,40)}}</td>
-        <td>{{rand(1,15)}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     @endforeach
 </tbody>

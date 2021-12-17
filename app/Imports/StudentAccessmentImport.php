@@ -79,7 +79,12 @@ class StudentAccessmentImport implements ToModel
     public function getThisStudentSessionTerm($admissionNo)
     {
         $student = Student::where('admission_no',$admissionNo)->first();
-        $studentClass = $student->sectionClassStudents->where('status','Active')->first();
-        return $studentClass->sectionClassStudentTerms->where('status','Active')->first();
+        if($student){
+            $studentClass = $student->sectionClassStudents->where('status','Active')->first();
+        }
+        if($studentClass){
+            return $studentClass->sectionClassStudentTerms->where('status','Active')->first();
+        }
+        return null;
     }
 }
