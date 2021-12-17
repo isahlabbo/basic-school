@@ -30,53 +30,54 @@
                         <div class="col-md-12 text text-center"><hr style="background-color: gray; height: 2px;"><b>REPORT SHEET FOR {{strtoupper($sectionClassStudentTerm->academicSessionTerm->term->name)}} {{$sectionClassStudentTerm->academicSessionTerm->academicSession->name}} ACADEMIC SESSION</b><hr style="background-color: orange; height: 3px;"></div>
                         
                         
-                        <div class="col-md-4 text">
+                        <div class="col-md-5 text">
                         <table style="width: 100%">
                         <tr>
                             
-                            <td><p class="mb-0">Admission No:</p></td>
-                            <td><p class="mb-0 text-left"><b>{{$sectionClassStudent->student->admission_no}}</b></p></td>
+                            <td style="width: 150px"><p class="mb-0">Admission No:</p></td>
+                            <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->student->admission_no}}</b></p></td>
                         </tr>
                         <tr>
                             
                             <td> <p class="mb-0">Student Name:</p></td>
-                            <td><p class="mb-0 text-left"><b>{{$sectionClassStudent->student->name}}</b></p></td>
+                            <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->student->name}}</b></p></td>
                         </tr>
                         <tr>
                             
                             <td><p class="mb-0">Sex:</p></td>
-                            <td><p class="mb-0 text-left"><b>{{$sectionClassStudent->student->gender()}}</b></p></td>
+                            <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->student->gender()}}</b></p></td>
                         </tr>
                         <tr>
                             
                             <td><p class="mb-0">No in class:</p></td>
-                            <td><p class="mb-0 text-left"><b>{{count($sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'))}}:</b></p></td>
+                            <td><p class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'))}}</b></p></td>
                         </tr>
                         <tr>
                             
                             <td><p class="mb-0">
-                            @if(config('nursery_class_position') == true && $sectionClassStudent->sectionClass->section->name == 'Nursery')
+                           
+                            @if(config('app.nursery_class_position') == true && $sectionClassStudent->sectionClass->section->name == 'NURSERY')
                                 Remark:
                             @else
                                 Position:
                             @endif
                             </p></td>
-                            <td><p class="mb-0 text-left"><b>{{$sectionClassStudent->sectionClass->studentPosition($sectionClassStudentTerm) ?? 0}}</b></p></b></p></td>
+                            <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->studentPosition($sectionClassStudentTerm) ?? 0}}</b></p></b></p></td>
                         </tr>
                         <tr>
                             
                             <td><p class="mb-0">Class Average:</p></td>
-                            <td><p class="mb-0 text-left"><b>{{$sectionClassStudent->sectionClass->classAverage($sectionClassStudentTerm->academicSessionTerm->term)}}</b></p></td>
+                            <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->classAverage($sectionClassStudentTerm->academicSessionTerm->term)}}</b></p></td>
                         </tr>
                         <tr>
                             
                             <td><p class="mb-0">Pupils Average:</p></td>
-                            <td><p class="mb-0 text-left"><b>{{$sectionClassStudentTerm->studentAverage()}}</b></p></td>
+                            <td><p class="mb-0 text-right"><b>{{$sectionClassStudentTerm->studentAverage()}}</b></p></td>
                         </tr>
                         <tr>
                             
                             <td><p class="mb-0">No of subjects:</p></td>
-                            <td><p class="mb-0 text-left"><b>{{count($sectionClassStudent->sectionClass->sectionClassSubjects)}}</b></p></td>
+                            <td><p class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassSubjects)}}</b></p></td>
                         </tr>
                                  
                         </table>
