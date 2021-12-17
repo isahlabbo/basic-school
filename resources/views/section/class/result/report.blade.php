@@ -12,7 +12,7 @@
         <div id="report">
         @foreach($sectionClass->sectionClassStudents as $sectionClassStudent)
             @foreach($sectionClassStudent->sectionClassStudentTerms->where('status','Active') as $sectionClassStudentTerm)<br><br>
-            <div class="card shadow h5" style="page-break-inside: avoid;">
+            <div class="card shadow" style="page-break-inside: avoid; font-size: 17px;">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-1"></div>
