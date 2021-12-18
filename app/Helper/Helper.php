@@ -3,14 +3,14 @@
 use App\Models\AcademicSession;
 
 if (!function_exists('currentAcademicSession')) {
-    function currentAcademicSession($url)
+    function currentAcademicSession()
     {
         return AcademicSession::where('status','Active')->first();
     }
 }
 
 if (!function_exists('currentAcademicSessionTerm')) {
-    function currentAcademicSessionTerm($url)
+    function currentAcademicSessionTerm()
     {
         foreach (currentAcademicSession()->academicSesstionTerms as $academicSessionTerm) {
             if(strtotime($academicSessionTerm->end) > time()){

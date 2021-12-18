@@ -39,7 +39,7 @@ class GenerateStudents extends Command
      */
     public function handle()
     {
-        $this->output->progressStart(1200);
+        $this->output->progressStart(count(Section::all()));
         foreach (Section::all() as $section) {
             foreach($section->sectionClasses as $sectionClass){
                 $number = '08162460000';
@@ -49,7 +49,7 @@ class GenerateStudents extends Command
                         'name'=>'guardian test name '.$i,
                         'address'=>'guardian address '. $i,
                         'phone'=>$number+$i,
-                        'email'=>$number+$i.'@wayforward.com'
+                        'email'=>$number+$i.'@'.str_replace(' '.'',strtolower(config('app.name'))).'.com'
                     ]);
 
                     $student = $guardian->students()->create([
@@ -70,18 +70,12 @@ class GenerateStudents extends Command
                         $count++;
                     }
                     $number++;
-                    $this->output->progressAdvance();
+                    
                 }
             }
-            
+            $this->output->progressAdvance();
         }
         $this->output->progressFinish();
-        return Command::SUCCESS;
     }
-
-    
-
-    
-
-    
+   
 }
