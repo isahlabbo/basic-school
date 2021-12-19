@@ -69,6 +69,17 @@ Route::name('dashboard.')
             Route::get('re-create/', 'ClassTeacherController@reCreate')->name('reCreate');
             Route::post('register/', 'ClassTeacherController@register')->name('register');
         });
+        
+        Route::namespace('Configuration')
+        ->name('configuration.')
+        ->prefix('/configuration')
+        ->group(function (){
+            Route::name('reportcard.')
+            ->prefix('/report-card')
+            ->group(function (){
+                Route::get('/', 'ReportCardConfigurationController@index')->name('index');
+            });
+        });
         Route::name('class.')
         ->prefix('/class')
         ->group(function (){
