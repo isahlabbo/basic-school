@@ -16,6 +16,7 @@ class CreateAffectiveTraitsTable extends Migration
         Schema::create('affective_traits', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

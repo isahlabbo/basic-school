@@ -13,4 +13,5 @@ class ReportCardConfigurationController extends Controller
     {
         return view('section.configuration.reportcard',['psychomotors'=>Psychomotor::all(),'affectiveTraits'=>AffectiveTrait::all()]);
     }
+
 }

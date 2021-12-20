@@ -19,17 +19,23 @@
                             <thead class="text text-center">
                                 <tr>
                                     <th>AFFECTIVE TRAITS</th>
-                                    <th><button class="btn btn-primary">New</button></th>
+                                    <th><button class="btn btn-primary" data-toggle="modal" data-target="#affectiveTrait">New</button></th>
                                     <th></th>
+                                    @include('section.configuration.affectivetrait.register')
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($affectiveTraits as $affectiveTrait)
+                                @foreach($affectiveTraits->where('status',1) as $affectiveTrait)
                                 <tr>
                                     <td>{{$affectiveTrait->name}}</td>
-                                    <td class="text-center"><button class="btn btn-info">Edit</button></td>
-                                    <td class="text-center"><button class="btn btn-danger">Delete</button></td>
+                                    <td class="text-center"><button class="btn btn-info" data-toggle="modal" data-target="#affectiveTrait_{{$affectiveTrait->id}}">Edit</button></td>
+                                    <td class="text-center">
+                                        <a href="{{route('dashboard.section.configuration.reportcard.affectivetrait.delete',[$affectiveTrait->id])}}">    
+                                            <button class="btn btn-danger">Delete</button>
+                                        </a>
+                                    </td>
                                 </tr>
+                                @include('section.configuration.affectivetrait.edit')
                                 @endforeach
                             </tbody>
                         </table>
@@ -46,17 +52,22 @@
                                                 <thead class="text text-center">
                                                     <tr>
                                                         <th>PSYCHOMOTOR</th>
-                                                        <th><button class="btn btn-primary">New</button></th>
+                                                        <th><button class="btn btn-primary" data-toggle="modal" data-target="#psychomotor">New</button></th>
                                                         <th></th>
                                                     </tr>
+                                                    @include('section.configuration.psychomotor.register')
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($psychomotors as $psychomotor)
+                                                    @foreach($psychomotors->where('status',1) as $psychomotor)
                                                         <tr>
                                                             <td>{{$psychomotor->name}}</td>
-                                                            <td class="text-center"><button class="btn btn-info">Edit</button></td>
-                                                            <td class="text-center"><button class="btn btn-danger">Delete</button></td>
+                                                            <td class="text-center"><button class="btn btn-info" data-toggle="modal" data-target="#psychomotor_{{$psychomotor->id}}">Edit</button></td>
+                                                            <td class="text-center">
+                                                            <a href="{{route('dashboard.section.configuration.reportcard.psychomotor.delete',[$psychomotor->id])}}">    
+                                                            <button class="btn btn-danger">Delete</button></a>
+                                                        </td>
                                                         </tr>
+                                                        @include('section.configuration.psychomotor.edit')
                                                     @endforeach
                                             </tbody>
                                        </table>

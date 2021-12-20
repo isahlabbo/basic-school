@@ -69,7 +69,7 @@ Route::name('dashboard.')
             Route::get('re-create/', 'ClassTeacherController@reCreate')->name('reCreate');
             Route::post('register/', 'ClassTeacherController@register')->name('register');
         });
-        
+
         Route::namespace('Configuration')
         ->name('configuration.')
         ->prefix('/configuration')
@@ -77,6 +77,22 @@ Route::name('dashboard.')
             Route::name('reportcard.')
             ->prefix('/report-card')
             ->group(function (){
+                Route::name('psychomotor.')
+                ->prefix('/psycomotor')
+                ->group(function (){
+                    Route::post('/register', 'PsychomotorController@register')->name('register');
+                    Route::post('/{psychomotorId}/update', 'PsychomotorController@update')->name('update');
+                    Route::get('/{psychomotorId}/delete', 'PsychomotorController@delete')->name('delete');
+                });
+
+                Route::name('affectivetrait.')
+                ->prefix('/affective-trait')
+                ->group(function (){
+                    Route::post('/register', 'AffectiveTraitController@register')->name('register');
+                    Route::post('/{affectiveTraitId}/update', 'AffectiveTraitController@update')->name('update');
+                    Route::get('/{affectiveTraitId}/delete', 'AffectiveTraitController@delete')->name('delete');
+                });
+
                 Route::get('/', 'ReportCardConfigurationController@index')->name('index');
             });
         });
