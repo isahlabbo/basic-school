@@ -21,4 +21,24 @@ class AcademicSession extends BaseModel
     {
         return $this->students->where('section_class_id',$class->id);
     }
+
+    public function updateNextTerm($term)
+    {
+        foreach ($this->academicSessionTerms as $academicSessionTerm) {
+            if($term->id + 1 == $academicSessionTerm->term->id){
+                $academicSessionTerm->update(['status'=>'Active']);
+            }elseif ($term->id == $academicSessionTerm->term->id) {
+                $academicSessionTerm->update(['status'=>'Not Active']);
+            }
+        }
+    }
+
+    public function nextAcademicSessionTerm($term)
+    {
+        foreach ($this->academicSessionTerms as $academicSessionTerm) {
+            if($term->id + 1 == $academicSessionTerm->term->id){
+                return $academicSessionTerm;
+            }
+        }
+    }
 }

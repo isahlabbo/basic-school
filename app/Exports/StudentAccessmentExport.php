@@ -2,6 +2,8 @@
 
 namespace App\Exports;
 
+use App\Models\Psychomotor;
+use App\Models\AffectiveTrait;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
@@ -20,7 +22,7 @@ class StudentAccessmentExport implements FromView
     
     public function view(): View
     {
-        return view('section.class.result.accessment', ['sectionClass' => $this->sectionClass]);
+        return view('section.class.result.accessment', ['psychomotors'=>Psychomotor::all(),'affectiveTraits'=>AffectiveTrait::all(),'sectionClass' => $this->sectionClass]);
     }
     
 }

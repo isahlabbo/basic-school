@@ -13,18 +13,10 @@ class BaseModel extends Model
     {
         return AcademicSession::where('status','Active')->first();
     }
+
     public function currentSessionTerm()
     {
-        if(count($this->currentSession()->academicSessionTerms->where('status','Active')) == 0){
-            $count = 1;
-            foreach($this->currentSession()->academicSessionTerms as $academicSessionTerm){
-                if($count == 1){
-                    $academicSessionTerm->update(['status'=>'Active']);
-                    $count++;
-                }
-            }
-        }
-        return AcademicSessionTerm::where('status','Active')->first();
+        return $this->currentSession()->academicSessionTerms->where('status','Active')->first();
     }
 
 }

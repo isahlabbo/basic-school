@@ -18,64 +18,67 @@ class StudentAccessmentImport implements ToModel
 
     public function model(array $row)
     {
-        
+        $data = $row;
+
         if($row[0] != 'NAME'){
             $sectionClassStudentTerm = $this->getThisStudentSessionTerm($row[1]);
-            
             if($sectionClassStudentTerm){
                 $accessment = $sectionClassStudentTerm->sectionClassStudentTermAccessment;
                 if($accessment){
                     $accessment->update([
-                    "punctuality" => $row[2],
-                    "Attendance" => $row[3],
-                    "reliability" => $row[4],
-                    "neatness" => $row[5],
-                    "politeness" => $row[6],
-                    "honesty" => $row[7],
-                    "relationship_with_pupils" => $row[8],
-                    "self_control" => $row[9],
-                    "attentiveness" => $row[10],
-                    "perseverance" => $row[11],
-                    "handwriting" => $row[12],
-                    "games" => $row[13],
-                    "sports" => $row[14],
-                    "drawing_and_painting" => $row[15],
-                    "crafts" => $row[16],
-                    "days_school_open" => $row[17],
-                    "days_present" => $row[18],
-                    "days_absent" => $row[19],
-                    "teacher_comment_id" => $row[20],
-                    "head_teacher_comment_id" => $row[21]
+                        "days_school_open" => $row[2],
+                        "days_present" => $row[3],
+                        "days_absent" => $row[4],
+                        "teacher_comment_id" => $row[5],
+                        "head_teacher_comment_id" => $row[6]
                     ]);
+                    foreach ($data as $key => $value) {
+                        foreach ($accessment->sectionClassStudentTermAccessmentPsychomotors as $accessmentPsycho) {
+                            if($accessmentPsycho->psychomotor->name == $value){
+                                $accessmentPsycho->update(['value'=>$row[$key]]);
+                            }
+                        }
+                        
+                        foreach ($accessment->sectionClassStudentTermAccessmentAffectiveTraits as $accessmentTrait) {
+                            if($accessmentTrait->affectiveTrait->name == $value){
+                                $accessmentTrait->update(['value'=>$row[$key]]);
+                            }
+                        }
+                    } 
                 }else{
-                    $sectionClassStudentTerm->sectionClassStudentTermAccessment()->firstOrCreate([
-                        "punctuality" => $row[2],
-                        "Attendance" => $row[3],
-                        "reliability" => $row[4],
-                        "neatness" => $row[5],
-                        "politeness" => $row[6],
-                        "honesty" => $row[7],
-                        "relationship_with_pupils" => $row[8],
-                        "self_control" => $row[9],
-                        "attentiveness" => $row[10],
-                        "perseverance" => $row[11],
-                        "handwriting" => $row[12],
-                        "games" => $row[13],
-                        "sports" => $row[14],
-                        "drawing_and_painting" => $row[15],
-                        "crafts" => $row[16],
-                        "days_school_open" => $row[17],
-                        "days_present" => $row[18],
-                        "days_absent" => $row[19],
-                        "teacher_comment_id" => $row[20],
-                        "head_teacher_comment_id" => $row[21]
+                   $accessment = $sectionClassStudentTerm->sectionClassStudentTermAccessment()->firstOrCreate([
+                        "days_school_open" => $row[2],
+                        "days_present" => $row[3],
+                        "days_absent" => $row[4],
+                        "teacher_comment_id" => $row[5],
+                        "head_teacher_comment_id" => $row[6]
                         ]);
+                        foreach ($data as $key => $value) {
+                            $psycho = Psychomotor::where('name',$value)->first();
+                            if($psycho){
+                                $accessment->sectionClassStudentTermAccessmentPsychomotors()->create([
+                                    'psychomotor_id'=>$psycho->id,
+                                    'value'=>$row[$key],
+                                    ]);
+                            }
+
+                            $trait = AffectiveTrait::where('name',$value)->first();
+                            if($trait){
+                                $accessment->sectionClassStudentTermAccessmentAffectiveTraits()->create([
+                                    'affective_trait_id'=>$trait->id,
+                                    'value'=>$row[$key],
+                                    ]);
+                            }
+                        }    
                 }
             }
             
         }
     }
-
+    public function getData($array)
+    {
+        return $array;
+    }
     public function getThisStudentSessionTerm($admissionNo)
     {
         $student = Student::where('admission_no',$admissionNo)->first();

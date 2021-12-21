@@ -32,7 +32,7 @@ class AcademicSessionTableSeeder extends Seeder
                 $academicSession->update(['status'=>'Active']);
             }
             foreach ([1,2,3] as $term_id) {
-               $academicSession->academicSessionTerms()->create(['term_id'=>$term_id]);
+               $academicSession->academicSessionTerms()->firstOrCreate(['term_id'=>$term_id]);
             }
         }
     }

@@ -10,7 +10,7 @@
         <button class="btn btn-secondary" id="print" onclick="printContent('report');" >Print</button>
         </div>
         <div id="report">
-        @foreach($sectionClass->sectionClassStudents as $sectionClassStudent)
+        @foreach($sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent)
             @foreach($sectionClassStudent->sectionClassStudentTerms->where('status','Active') as $sectionClassStudentTerm)<br><br>
             <div class="card shadow" style="page-break-inside: avoid; font-size: 17px;">
                 <div class="card-body">
@@ -120,7 +120,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <table style="width: 100%;" class="table-bordered table- table-striped table-hover">
-                                <thead class="text text-center table-dark">
+                                <thead class="text text-center table-light">
                                     <tr>
                                         <th>SUBJECT</th>
                                         <th>1ST CA</th>
@@ -184,46 +184,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($sectionClassStudentTerm->sectionClassStudentTermAccessment->sectionClassStudentTermAccessmentAffectiveTraits as $accessmentTrait)    
                                 <tr>
-                                    <td>Punctuality</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->punctuality ?? 0}}</td>
+                                    <td>{{$accessmentTrait->affectiveTrait->name}}</td>
+                                    <td>{{$accessmentTrait->value}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Attendance</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->Attendance ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Reliability</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->reliability ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Neatness</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->neatness ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Politeness</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->politeness ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Honesty</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->honesty ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Relationship with Pupils</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->relationship_with_pupils ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Self-Control</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->self_control ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Attentiveness</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->attentiveness ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Perseverance</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->perseverance ?? 0}}</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                         </div>
@@ -243,26 +209,12 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                @foreach($sectionClassStudentTerm->sectionClassStudentTermAccessment->sectionClassStudentTermAccessmentPsychomotors as $accessmentPsychomotor)    
                                                 <tr>
-                                                    <td>Handwriting</td>
-                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->handwriting ?? 0}}</td>
+                                                    <td>{{$accessmentPsychomotor->psychomotor->name}}</td>
+                                                    <td>{{$accessmentPsychomotor->value}}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Games</td>
-                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->games ?? 0}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Sports</td>
-                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->sports ?? 0}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Drawing & Painting</td>
-                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->drawing_and_painting ?? 0}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Crafts</td>
-                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->crafts ?? 0}}</td>
-                                                </tr>
+                                                @endforeach
                                             </tbody>
                                        </table>
                                     </div>

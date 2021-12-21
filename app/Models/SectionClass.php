@@ -31,6 +31,48 @@ class SectionClass extends BaseModel
     {
         return $this->hasMany(SectionClassTeacher::class);
     }
+
+    public function nextClass()
+    { 
+        $year = null;
+        
+        switch ($this->year_sequence) {
+            case 'First':
+                $year = 'Second';
+                break;
+            case 'Second':
+                $year = 'Third';
+                break;    
+            case 'Third':
+                $year = 'Forth';
+                break;
+            case 'Forth':
+                $year = 'Forth';
+                break;
+            case 'Fifth':
+                $year = 'Sixth';
+                break;        
+            default:
+                # code...
+                break;
+        }
+        if($year){
+            foreach($this->section->sectionClasses as $sectionClass){
+                if($sectionClass->year_sequence == $year){
+                    return $sectionClass;
+                }
+            }
+        }
+        return $year;
+    }
+
+    public function updateAllStudentTerm()
+    {
+        foreach ($this->sectionClassStudents->where('status','Active') as $sectionClassStudent) {
+            $sectionClassStudent->updateNextTerm();
+        }
+    }
+
     public function studentPosition($sectionClassStudentTerm)
     {
         if(config('app.nursery_class_position') == true && $this->section->name == 'NURSERY'){

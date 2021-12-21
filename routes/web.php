@@ -24,7 +24,8 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+
+Route::middleware(['auth:sanctum', 'verified','resumed'])->get('/dashboard', function () {
     return view('dashboard',['sections'=>Section::all()]);
 })->name('dashboard');
 
@@ -61,13 +62,40 @@ Route::name('dashboard.')
     ->prefix('/section')
     ->group(function (){
         Route::get('/{sectionId}', 'SectionController@index')->name('index');
-        // section class teacers routes
+        // section class teachers routes
         Route::name('class-teacher.')
         ->prefix('{sectionClassId}/class-teacher')
         ->group(function (){
             Route::get('create/', 'ClassTeacherController@create')->name('create');
             Route::get('re-create/', 'ClassTeacherController@reCreate')->name('reCreate');
             Route::post('register/', 'ClassTeacherController@register')->name('register');
+        });
+
+        Route::namespace('Configuration')
+        ->name('configuration.')
+        ->prefix('/configuration')
+        ->group(function (){
+            Route::name('reportcard.')
+            ->prefix('/report-card')
+            ->group(function (){
+                Route::name('psychomotor.')
+                ->prefix('/psycomotor')
+                ->group(function (){
+                    Route::post('/register', 'PsychomotorController@register')->name('register');
+                    Route::post('/{psychomotorId}/update', 'PsychomotorController@update')->name('update');
+                    Route::get('/{psychomotorId}/delete', 'PsychomotorController@delete')->name('delete');
+                });
+
+                Route::name('affectivetrait.')
+                ->prefix('/affective-trait')
+                ->group(function (){
+                    Route::post('/register', 'AffectiveTraitController@register')->name('register');
+                    Route::post('/{affectiveTraitId}/update', 'AffectiveTraitController@update')->name('update');
+                    Route::get('/{affectiveTraitId}/delete', 'AffectiveTraitController@delete')->name('delete');
+                });
+
+                Route::get('/', 'ReportCardConfigurationController@index')->name('index');
+            });
         });
         Route::name('class.')
         ->prefix('/class')
@@ -169,6 +197,8 @@ Route::name('dashboard.')
     ->prefix('/student')
     ->group(function (){
         
+        Route::get('/{academicSessionTermId}/resume', 'StudentController@resume')->name('resume');
+        Route::get('/{academicSessionTermId}/confirm-resume', 'StudentController@confirmResume')->name('resume.confirm');
         Route::get('/', 'StudentController@index')->name('index');
         Route::get('/create', 'StudentController@create')->name('create');
         Route::post('/register', 'StudentController@register')->name('register');

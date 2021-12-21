@@ -29,7 +29,7 @@ class UserTableSeeder extends Seeder
             $user = User::firstOrCreate($user);
 
             if($user->role == 'Teacher'){
-                $user->teacher()->create(['address'=>config('app.name'),'phone'=>'08000000000']);
+                $user->teacher()->firstOrCreate(['address'=>config('app.name'),'phone'=>'08000000000']);
             }
         }
 
@@ -41,7 +41,7 @@ class UserTableSeeder extends Seeder
                 'role'=>'Teacher',
             ],);
 
-            $teacher = $user->teacher()->create(['address'=>config('app.name'),'phone'=>'08162463010'.$i]);
+            $teacher = $user->teacher()->firstOrCreate(['address'=>config('app.name'),'phone'=>'08162463010'.$i]);
             
         }
 

@@ -21,4 +21,14 @@ class SectionClassStudentTermAccessment extends BaseModel
     {
         return $this->belongsTo(TeacherComment::class);
     }
+
+    public function sectionClassStudentTermAccessmentAffectiveTraits()
+    {
+        return $this->hasMany(SectionClassStudentTermAccessmentAffectiveTrait::class);
+    }
+
+    public function sectionClassStudentTermAccessmentPsychomotors()
+    {
+        return $this->hasMany(SectionClassStudentTermAccessmentPsychomotor::class);
+    }
 }

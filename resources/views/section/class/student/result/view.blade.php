@@ -7,7 +7,7 @@
     @endsection
     @section('content')
         @foreach($student->sectionClassStudents as $sectionClassStudent)
-            @foreach($sectionClassStudent->sectionClassStudentTerms->where('status','Active') as $sectionClassStudentTerm)<br><br>
+            @foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm)<br><br>
             <div class="card shadow">
                 <div class="card-body">
                     <div class="row">

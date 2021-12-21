@@ -145,9 +145,9 @@ class SectionAndClassTableSeeder extends Seeder
                         'year_sequence'=>'Last'
                     ],
                 ]
-            ],
-            
+            ]  
         ];
+        
         foreach($sections as $section){
             $newSection = Section::firstOrCreate(['name'=>strtoupper($section['name'])]);
             foreach($section['classes'] as $class){
@@ -157,7 +157,7 @@ class SectionAndClassTableSeeder extends Seeder
                     ]);
                 foreach($class['subjects'] as $subject){
                     $newSubject = Subject::firstOrCreate(['name'=>strtoupper($subject)]);
-                    $newSubject->sectionClassSubjects()->create(['name'=>strtoupper($newSubject->name),'section_class_id'=>$newClass->id]);
+                    $newSubject->sectionClassSubjects()->firstOrCreate(['name'=>strtoupper($newSubject->name),'section_class_id'=>$newClass->id]);
                 }
             }
         }

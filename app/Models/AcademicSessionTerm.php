@@ -22,4 +22,6 @@ class AcademicSessionTerm extends BaseModel
         return $this->hasMany(SectionClassStudentTerm::class);
     }
 
+    
+
 }

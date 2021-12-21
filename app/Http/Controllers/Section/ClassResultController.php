@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Section;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SectionClass;
+use App\Models\Psychomotor;
+use App\Models\AffectiveTrait;
 use Excel;
 use App\Exports\StudentAccessmentExport;
 use App\Imports\StudentAccessmentImport;
@@ -18,7 +20,7 @@ class ClassResultController extends Controller
 
     public function report($sectionClassId)
     {
-        return view('section.class.result.report',['sectionClass'=>SectionClass::find($sectionClassId)]);
+        return view('section.class.result.report',['psychomotors'=>Psychomotor::all(),'affectiveTraits'=>AffectiveTrait::all(),'sectionClass'=>SectionClass::find($sectionClassId)]);
     }
     
     public function downloadAccessment($sectionClassId)

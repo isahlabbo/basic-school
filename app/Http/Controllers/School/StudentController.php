@@ -8,6 +8,7 @@ use App\Models\Student;
 use App\Models\Section;
 use App\Models\SectionClass;
 use App\Models\Guardian;
+use App\Models\AcademicSessionTerm;
 
 class StudentController extends Controller
 {
@@ -19,6 +20,24 @@ class StudentController extends Controller
     public function create()
     {
        return view('school.student.create',['sections'=>Section::all()]);
+    }
+
+    public function resume($academicSessionTermId)
+    {
+        return view('school.student.resume',['academicSessionTerm'=>AcademicSessionTerm::find($academicSessionTermId)]);
+    }
+
+    public function confirmResume ($academicSessionTermId)
+    {
+        foreach(Section::cursor() as $section){
+            foreach($section->sectionClasses as $sectionClass){
+                $sectionClass->updateAllStudentTerm();
+            }
+        }
+        
+        $academicSessionTerm = AcademicSessionTerm::find($academicSessionTermId);
+        $academicSessionTerm->academicSession->updateNextTerm($academicSessionTerm->term);
+        return redirect()->route('dashboard')->withSuccess('All Students Info has been updated to the next term');
     }
 
     public function register(Request $request)
