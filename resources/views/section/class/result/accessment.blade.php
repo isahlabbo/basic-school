@@ -3,26 +3,21 @@
     <tr>
         <th>NAME</th>
         <th>ADMISSION NO</th>
-        <th>PUNCTUALITY</th>
-        <th>ATTENDANCE</th>
-        <th>RELIABILITY</th>
-        <th>NEATNESS</th>
-        <th>POLITENESS</th>
-        <th>HONESTY</th>
-        <th>RELATIONSHIP WITH PUPILS</th>
-        <th>SELF CONTROL</th>
-        <th>ATTENTIVENESS</th>
-        <th>PERSEVERANCE</th>
-        <th>HANDWRITING</th>
-        <th>GAMES</th>
-        <th>SPORT</th>
-        <th>DRAWING AND PAINTING</th>
-        <th>CRAPTS</th>
         <th>DAYS SCHOOL OPEN</th>
         <th>DAYS PRESENT</th>
         <th>DAYS ABSENT</th>
         <th>CLASS TEACHER REMARK</th>
         <th>HEAD TEACHER REMARK</th>
+        @foreach($affectiveTraits->where('status',1) as $affectiveTrait)
+           <th>{{strtoupper($affectiveTrait->name)}}</th>
+        @endforeach
+
+        @foreach($psychomotors->where('status',1) as $psychomotor)
+           <th>{{strtoupper($psychomotor->name)}}</th>
+        @endforeach
+        
+
+        
     </tr>
 </thead>
 <tbody>
@@ -35,21 +30,15 @@
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        @foreach($affectiveTraits->where('status',1) as $affectiveTrait)
+           <td></td>
+        @endforeach
+
+        @foreach($psychomotors->where('status',1) as $psychomotor)
+           <td></td>
+        @endforeach
+
+        
     </tr>
     @endforeach
 </tbody>

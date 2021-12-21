@@ -10,7 +10,7 @@
         <button class="btn btn-secondary" id="print" onclick="printContent('report');" >Print</button>
         </div>
         <div id="report">
-        @foreach($sectionClass->sectionClassStudents as $sectionClassStudent)
+        @foreach($sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent)
             @foreach($sectionClassStudent->sectionClassStudentTerms->where('status','Active') as $sectionClassStudentTerm)<br><br>
             <div class="card shadow" style="page-break-inside: avoid; font-size: 17px;">
                 <div class="card-body">
@@ -119,7 +119,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <table style="width: 100%;" class="table-bordered table- table-striped table-hover">
-                                <thead class="text text-center table-dark">
+                                <thead class="text text-center table-light">
                                     <tr>
                                         <th>SUBJECT</th>
                                         <th>1ST CA</th>
