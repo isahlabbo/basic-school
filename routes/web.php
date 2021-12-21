@@ -119,6 +119,7 @@ Route::name('dashboard.')
                         Route::post('/check-result', 'ResultSearchController@checkResult')->name('check');
                         Route::get('/{sectionClassSubjectId}/summary', 'ResultSearchController@viewResultSummary')->name('summary');
                         Route::get('/summary/{subjectTeacherUploadId}/detail', 'ResultSearchController@viewDetail')->name('summary.detail');
+                        Route::get('/summary/{subjectTeacherUploadId}/delete', 'ResultSearchController@deleteUpload')->name('summary.delete');
                         Route::get('/summary/detail/{studentResultId}/edit', 'ResultSearchController@editResult')->name('summary.detail.edit');
                         Route::post('/summary/detail/{studentResultId}/update', 'ResultSearchController@updateResult')->name('summary.detail.update');
                 });

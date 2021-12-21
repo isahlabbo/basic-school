@@ -61,6 +61,18 @@ class ResultSearchController extends Controller
         return view('section.class.subject.result.search.detail',['subjectTeacherTermlyUpload'=>SubjectTeacherTermlyUpload::find($subcetTeacherTermlyUploadId)]);
     }
 
+    public function deleteUpload ($subjectTeacherTermlyUploadId)
+    {
+        $upload = SubjectTeacherTermlyUpload::find($subcetTeacherTermlyUploadId);
+        
+        foreach ($upload->studentResults as $studentResult) {
+            $studentResult->delete();
+        }
+        $upload->delete();
+          
+        return redirect()->route('dashboard.section.class.result.summary',[$upload->sectionClassSubjectTeacher->sectionClassSubject->sectionClass->id])->withSuccess(' Result Deleted');
+    }
+
     public function editResult($studentResultId)
     {
         return view('section.class.subject.result.search.edit',['studentResult'=>StudentResult::find($studentResultId)]);

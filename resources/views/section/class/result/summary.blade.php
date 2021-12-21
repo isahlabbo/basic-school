@@ -61,6 +61,7 @@
                                     </tr>
                                 </table>
                                 <a href="{{route('dashboard.section.class.subject.result.summary.detail',[$result->id])}}"<button class="btn btn-primary">View Detail</button></a>
+                                <a href="{{route('dashboard.section.class.subject.result.summary.delete',[$result->id])}}"><button class="btn btn-danger" onclick="return confirm('Are you sure you want ot delete this result entirely')">Delete</button></a>
                             </div>
                         </div>
                 </div><br>
