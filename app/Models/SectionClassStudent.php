@@ -55,6 +55,14 @@ class SectionClassStudent extends BaseModel
         }
         return $amount;
     }
+
+    public function updateNextTerm()
+    {
+        $nextTerm = $this->nextSectionClassStudentTerm();
+        $this->currentStudentTerm()->update(['status'=>'Not Active']);
+        $nextTerm->update(['status'=>'Active']);
+    }
+
     public function nextSectionClassStudentTerm()
     {
         switch ($this->currentStudentTerm()->academicSessionTerm->term_id) {

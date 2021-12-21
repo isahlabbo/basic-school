@@ -31,6 +31,14 @@ class SectionClass extends BaseModel
     {
         return $this->hasMany(SectionClassTeacher::class);
     }
+
+    public function updateAllStudentTerm()
+    {
+        foreach ($this->sectionClassStudents->where('status','Active') as $sectionClassStudent) {
+            $sectionClassStudent->updateNextTerm();
+        }
+    }
+
     public function studentPosition($sectionClassStudentTerm)
     {
         if(config('app.nursery_class_position') == true && $this->section->name == 'NURSERY'){
