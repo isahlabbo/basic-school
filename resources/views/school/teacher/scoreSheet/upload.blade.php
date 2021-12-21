@@ -17,19 +17,12 @@
                 <div class="form-group row">
                     <div class="col-md-3"><label for="">Choose Score Sheet</label></div>
                     <input type="hidden" value="{{$sectionClassSubject->id}}" name="sectionClassSubjectId">
+                    <input type="hidden" value="{{$sectionClassSubject->currentSessionTerm()->term->id}}" name="term">
                     <div class="col-md-5">
                         <input type="file" placeholder="choose file" name="score_sheet" id="" class="form-control">
                     </div>
-                    <div class="col-md-4">
-                    <select name="term" class="form-control" >
-                        <option value="">Select Term</option>
-                        @foreach($terms as $term)
-                        <option value="{{$term->id}}">{{$term->name}}</option>
-                        @endforeach
-                    </select>
-                    </div>
+                    
                 </div>
-                
                 
                 <div class="form-group row">
                     <div class="col-md-4"></div>

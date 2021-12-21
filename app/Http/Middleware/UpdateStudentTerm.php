@@ -22,11 +22,13 @@ class UpdateStudentTerm
         
         if($sessionTerm->end_at == null){
            return redirect()->route('dashboard.session.configure',[$sessionTerm->currentSession()->id])->withWarning('Please configure the Academic session');
-        }else if(strtotime($sessionTerm->end_at) <= time() && $sessionTerm->term_id < 3){
-            foreach(Section::cursor() as $section){
-                foreach($section->sectionClasses as $sectionClass){
-                    $sectionClass->updateAllStudentTerm();
-                }
+        }else if(strtotime($sessionTerm->end_at) <= time()){
+            
+            if($sessionTerm->term_id < 3){
+                //   go to the next term resume confirmation
+                return redirect()->route('dashboard.student.resume',[$sessionTerm->id])->withWarning('Please Confirmed The School Resumption');
+            }else{
+                // handle the student promotion and student graduation
             }
             
         }

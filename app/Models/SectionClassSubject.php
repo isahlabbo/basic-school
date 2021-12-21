@@ -35,7 +35,7 @@ class SectionClassSubject extends BaseModel
     {
         $uploads = [];
         foreach ($this->sectionClassSubjectTeachers as $classTeacher) {
-            foreach($classTeacher->subjectTeacherTermlyUploads as $upload){
+            foreach($classTeacher->subjectTeacherTermlyUploads->where('term_id',$this->currentSessionTerm()->term->id) as $upload){
                 $uploads[] = $upload;
             }
         }

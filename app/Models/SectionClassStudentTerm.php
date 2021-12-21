@@ -44,6 +44,9 @@ class SectionClassStudentTerm extends BaseModel
             $count++;
             $total = $total + $result->total;
         }
+        if($count == 0){
+            $count = 1;
+        }
         
         return number_format($total/$count,2);
     }

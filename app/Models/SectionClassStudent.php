@@ -65,6 +65,7 @@ class SectionClassStudent extends BaseModel
 
     public function nextSectionClassStudentTerm()
     {
+        
         switch ($this->currentStudentTerm()->academicSessionTerm->term_id) {
             case '1':
                 // second term

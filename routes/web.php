@@ -62,7 +62,7 @@ Route::name('dashboard.')
     ->prefix('/section')
     ->group(function (){
         Route::get('/{sectionId}', 'SectionController@index')->name('index');
-        // section class teacers routes
+        // section class teachers routes
         Route::name('class-teacher.')
         ->prefix('{sectionClassId}/class-teacher')
         ->group(function (){
@@ -196,6 +196,8 @@ Route::name('dashboard.')
     ->prefix('/student')
     ->group(function (){
         
+        Route::get('/{academicSessionTermId}/resume', 'StudentController@resume')->name('resume');
+        Route::get('/{academicSessionTermId}/confirm-resume', 'StudentController@confirmResume')->name('resume.confirm');
         Route::get('/', 'StudentController@index')->name('index');
         Route::get('/create', 'StudentController@create')->name('create');
         Route::post('/register', 'StudentController@register')->name('register');
