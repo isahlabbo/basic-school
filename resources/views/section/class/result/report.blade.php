@@ -23,6 +23,7 @@
                             <p class="h3 text text-center"><b>{{config('app.title')}}</b></p>
                             <p class="text text-center mb-0 h4">{{config('app.motto')}}</p>
                             <p class="text text-center mb-0 h5">{{config('app.address')}} </p>
+                            <p class="text text-center mb-0 h5">{{config('app.contact')}} </p>
                         </div>
                     </div>
                     <div class="row">
