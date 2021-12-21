@@ -13,11 +13,21 @@
             <div class="row from-group">
                 <div class="col-md-4"><label for="">Class Name</label></div>
                 <div class="col-md-8"><input type="text" name="class" placeholder="{{$section->name}} CLASS NAME" value="{{old('class')}}" class="form-control"></div>
-            </div>
+            </div><br>
             <div class="row from-group">
                 <div class="col-md-4"><label for="">Class Code</label></div>
                 <div class="col-md-8"><input type="text" name="code" placeholder="{{substr($section->name,0,1)}}A for primary A Class" value="{{old('code')}}" class="form-control"></div>
-            </div>
+            </div><br>
+            <div class="row from-group">
+                <div class="col-md-4"><label for="">Class Pass Mark</label></div>
+                <div class="col-md-8">
+                <select name="pass_mark" class="form-control">
+                  <option value="">Class Pass Mark</option>
+                  @for($i=1; $i<=100; $i++)
+                    <option value="{{$i}}">{{$i}} %</option>
+                  @endfor
+                </select>  
+            </div><br>
             <button class="btn btn-primary">Register</button>
         </form>
       </div>

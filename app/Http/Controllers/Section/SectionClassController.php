@@ -23,13 +23,19 @@ class SectionClassController extends Controller
         $request->validate([
             'class'=>'required|string',
             'code'=>'required|string',
+            'pass_mark'=>'required|string',
             ]);
         $section = Section::find($sectionId);
 
         foreach($section->sectionClasses->where('name',$request->class) as $sectionClass){
             return redirect()->route('dashboard.section.index',$sectionId)->withWarning('Class has All ready exist');
         }
-        $section->sectionClasses()->create(['name'=>strtoupper($request->class),'code'=>strtoupper($request->code),'year_sequence'=>$section->getYearSequence()]);
+        $section->sectionClasses()->create([
+            'name'=>strtoupper($request->class),
+            'code'=>strtoupper($request->code),'year_sequence'=>$section->getYearSequence(),
+            'pass_mark'=>strtoupper($request->pass_mark),
+            
+            ]);
         return redirect()->route('dashboard.section.index',$sectionId)->withSuccess('Class Registered');
         
     }
@@ -39,10 +45,14 @@ class SectionClassController extends Controller
         $request->validate([
             'class'=>'required|string',
             'code'=>'required|string',
+            'pass_mark'=>'required|string',
             ]);
         $class = SectionClass::find($sectionClassId);
         $class->update([
-            'name'=>strtoupper($request->class),'code'=>strtoupper($request->code)]);
+            'name'=>strtoupper($request->class),
+            'code'=>strtoupper($request->code),
+            'pass_mark'=>strtoupper($request->pass_mark),
+            ]);
             return redirect()->route('dashboard.section.index',$class->section->id)->withSuccess('Class Updated');
     }
 

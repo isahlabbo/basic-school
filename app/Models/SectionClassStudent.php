@@ -7,10 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SectionClassStudent extends BaseModel
 {
-    public function studentResults()
-    {
-        return $this->hasMany(StudentResult::class);
-    }
+    
 
     public function sectionClass(Type $var = null)
     {
@@ -34,6 +31,46 @@ class SectionClassStudent extends BaseModel
     public function currentStudentTerm()
     {
         return $this->sectionClassStudentTerms->where('status','Active')->first();
+    }
+
+    public function expectedScore(Type $var = null)
+    {
+        return count($this->sectionclass->sectionClassSubjects) * 100;
+    }
+    public function averageScore()
+    {
+        $total = 0;
+        $count = 0;
+        foreach ($this->sectionClassStudentTerms as $sectionClassStudentTerm) {
+            $total += $sectionClassStudentTerm->studentTermTotalScore;
+            $count ++;
+        }
+        if($count == 0){
+            $count = 1;
+        }
+        return $total/$count;
+    }
+
+    public function promoteToNextClass()
+    {
+        if(100 * ($this->averageScore/$this->expectedScore) >= $this->sectionClass->pass_mark){
+            foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
+                $sectionClassStudentTerm->update(['status'=>'Not Active']);
+            }
+            $this->update(['status','Not Active']);
+            // find the next class and activate for the student
+            $newStudentClass = $this->student->sectionClassStudents()->create(['section_class_id'=>$this->sectionClass->nextClass()->id]);
+            foreach([1,2,3] as $term){
+                if($term ==1){
+                    $newStudentClass->sectionClassStudentTerms()->create(['term_id'=>$term,'status'=>'Active']);
+                }else{
+                    $newStudentClass->sectionClassStudentTerms()->create(['term_id'=>$term,'status'=>'Not Active']);
+                }
+            }
+            
+        }else{
+            // repeat the class
+        }
     }
 
     public function paidAmount($term)
