@@ -16,9 +16,9 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $student->name }}</td>
             <td>{{ $student->admission_no }}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{rand(1,20)}}</td>
+            <td>{{rand(1,20)}}</td>
+            <td>{{rand(1,60)}}</td>
         </tr>
     @endforeach
     </tbody>

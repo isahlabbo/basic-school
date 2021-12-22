@@ -63,7 +63,7 @@ class ResultSearchController extends Controller
 
     public function deleteUpload ($subjectTeacherTermlyUploadId)
     {
-        $upload = SubjectTeacherTermlyUpload::find($subcetTeacherTermlyUploadId);
+        $upload = SubjectTeacherTermlyUpload::find($subjectTeacherTermlyUploadId);
         
         foreach ($upload->studentResults as $studentResult) {
             $studentResult->delete();

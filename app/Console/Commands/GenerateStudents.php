@@ -49,7 +49,7 @@ class GenerateStudents extends Command
                         'name'=>'guardian test name '.$i,
                         'address'=>'guardian address '. $i,
                         'phone'=>$number+$i,
-                        'email'=>$number+$i.'@'.str_replace(' '.'',strtolower(config('app.name'))).'.com'
+                        'email'=>$number+$i.'@'.str_replace(' ','',strtolower(config('app.name'))).'.com'
                     ]);
 
                     $student = $guardian->students()->create([

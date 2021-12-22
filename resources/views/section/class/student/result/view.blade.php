@@ -165,7 +165,7 @@
                         <table class="table-bordered" style="width: 100%; height: 20px;">
                             <thead class="text text-center">
                                 <tr>
-                                    <th>EFECTIVE TRAITS</th>
+                                    <th>AFFECTIVE TRAITS</th>
                                     <th>RATING</th>
                                 </tr>
                             </thead>

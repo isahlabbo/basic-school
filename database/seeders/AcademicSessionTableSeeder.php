@@ -25,14 +25,20 @@ class AcademicSessionTableSeeder extends Seeder
             '2028/2029',
             '2029/2030'
         ];
-
+        $count = 1;
         foreach ($sessions as $session) {
             $academicSession = AcademicSession::firstOrCreate(['name'=>$session]);
-            if($academicSession->id == 1){
+            if($count == 1){
                 $academicSession->update(['status'=>'Active']);
+                $count++;
             }
             foreach ([1,2,3] as $term_id) {
-               $academicSession->academicSessionTerms()->firstOrCreate(['term_id'=>$term_id]);
+               if($count ==2 && $term_id == 1){
+                    $academicSession->academicSessionTerms()->firstOrCreate(['term_id'=>$term_id,'status'=>'Active']);
+               }else{
+                    $academicSession->academicSessionTerms()->firstOrCreate(['term_id'=>$term_id]);
+               } 
+               $count++;
             }
         }
     }
