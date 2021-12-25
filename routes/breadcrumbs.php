@@ -5,6 +5,19 @@ Breadcrumbs::for('dashboard', function ($trail) {
     $trail->push(Section::find(1)->currentSession()->name.' '.Section::find(1)->currentSessionTerm()->term->name.' Dashboard', route('dashboard'));
 });
 
+// Dashboard/comment
+Breadcrumbs::for('dashboard.comment', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Comment', route('dashboard.comment.index'));
+});
+
+// Dashboard/comment/view
+Breadcrumbs::for('dashboard.comment.view', function ($trail) {
+    $trail->parent('dashboard.comment');
+    $trail->push('Available Comment', route('dashboard.comment.view'));
+});
+
+
 // Dashboard/Academic Session
 Breadcrumbs::for('dashboard.session', function ($trail) {
     $trail->parent('dashboard');
@@ -57,8 +70,27 @@ Breadcrumbs::for('dashboard.section', function ($trail, $section) {
 // dashboard/section/class
 Breadcrumbs::for('dashboard.section.class', function ($trail, $sectionClass) {
     $trail->parent('dashboard.section',$sectionClass->section);
-    $trail->push($sectionClass->name, route('dashboard.section.class.index',[$sectionClass->id]));
+    $trail->push($sectionClass->name, route('dashboard.section.class.student',[$sectionClass->id]));
 });
+
+// dashboard/section/class/edit student info
+Breadcrumbs::for('dashboard.section.class.student.edit', function ($trail, $student) {
+    $trail->parent('dashboard.section.class',$student->activeSectionClass());
+    $trail->push('Edit Student Info', route('dashboard.section.class.student.edit',[$student->id]));
+});
+
+// dashboard/section/class/fee
+Breadcrumbs::for('dashboard.section.class.fee', function ($trail, $sectionClass) {
+    $trail->parent('dashboard.section.class',$sectionClass);
+    $trail->push('Class Payment Management', route('dashboard.payment.class.fee.index',[$sectionClass->id]));
+});
+
+// dashboard/section/class/result
+Breadcrumbs::for('dashboard.section.class.result', function ($trail, $sectionClass) {
+    $trail->parent('dashboard.section.class',$sectionClass);
+    $trail->push('Result Management', route('dashboard.section.class.subject.result',[$sectionClass->id]));
+});
+
 
 // dashboard/section/class/subject
 Breadcrumbs::for('dashboard.section.class.subject', function ($trail, $sectionClass) {

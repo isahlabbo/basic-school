@@ -3,11 +3,12 @@
         {{config('app.name')}} register new teacher
     @endsection
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard')}}
+       {{Breadcrumbs::render('dashboard.comment')}}
     @endsection
     @section('content')
         <div>
         <button class="btn btn-secondary" id="print" onclick="printContent('report');" >Print</button>
+        <a href="{{route('dashboard.comment.view')}}"><button class="btn btn-primary">View Coments</button></a>
         </div>
         <div id="report">
        

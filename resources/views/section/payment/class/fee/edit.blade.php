@@ -45,7 +45,7 @@
                 
                 </div>
             </div>
-            <button class="btn btn-primary">ADD FEE</button>
+            <button class="btn btn-primary">UPDATE FEE</button>
         </form>
       </div>
       <div class="modal-footer">

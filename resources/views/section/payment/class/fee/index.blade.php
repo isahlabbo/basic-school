@@ -3,7 +3,7 @@
         {{config('app.name')}} payment
     @endsection
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard')}}
+       {{Breadcrumbs::render('dashboard.section.class.fee',$sectionClass)}}
     @endsection
     @section('content')
     <div class="row">

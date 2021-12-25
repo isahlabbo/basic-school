@@ -2,8 +2,9 @@
     @section('title')
         {{config('app.name')}} edit student student
     @endsection
+    
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard.student.create')}}
+       {{Breadcrumbs::render('dashboard.section.class.student.edit',$student)}}
     @endsection
     @section('content')
     <div class="row">

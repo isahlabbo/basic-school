@@ -3,7 +3,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+<<<<<<< HEAD
 use App\Models\Student;
+=======
+>>>>>>> deeb64acc1133690d2cad96a15076644eec8806e
 
 class DeleteStudent extends Command
 {
@@ -12,7 +15,11 @@ class DeleteStudent extends Command
      *
      * @var string
      */
+<<<<<<< HEAD
     protected $signature = 'school:dummy-student-clean';
+=======
+    protected $signature = 'command:name';
+>>>>>>> deeb64acc1133690d2cad96a15076644eec8806e
 
     /**
      * The console command description.
@@ -38,6 +45,7 @@ class DeleteStudent extends Command
      */
     public function handle()
     {
+<<<<<<< HEAD
         $this->output->progressStart(count(Student::all()));
         foreach (Student::all() as $student) {
             if($student->name == 'student test name'){
@@ -54,5 +62,8 @@ class DeleteStudent extends Command
             
         }
         $this->output->progressFinish();
+=======
+        return 0;
+>>>>>>> deeb64acc1133690d2cad96a15076644eec8806e
     }
 }

@@ -16,4 +16,40 @@ class CommentController extends Controller
             'headTeacherComments'=>HeadTeacherComment::all()
         ]);
     }
+
+    public function view()
+    {
+        return view('section.comment.view',[
+            'teacherComments'=>TeacherComment::all(),
+            'headTeacherComments'=>HeadTeacherComment::all()
+        ]);
+    }
+
+    public function updateTeacherComment (Request $request, $teacherCommentId)
+    {
+        $comment = TeacherComment::find($teacherCommentId);
+        $comment->update(['name'=>$request->name,'gender'=>$request->gender]);
+        return redirect()->route('dashboard.comment.view')->withSuccess('Teacher Comment Updated');
+    }
+
+    public function updateHeadTeacherComment (Request $request, $headTeacherCommentId)
+    {
+        $comment = HeadTeacherComment::find($headTeacherCommentId);
+        $comment->update(['name'=>$request->name,'gender'=>$request->gender]);
+        return redirect()->route('dashboard.comment.view')->withSuccess('Head Teacher Comment Updated');
+    }
+
+    public function deleteTeacherComment ($teacherCommentId)
+    {
+        $comment = TeacherComment::find($teacherCommentId);
+        $comment->delete();
+        return redirect()->route('dashboard.comment.view')->withSuccess('Teacher Comment Deleted');
+    }
+
+    public function deleteHeadTeacherComment ($headTeacherCommentId)
+    {
+        $comment = HeadTeacherComment::find($headTeacherCommentId);
+        $comment->delete();
+        return redirect()->route('dashboard.comment.view')->withSuccess('Head Teacher Comment Deleted');
+    }
 }
