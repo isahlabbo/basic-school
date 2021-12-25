@@ -7,9 +7,10 @@
     @yield('styles')
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/appStyle.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <!-- jquery -->
     <script src="{{asset('js/jquery-1.8.2.min.js')}}"></script>
-
+   
     <script>
         function printContent(el){
         var restorepage = $('body').html();
@@ -19,10 +20,16 @@
         $('body').html(restorepage);
         }
     </script>
+
+    
     @livewireStyles
     
 </head>
 <body >
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
     <div id="header">
         <div> <a href="{{url('/dashboard')}}"><img src="{{asset(config('app.logo'))}}" alt=""></a>
             <ul>
@@ -56,9 +63,11 @@
         @include('sweetalert::alert') 
         @yield('content')
     </div>
+    
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/Ajax/sectionClasses.js')}}"></script>
     <script src="{{asset('js/Ajax/classSubjects.js')}}"></script>
+    <script src="{{asset('js/main.js')}}"></script>
     @yield('scripts')
     @livewireScripts
 </body>

@@ -41,7 +41,7 @@
         <br>
         <div class="card shadow">
             <div class="card-body">
-                <div class="card-header shadow h5 text-center"><b> Teacher Comment</b></div>
+                <div class="card-header shadow h5 text-center"><b>Head Teacher Comment</b></div>
                 <table class="table">
                     <thead>
                         <tr>

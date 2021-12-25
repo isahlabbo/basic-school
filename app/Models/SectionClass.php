@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SectionClass extends BaseModel
 {
+
     public function section()
     {
         return $this->belongsTo(Section::class);
