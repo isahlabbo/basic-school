@@ -3,7 +3,7 @@
         {{config('app.name')}} students
     @endsection
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard.student')}}
+       {{Breadcrumbs::render('dashboard.section.class',$sectionClass)}}
     @endsection
     
     @section('content')

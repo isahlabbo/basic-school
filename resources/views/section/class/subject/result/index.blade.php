@@ -3,7 +3,7 @@
         {{$sectionClass->name}}  subjects results
     @endsection
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard')}}
+       {{Breadcrumbs::render('dashboard.section.class.result',$sectionClass)}}
     @endsection
     @section('content')
     <div class="card">
@@ -29,6 +29,7 @@
         <tbody>
             @foreach($sectionClass->sectionClassSubjects as $sectionClassSubject)
                 @include('section.class.result.access')
+                @include('school.teacher.scoreSheet.upload')
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$sectionClassSubject->subject->name}}</td>
@@ -39,7 +40,7 @@
                     </td>
                     <td><button class="btn btn-success">{{count($sectionClassSubject->sectionClassSubjectDownloads->where('academic_session_term_id',$sectionClassSubject->currentSessionTerm()->id))}}</button></td>
                     <td>
-                        <a href="{{route('dashboard.teacher.upload.scoresheet',[$sectionClassSubject->activeSectionClassSubjectTeacher()->sectionClassSubject->id])}}"><button class="btn btn-secondary">Upload Result</button></a>
+                        <btton data-toggle="modal" data-target="#upload_{{$sectionClassSubject->id}}" class="btn btn-secondary">Upload Result</button>
                     </td>
                     <td><button class="btn btn-success">{{count($sectionClassSubject->sectionClassSubjectUploads->where('academic_session_term_id',$sectionClassSubject->currentSessionTerm()->id))}}</button></td>
                 </tr>

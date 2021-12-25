@@ -35,7 +35,7 @@ class ScoreSheetController extends Controller
         ]);
         $sectionClassSubject = SectionClassSubject::find($request->sectionClassSubjectId);
         $sectionClassSubject->sectionClassSubjectUploads()->create(['academic_session_term_id'=>$sectionClassSubject->currentSessionTerm()->id]);
-        Excel::import(new ScoreSheetImport($sectionClassSubject, Term::find($request->term)), request()->file('score_sheet'));
+        $export = Excel::import(new ScoreSheetImport($sectionClassSubject, Term::find($request->term)), request()->file('score_sheet'));
         
         if(Auth::user()->role =='Teacher'){
             return redirect()->route('dashboard')->withSuccess('Result Uploaded Success fully');

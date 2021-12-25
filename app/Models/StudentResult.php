@@ -24,18 +24,12 @@ class StudentResult extends BaseModel
     public function reComputeGrade()
     {
         $total = $this->total;
+        
         if($total > 0){
-            $grade = 'F';
-            if($total >= 70){
-                $grade = 'A';
-            }elseif($total >=60){
-                $grade = 'B';
-            }elseif($total >=50){
-                $grade = 'C';
-            }elseif($total >=45){
-                $grade = 'D';
-            }elseif($total >=40){
-                $grade = 'E';
+            foreach(GradeScale::all() as $gradeScale){
+                if($this->total >= $gradeScale->from && $this->total <= $gradeScale->to){
+                    $grade = $gradeScale->grade;
+                }
             }
         }else{
             $grade = 'Absent';
@@ -44,53 +38,20 @@ class StudentResult extends BaseModel
     }
     public function effort()
     {
-        $effort = null;
-
-        switch ($this->grade) {
-            case 'A':
-                $effort = 5;
-                break;
-            case 'B':
-                $effort = 4;
-                break;
-            case 'C':
-                $effort = 3;
-                break;
-            case 'D':
-                $effort = 2;
-                break;
-            case 'D':
-                $effort = 1;
-                break;        
-            default:
-                $effort = 0;
-                break;
+        
+        foreach (RemarkScale::all() as $remarkScale) {
+           if($remarkScale->grade == $this->grade){
+               return $remarkScale->scale;
+           }
         }
-        return $effort;
     }
 
     public function remark()
     {
-        switch ($this->grade) {
-            case 'A':
-                $remark = 'Excellent';
-                break;
-            case 'B':
-                $remark = 'Very Good';
-                break;
-            case 'C':
-                $remark = 'Good';
-                break;
-            case 'D':
-                $remark = 'Pass';
-                break;
-            case 'E':
-                $remark = 'Fair';
-                break;
-            default:
-                $remark = 'Poor';
-                break;
+        foreach (RemarkScale::all() as $remarkScale) {
+            if($remarkScale->grade == $this->grade){
+                return $remarkScale->remark;
+            }
         }
-        return $remark;
     }
 }

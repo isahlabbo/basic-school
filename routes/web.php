@@ -55,6 +55,11 @@ Route::name('dashboard.')
     ->prefix('/comment')
     ->group(function (){
         Route::get('/', 'CommentController@index')->name('index');
+        Route::get('/view', 'CommentController@view')->name('view');
+        Route::post('/teacher-comment/{teacherCommentId}/update', 'CommentController@updateTeacherComment')->name('teacher.update');
+        Route::post('/head-teacher-comment/{headteacherCommentId}/update', 'CommentController@updateHeadTeacherComment')->name('headteacher.update');
+        Route::get('/teacher-comment/{teacherCommentId}/delete', 'CommentController@deleteTeacherComment')->name('teacher.delete');
+        Route::get('/head-teacher-comment/{headteacherCommentId}/delete', 'CommentController@deleteHeadTeacherComment')->name('headteacher.delete');
     });
     // school section routes
     Route::namespace('Section')
