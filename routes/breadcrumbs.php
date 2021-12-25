@@ -1,8 +1,8 @@
 <?php
-
+use App\Models\Section;
 // Dashboard
 Breadcrumbs::for('dashboard', function ($trail) {
-    $trail->push('Dashboard', route('dashboard'));
+    $trail->push(Section::find(1)->currentSession()->name.' '.Section::find(1)->currentSessionTerm()->term->name.' Dashboard', route('dashboard'));
 });
 
 // Dashboard/Academic Session
