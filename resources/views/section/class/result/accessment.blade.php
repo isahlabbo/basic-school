@@ -27,8 +27,8 @@
         <td>80</td>
         <td>70</td>
         <td>10</td>
-        <td>{{rand(1,46)}}</td>
-        <td>{{rand(1,16)}}</td>
+        <td>{{rand(2,46)}}</td>
+        <td>{{rand(2,16)}}</td>
         @foreach($affectiveTraits->where('status',1) as $affectiveTrait)
            <td>{{rand(2,5)}}</td>
         @endforeach
