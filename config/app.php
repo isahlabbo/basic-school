@@ -25,7 +25,7 @@ return [
 
     'logo' => env('APP_LOGO', 'School Logo'),
 
-    'contact' => env('APP_CONTACT', ''),
+    'contact' => env('APP_CONTACT', 'School Contact'),
     
     
     'nursery_class_position' => env('NURSERY_CLASS_REMARK', ),
