@@ -98,6 +98,22 @@ Route::name('dashboard.')
                     Route::post('/{affectiveTraitId}/update', 'AffectiveTraitController@update')->name('update');
                     Route::get('/{affectiveTraitId}/delete', 'AffectiveTraitController@delete')->name('delete');
                 });
+               
+                Route::name('remark.')
+                ->prefix('/remark')
+                ->group(function (){
+                    Route::post('/register', 'RemarkController@register')->name('register');
+                    Route::post('/{remarkId}/update', 'RemarkController@update')->name('update');
+                    Route::get('/{remarkId}/delete', 'RemarkController@delete')->name('delete');
+                });
+
+                Route::name('grade.')
+                ->prefix('/grade')
+                ->group(function (){
+                    Route::post('/register', 'GradeController@register')->name('register');
+                    Route::post('/{gradeId}/update', 'GradeController@update')->name('update');
+                    Route::get('/{gradeId}/delete', 'GradeController@delete')->name('delete');
+                });
 
                 Route::get('/', 'ReportCardConfigurationController@index')->name('index');
             });

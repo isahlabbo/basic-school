@@ -73,13 +73,15 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <p  class="text-center"><b></b></p>
                                         <table class="table-bordered text-center" style="width: 100%; height: 20px;">
                                             <thead>
                                                 <tr>
                                                     <th>SCALE</th>
                                                     <th>REMARK</th>
+                                                    <th>PERCENT</th>
+                                                    <th>GRADE</th>
                                                     <th></th>
                                                     <th></th>
                                                 </tr>
@@ -89,34 +91,47 @@
                                                 <tr>
                                                     <td>{{$remarkScale->scale}}</td>
                                                     <td>{{$remarkScale->remark}}</td>
-                                                    <td><button class="btn btn-secondary">Edit</button></td>
+                                                    <td>{{$remarkScale->percent}}</td>
+                                                    <td>{{$remarkScale->grade}}</td>
+                                                    <td><button data-toggle="modal" data-target="#remark_{{$remarkScale->id}}" class="btn btn-secondary">Edit</button></td>
                                                     <td><button class="btn btn-primary">Delete</button></td>
                                                 </tr>
+                                                @include('section.configuration.remark.edit')
                                                 @endforeach
                                             </tbody>
                                        </table>
                                     </div>
-                                    <div class="col-md-6">
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
                                         <p  class="text-center"><b>KEY TO GRADING</b></p>
                                         <table class="table-bordered text-center" style="width: 100%; height: 20px;">
                                         <thead>
                                             <tr>
                                                 <th>GRADE</th>
-                                                <th>SCORE</th>
+                                                <th>FROM</th>
+                                                <th>TO</th>
                                                 <th></th>
-                                                <th></th>
+                                                <th>
+                                                    <button data-toggle="modal" data-target="#newGrade" class="btn btn-secondary">New Grade</button>
+                                                </th>
+                                                @include('section.configuration.grade.create')
                                             </tr>
                                         </thead>    
                                         <tbody>
-                                                @foreach($gradeScales as $gradeScale)
+                                            @foreach($gradeScales as $gradeScale)
                                                 <tr>
                                                     <td>{{$gradeScale->grade}}</td>
-                                                    <td>{{$gradeScale->from}} to {{$gradeScale->to}}</td>
-                                                    <td><button class="btn btn-secondary">Edit</button></td>
-                                                    <td><button class="btn btn-primary">Delete</button></td>
+                                                    <td>{{$gradeScale->from}}</td>
+                                                    <td>{{$gradeScale->to}}</td>
+                                                    <td><button data-toggle="modal" data-target="#grade_{{$gradeScale->id}}" class="btn btn-secondary">Edit</button></td>
+                                                    <td><a href="{{route('dashboard.section.configuration.reportcard.grade.delete',$gradeScale->id)}}">
+                                                    <button onclick="return confirm('Are you sure, you want delete this grade')" class="btn btn-primary">Delete</button></a></td>
                                                 </tr>
-                                                @endforeach
-                                            </tbody>
+                                                @include('section.configuration.grade.edit')
+                                            @endforeach
+                                        </tbody>
                                        </table>
                                     </div>
                                 </div>
