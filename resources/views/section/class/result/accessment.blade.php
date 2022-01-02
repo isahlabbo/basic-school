@@ -20,7 +20,7 @@
     </tr>
 </thead>
 <tbody>
-@if(config('app.env') == 'local')
+@if(config('app.mode') == 'TEST')
     @foreach($sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent)
     <tr>
         <td>{{$sectionClassStudent->student->name}}</td>
@@ -33,12 +33,9 @@
         @foreach($affectiveTraits->where('status',1) as $affectiveTrait)
            <td>{{rand(2,5)}}</td>
         @endforeach
-
         @foreach($psychomotors->where('status',1) as $psychomotor)
            <td>{{rand(2,5)}}</td>
         @endforeach
-
-        
     </tr>
     @endforeach
 @else

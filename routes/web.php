@@ -222,6 +222,9 @@ Route::name('dashboard.')
         Route::get('/{academicSessionTermId}/confirm-resume', 'StudentController@confirmResume')->name('resume.confirm');
         Route::get('/', 'StudentController@index')->name('index');
         Route::get('/create', 'StudentController@create')->name('create');
+        Route::get('/student/{studentId}/delete', 'StudentController@delete')->name('delete');
+        Route::get('/student/{studentId}/edit', 'StudentController@edit')->name('edit');
+        Route::post('/student/{studentId}/update', 'StudentController@update')->name('update');
         Route::post('/register', 'StudentController@register')->name('register');
         Route::name('accessment.')
         ->prefix('/accessment')

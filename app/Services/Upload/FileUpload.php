@@ -14,18 +14,14 @@ trait FileUpload
         $file->storeAs($location, $filename, $this->fileSystem());
 
         $model->update([$field => $fullPath]);
-
+        
     }
 
     public function updateFile($model, $field, $newFile, $newLocation)
     {
         Storage::disk($this->fileSystem())->delete($model->$field);
 
-        $file = $this->storeFile($newFile, $newLocation);
-
-        $model->$field = $file;
-        
-        $model->save();
+        $this->storeFile($model, $field, $newFile, $newLocation);
     }
 
     private function fileSystem()

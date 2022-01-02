@@ -49,8 +49,10 @@
                         
                     </td>
                     <td>
-                        <button class="btn btn-secondary">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
+                        <a href="{{route('dashboard.student.edit',[$student->id])}}">
+                        <button class="btn btn-secondary">Edit</button></a>
+                        <a href="{{route('dashboard.student.delete',[$student->id])}}">
+                            <button onclick="return confirm('Are you sure, you want to delete this student record')" class="btn btn-danger">Delete</button></a>
                     </td>
                 </tr>
             @endforeach

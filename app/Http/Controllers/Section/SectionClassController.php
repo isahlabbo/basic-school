@@ -9,10 +9,13 @@ use App\Models\Student;
 use App\Models\Section;
 use App\Exports\SectionClassStudentExport;
 use App\Imports\SectionClassStudentImport;
+use App\Services\Upload\FileUpload;
 use Excel;
 
 class SectionClassController extends Controller
 {
+    use FileUpload;
+
     public function index($sectionClassId)
     {
         return view('section.class.index',['sectionClass'=>SectionClass::find($sectionClassId)]);
@@ -34,7 +37,6 @@ class SectionClassController extends Controller
             'name'=>strtoupper($request->class),
             'code'=>strtoupper($request->code),'year_sequence'=>$section->getYearSequence(),
             'pass_mark'=>strtoupper($request->pass_mark),
-            
             ]);
         return redirect()->route('dashboard.section.index',$sectionId)->withSuccess('Class Registered');
         
@@ -110,6 +112,7 @@ class SectionClassController extends Controller
 
     public function update(Request $request, $studentId)
     {
+        $sectionClass = SectionClass::find($request->class);
         $student = Student::find($studentId);
         $student->guardian->update([
             'name'=>strtoupper($request->guardian_name),
@@ -133,6 +136,13 @@ class SectionClassController extends Controller
                 }
                 $count++;
             }
+        }
+
+        if($request->picture){
+            $this->updateFile($student,'picture',$request->picture,$sectionClass->section->name.'/'
+            .$sectionClass->name.'/'
+            .str_replace('/','-',$sectionClass->currentSession()->name)
+            ."/Admission/");
         }
 
         $student->update([

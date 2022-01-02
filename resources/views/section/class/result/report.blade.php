@@ -113,9 +113,9 @@
                         <div class="col-md-3 text-center">
                             <p class="mb-0 text text-center"></p>
                             @if($sectionClassStudent->student->picture)
-                            <img src="{{$sectionClassStudent->student->profileImage()}}" alt="" height="170" width="150" class="rounded">
+                                <img src="{{$sectionClassStudent->student->profileImage()}}" alt="" height="170" width="150" class="rounded">
                             @else
-                            <img src="{{asset('assets/images/user.jpg')}}" width="170" height="150" class="rounded" alt="">
+                                <img src="{{asset('assets/images/user.jpg')}}" width="170" height="150" class="rounded" alt="">
                             @endif
                         </div>
                     </div>

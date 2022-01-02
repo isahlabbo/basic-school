@@ -39,44 +39,48 @@ class GenerateStudents extends Command
      */
     public function handle()
     {
-        $this->output->progressStart(count(Section::all()));
-        foreach (Section::all() as $section) {
-            foreach($section->sectionClasses as $sectionClass){
-                $number = '08162460000';
-               for($i = 1; $i <= 40; $i++){
+        if(config('app.mode') == "TEST"){
+            $this->output->progressStart(count(Section::all()));
+            foreach (Section::all() as $section) {
+                foreach($section->sectionClasses as $sectionClass){
+                    $number = '08162460000';
+                for($i = 1; $i <= 40; $i++){
 
-                    $guardian = Guardian::create([
-                        'name'=>'guardian test name '.$i,
-                        'address'=>'guardian address '. $i,
-                        'phone'=>$number+$i,
-                        'email'=>$number+$i.'@'.str_replace(' ','',strtolower(config('app.name'))).'.com'
-                    ]);
+                        $guardian = Guardian::create([
+                            'name'=>'guardian test name '.$i,
+                            'address'=>'guardian address '. $i,
+                            'phone'=>$number+$i,
+                            'email'=>$number+$i.'@'.str_replace(' ','',strtolower(config('app.name'))).'.com'
+                        ]);
 
-                    $student = $guardian->students()->create([
-                        'name'=>"student test name",
-                        'admission_no'=>$sectionClass->generateAdmissionNo(),
-                        'academic_session_id'=>$sectionClass->classAdmissionSession()->id,
-                        'date_of_birth'=>'2020/12/12',
-                        'section_class_id'=>$sectionClass->id,
-                        'gender'=>rand(1,2)
-                    ]);
-                    $classStudent = $student->sectionClassStudents()->create(['section_class_id'=>$sectionClass->id]);
-                    $count = 1;
-                    foreach($student->currentSession()->academicSessionTerms as $academicSessionTerm){
-                        if($count == 1){
-                            $academicSessionTerm->sectionClassStudentTerms()->create(['status'=>'Active','section_class_student_id'=>$classStudent->id]);
-                        }else{
-                            $academicSessionTerm->sectionClassStudentTerms()->create(['section_class_student_id'=>$classStudent->id]);
+                        $student = $guardian->students()->create([
+                            'name'=>"student test name",
+                            'admission_no'=>$sectionClass->generateAdmissionNo(),
+                            'academic_session_id'=>$sectionClass->classAdmissionSession()->id,
+                            'date_of_birth'=>'2020/12/12',
+                            'section_class_id'=>$sectionClass->id,
+                            'gender'=>rand(1,2)
+                        ]);
+                        $classStudent = $student->sectionClassStudents()->create(['section_class_id'=>$sectionClass->id]);
+                        $count = 1;
+                        foreach($student->currentSession()->academicSessionTerms as $academicSessionTerm){
+                            if($count == 1){
+                                $academicSessionTerm->sectionClassStudentTerms()->create(['status'=>'Active','section_class_student_id'=>$classStudent->id]);
+                            }else{
+                                $academicSessionTerm->sectionClassStudentTerms()->create(['section_class_student_id'=>$classStudent->id]);
+                            }
+                            $count++;
                         }
-                        $count++;
+                        $number++;
+                        
                     }
-                    $number++;
-                    
                 }
+                $this->output->progressAdvance();
             }
-            $this->output->progressAdvance();
+            $this->output->progressFinish();
+        }else {
+            dd ("Sorry we cant execute this command because your application is not in test mode");
         }
-        $this->output->progressFinish();
     }
    
 }

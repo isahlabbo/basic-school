@@ -24,6 +24,12 @@ class StudentController extends Controller
        return view('school.student.create',['sections'=>Section::all()]);
     }
 
+    public function edit($studentId)
+    {
+       return view('school.student.edit',['student'=>Student::find($studentId),'sections'=>Section::all()]);
+    }
+
+
     public function resume($academicSessionTermId)
     {
         return view('school.student.resume',['academicSessionTerm'=>AcademicSessionTerm::find($academicSessionTermId)]);
@@ -72,7 +78,7 @@ class StudentController extends Controller
             $sectionClass->section->name.'/'
             .$sectionClass->name.'/'
             .str_replace('/','-',$sectionClass->currentSession()->name)
-            .'/Admission/');
+            ."/Admission/");
         }
 
         $classStudent = $student->sectionClassStudents()->create(['section_class_id'=>$sectionClass->id]);
