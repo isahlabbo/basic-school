@@ -83,7 +83,8 @@
                                                     <th>PERCENT</th>
                                                     <th>GRADE</th>
                                                     <th></th>
-                                                    <th></th>
+                                                    <th><button data-toggle="modal" data-target="#newRemark" class="btn btn-secondary">New Remark</button></th>
+                                                    @include('section.configuration.remark.create')
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -94,7 +95,8 @@
                                                     <td>{{$remarkScale->percent}}</td>
                                                     <td>{{$remarkScale->grade}}</td>
                                                     <td><button data-toggle="modal" data-target="#remark_{{$remarkScale->id}}" class="btn btn-secondary">Edit</button></td>
-                                                    <td><button class="btn btn-primary">Delete</button></td>
+                                                    <td><a href="{{route('dashboard.section.configuration.reportcard.remark.delete',$remarkScale->id)}}">
+                                                    <button onclick="return confirm('Are you sure, you want delete this remark')" class="btn btn-primary">Delete</button></a></td>
                                                 </tr>
                                                 @include('section.configuration.remark.edit')
                                                 @endforeach

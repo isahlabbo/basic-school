@@ -14,7 +14,8 @@ class StudentController extends Controller
 {
     public function index()
     {
-       return view('school.student.index',['students'=>Student::paginate(5)]);
+        
+       return view('school.student.index',['students'=>Student::find(1)->currentSession()->students]);
     }
 
     public function create()
