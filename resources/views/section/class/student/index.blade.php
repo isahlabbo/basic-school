@@ -7,10 +7,11 @@
     @endsection
     
     @section('content')
-        <table class="table table-striped " id="datatable-buttons">
+    <table class="table table-striped " id="datatable-buttons">
         <thead>
             <tr>
                 <th>S/N</th>
+                <th>PICTURE</th>
                 <th>NAME</th>
                 <th>ADMISSION NO</th>
                 <th>GENDER</th>
@@ -37,6 +38,13 @@
             @foreach($sectionClass->sectionClassStudents as $sectionClassStudent)
                 <tr>
                     <td>{{$loop->iteration}}</td>
+                    <td>
+                        @if($sectionClassStudent->student->picture)
+                            <img src="{{$sectionClassStudent->student->profileImage()}}" alt="" height="120" width="120" class="rounded">
+                        @else
+                            <img src="{{asset('assets/images/user.jpg')}}" width="120" height="120" class="rounded" alt="">
+                        @endif
+                    </td>
                     <td>{{$sectionClassStudent->student->name}}</td>
                     <td>{{$sectionClassStudent->student->admission_no}}</td>
                     <td>{{$sectionClassStudent->student->gender()}}</td>
@@ -61,5 +69,4 @@
         </tbody>
         </table>
     @endsection
-    
 </x-app-layout>

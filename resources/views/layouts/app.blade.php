@@ -31,7 +31,8 @@
         <div class="loader"></div>
     </div>
     <div id="header">
-        <div> <a href="{{url('/dashboard')}}"><img src="{{asset(config('app.logo'))}}" alt=""></a>
+        <div> 
+        <a href="{{url('/dashboard')}}"><img src="{{asset(config('app.logo'))}}" alt=""></a>
             <ul>
                 <li class="current"><a href="{{ url('/dashboard') }}">Dasborad</a></li>
                 
@@ -59,7 +60,7 @@
     <div >
         @yield('breadcrumb')
     </div>
-    <div class="container"> 
+    <div class=""> 
         @include('sweetalert::alert') 
         @yield('content')
     </div>

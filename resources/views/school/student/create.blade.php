@@ -12,7 +12,7 @@
             <div class="card shadow">
                 <div class="card-body">
                     <div class="card-header text text-bold"><b>Register New Student</b></div><br>
-                    <form action="{{route('dashboard.student.register')}}" method="post">
+                    <form action="{{route('dashboard.student.register')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -94,6 +94,12 @@
                                             <div class="col-md-3"><label for="">Date Of Birth</label></div>
                                             <div class="col-md-9">
                                                 <input type="date" class="form-control" name="date_of_birth" value="{{old('date_of_birth')}}" placeholder="Teacher's Date of birth">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-3"><label for="">Select Picture</label></div>
+                                            <div class="col-md-9">
+                                                <input type="file" class="form-control" name="picture" value="{{old('picture')}}" placeholder="Teacher's Date of birth">
                                             </div>
                                         </div>
                                         <div class="form-group row">

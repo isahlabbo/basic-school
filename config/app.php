@@ -27,8 +27,7 @@ return [
 
     'contact' => env('APP_CONTACT', 'School Contact'),
     
-    
-    'nursery_class_position' => env('NURSERY_CLASS_REMARK', ),
+    'nursery_class_position' => env('NURSERY_CLASS_REMARK', TRUE),
 
     /*
     |--------------------------------------------------------------------------

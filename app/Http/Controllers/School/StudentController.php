@@ -9,13 +9,14 @@ use App\Models\Section;
 use App\Models\SectionClass;
 use App\Models\Guardian;
 use App\Models\AcademicSessionTerm;
-
+use App\Services\Upload\FileUpload;
 class StudentController extends Controller
 {
+    use FileUpload;
+
     public function index()
     {
-        
-       return view('school.student.index',['students'=>Student::find(1)->currentSession()->students]);
+       return view('school.student.index',['students'=>Section::find(1)->currentSession()->students]);
     }
 
     public function create()
@@ -66,6 +67,13 @@ class StudentController extends Controller
             'academic_session_id'=>$sectionClass->classAdmissionSession()->id,
             'gender'=>$request->gender
         ]);
+        if($request->picture){
+            $this->storeFile($student,'picture',$request->picture,
+            $sectionClass->section->name.'/'
+            .$sectionClass->name.'/'
+            .str_replace('/','-',$sectionClass->currentSession()->name)
+            .'/Admission/');
+        }
 
         $classStudent = $student->sectionClassStudents()->create(['section_class_id'=>$sectionClass->id]);
         

@@ -20,6 +20,7 @@
     </tr>
 </thead>
 <tbody>
+@if(config('app.env') == 'local')
     @foreach($sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent)
     <tr>
         <td>{{$sectionClassStudent->student->name}}</td>
@@ -40,5 +41,25 @@
         
     </tr>
     @endforeach
+@else
+    @foreach($sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent)
+    <tr>
+        <td>{{$sectionClassStudent->student->name}}</td>
+        <td>{{$sectionClassStudent->student->admission_no}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        @foreach($affectiveTraits->where('status',1) as $affectiveTrait)
+           <td></td>
+        @endforeach
+
+        @foreach($psychomotors->where('status',1) as $psychomotor)
+           <td></td>
+        @endforeach
+    </tr>
+    @endforeach
+@endif    
 </tbody>
 </table>

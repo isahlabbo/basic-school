@@ -214,6 +214,9 @@ class SectionClass extends BaseModel
     public function getAdmissionYear()
     {
         $currentYear = date('Y');
+        if($currentYear == substr($this->currentSession()->name,'5',)){
+            $currentYear = $currentYear - 1;
+        }
         $year = null;
         switch ($this->year_sequence) {
             case 'First':

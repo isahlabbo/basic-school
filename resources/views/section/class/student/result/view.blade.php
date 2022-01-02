@@ -8,6 +8,7 @@
     @section('content')
         @foreach($student->sectionClassStudents as $sectionClassStudent)
             @foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm)<br><br>
+            @if($sectionClassStudentTerm->sectionClassStudentTermAccessment)
             <div class="card shadow">
                 <div class="card-body">
                     <div class="row">
@@ -28,28 +29,34 @@
                         <div class="col-md-5 text">
                         <table style="width: 100%">
                         <tr>
-                            
-                            <td><p class="mb-0">Admission No:</p></td>
-                            <td><p class="mb-0 text-right"><b>{{$student->admission_no}}</b></p></td>
+                            <td style="width: 150px"><p class="mb-0">Admission No:</p></td>
+                            <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->student->admission_no}}</b></p></td>
                         </tr>
                         <tr>
                             
                             <td> <p class="mb-0">Student Name:</p></td>
-                            <td><p class="mb-0 text-right"><b>{{$student->name}}</b></p></td>
+                            <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->student->name}}</b></p></td>
                         </tr>
                         <tr>
                             
                             <td><p class="mb-0">Sex:</p></td>
-                            <td><p class="mb-0 text-right"><b>{{$student->gender()}}</b></p></td>
+                            <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->student->gender()}}</b></p></td>
                         </tr>
                         <tr>
                             
                             <td><p class="mb-0">No in class:</p></td>
-                            <td><p class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'))}}:</b></p></td>
+                            <td><p class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'))}}</b></p></td>
                         </tr>
                         <tr>
                             
-                            <td><p class="mb-0">Position:</p></td>
+                            <td><p class="mb-0">
+                           
+                            @if(config('app.nursery_class_position') == true && $sectionClassStudent->sectionClass->section->name == 'NURSERY')
+                                Remark:
+                            @else
+                                Position:
+                            @endif
+                            </p></td>
                             <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->studentPosition($sectionClassStudentTerm) ?? 0}}</b></p></b></p></td>
                         </tr>
                         <tr>
@@ -72,7 +79,8 @@
                         </div>
 
                         <div class="col-md-3">
-                            <p class="mb-0">Next Term Begins:</p>
+                            <p class="mb-0">
+                            <tr><td>Next Term Begins:</td> <td><b>{{strtoupper(date('d-M-Y',strtotime($sectionClassStudent->nextSectionClassStudentTerm()->academicSessionTerm->start_at))) ?? 'Not available'}}</b></td></tr></p>
                             <p class="mb-0">Term: <b>{{strtoupper($sectionClassStudentTerm->academicSessionTerm->term->name)}}</b></p>
                             <p class="mb-0">Class: <b>{{$sectionClassStudent->sectionClass->name}}</b></p>
                             <p class="mb-0">Session: <b>{{$sectionClassStudentTerm->academicSessionTerm->academicSession->name}}</b></p>
@@ -97,9 +105,12 @@
                                 </tr>
                             </p>
                         </div>
-                        <div class="col-md-3 text-center">
-                            <p class="mb-0 text text-center"><b>1st of feb 2021</b></p>
+                    <div class="col-md-2 text-center">
+                            @if($student->picture)
+                            <img src="{{$student->profileImage()}}" alt="" height="170" width="150" class="rounded">
+                            @else
                             <img src="{{asset('assets/images/user.jpg')}}" width="170" height="150" class="rounded" alt="">
+                            @endif
                         </div>
                     </div>
                     <!-- result start -->
@@ -170,46 +181,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Punctuality</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->punctuality ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Attendance</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->attendance ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Reliability</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->reliability ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Neatness</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->neatness ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Politeness</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->politeness ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Honesty</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->honesty ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Relationship with Pupils</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->relationship_with_pupils ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Self-Control</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->self_control ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Attentiveness</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->attentiveness ?? 0}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Perseverance</td>
-                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->perseverance ?? 0}}</td>
-                                </tr>
+                            @foreach($sectionClassStudentTerm->sectionClassStudentTermAccessment->sectionClassStudentTermAccessmentAffectiveTraits as $accessmentTrait)    
+                            <tr>
+                                <td>{{$accessmentTrait->affectiveTrait->name}}</td>
+                                <td>{{$accessmentTrait->value}}</td>
+                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                         </div>
@@ -229,26 +206,12 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                @foreach($sectionClassStudentTerm->sectionClassStudentTermAccessment->sectionClassStudentTermAccessmentPsychomotors as $accessmentPsychomotor)    
                                                 <tr>
-                                                    <td>Handwriting</td>
-                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->handwriting ?? 0}}</td>
+                                                    <td>{{$accessmentPsychomotor->psychomotor->name}}</td>
+                                                    <td>{{$accessmentPsychomotor->value}}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Games</td>
-                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->games ?? 0}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Sports</td>
-                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->sports ?? 0}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Drawing & Painting</td>
-                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->drawing_and_painting ?? 0}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Crafts</td>
-                                                    <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->crafts ?? 0}}</td>
-                                                </tr>
+                                                @endforeach
                                             </tbody>
                                        </table>
                                     </div>
@@ -332,13 +295,14 @@
                         <div class="col-md-12">
                             <tr>
                                 <td style="width: 300px;">HEAD TEACHER REMARKS:</td>
-                                <td>hdddhdddh</td>
+                                <td>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->headTeacherComment->name ?? 0}}</td>
                             </tr>
                         </div>
                     </table>
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
         @endforeach
     @endsection
