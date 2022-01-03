@@ -60,7 +60,7 @@
     <div >
         @yield('breadcrumb')
     </div>
-    <div class=""> 
+    <div style="margin-left: 30px; margin-right: 30px;"> 
         @include('sweetalert::alert') 
         @yield('content')
     </div>

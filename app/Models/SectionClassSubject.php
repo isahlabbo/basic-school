@@ -42,6 +42,14 @@ class SectionClassSubject extends BaseModel
         return $uploads;
     }
 
+    public function hasCurrentTermUpload()
+    {
+        $upload = $this->activeSectionClassSubjectTeacher()->subjectTeacherTermlyUploads->where('academic_session_term_id',$this->currentSessionTerm()->id);
+        if($upload){
+            return true;
+        }
+        return false;
+    }
     
     public function activeSectionClassSubjectTeacher()
     {

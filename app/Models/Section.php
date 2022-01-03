@@ -11,6 +11,18 @@ class Section extends BaseModel
     {
         return $this->hasMany(SectionClass::class);
     }
+    public function subjectResultUploads()
+    {
+        $uploadedResult = [];
+        $awaitingResult = [];
+        
+        foreach ($this->sectionClasses as $sectionClass) {
+            $uploadedResult = array_merge($sectionClass->subjectResultUploads()['uploaded'],$uploadedResult);
+            $awaitingResult = array_merge($sectionClass->subjectResultUploads()['awaiting'],$awaitingResult);
+        }
+
+        return ['uploaded' => $uploadedResult, 'awaiting' => $awaitingResult];
+    }
 
     public function getYearSequence()
     {

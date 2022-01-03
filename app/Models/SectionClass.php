@@ -33,6 +33,22 @@ class SectionClass extends BaseModel
         return $this->hasMany(SectionClassTeacher::class);
     }
 
+    public function subjectResultUploads()
+    {
+        $uploadedResult = [];
+        $awaitingResult = [];
+
+        foreach ($this->sectionClassSubjects as $sectionClassSubject) {
+            if($sectionClassSubject->hasCurrentTermUpload()){
+                $uploadedResult[] = $sectionClassSubject;
+            }else{
+                $awaitingResult[] = $sectionClassSubject;
+            }
+        }
+
+        return ['uploaded' => $uploadedResult, 'awaiting' => $awaitingResult];
+    }
+
     public function nextClass()
     { 
         $year = null;

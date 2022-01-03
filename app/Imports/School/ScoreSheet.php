@@ -8,6 +8,7 @@ use App\Models\SectionClassSubject;
 use App\Models\SubjectTeacherTermlyUpload;
 use App\Models\Term;
 use App\Models\Student;
+use App\Models\AcademicSession;
 
 class ScoreSheet implements ToModel
 {
@@ -23,17 +24,19 @@ class ScoreSheet implements ToModel
     */
     public function model(array $row)
     {
-       
+       $session = AcademicSession::find(1);
+
         if(isset($row[2]) && $this->getThisStudent($row[2])){
             
             $subjectTeacherTermlyUpload = SubjectTeacherTermlyUpload::firstOrCreate([
                 'term_id'=>$this->term->id,
+                'academic_session_term_id'=>$session->currentSessionTerm()->id,
                 'section_class_subject_teacher_id'=>$this->sectionClassSubject->activeSectionClassSubjectTeacher()->id,
             ]);
             
             $result = $subjectTeacherTermlyUpload->studentResults()->firstOrCreate([
                 'section_class_student_term_id'  => $this->getThisStudent($row[2])->sectionClassStudents->where('status','Active')->first()->sectionClassStudentTerms->where('status','Active')->first()->id,
-                ]);
+            ]);
 
             if($row[3] == null || !is_numeric($row[3])){
                 $row[3] = 0;

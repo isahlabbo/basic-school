@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Teacher;
 use App\Models\Section;
+use App\Models\AcademicSession;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,9 +26,8 @@ Route::get('/', function () {
 });
 
 
-
 Route::middleware(['auth:sanctum', 'verified','resumed'])->get('/dashboard', function () {
-    return view('dashboard',['sections'=>Section::all()]);
+    return view('dashboard',['teachers'=>Teacher::all(),'session'=>AcademicSession::find(1),'sections'=>Section::all()]);
 })->name('dashboard');
 
 Route::name('dashboard.')
@@ -66,7 +67,11 @@ Route::name('dashboard.')
     ->name('section.')
     ->prefix('/section')
     ->group(function (){
-        Route::get('/{sectionId}', 'SectionController@index')->name('index');
+        Route::get('/{sectionId}/view', 'SectionController@view')->name('view');
+        Route::get('/{sectionId}/delete', 'SectionController@delete')->name('delete');
+        Route::post('/register', 'SectionController@register')->name('register');
+        Route::post('/{sectionId}/update', 'SectionController@update')->name('update');
+        Route::get('/', 'SectionController@index')->name('index');
         // section class teachers routes
         Route::name('class-teacher.')
         ->prefix('{sectionClassId}/class-teacher')

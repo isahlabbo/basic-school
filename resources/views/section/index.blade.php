@@ -1,62 +1,52 @@
 <x-app-layout>
     @section('title')
-        {{$section->name}}
+        sections
     @endsection
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard.section', $section)}}
+       {{Breadcrumbs::render('dashboard')}}
     @endsection
     @section('content')
-        <table class="table">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="card-header text text-center h4 shadow">{{config('app.name')}} Registered Sections</div>
+                <table class="table">
         <thead>
             <tr>
                 <th>S/N</th>
-                <th>CLASS</th>
-                <th>SUBJECTS</th>
-                <th>CURRENT STUDENTS</th>
-                <th>REPEATING STUDENTS</th>
-                <th>CLASS TEACHER</th>
-                <th></th>
-                <th></th>
-                <th><button data-toggle="modal" data-target="#addClass" class="btn btn-primary">Add Class</button></th>
-                @include('section.class.create')
+                <th>SECTION</th>
+                <th>CLASSES</th>
+                <th>UPLOADED RESULT</th>
+                <th>AWAITING RESULT</th>
+                <th><button data-toggle="modal" data-target="#addSection" class="btn btn-primary">ADD SECTION</button></th>
+                @include('section.create')
             </tr>
         </thead>
         <tbody>
-            @foreach($section->sectionClasses as $sectionClass)
-                @include('section.class.edit')
+            @foreach($sections as $section)
+                
                 <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>{{$sectionClass->name}}</td>
-                    <td><a href="{{route('dashboard.section.class.subject.index',[$sectionClass->id])}}">{{count($sectionClass->sectionClassSubjects)}}</a></td>
+                    <td>{{$section->name}}</td>
+                    <td>{{count($section->sectionClasses)}}</td>
+                    <td>{{count($section->subjectResultUploads()['uploaded'])}}</td>
+                    <td>{{count($section->subjectResultUploads()['awaiting'])}}</td>
                     <td>
-                        <a href="{{route('dashboard.section.class.student',[$sectionClass->id])}}">
-                        {{count($sectionClass->sectionClassStudents->where('status','Active'))}}</a>
+                        <a href="{{route('dashboard.section.view',[$section->id])}}"><button class="btn btn-secondary">
+                            VIEW CLASSES
+                        </button></a>
+                    
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#section_{{$section->id}}">EDIT</button>
+                        @include('section.edit')
+                        <a href="{{route('dashboard.section.delete',[$section->id])}}">
+                        <button onclick="return confirm('Are you sure, you want to delete this section from this school')" class="btn btn-danger">DELETE</button></a>
                     </td>
-                    <td>{{count($sectionClass->sectionClassStudents->where('status','Repeat'))}}</td>
-                    <td>
-                        {{$sectionClass->activeClassTeacher() ? $sectionClass->activeClassTeacher()->teacher->user->name : 'Not available'}}
-                    </td>
-                    <td><a href="{{route('dashboard.section.class.subject.result',[$sectionClass->id])}}"><button class="btn btn-secondary"> RESULT</button></a></td>
-                    <td><a href="{{route('dashboard.payment.class.fee.index',[$sectionClass->id])}}">
-                        <button class="btn btn-primary"> Fee</button></a>
-                    </td>
-                    <td>
-                        @if($sectionClass->activeClassTeacher())
-                        <a href="{{route('dashboard.section.class-teacher.reCreate',[$sectionClass->activeClassTeacher()->id])}}">
-                            <button class="btn btn-warning">Change Class Teacher</button>
-                        </a>
-                        @else
-                            <a href="{{route('dashboard.section.class-teacher.create',[$sectionClass->id])}}">
-                            <button class="btn btn-primary">Asign Class Teacher</button></a>
-                        @endif
-                    </td>
-                    <td>
-                    <button data-toggle="modal" data-target="#class_{{$sectionClass->id}}" class="btn btn-secondary">Edit</button>
-                    <a href="{{route('dashboard.section.class.delete',[$sectionClass->id])}}" onclick="return confirm('Are you sure, you want to delete this class')"><button class="btn btn-danger">Delete</button></a></td>
+                    
                 </tr>
             @endforeach
         </tbody>
         </table>
+            </div>
+        </div>
     @endsection
     
 </x-app-layout>

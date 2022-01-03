@@ -17,6 +17,11 @@ class SubjectTeacherTermlyUpload extends BaseModel
         return $this->belongsTo(Term::class);
     }
 
+    public function academicSessionTerm()
+    {
+        return $this->belongsTo(AcademicSessionTerm::class);
+    }
+
     public function studentResults()
     {
         return $this->hasMany(StudentResult::class);

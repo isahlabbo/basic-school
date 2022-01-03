@@ -1,0 +1,26 @@
+<div class="modal fade" id="section_{{$section->id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">({{$section->name}}) SECTION Edit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{route('dashboard.section.update',[$section->id])}}" method="post">
+            @csrf
+            <div class="row from-group">
+                <div class="col-md-4"><label for="">Section Name</label></div>
+                <div class="col-md-8"><input type="text" name="name" placeholder="PRIMARY" value="{{$section->name}}" class="form-control"></div>
+            </div><br>
+            <br>
+            <button class="btn btn-primary">Update</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
