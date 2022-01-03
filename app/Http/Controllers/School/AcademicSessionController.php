@@ -50,28 +50,38 @@ class AcademicSessionController extends Controller
             'start_at'=>$request->session_start_at,
             'end_at'=>$request->session_end_at
         ]);
+        $canUpdate = true;
         foreach($academicSession->academicSessionTerms as $academicSessionTerm){
             switch ($academicSessionTerm->term->id) {
                 case '1':
                 $academicSessionTerm->update([
                     'start_at'=>$request->First_Term_start_at,
-                    'end_at'=>$request->First_Term_end_at
+                    'end_at'=>$request->First_Term_end_at,
+                    'status'=>'Not Active'
                     ]);
                     break;
                 case '2':
                 $academicSessionTerm->update([
                     'start_at'=>$request->Second_Term_start_at,
-                    'end_at'=>$request->Second_Term_end_at
+                    'end_at'=>$request->Second_Term_end_at,
+                    'status'=>'Not Active'
                     ]);
                     break;
                 default:
                 $academicSessionTerm->update([
                     'start_at'=>$request->Third_Term_start_at,
-                    'end_at'=>$request->Third_Term_end_at
+                    'end_at'=>$request->Third_Term_end_at,
+                    'status'=>'Not Active'
                     ]);
                     break;
             }
+            
+            if($canUpdate && strtotime($academicSessionTerm->end_at) > time()){
+                $academicSessionTerm->update(['status'=>'Active']);
+                $canUpdate = false;
+            }
         }
+
 
         return redirect()->route('dashboard.session.configure',[$academicSession->id])->withSuccess($academicSession->name.' Configured Successfully');
     }
