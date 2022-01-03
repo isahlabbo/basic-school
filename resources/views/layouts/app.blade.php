@@ -34,7 +34,7 @@
         <div> 
         <a href="{{url('/dashboard')}}"><img src="{{asset(config('app.logo'))}}" alt=""></a>
             <ul>
-                <li class="current"><a href="{{ url('/dashboard') }}">Dasborad</a></li>
+                <li class="current"><a href="{{ url('/dashboard') }}"><i class="fa fa-users"></i> Dashboard</a></li>
                 
                     @if(Auth::user()->role == 'Admin')
                         @include('menu.admin')

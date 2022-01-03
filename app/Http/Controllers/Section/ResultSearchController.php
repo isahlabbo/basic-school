@@ -26,10 +26,9 @@ class ResultSearchController extends Controller
             if($student){
                 return redirect()->route('dashboard.section.class.student.result.view',[$student->id]);
             }else{
-                return redirect()->route('dashboard.section.class.subject.result.index');
+                return redirect()->route('dashboard.section.class.subject.result.index')->withWarning($request->admission_no.' student record not found');
             }
         }elseif($request->subject){
-
             $sectionClassSubject = SectionClassSubject::find($request->subject);
             if(count($sectionClassSubject->availableResultUploads())>0){
                 return redirect()->route('dashboard.section.class.subject.result.summary',[$sectionClassSubject->id])->withSuccess(count($sectionClassSubject->availableResultUploads()).' Result Summary Found');

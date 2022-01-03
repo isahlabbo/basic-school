@@ -56,7 +56,7 @@
                             
                             <td><p class="mb-0">
                            
-                            @if(config('app.nursery_class_position') == true && $sectionClassStudent->sectionClass->section->name == 'NURSERY')
+                            @if(config('app.nursery_class_position') && $sectionClassStudent->sectionClass->section->name == 'NURSERY')
                                 Remark:
                             @else
                                 Position:
@@ -233,22 +233,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach($remarkScales as $remarkScale)
                                                 <tr>
-                                                    <td>5</td>
-                                                    <td>Excellent</td>
+                                                    <td>{{$remarkScale->scale}}</td>
+                                                    <td>{{$remarkScale->remark}}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Good</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Fair</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Poor</td>
-                                                </tr>
+                                                @endforeach
                                             </tbody>
                                        </table>
                                     </div>
@@ -256,30 +246,12 @@
                                         <p  class="text-center"><b>KEY TO GRADING</b></p>
                                         <table class="table-bordered text-center" style="width: 100%; height: 20px;">
                                             <tbody>
+                                                @foreach($gradeScales as $gradeScale)
                                                 <tr>
-                                                    <td>A</td>
-                                                    <td>70-100</td>
+                                                    <td>{{$gradeScale->grade}}</td>
+                                                    <td>{{$gradeScale->from}}-{{$gradeScale->to}}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>B</td>
-                                                    <td>60-69</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>C</td>
-                                                    <td>50-59</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>D</td>
-                                                    <td>45-49</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>E</td>
-                                                    <td>40-44</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>F</td>
-                                                    <td>00-39</td>
-                                                </tr>
+                                                @endforeach
                                             </tbody>
                                        </table>
                                     </div>

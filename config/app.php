@@ -29,7 +29,7 @@ return [
 
     'mode' => env('APP_MODE', 'LIVE'),
     
-    'nursery_class_position' => env('NURSERY_CLASS_REMARK', TRUE),
+    'nursery_class_position' => env('NURSERY_CLASS_REMARK', true),
 
     /*
     |--------------------------------------------------------------------------
