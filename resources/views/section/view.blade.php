@@ -15,6 +15,8 @@
                 <th>CURRENT STUDENTS</th>
                 <th>REPEATING STUDENTS</th>
                 <th>CLASS TEACHER</th>
+                <th>UPLOADED RESULT</th>
+                <th>AWAITING RESULT</th>
                 <th></th>
                 <th></th>
                 <th><button data-toggle="modal" data-target="#addClass" class="btn btn-primary">Add Class</button></th>
@@ -36,6 +38,8 @@
                     <td>
                         {{$sectionClass->activeClassTeacher() ? $sectionClass->activeClassTeacher()->teacher->user->name : 'Not available'}}
                     </td>
+                    <td>{{count($sectionClass->subjectResultUploads()['uploaded'])}}</td>
+                    <td>{{count($sectionClass->subjectResultUploads()['awaiting'])}}</td>
                     <td><a href="{{route('dashboard.section.class.subject.result',[$sectionClass->id])}}"><button class="btn btn-secondary"> RESULT</button></a></td>
                     <td><a href="{{route('dashboard.payment.class.fee.index',[$sectionClass->id])}}">
                         <button class="btn btn-primary"> Fee</button></a>
