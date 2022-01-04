@@ -81,8 +81,8 @@
 </div>
 <div class="col-md-2 text-center">
     @if($student->picture)
-    <img src="{{$student->profileImage()}}" alt="" height="200" width="170" class="rounded">
+    <img src="{{$student->profileImage()}}" alt="" height="200" width="170p" class="rounded">
     @else
-    <img src="{{asset('assets/images/user.jpg')}}" width="200" height="170" class="rounded" alt="">
+    <img src="{{asset('assets/images/user.jpg')}}" width="200" height="170p" class="rounded" alt="">
     @endif
 </div>

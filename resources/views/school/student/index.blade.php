@@ -28,9 +28,7 @@
         <tbody>
             @foreach($students as $student)
                 <tr>
-               
                     <td>{{$loop->iteration}}</td>
-                    <td>{{$student->name}}</td>
                     <td>
                         @if($student->picture)
                             <img src="{{$student->profileImage()}}" alt="" height="120" width="120" class="rounded">
@@ -38,6 +36,7 @@
                             <img src="{{asset('assets/images/user.jpg')}}" width="120" height="120" class="rounded" alt="">
                         @endif
                     </td>
+                    <td>{{$student->name}}</td>
                     <td>{{$student->admission_no}}</td>
                     <td>{{$student->gender()}}</td>
                     <td>{{$student->activeSectionClass()->name ?? 'Not Available'}}</td>

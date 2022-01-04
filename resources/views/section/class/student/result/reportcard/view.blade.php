@@ -1,4 +1,4 @@
-<div class="card shadow">
+<div class="card shadow" style="page-break-inside: avoid;">
     <div class="card-body">
         <div class="row">
             @include('section.class.student.result.reportcard.component.schoolInfo')
@@ -20,7 +20,7 @@
             </div>
         </div>
         <!-- result end -->
-        <!-- accessment start -->
+        <!-- accessment start -->ap
         <br>
         <div class="row">
 

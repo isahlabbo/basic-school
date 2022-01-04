@@ -16,6 +16,7 @@
                 <thead>
                     <tr>
                         <th>S/N</th>
+                        <th>PICTURE</th>
                         <th>NAME</th>
                         <th>ADMISSION NO</th>
                         <th>1ST CA</th>
@@ -31,6 +32,13 @@
                     @foreach($subjectTeacherTermlyUpload->studentResults as $studentResult)
                     <tr>
                         <td>{{$loop->iteration}}</td>
+                        <td>
+                            @if($studentResult->sectionClassStudentTerm->sectionClassStudent->student->picture)
+                                <img src="{{$studentResult->sectionClassStudentTerm->sectionClassStudent->student->profileImage()}}" alt="" height="100" width="100" class="rounded">
+                            @else
+                                <img src="{{asset('assets/images/user.jpg')}}" width="100" height="100" class="rounded" alt="">
+                            @endif
+                        </td>
                         <td>{{$studentResult->sectionClassStudentTerm->sectionClassStudent->student->name}}</td>
                         <td>{{$studentResult->sectionClassStudentTerm->sectionClassStudent->student->admission_no}}</td>
                         <td>{{$studentResult->first_ca}}</td>

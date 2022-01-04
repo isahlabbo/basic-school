@@ -83,14 +83,13 @@ class StudentController extends Controller
 
         $classStudent = $student->sectionClassStudents()->create(['section_class_id'=>$sectionClass->id]);
         
-        $count = 1;
+        
         foreach($student->currentSession()->academicSessionTerms as $academicSessionTerm){
-            if($count == 1){
+            if($academicSessionTerm->status == 'Active'){
                 $academicSessionTerm->sectionClassStudentTerms()->create(['status'=>'Active','section_class_student_id'=>$classStudent->id]);
             }else{
                 $academicSessionTerm->sectionClassStudentTerms()->create(['section_class_student_id'=>$classStudent->id]);
             }
-            $count++;
         }
 
         return redirect()->route('dashboard.student.index')->withSuccess('Student Registered Successfully');

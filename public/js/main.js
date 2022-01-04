@@ -9,12 +9,12 @@
 'use strict';
 
 
-$(window).on('load', function() {
+$(document).on('pageload', function() {
 	/*------------------
 		Preloder
 	--------------------*/
 	$(".loader").fadeOut();
-	$("#preloder").delay(400).fadeOut("slow");
+	$("#preloder").delay(200).fadeOut("slow");
 
 });
 
@@ -26,7 +26,5 @@ $(window).on('load', function() {
 		var bg = $(this).data('setbg');
 		$(this).css('background-image', 'url(' + bg + ')');
 	});
-
-
 
 })(jQuery);
