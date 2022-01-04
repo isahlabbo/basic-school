@@ -81,6 +81,13 @@ Route::name('dashboard.')
             Route::post('register/', 'ClassTeacherController@register')->name('register');
         });
 
+        Route::name('result.')
+        ->group(function (){
+            Route::get('/{sectionId}/result', 'SectionResultController@index')->name('index');
+            Route::get('/class/{sectionClassId}/awaiting-result', 'SectionResultController@classAwaitingResult')->name('awaiting');
+        });
+
+
         Route::namespace('Configuration')
         ->name('configuration.')
         ->prefix('/configuration')

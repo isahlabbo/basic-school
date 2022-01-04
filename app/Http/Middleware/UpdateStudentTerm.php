@@ -19,7 +19,8 @@ class UpdateStudentTerm
     public function handle(Request $request, Closure $next)
     {
         $sessionTerm = Section::find(1)->currentSessionTerm();
-        
+        $sectionClassStudent = SectionClassStudent::where('status','Active')->first();
+
         if($sessionTerm->end_at == null){
            return redirect()->route('dashboard.session.configure',[$sessionTerm->currentSession()->id])->withWarning('Please configure the Academic session');
         }else if(strtotime($sessionTerm->end_at) <= time()){

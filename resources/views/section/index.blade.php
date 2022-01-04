@@ -17,6 +17,7 @@
                 <th>CLASSES</th>
                 <th>UPLOADED RESULT</th>
                 <th>AWAITING RESULT</th>
+                <th></th>
                 <th><button data-toggle="modal" data-target="#addSection" class="btn btn-primary">ADD SECTION</button></th>
                 @include('section.create')
             </tr>
@@ -30,6 +31,9 @@
                     <td>{{count($section->sectionClasses)}}</td>
                     <td>{{count($section->subjectResultUploads()['uploaded'])}}</td>
                     <td>{{count($section->subjectResultUploads()['awaiting'])}}</td>
+                    <td><a href="{{route('dashboard.section.result.index',[$section->id])}}">
+                    <button class="btn btn-primary">Manage Result</button></a>
+                    </td>
                     <td>
                         <a href="{{route('dashboard.section.view',[$section->id])}}"><button class="btn btn-secondary">
                             VIEW CLASSES

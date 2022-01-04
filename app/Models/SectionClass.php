@@ -39,8 +39,8 @@ class SectionClass extends BaseModel
         $awaitingResult = [];
 
         foreach ($this->sectionClassSubjects as $sectionClassSubject) {
-            if($sectionClassSubject->hasCurrentTermUpload()){
-                $uploadedResult[] = $sectionClassSubject;
+            if($upload = $sectionClassSubject->hasCurrentTermUpload()){
+                $uploadedResult[] = $upload;
             }else{
                 $awaitingResult[] = $sectionClassSubject;
             }
@@ -86,7 +86,7 @@ class SectionClass extends BaseModel
     public function updateAllStudentTerm()
     {
         foreach ($this->sectionClassStudents->where('status','Active') as $sectionClassStudent) {
-            $sectionClassStudent->updateNextTerm();
+            $sectionClassStudent->updateActiveTerm();
         }
     }
 

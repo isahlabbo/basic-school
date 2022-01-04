@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class SectionClassStudent extends BaseModel
 {
     
-
     public function sectionClass(Type $var = null)
     {
         return $this->belongsTo(SectionClass::class);
     }
+
     public function sectionClassStudentTerms ()
     {
         return $this->hasMany(SectionClassStudentTerm::class);
@@ -93,40 +93,27 @@ class SectionClassStudent extends BaseModel
         return $amount;
     }
 
-    public function updateNextTerm()
+    public function updateActiveTerm()
     {
-        $nextTerm = $this->nextSectionClassStudentTerm();
-        $this->currentStudentTerm()->update(['status'=>'Not Active']);
-        $nextTerm->update(['status'=>'Active']);
+        
+        foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
+            
+            if($sectionClassStudentTerm->academicSessionTerm->term->id == $this->currentSessionTerm()->term->id){
+                $sectionClassStudentTerm->update(['status'=>'Active']);
+            }else{
+                $sectionClassStudentTerm->update(['status'=>'No Active']);
+            }
+        }
+       
     }
 
     public function nextSectionClassStudentTerm()
     {
-        
-        switch ($this->currentStudentTerm()->academicSessionTerm->term_id) {
-            case '1':
-                // second term
-                foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
-                    if($sectionClassStudentTerm->academicSessionTerm->term_id == 2){
-                        $sectionTerm = $sectionClassStudentTerm;
-                    }
-                }
-                break;
-            case '2':
-                // third term
-                foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
-                    if($sectionClassStudentTerm->academicSessionTerm->term_id == 3){
-                        $sectionTerm = $sectionClassStudentTerm;
-                    }
-                }
-                break;
-            
-            default:
-                # code...
-                break;
+        foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
+            if($sectionClassStudentTerm->academicSessionTerm->term_id == $this->currentSessionTerm()->term_id + 1){
+                return $sectionClassStudentTerm;
+            }
         }
-        
-        return $sectionTerm;
     }
     public function totalExamScore($term)
     {

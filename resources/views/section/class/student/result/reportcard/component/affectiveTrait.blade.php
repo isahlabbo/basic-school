@@ -7,11 +7,13 @@
         </tr>
     </thead>
     <tbody>
+    @if($sectionClassStudentTerm->sectionClassStudentTermAccessment)
     @foreach($sectionClassStudentTerm->sectionClassStudentTermAccessment->sectionClassStudentTermAccessmentAffectiveTraits as $accessmentTrait)    
     <tr>
         <td>{{$accessmentTrait->affectiveTrait->name}}</td>
         <td>{{$accessmentTrait->value}}</td>
     </tr>
     @endforeach
+    @endif
     </tbody>
 </table>

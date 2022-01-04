@@ -92,11 +92,11 @@
 #header div {
 	margin: 0 auto;
 	overflow: hidden;
-	width: 960px;
+	width: 1050px;
 }
 #header div img {
 	float: left;
-	margin-top: 15px;
+	margin-top: 10px;
 }
 #header div ul {
 	float: right;

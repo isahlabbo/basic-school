@@ -27,7 +27,6 @@ class ScoreSheet implements ToModel
        $session = AcademicSession::find(1);
 
         if(isset($row[2]) && $this->getThisStudent($row[2])){
-            
             $subjectTeacherTermlyUpload = SubjectTeacherTermlyUpload::firstOrCreate([
                 'term_id'=>$this->term->id,
                 'academic_session_term_id'=>$session->currentSessionTerm()->id,

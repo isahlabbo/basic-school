@@ -8,12 +8,14 @@
                 </tr>
             </thead>
             <tbody>
+            @if($sectionClassStudentTerm->sectionClassStudentTermAccessment)
                 @foreach($sectionClassStudentTerm->sectionClassStudentTermAccessment->sectionClassStudentTermAccessmentPsychomotors as $accessmentPsychomotor)    
                 <tr>
                     <td>{{$accessmentPsychomotor->psychomotor->name}}</td>
                     <td>{{$accessmentPsychomotor->value}}</td>
                 </tr>
                 @endforeach
+            @endif
             </tbody>
         </table>
     </div>

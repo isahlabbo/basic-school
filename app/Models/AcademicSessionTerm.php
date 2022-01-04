@@ -35,7 +35,8 @@ class AcademicSessionTerm extends BaseModel
         if($days > 0){
             return $days.' '.Str::plural('Day',$days);
         }else{
-            return '0 Day';
+            $hours = floor($availableTime/3600);
+            return $hours.' '.Str::plural('Hour',$hours);
         }
     }
 

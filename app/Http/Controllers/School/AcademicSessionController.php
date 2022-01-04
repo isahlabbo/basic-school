@@ -5,6 +5,7 @@ namespace App\Http\Controllers\School;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AcademicSession;
+use App\Models\Section;
 
 class AcademicSessionController extends Controller
 {
@@ -77,8 +78,17 @@ class AcademicSessionController extends Controller
             }
             
             if($canUpdate && strtotime($academicSessionTerm->end_at) > time()){
+                
                 $academicSessionTerm->update(['status'=>'Active']);
                 $canUpdate = false;
+                // update all student class term to the current term
+                foreach(Section::cursor() as $section){
+                    foreach($section->sectionClasses as $sectionClass){
+                        $sectionClass->updateAllStudentTerm();
+                    }
+                }
+
+                
             }
         }
 

@@ -46,7 +46,7 @@ class SectionClassSubject extends BaseModel
     {
         $flag = false;
         foreach($this->activeSectionClassSubjectTeacher()->subjectTeacherTermlyUploads->where('academic_session_term_id',$this->currentSessionTerm()->id) as $upload){
-            $flag = true;
+           return $upload;
         }
         return $flag;
     }
