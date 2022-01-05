@@ -22,6 +22,11 @@ class AcademicSession extends BaseModel
         return $this->students->where('section_class_id',$class->id);
     }
 
+    public function sectionClassReservedAdmissionNos()
+    {
+        return $this->hasMany(SectionClassReservedAdmissionNo::class);
+    }
+
     public function updateNextTerm($term)
     {
         foreach ($this->academicSessionTerms as $academicSessionTerm) {

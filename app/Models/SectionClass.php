@@ -33,6 +33,11 @@ class SectionClass extends BaseModel
         return $this->hasMany(SectionClassTeacher::class);
     }
 
+    public function sectionClassReservedAdmissionNos()
+    {
+        return $this->hasMany(SectionClassReservedAdmissionNo::class);
+    }
+
     public function subjectResultUploads()
     {
         $uploadedResult = [];
@@ -212,6 +217,10 @@ class SectionClass extends BaseModel
 
     public function generateAdmissionNo($number = null)
     {
+        if($admissionNo = $this->sectionClassReservedAdmissionNos->where('academic_session_id',$this->currentSession()->id)->first()->admission_no ?? null){
+            return $admissionNo;
+        }
+        
         return config('app.code').'/'.$this->getAdmissionYear().$this->code.'/'.$this->getAdmissionSerialNo($number);
     }
 

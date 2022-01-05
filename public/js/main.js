@@ -9,7 +9,7 @@
 'use strict';
 
 
-$(document).on('pageload', function() {
+$(window).on('load', function() {
 	/*------------------
 		Preloder
 	--------------------*/

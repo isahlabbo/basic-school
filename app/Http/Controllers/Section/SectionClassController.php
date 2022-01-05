@@ -122,20 +122,42 @@ class SectionClassController extends Controller
         ]);
 
         if($request->class != $student->sectionClass->id){
-            foreach($student->secionClassStudents as $sectionClassStudent){
-                $sectionClassStudent->delete();
-            }
-            $classStudent = $student->sectionClassStudents()->create(['section_class_id'=>$sectionClass->id]);
-        
-            $count = 1;
-            foreach($student->currentSession()->academicSessionTerms as $academicSessionTerm){
-                if($count == 1){
-                    $academicSessionTerm->sectionClassStudentTerms()->create(['status'=>'Active','section_class_student_id'=>$classStudent->id]);
-                }else{
-                    $academicSessionTerm->sectionClassStudentTerms()->create(['section_class_student_id'=>$classStudent->id]);
+           
+            $sectionClassStudent = $student->sectionClassStudents->where('status','Active')->first();
+           
+            if($request->section == $sectionClassStudent->sectionClass->section->id){
+                $sectionClassStudent->update(['section_class_id',$request->class]);
+                if(count($sectionClassStudent->studentResults)>0){
+                    $sectionClassStudent->update(['status','Not Active']);
+                    foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm){
+                        $sectionClassStudentTerm->update(['status','Not Active']);
+                    }
                 }
-                $count++;
-            }
+            }else{
+                $sectionClass = SectionClass::find($request->class);
+                $newStudent = $guardian->students()->create([
+                    'name'=>strtoupper($request->name),
+                    'date_of_birth'=>$request->date_of_birth,
+                    'admission_no'=>$sectionClass->generateAdmissionNo(),
+                    'section_class_id'=>$request->class,
+                    'academic_session_id'=>$sectionClass->classAdmissionSession()->id,
+                    'gender'=>$request->gender
+                ]);
+                $newSectionClassStudent = $sectionClass->sectionClassStudents()->create(['student_id'=>$newStudent->id]),
+                foreach($student->currentSession()->academicSessionTerms as $academicSessionTerm){
+                    if($academicSessionTerm->term->id == $student->currentSessionterm()->term->id){
+                        $academicSessionTerm->sectionClassStudentTerms()->create(['status'=>'Active','section_class_student_id'=>$newSectionClassStudent->id]);
+                    }else{
+                        $academicSessionTerm->sectionClassStudentTerms()->create(['section_class_student_id'=>$newSectionClassStudent->id]);
+                    }
+                }
+                if(count($sectionClassStudent->studentResults)>0){
+                    foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm){
+                        $sectionClassStudentTerm->delete();
+                    }
+                    $sectionClassStudent->delete();
+                }
+            }  
         }
 
         if($request->picture){
@@ -151,9 +173,7 @@ class SectionClassController extends Controller
             'section_class_id'=>$request->class,
             'gender'=>$request->gender
         ]);
-        if($request->class != $student->sectionClass->id){
-            $student->update(['admission_no'=>$student->sectionClass->generateAdmissionNo()]);
-        }
+        
         return redirect()->route('dashboard.section.class.student',[$student->sectionClass->id])
         ->withSuccess('Updated');
         
