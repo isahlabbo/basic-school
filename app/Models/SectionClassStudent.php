@@ -115,6 +115,16 @@ class SectionClassStudent extends BaseModel
             }
         }
     }
+    public function uploadedResult()
+    {
+        $results = [];
+        foreach ($this->sectionClassStudentTerms as $sectionClassStudentTerm) {
+            foreach($sectionClassStudentTerm->studentResults as $result){
+                $results[] = $result;
+            }
+        }
+        return $results;
+    }
     public function totalExamScore($term)
     {
         $total = 0;

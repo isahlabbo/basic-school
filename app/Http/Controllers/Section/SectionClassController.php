@@ -114,7 +114,8 @@ class SectionClassController extends Controller
     {
         $sectionClass = SectionClass::find($request->class);
         $student = Student::find($studentId);
-        $student->guardian->update([
+        $guardian = $student->guardian;
+        $guardian->update([
             'name'=>strtoupper($request->guardian_name),
             'phone'=>$request->phone,
             'email'=>$request->email,
@@ -127,7 +128,7 @@ class SectionClassController extends Controller
            
             if($request->section == $sectionClassStudent->sectionClass->section->id){
                 $sectionClassStudent->update(['section_class_id',$request->class]);
-                if(count($sectionClassStudent->studentResults)>0){
+                if(count($sectionClassStudent->uploadedResult()) > 0){
                     $sectionClassStudent->update(['status','Not Active']);
                     foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm){
                         $sectionClassStudentTerm->update(['status','Not Active']);
@@ -143,7 +144,7 @@ class SectionClassController extends Controller
                     'academic_session_id'=>$sectionClass->classAdmissionSession()->id,
                     'gender'=>$request->gender
                 ]);
-                $newSectionClassStudent = $sectionClass->sectionClassStudents()->create(['student_id'=>$newStudent->id]),
+                $newSectionClassStudent = $sectionClass->sectionClassStudents()->create(['student_id'=>$newStudent->id]);
                 foreach($student->currentSession()->academicSessionTerms as $academicSessionTerm){
                     if($academicSessionTerm->term->id == $student->currentSessionterm()->term->id){
                         $academicSessionTerm->sectionClassStudentTerms()->create(['status'=>'Active','section_class_student_id'=>$newSectionClassStudent->id]);
@@ -151,7 +152,7 @@ class SectionClassController extends Controller
                         $academicSessionTerm->sectionClassStudentTerms()->create(['section_class_student_id'=>$newSectionClassStudent->id]);
                     }
                 }
-                if(count($sectionClassStudent->studentResults)>0){
+                if(count($sectionClassStudent->uploadedResult()) < 1){
                     foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm){
                         $sectionClassStudentTerm->delete();
                     }
