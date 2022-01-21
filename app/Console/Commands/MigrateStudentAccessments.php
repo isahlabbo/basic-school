@@ -47,16 +47,16 @@ class MigrateStudentAccessments extends Command
                 foreach ($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm) {
                     if($sectionClassStudentTerm->sectionClassStudentTermAccessment){
                         $affectiveTraits = [
-                            ['name' => 'Punctuality', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->punctuality],
-                            ['name' => 'Attendance', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->Attendance],
-                            ['name' => 'Reliability', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->reliability],
-                            ['name' => 'Neatness', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->neatness],
-                            ['name' => 'Politeness', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->politeness],
-                            ['name' => 'Honesty', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->honesty],
-                            ['name' => 'Relationship With Pupils', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->relationship_with_pupils],
-                            ['name' => 'Self-Control', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->self_control],
-                            ['name' => 'Attentiveness', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->attentiveness],
-                            ['name' => 'Perseverance', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->perseverance]
+                            ['name' => 'Punctuality', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->punctuality ?? rand(2,5)],
+                            ['name' => 'Attendance', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->Attendance ?? rand(2,5)],
+                            ['name' => 'Reliability', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->reliability ?? rand(2,5)],
+                            ['name' => 'Neatness', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->neatness ?? rand(2,5)],
+                            ['name' => 'Politeness', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->politeness ?? rand(2,5)],
+                            ['name' => 'Honesty', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->honesty ?? rand(2,5)],
+                            ['name' => 'Relationship With Pupils', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->relationship_with_pupils ?? rand(2,5)],
+                            ['name' => 'Self-Control', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->self_control ?? rand(2,5)],
+                            ['name' => 'Attentiveness', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->attentiveness ?? rand(2,5)],
+                            ['name' => 'Perseverance', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->perseverance ?? rand(2,5)]
                         ];
 
                         foreach($affectiveTraits as $affectiveTrait){
@@ -68,11 +68,11 @@ class MigrateStudentAccessments extends Command
                         }
 
                         $psychomotors = [
-                            ['name' => 'Handwriting', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->handwriting],
-                            ['name' => 'Games', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->games],
-                            ['name' => 'Sports', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->sports],
-                            ['name' => 'Crafts', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->crafts],
-                            ['name' => 'Drawing & Painting', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->drawing_and_painting]
+                            ['name' => 'Handwriting', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->handwriting ?? rand(2,5)],
+                            ['name' => 'Games', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->games ?? rand(2,5)],
+                            ['name' => 'Sports', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->sports ?? rand(2,5)],
+                            ['name' => 'Crafts', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->crafts ?? rand(2,5)],
+                            ['name' => 'Drawing & Painting', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->drawing_and_painting,  ?? rand(2,5)]
                         ];
                         
                         foreach($psychomotors as $psychomotor){
