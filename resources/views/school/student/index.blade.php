@@ -7,57 +7,54 @@
     @endsection
     
     @section('content')
-        <table class="table table-striped " id="datatable-buttons">
-        <thead>
-            <tr>
-                <th>S/N</th>
-                <th>PICTURE</th>
-                <th>NAME</th>
-                <th>ADMISSION NO</th>
-                <th>GENDER</th>
-                <th>CURRENT CLASS</th>
-                <th>GUARDIAN NAME</th>
-                <th>GUARDIAN PHONE</th>
-                <th>GUARDIAN EMAIL</th>
-                <th>ADDRESS</th>
-                <th></th>
-                <th><a href="{{route('dashboard.student.create')}}">
-                <button class="btn btn-primary">New Admission</button></a></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($students as $student)
-                <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>
-                        @if($student->picture)
-                            <img src="{{$student->profileImage()}}" alt="" height="120" width="120" class="rounded">
-                        @else
-                            <img src="{{asset('assets/images/user.jpg')}}" width="120" height="120" class="rounded" alt="">
-                        @endif
-                    </td>
-                    <td>{{$student->name}}</td>
-                    <td>{{$student->admission_no}}</td>
-                    <td>{{$student->gender()}}</td>
-                    <td>{{$student->activeSectionClass()->name ?? 'Not Available'}}</td>
-                    <td>{{$student->guardian->name}}</td>
-                    <td>{{$student->guardian->phone}}</td>
-                    <td>{{$student->guardian->email}}</td>
-                    <td>{{$student->guardian->address}}</td>
-                    <td>
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header"><a href="{{route('dashboard.student.create')}}">
+                    <button class="btn btn-primary">New Admission</button></a>
+                </div>
+                <br>
+                <form action="{{route('dashboard.student.search')}}" method="post">
+                @csrf
+                <div class="form-group row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2"><label for="">Section</label></div>
+                    <div class="col-md-8">
+                        <select name="section" id="" class="form-control">
+                            <option value="">Select Section</option>
+                            @foreach($sections as $section)
+                            <option value="{{$section->id}}">{{$section->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2"><label for="">Class</label></div>
+                    <div class="col-md-8">
+                        <select name="class" id="" class="form-control">
+                            <option value="">Select Class</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2"><label for="">Admission No</label></div>
+                    <div class="col-md-8">
+                        <input type="text" placeholder="Enter Admission No" class="form-control" name="admission_no">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    
+                    <div class="col-md-3"></div>
                         
-                    </td>
-                    <td>
-                        <a href="{{route('dashboard.student.edit',[$student->id])}}">
-                        <button class="btn btn-secondary">Edit</button></a>
-                        <a href="{{route('dashboard.student.delete',[$student->id])}}">
-                            <button onclick="return confirm('Are you sure, you want to delete this student record')" class="btn btn-danger">Delete</button></a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-        </table>
-        
+                        <div class="col-md-8">
+                            <button class="btn btn-secondary">Search Student</button>
+                        </div>
+                    </div>    
+                </div>    
+            </form>
+            </div>
+        </div>
     @endsection
-    
 </x-app-layout>

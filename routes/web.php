@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Teacher;
 use App\Models\Section;
+use App\Models\Student;
 use App\Models\AcademicSession;
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth:sanctum', 'verified','resumed'])->get('/dashboard', function () {
-    return view('dashboard',['teachers'=>Teacher::all(),'session'=>AcademicSession::find(1),'sections'=>Section::all()]);
+    return view('dashboard',['students'=>Student::all(),'teachers'=>Teacher::all(),'session'=>AcademicSession::find(1),'sections'=>Section::all()]);
 })->name('dashboard');
 
 Route::name('dashboard.')
@@ -233,6 +234,8 @@ Route::name('dashboard.')
         Route::get('/{academicSessionTermId}/resume', 'StudentController@resume')->name('resume');
         Route::get('/{academicSessionTermId}/confirm-resume', 'StudentController@confirmResume')->name('resume.confirm');
         Route::get('/', 'StudentController@index')->name('index');
+        Route::post('/search', 'StudentController@search')->name('search');
+        Route::get('/{studentId}/profile', 'StudentController@profile')->name('profile');
         Route::get('/create', 'StudentController@create')->name('create');
         Route::get('/student/{studentId}/delete', 'StudentController@delete')->name('delete');
         Route::get('/student/{studentId}/edit', 'StudentController@edit')->name('edit');

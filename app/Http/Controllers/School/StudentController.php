@@ -16,7 +16,27 @@ class StudentController extends Controller
 
     public function index()
     {
-       return view('school.student.index',['students'=>Section::find(1)->currentSession()->students]);
+       return view('school.student.index',['sections'=>Section::all()]);
+    }
+    
+    public function profile($studentId)
+    {
+       return view('school.student.profile',['student'=>Student::find($studentId)]);
+    }
+
+    public function search(Request $request)
+    {
+        if($request->admission_no){
+            $student = Student::where('admission_no',$request->admission_no)->first();
+            if($student){
+                return redirect()->route('dashboard.student.profile',[$student->id]);
+            }
+            return redirect()->route('dashboard.student.index')->withWarning('Invalid Admission No');
+        }elseif ($request->class) {
+            return redirect()->route('dashboard.section.class.student',[$request->class]);
+        }else{
+            return redirect()->route('dashboard.student.index')->withWarning('Pls specify what seach for');
+        }
     }
 
     public function create()

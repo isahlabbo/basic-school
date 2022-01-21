@@ -20,6 +20,37 @@
         <div class="col-md-3">
             <div class="card shadow">
                 <div class="card-body">
+                    <div class="card-header shadow">STUDENTS</div>
+                    <table class="table">
+                        <tr>
+                            <td>STUDENTS</td>
+                            <td>{{count($students)}}</td>
+                        </tr>
+                        
+                    </table>
+                    <div class=""><a href="{{route('dashboard.student.index')}}"><button class="btn btn-secondary">VIEW STUDENTS</button></a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="card-header shadow">RESULTS</div>
+                    <table class="table">
+                        <tr>
+                            <td>RESULTS</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <div class=""><a href="{{route('dashboard.section.class.subject.result.index')}}"><button class="btn btn-secondary">SEARCH RESULT</button></a></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card shadow">
+                <div class="card-body">
                     <div class="card-header shadow">TEACHERS</div>
                     <table class="table">
                         <tr>
@@ -32,7 +63,7 @@
                 </div>
             </div>
         </div>
-
+        <div class="col-md-12"><br></div>
         <div class="col-md-3">
             <div class="card shadow">
                 <div class="card-body">
@@ -55,21 +86,4 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-md-3">
-            <div class="card shadow">
-                <div class="card-body">
-                    <div class="card-header shadow">RESULTS</div>
-                    <table class="table">
-                        <tr>
-                            <td>RESULTS</td>
-                            <td></td>
-                        </tr>
-                    </table>
-                    <div class=""><a href="{{route('dashboard.section.class.subject.result.index')}}"><button class="btn btn-secondary">SEARCH RESULT</button></a></div>
-                </div>
-            </div>
-        </div>
-        
-    
 </div>
