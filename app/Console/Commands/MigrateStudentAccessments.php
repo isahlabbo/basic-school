@@ -72,7 +72,7 @@ class MigrateStudentAccessments extends Command
                             ['name' => 'Games', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->games ?? rand(2,5)],
                             ['name' => 'Sports', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->sports ?? rand(2,5)],
                             ['name' => 'Crafts', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->crafts ?? rand(2,5)],
-                            ['name' => 'Drawing & Painting', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->drawing_and_painting,  ?? rand(2,5)]
+                            ['name' => 'Drawing & Painting', 'value' => $sectionClassStudentTerm->sectionClassStudentTermAccessment->drawing_and_painting ?? rand(2,5)]
                         ];
                         
                         foreach($psychomotors as $psychomotor){
