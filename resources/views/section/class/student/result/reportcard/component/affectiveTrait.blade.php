@@ -10,8 +10,8 @@
     @if($sectionClassStudentTerm->sectionClassStudentTermAccessment)
     @foreach($sectionClassStudentTerm->sectionClassStudentTermAccessment->sectionClassStudentTermAccessmentAffectiveTraits as $accessmentTrait)    
     <tr>
-        <td>{{$accessmentTrait->affectiveTrait->name}}</td>
-        <td>{{$accessmentTrait->value}}</td>
+        <td>{{$accessmentTrait->affectiveTrait->name ?? 0}}</td>
+        <td>{{$accessmentTrait->value ?? 0}}</td>
     </tr>
     @endforeach
     @endif

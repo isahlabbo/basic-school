@@ -24,6 +24,11 @@ class ClassResultController extends Controller
     {
         return view('section.class.result.report',['gradeScales'=>GradeScale::all(),'remarkScales'=>RemarkScale::all(),'psychomotors'=>Psychomotor::all(),'affectiveTraits'=>AffectiveTrait::all(),'sectionClass'=>SectionClass::find($sectionClassId)]);
     }
+
+    public function viewAccessment($sectionClassId)
+    {
+        return view('section.class.result.accessment.view',['sectionClass'=>SectionClass::find($sectionClassId)]);
+    }
     
     public function downloadAccessment($sectionClassId)
     {

@@ -11,6 +11,7 @@
         <div class="card-header h4">{{$sectionClass->name}} Subject Results Information 
         <a href="{{route('dashboard.section.class.result.accessment.download',[$sectionClass->id])}}"><button class="btn btn-secondary">Download Accessment</button></a>
         <button class="btn btn-primary" data-toggle="modal" data-target="#class_{{$sectionClass->id}}">Upload Accessment</button>
+        <a href="{{route('dashboard.section.class.result.accessment.view',[$sectionClass->id])}}"><button class="btn btn-secondary">View Accessment</button></a>
         </div>
     </div>
     

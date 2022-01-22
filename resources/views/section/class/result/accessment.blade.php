@@ -9,11 +9,11 @@
         <th>CLASS TEACHER REMARK</th>
         <th>HEAD TEACHER REMARK</th>
         
-        @foreach($affectiveTraits->where('status',1) as $affectiveTrait)
+        @foreach($sectionClass->section->affectiveTraits->where('status',1) as $affectiveTrait)
            <th>{{strtoupper($affectiveTrait->name)}}</th>
         @endforeach
 
-        @foreach($psychomotors->where('status',1) as $psychomotor)
+        @foreach($sectionClass->section->psychomotors->where('status',1) as $psychomotor)
            <th>{{strtoupper($psychomotor->name)}}</th>
         @endforeach
         
@@ -30,10 +30,10 @@
         <td>10</td>
         <td>{{rand(2,46)}}</td>
         <td>{{rand(2,16)}}</td>
-        @foreach($affectiveTraits->where('status',1) as $affectiveTrait)
+        @foreach($sectionClass->section->affectiveTraits->where('status',1) as $affectiveTrait)
            <td>{{rand(2,5)}}</td>
         @endforeach
-        @foreach($psychomotors->where('status',1) as $psychomotor)
+        @foreach($sectionClass->section->psychomotors->where('status',1) as $psychomotor)
            <td>{{rand(2,5)}}</td>
         @endforeach
     </tr>
@@ -48,11 +48,11 @@
         <td></td>
         <td></td>
         <td></td>
-        @foreach($affectiveTraits->where('status',1) as $affectiveTrait)
+        @foreach($sectionClass->section->affectiveTraits->where('status',1) as $affectiveTrait)
            <td></td>
         @endforeach
 
-        @foreach($psychomotors->where('status',1) as $psychomotor)
+        @foreach($sectionClass->section->psychomotors->where('status',1) as $psychomotor)
            <td></td>
         @endforeach
     </tr>

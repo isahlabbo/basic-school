@@ -28,6 +28,8 @@ class StudentAccessmentImport implements ToModel
         if($row[0] != 'NAME'){
             $sectionClassStudentTerm = $this->getThisStudentSessionTerm($row[1]);
             if($sectionClassStudentTerm){
+                
+                $section = $this->getStudentSection($sectionClassStudentTerm);
                 $accessment = $sectionClassStudentTerm->sectionClassStudentTermAccessment;
                 
                 if($accessment){
@@ -40,22 +42,20 @@ class StudentAccessmentImport implements ToModel
                     ]);
 
                     foreach ($this->data as $key => $value) {
-                        $psychomotor = Psychomotor::where('name',$value)->first();
+                        $psychomotor = Psychomotor::where(['section_id'=>$section->id,'name'=>$value])->first();
                         if($psychomotor){
                             $psychoAccessment = $accessment->sectionClassStudentTermAccessmentPsychomotors()->firstOrCreate([
                                 'psychomotor_id'=>$psychomotor->id
                                 ]);
-                            $psychoAccessment->update(['value'=>$row[$key]]);    
+                            $psychoAccessment->update(['value'=>$row[$key] ?? 0]);    
                         }else{
-                            $affectiveTrait = AffectiveTrait::where('name',$value)->first();
+                            $affectiveTrait = AffectiveTrait::where(['section_id'=>$section->id,'name'=>$value])->first();
                             if($affectiveTrait){
                                 $traitAccessment = $accessment->sectionClassStudentTermAccessmentAffectiveTraits()->firstOrCreate([
-                                    'affective_trait_id'=>$affectiveTrait->id]);
+                                   'affective_trait_id'=>$affectiveTrait->id]);
                                 $traitAccessment->update(['value'=>$row[$key]]);    
                             }
                         }
-                        
-                        
                     } 
                 }else{
                     
@@ -68,7 +68,7 @@ class StudentAccessmentImport implements ToModel
                         ]);
                         
                         foreach ($this->data as $key => $value) {
-                            $psycho = Psychomotor::where('name',$value)->first();
+                            $psycho = Psychomotor::where(['section_id'=>$section->id,'name'=>$value])->first();
                             if($psycho){
                                 $accessment->sectionClassStudentTermAccessmentPsychomotors()->create([
                                     'psychomotor_id'=>$psycho->id,
@@ -76,7 +76,7 @@ class StudentAccessmentImport implements ToModel
                                     ]);
                             }
 
-                            $trait = AffectiveTrait::where('name',$value)->first();
+                            $trait = AffectiveTrait::where(['section_id'=>$section->id,'name'=>$value])->first();
                             if($trait){
                                 $accessment->sectionClassStudentTermAccessmentAffectiveTraits()->create([
                                     'affective_trait_id'=>$trait->id,
@@ -86,7 +86,6 @@ class StudentAccessmentImport implements ToModel
                         }    
                 }
             }
-            
         }
     }
     
@@ -100,5 +99,10 @@ class StudentAccessmentImport implements ToModel
             return $studentClass->sectionClassStudentTerms->where('status','Active')->first();
         }
         return null;
+    }
+
+    public function getStudentSection($sectionClassStudentTerm)
+    {
+        return $sectionClassStudentTerm->sectionClassStudent->sectionClass->section;
     }
 }

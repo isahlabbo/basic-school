@@ -9,10 +9,12 @@
             </thead>
             <tbody>
             @if($sectionClassStudentTerm->sectionClassStudentTermAccessment)
+            
                 @foreach($sectionClassStudentTerm->sectionClassStudentTermAccessment->sectionClassStudentTermAccessmentPsychomotors as $accessmentPsychomotor)    
+               
                 <tr>
-                    <td>{{$accessmentPsychomotor->psychomotor->name}}</td>
-                    <td>{{$accessmentPsychomotor->value}}</td>
+                    <td>{{$accessmentPsychomotor->psychomotor->name ?? 0}}</td>
+                    <td>{{$accessmentPsychomotor->value ?? 0}}</td>
                 </tr>
                 @endforeach
             @endif

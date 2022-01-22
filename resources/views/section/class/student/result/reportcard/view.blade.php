@@ -20,7 +20,7 @@
             </div>
         </div>
         <!-- result end -->
-        <!-- accessment start -->ap
+        <!-- accessment start -->
         <br>
         <div class="row">
 
