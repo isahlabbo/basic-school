@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AffectiveTrait extends BaseModel
 {
-    use HasFactory;
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
 }

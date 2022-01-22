@@ -15,30 +15,35 @@
 
                         <!-- effective trait start -->
                         <div class="col-md-5">
-                        <table class="table-bordered" style="width: 100%; height: 20px;">
-                            <thead class="text text-center">
-                                <tr>
-                                    <th>AFFECTIVE TRAITS</th>
-                                    <th><button class="btn btn-primary" data-toggle="modal" data-target="#affectiveTrait">New</button></th>
-                                    <th></th>
-                                    @include('section.configuration.affectivetrait.register')
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($affectiveTraits->where('status',1) as $affectiveTrait)
-                                <tr>
-                                    <td>{{$affectiveTrait->name}}</td>
-                                    <td class="text-center"><button class="btn btn-info" data-toggle="modal" data-target="#affectiveTrait_{{$affectiveTrait->id}}">Edit</button></td>
-                                    <td class="text-center">
-                                        <a href="{{route('dashboard.section.configuration.reportcard.affectivetrait.delete',[$affectiveTrait->id])}}">    
-                                            <button class="btn btn-danger">Delete</button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                @include('section.configuration.affectivetrait.edit')
-                                @endforeach
-                            </tbody>
-                        </table>
+                        @foreach($sections as $section)
+                            <div class="col-md-12">
+                            <table class="table-bordered" style="width: 100%; height: 20px;">
+                                <thead class="text text-center">
+                                    <tr>
+                                        <th class="shadow">{{strtoupper($section->name)}} AFFECTIVE TRAITS</th>
+                                        <th><button class="btn btn-primary" data-toggle="modal" data-target="#affectiveTrait">New</button></th>
+                                        <th></th>
+                                        @include('section.configuration.affectivetrait.register')
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($section->affectiveTraits->where('status',1) as $affectiveTrait)
+                                    <tr>
+                                        <td>{{$affectiveTrait->name}}</td>
+                                        <td class="text-center"><button class="btn btn-info" data-toggle="modal" data-target="#affectiveTrait_{{$affectiveTrait->id}}">Edit</button></td>
+                                        <td class="text-center">
+                                            <a href="{{route('dashboard.section.configuration.reportcard.affectivetrait.delete',[$affectiveTrait->id])}}">    
+                                                <button class="btn btn-danger">Delete</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @include('section.configuration.affectivetrait.edit')
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-12"><br></div>
+                        @endforeach
                         </div>
                         <!-- effective trait end -->
 
@@ -46,18 +51,19 @@
                         <!-- psychomotor and rest start -->
                                     <div class="col-md-7">
                                         <div class="row">
+                                            @foreach($sections as $section)
                                             <div class="col-md-12">
                                             <table class="table-bordered" style="width: 100%; height: 20px;">
                                                 <thead class="text text-center">
                                                     <tr>
-                                                        <th>PSYCHOMOTOR</th>
+                                                        <th class=" shadow">{{strtoupper($section->name)}} PSYCHOMOTOR</th>
                                                         <th><button class="btn btn-primary" data-toggle="modal" data-target="#psychomotor">New</button></th>
                                                         <th></th>
                                                     </tr>
                                                     @include('section.configuration.psychomotor.register')
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($psychomotors->where('status',1) as $psychomotor)
+                                                    @foreach($section->psychomotors->where('status',1) as $psychomotor)
                                                         <tr>
                                                             <td>{{$psychomotor->name}}</td>
                                                             <td class="text-center"><button class="btn btn-info" data-toggle="modal" data-target="#psychomotor_{{$psychomotor->id}}">Edit</button></td>
@@ -71,6 +77,8 @@
                                             </tbody>
                                        </table>
                                     </div>
+                                    <div class="col-md-12"><br></div>
+                                    @endforeach
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">

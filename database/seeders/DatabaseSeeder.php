@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(AcademicSessionTableSeeder::class);
         // $this->call(TeacherCommentTableSeeder::class);
         // $this->call(HeadTeacherCommentTableSeeder::class);
-        $this->call(PsychomotorAndAffectiveTraitTableSeeder::class);
-        $this->call(GradeRemarkTableSeeder::class);
+        // $this->call(PsychomotorAndAffectiveTraitTableSeeder::class);
+        // $this->call(GradeRemarkTableSeeder::class);
     }
 }

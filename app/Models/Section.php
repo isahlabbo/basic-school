@@ -11,6 +11,17 @@ class Section extends BaseModel
     {
         return $this->hasMany(SectionClass::class);
     }
+
+    public function psychomotors()
+    {
+        return $this->hasMany(Psychomotor::class);
+    }
+
+    public function affectiveTraits()
+    {
+        return $this->hasMany(AffectiveTrait::class);
+    }
+
     public function subjectResultUploads()
     {
         $uploadedResult = [];
