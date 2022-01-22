@@ -19,6 +19,7 @@
                 @include('section.class.student.result.reportcard.view')
             @endforeach
         @endforeach
+        </div>
     @endsection
-    </div>
+    
 </x-app-layout>

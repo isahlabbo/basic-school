@@ -144,6 +144,7 @@ Route::name('dashboard.')
                 Route::get('/report', 'ClassResultController@report')->name('report');
                 Route::get('/accessment/download', 'ClassResultController@downloadAccessment')->name('accessment.download');
                 Route::get('/accessment/view', 'ClassResultController@viewAccessment')->name('accessment.view');
+                Route::get('/accessment/{studentTermId}/edit', 'ClassResultController@editAccessment')->name('accessment.edit');
                 Route::post('/accessment/upload', 'ClassResultController@uploadAccessment')->name('accessment.upload');
             });
             

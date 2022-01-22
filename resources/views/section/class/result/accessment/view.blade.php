@@ -44,12 +44,16 @@
                             @foreach($sectionClassStudentTerm->sectionClassStudentTermAccessment->sectionClassStudentTermAccessmentPsychomotors as $accessmentPsychomotor)    
                                 <td>{{$accessmentPsychomotor->value}}</td>
                             @endforeach
-                            <td><button class="btn btn-secondary">Edit</button></td>
+                            <td>
+                            <a href="{{route('dashboard.section.class.result.accessment.edit',[$sectionClass->id,$sectionClassStudentTerm])}}">
+                            <button class="btn btn-secondary">Edit</button></a>
+                            </td>
                         </tr>
                     @endforeach
                 @endforeach
             </tbody>
         </table>
+        </div>
     @endsection
-    </div>
+    
 </x-app-layout>

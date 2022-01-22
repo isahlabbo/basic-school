@@ -9,6 +9,7 @@ use App\Models\Psychomotor;
 use App\Models\AffectiveTrait;
 use App\Models\GradeScale;
 use App\Models\RemarkScale;
+use App\Models\SectionClassStudentTerm;
 use Excel;
 use App\Exports\StudentAccessmentExport;
 use App\Imports\StudentAccessmentImport;
@@ -28,6 +29,14 @@ class ClassResultController extends Controller
     public function viewAccessment($sectionClassId)
     {
         return view('section.class.result.accessment.view',['sectionClass'=>SectionClass::find($sectionClassId)]);
+    }
+    
+    public function editAccessment($sectionClassId,$sectionClassStudentTermId)
+    {
+        return view('section.class.result.accessment.edit',[
+            'sectionClass'=>SectionClass::find($sectionClassId),
+            'sectionClassStudentTerm'=>SectionClassStudentTerm::find($sectionClassStudentTermId)
+            ]);
     }
     
     public function downloadAccessment($sectionClassId)
