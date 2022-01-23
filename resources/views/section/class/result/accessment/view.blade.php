@@ -30,6 +30,7 @@
             <tbody>
                 @foreach($sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent)
                     @foreach($sectionClassStudent->sectionClassStudentTerms->where('status','Active') as $sectionClassStudentTerm)
+                       @if($sectionClassStudentTerm->sectionClassStudentTermAccessment)
                         <tr>
                             <td>{{$sectionClassStudent->student->name}}</td>
                             <td>{{$sectionClassStudent->student->admission_no}}</td>
@@ -49,6 +50,7 @@
                             <button class="btn btn-secondary">Edit</button></a>
                             </td>
                         </tr>
+                        @endif
                     @endforeach
                 @endforeach
             </tbody>
