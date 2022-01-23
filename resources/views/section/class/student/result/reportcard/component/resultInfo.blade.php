@@ -11,6 +11,7 @@
             <th>POSIOTION</th>
             <th>EFFORT</th>
             <th>REMARK</th>
+            <th>TEACHER</th>
         </tr>
     </thead>
     <tbody class="m-0">
@@ -33,6 +34,7 @@
             <td class="text text-center">{{$studentResult->subjectTeacherTermlyUpload->position($studentResult->total)}}</td>
             <td class="text text-center">{{$studentResult->effort()}}</td>
             <td class="text text-center">{{$studentResult->remark()}}</td>
+            <td class="text text-center">{{$studentResult->teacher()->name}}</td>
         </tr>
     @endforeach
     <table class="table-bordered">

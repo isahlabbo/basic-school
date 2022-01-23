@@ -69,4 +69,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 git pull
 composer install
 php artisan migrate
-php artisan db:seed --class StudentAccessment
+php artisan db:seed --class SectionAccessment
