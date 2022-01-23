@@ -16,10 +16,12 @@ class StudentResult extends BaseModel
     {
         return $this->belongsTo(SubjectTeacherTermlyUpload::class);
     }
+
     public function teacher()
     {
-        return $this->subjectTeacherTermlyUpload->sectionClassSubjectTeacher->teacher->user;
+        return $this->subjectTeacherTermlyUpload->sectionClassSubjectTeacher->teacher;
     }
+    
     public function updateTotalAndComputeGrade()
     {
         $this->update(['total'=>$this->first_ca+ $this->second_ca+$this->exam]);

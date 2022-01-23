@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSectionIdToPsychomotors extends Migration
+class AddSectionIdToGradeScales extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,8 @@ class AddSectionIdToPsychomotors extends Migration
      */
     public function up()
     {
-        Schema::table('psychomotors', function (Blueprint $table) {
+        
+        Schema::table('remark_scales', function (Blueprint $table) {
             $table->integer('section_id')
             ->unsigned()
             ->nullable()
@@ -23,7 +24,7 @@ class AddSectionIdToPsychomotors extends Migration
             ->delete('restrict');
         });
 
-        Schema::table('affective_traits', function (Blueprint $table) {
+        Schema::table('grade_scales', function (Blueprint $table) {
             $table->integer('section_id')
             ->unsigned()
             ->nullable()
@@ -32,7 +33,6 @@ class AddSectionIdToPsychomotors extends Migration
             ->on('sections')
             ->delete('restrict');
         });
-
     }
 
     /**
@@ -42,7 +42,7 @@ class AddSectionIdToPsychomotors extends Migration
      */
     public function down()
     {
-        Schema::table('psychomotors', function (Blueprint $table) {
+        Schema::table('grade_scales', function (Blueprint $table) {
             //
         });
     }

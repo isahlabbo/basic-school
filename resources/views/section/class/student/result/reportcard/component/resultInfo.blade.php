@@ -34,7 +34,7 @@
             <td class="text text-center">{{$studentResult->subjectTeacherTermlyUpload->position($studentResult->total)}}</td>
             <td class="text text-center">{{$studentResult->effort()}}</td>
             <td class="text text-center">{{$studentResult->remark()}}</td>
-            <td class="text text-center">{{$studentResult->teacher()->name}}</td>
+            <td class="text text-center">{{$studentResult->teacher()->user->name}}</td>
         </tr>
     @endforeach
     <table class="table-bordered">
