@@ -29,8 +29,6 @@ class SectionAccessment extends Seeder
         foreach ($psychomotors as $psychomotor) {
             $psychomotor->delete();
         }
-        foreach ($affectiveTraits as $affectiveTrait) {
-            $affectiveTrait->delete();
-        }
+        
     }
 }
