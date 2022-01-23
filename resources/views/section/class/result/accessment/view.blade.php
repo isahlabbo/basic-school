@@ -45,7 +45,7 @@
                                 <td>{{$accessmentPsychomotor->value}}</td>
                             @endforeach
                             <td>
-                            <a href="{{route('dashboard.section.class.result.accessment.edit',[$sectionClass->id,$sectionClassStudentTerm])}}">
+                            <a href="{{route('dashboard.section.class.result.accessment.edit',[$sectionClass->id,$sectionClassStudentTerm-id])}}">
                             <button class="btn btn-secondary">Edit</button></a>
                             </td>
                         </tr>
