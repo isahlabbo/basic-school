@@ -35,7 +35,7 @@
             @include('section.class.student.upload')
         </thead>
         <tbody>
-            @foreach($sectionClass->sectionClassStudents as $sectionClassStudent)
+            @foreach($sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent)
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>
