@@ -39,11 +39,18 @@ class Student extends BaseModel
 
     public function gender()
     {
-        $gender = 'Male';
-        if($this->gender==2){
-            $gender = 'Female';
+        return $this->belongsTo(Gender::class);
+    }
+
+    public function assignToThisClass($sectionClassId)
+    {
+        $studentClass = $this->sectionClassStudents()->create(['section_class_id'=>$sectionClassId]);
+        foreach($this->currentSession()->academicSessionTerms as $academicSessionTerm){
+            $studentTerm = $studentClass->sectionClassStudentTerms()->create(['academic_session_term_id'=>$academicSessionTerm->id]);
+            if($studentTerm->academicSessionTerm->term->id == $this->currentSessionTerm()->term->id){
+                $studentTerm->update(['status'=>'Active']);
+            }
         }
-        return $gender;
     }
 
 }

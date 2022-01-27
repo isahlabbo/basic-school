@@ -192,6 +192,9 @@ class SectionClass extends BaseModel
                 }
             }
         }
+        if($count<1){
+            $count = 1;
+        }
         return number_format($classStudentAverages/$count,2);
     }
 

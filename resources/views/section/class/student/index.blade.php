@@ -47,7 +47,7 @@
                     </td>
                     <td>{{$sectionClassStudent->student->name}}</td>
                     <td>{{$sectionClassStudent->student->admission_no}}</td>
-                    <td>{{$sectionClassStudent->student->gender()}}</td>
+                    <td>{{$sectionClassStudent->student->gender->name}}</td>
                     <td>{{$sectionClassStudent->student->activeSectionClass()->name ?? 'Not Available'}}</td>
                     <td>{{$sectionClassStudent->student->guardian->name}}</td>
                     <td>{{$sectionClassStudent->student->guardian->phone}}</td>

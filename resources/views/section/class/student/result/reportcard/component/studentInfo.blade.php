@@ -14,7 +14,7 @@
     <tr>
         
         <td><p class="mb-0">Sex:</p></td>
-        <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->student->gender()}}</b></p></td>
+        <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->student->gender->name}}</b></p></td>
     </tr>
     <tr>
         

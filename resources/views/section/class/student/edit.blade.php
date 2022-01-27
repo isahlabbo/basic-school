@@ -91,12 +91,12 @@
                                             <div class="col-md-3"><label for="">Gender</label></div>
                                             <div class="col-md-9">
                                                 <select name="gender" id="" class="form-control">
-                                                    <option value="{{$student->gender == 'Male' ? '1' : '2'}}">{{$student->gender()}}</option>
-                                                    @if($student->gender() == 'Male')
-                                                        <option value="2">Female</option>
-                                                    @else
-                                                        <option value="1">Male</option>
-                                                    @endif
+                                                    <option value="{{$student->gender->id}}">{{$student->gender->name}}</option>
+                                                    @foreach($genders as $gender)
+                                                        @if($student->gender->id != $gender->id)
+                                                            <option value="{{$gender->id}}">{{$gender->name}}</option>
+                                                        @endif
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

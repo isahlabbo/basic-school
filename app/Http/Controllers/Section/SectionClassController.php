@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\SectionClass;
 use App\Models\Student;
 use App\Models\Section;
+use App\Models\Gender;
 use App\Exports\SectionClassStudentExport;
 use App\Imports\SectionClassStudentImport;
 use App\Services\Upload\FileUpload;
@@ -95,7 +96,7 @@ class SectionClassController extends Controller
 
     public function edit($studentId)
     {
-        return view('section.class.student.edit',['sections'=>Section::all(),'student'=>Student::find($studentId)]);
+        return view('section.class.student.edit',['genders'=>Gender::all(),'sections'=>Section::all(),'student'=>Student::find($studentId)]);
     }
 
     public function delete($studentId)
@@ -137,22 +138,15 @@ class SectionClassController extends Controller
                 'admission_no'=>$sectionClass->generateAdmissionNo(),
                 'section_class_id'=>$request->class,
                 'academic_session_id'=>$sectionClass->classAdmissionSession()->id,
-                'gender'=>$request->gender,
+                'gender_id'=>$request->gender,
                 'picture'=>$student->picture
             ]);
             // assign him to the new section class
-            $newSectionClassStudent = $sectionClass->sectionClassStudents()->create(['student_id'=>$newStudent->id]);
-            foreach($student->currentSession()->academicSessionTerms as $academicSessionTerm){
-                if($academicSessionTerm->term->id == $student->currentSessionterm()->term->id){
-                    $academicSessionTerm->sectionClassStudentTerms()->create(['section_class_student_id'=>$newSectionClassStudent->id]);
-                }else{
-                    $academicSessionTerm->sectionClassStudentTerms()->create(['status'=>'Not Active','section_class_student_id'=>$newSectionClassStudent->id]);
-                }
-            }
+            $newStudent->assignToThisClass($sectionClass->id);
+            
         }else{
             
             if($request->class){
-                
                 if(count($sectionClassStudent->uploadedResult()) > 0){
                     $sectionClassStudent->update(['status'=>'Not Active']);
                     foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm){
@@ -164,7 +158,8 @@ class SectionClassController extends Controller
                     }
                     $sectionClassStudent->delete();
                 }
-                $student->sectionClassStudents()->create(['section_class_id'=>$request->class]);
+                $student->assignToThisClass($request->class);
+                
             }
         }
 
@@ -180,7 +175,7 @@ class SectionClassController extends Controller
             'name'=>strtoupper($request->name),
             'date_of_birth'=>$request->date_of_birth,
             'section_class_id'=>$request->class,
-            'gender'=>$request->gender
+            'gender_id'=>$request->gender
         ]);
         
         return redirect()->route('dashboard.section.class.student',[$student->sectionClass->id])
