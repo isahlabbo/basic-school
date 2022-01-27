@@ -58,18 +58,11 @@ class SectionClassStudent extends BaseModel
                 $sectionClassStudentTerm->update(['status'=>'Not Active']);
             }
             $this->update(['status','Not Active']);
-            // find the next class and activate for the student
-            $newStudentClass = $this->student->sectionClassStudents()->create(['section_class_id'=>$this->sectionClass->nextClass()->id]);
-            foreach([1,2,3] as $term){
-                if($term ==1){
-                    $newStudentClass->sectionClassStudentTerms()->create(['term_id'=>$term,'status'=>'Active']);
-                }else{
-                    $newStudentClass->sectionClassStudentTerms()->create(['term_id'=>$term,'status'=>'Not Active']);
-                }
-            }
-            
+            // assign the student to the next class
+            $this->student->assignToThisClass($this->sectionClass->nextClass()->id);
         }else{
             // repeat the class
+            $this->student->repeatThisClass($this->sectionClass->id);
         }
     }
 

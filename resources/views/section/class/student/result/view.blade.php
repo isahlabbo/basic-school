@@ -13,7 +13,9 @@
             <div id="report">
                 @foreach($student->sectionClassStudents as $sectionClassStudent)
                     @foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm)<br><br>
-                        @include('section.class.student.result.reportcard.view')
+                        @if(count($sectionClassStudentTerm->studentResults)>0)
+                            @include('section.class.student.result.reportcard.view')
+                        @endif
                     @endforeach
                 @endforeach
             </div>
