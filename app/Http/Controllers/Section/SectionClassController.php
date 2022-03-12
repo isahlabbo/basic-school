@@ -142,7 +142,7 @@ class SectionClassController extends Controller
                 'picture'=>$student->picture
             ]);
             // assign him to the new section class
-            $newStudent->assignToThisClass($sectionClass->id);
+            $newStudent->assignToThisClass($sectionClass->id,'Active');
             
         }else{
             
@@ -158,7 +158,7 @@ class SectionClassController extends Controller
                     }
                     $sectionClassStudent->delete();
                 }
-                $student->assignToThisClass($request->class);
+                $student->assignToThisClass($request->class,'Active');
                 
             }
         }

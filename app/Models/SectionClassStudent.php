@@ -37,13 +37,16 @@ class SectionClassStudent extends BaseModel
     {
         return count($this->sectionclass->sectionClassSubjects) * 100;
     }
+    
     public function averageScore()
     {
         $total = 0;
         $count = 0;
         foreach ($this->sectionClassStudentTerms as $sectionClassStudentTerm) {
-            $total += $sectionClassStudentTerm->studentTermTotalScore;
-            $count ++;
+            if(count($sectionClassStudentTerm->studentResults)>0){
+                $total += $sectionClassStudentTerm->studentTermTotalScore();
+                $count ++;
+            }
         }
         if($count == 0){
             $count = 1;
@@ -59,10 +62,10 @@ class SectionClassStudent extends BaseModel
             }
             $this->update(['status','Not Active']);
             // assign the student to the next class
-            $this->student->assignToThisClass($this->sectionClass->nextClass()->id);
+            $this->student->assignToThisClass($this->sectionClass->nextClass()->id,'Active');
         }else{
             // repeat the class
-            $this->student->repeatThisClass($this->sectionClass->id);
+            $this->student->repeatThisClass($this->sectionClass->id,'Repeat');
         }
     }
 
