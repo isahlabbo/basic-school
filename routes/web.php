@@ -147,6 +147,14 @@ Route::name('dashboard.')
                 Route::get('/accessment/{studentTermId}/edit', 'ClassResultController@editAccessment')->name('accessment.edit');
                 Route::post('/accessment/{studentTermId}/update', 'ClassResultController@updateAccessment')->name('accessment.update');
                 Route::post('/accessment/upload', 'ClassResultController@uploadAccessment')->name('accessment.upload');
+            
+            });
+            
+            // exam routes
+            Route::name('exam.')
+            ->prefix('{classId}/exam')
+            ->group(function (){
+                Route::get('/', 'ExamController@index')->name('index');
             });
             
             Route::get('/{sectionClassId}/student-admission-no', 'SectionClassController@reGenerateAdmissionNo')->name('admission.number.regenerate');
