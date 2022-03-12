@@ -54,6 +54,11 @@ class SectionClass extends BaseModel
         return ['uploaded' => $uploadedResult, 'awaiting' => $awaitingResult];
     }
 
+    public function sectionClassTermlyExams()
+    {
+        return $this->hasMany(SectionClassTermlyExam::class);
+    }
+
     public function nextClass()
     { 
         $year = null;

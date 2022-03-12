@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SectionClassTermlyExam extends Model
+class SectionClassTermlyExam extends BaseModel
 {
     public function academicSession()
     {
@@ -17,9 +17,9 @@ class SectionClassTermlyExam extends Model
         return $this->belongsTo(SectionClass::class);
     }
 
-    public function term()
+    public function academicSessionTerm()
     {
-        return $this->belongsTo(Term::class);
+        return $this->belongsTo(AcademicSessionTerm::class);
     }
 
     public function questions()

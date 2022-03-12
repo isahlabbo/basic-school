@@ -27,12 +27,12 @@ class CreateSectionClassTermlyExamsTable extends Migration
             ->foreign()
             ->refrencies('id')
             ->on('section_classes');
-            $table->integer('term_id')
+            $table->integer('academic_session_term_id')
             ->unsign()
             ->nullable()
             ->foreign()
             ->refrencies('id')
-            ->on('terms');
+            ->on('academic_session_terms');
             $table->timestamps();
             $table->string('status')->default('Active');
         });

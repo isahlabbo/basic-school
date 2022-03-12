@@ -11,7 +11,10 @@ class SectionClassSubject extends BaseModel
     {
         return $this->hasMany(SectionClassSubjectTeacher::class);
     }
-
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
     public function subject()
     {
         return $this->belongsTo(Subject::class);

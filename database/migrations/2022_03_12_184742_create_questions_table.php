@@ -15,6 +15,12 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
+            $table->integer('section_class_termly_exam_id')
+            ->unsign()
+            ->nullable()
+            ->foreign()
+            ->refrencies('id')
+            ->on('section_class_termly_exams');
             $table->integer('question_type_id')
             ->unsign()
             ->nullable()
