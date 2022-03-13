@@ -155,7 +155,9 @@ Route::name('dashboard.')
             ->group(function (){
                 Route::get('/', 'ExamController@index')->name('index');
                 Route::get('/subjects', 'ExamController@examSubject')->name('subject');
+                Route::get('/subject/{subjectId}/question-papers', 'ExamController@subjectQuestionPaper')->name('subject.question.paper');
                 Route::post('/register', 'ExamController@register')->name('register');
+                Route::post('question/register', 'ExamController@addQuestion')->name('question.add');
             });
             
             Route::get('/{sectionClassId}/student-admission-no', 'SectionClassController@reGenerateAdmissionNo')->name('admission.number.regenerate');

@@ -23,7 +23,9 @@
                 <td>{{$sectionClassSubject->subject->name}}</td>
                 <td>{{count($sectionClassSubject->questions->where('section_class_termly_exam_id',$exam->id))}}</td>
                 <td>
-                    <button class="btn btn-secondary">Question Papers</button>
+                    <a href="{{route('dashboard.section.class.exam.subject.question.paper',[$exam->id, $sectionClassSubject->id])}}">
+                        <button class="btn btn-secondary">Question Papers</button>
+                    </a>
                     <button data-toggle="modal" data-target="#subject_{{$sectionClassSubject->id}}" class="btn btn-primary">Add Question</button>
                 </td>
             </tr>

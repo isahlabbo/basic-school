@@ -9,9 +9,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form  action="{{route('dashboard.section.class.exam.register',[$sectionClassSubject->id])}}" method="post">
+                <form  action="{{route('dashboard.section.class.exam.question.add',[$sectionClassSubject->sectionclass->id])}}" method="post">
                     @csrf
-                    <input type="hidden" value="{{$sectionClassSubject->id}}" name="sectionClassId">
+                    <input type="hidden" value="{{$exam->id}}" name="section_class_termly_exam_id">
+                    <input type="hidden" value="{{$sectionClassSubject->id}}" name="section_class_subject_id">
                     <div class="form-group row">
                         <div class="col-md-3"><label for="">Question</label></div>
                         <div class="col-md-9">
@@ -21,8 +22,11 @@
                     <div class="form-group row">
                         <div class="col-md-3"><label for="">Question Type</label></div>
                         <div class="col-md-9">
-                            <select name="session" id="" class="form-control">
+                            <select name="question_type_id" id="" class="form-control">
                                 <option value="">Question Type</option>
+                                @foreach(App\Models\QuestionType::all() as $type)
+                                    <option value="{{$type->id}}">{{$type->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

@@ -21,10 +21,8 @@ class CreateOptionsTable extends Migration
             ->foreign()
             ->refrencies('id')
             ->on('questions');
-            $table->string('A')->nullable();
-            $table->string('B')->nullable();
-            $table->string('C')->nullable();
-            $table->string('D')->nullable();
+            $table->string('name');
+            $table->string('value');
             $table->timestamps();
         });
     }

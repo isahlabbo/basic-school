@@ -59,7 +59,7 @@ class GenerateStudents extends Command
                             'academic_session_id'=>$sectionClass->classAdmissionSession()->id,
                             'date_of_birth'=>'2020/12/12',
                             'section_class_id'=>$sectionClass->id,
-                            'gender'=>rand(1,2)
+                            'gender_id'=>rand(1,2)
                         ]);
                         $classStudent = $student->sectionClassStudents()->create(['section_class_id'=>$sectionClass->id]);
                         $count = 1;

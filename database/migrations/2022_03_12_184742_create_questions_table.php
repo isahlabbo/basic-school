@@ -33,7 +33,7 @@ class CreateQuestionsTable extends Migration
             ->foreign()
             ->refrencies('id')
             ->on('section_class_subjects');
-            $table->text('diagram');
+            $table->text('diagram')->nullable();
             $table->text('question');
             $table->timestamps();
         });
