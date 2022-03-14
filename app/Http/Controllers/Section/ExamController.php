@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Section;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Question;
+use App\Models\QuestionItem;
+use App\Models\Option;
 use App\Models\SectionClass;
 use App\Models\SectionClassTermlyExam;
 use App\Models\SectionClassSubject;
@@ -18,7 +21,7 @@ class ExamController extends Controller
         return view('section.class.exam.index',['sectionClass'=>SectionClass::find($sectionClassId)]);
     }
 
-    public function register(Request $request, $sectionClassId)
+    public function register(Request $request, $sectionClassIdad)
     {
         $request->validate([
             'session'=>'required',
@@ -39,7 +42,8 @@ class ExamController extends Controller
     {
         
         $request->validate([
-            
+            'question_type_id'=>'required',
+            'question'=>'required',
             ]);
         $exam = SectionClassTermlyExam::find($request->section_class_termly_exam_id);
         $question = $exam->questions()->firstOrCreate([
@@ -54,29 +58,20 @@ class ExamController extends Controller
             .str_replace('/','-',$exam->currentSession()->name)
             ."/Question/");
         }
-        if($request->question_type_id == 1){
-            $question->options()->firstOrCreate([
-                'name'=>'A',
-                'value'=>$request->A,
-                ]);
-            $question->options()->firstOrCreate([
-                'name'=>'B',
-                'value'=>$request->B,
-                ]);
-            $question->options()->firstOrCreate([
-                'name'=>'C',
-                'value'=>$request->C,
-                ]);
-            $question->options()->firstOrCreate([
-                'name'=>'D',
-                'value'=>$request->D,
-                ]);    
-        }
-        return redirect()->route('dashboard.section.class.exam.subject',[$sectionClassId])->withSuccess('Question added successfully');    
+        
+        return redirect()->route('dashboard.section.class.exam.subject',[$sectionClassId,$exam->id])->withSuccess('Question added successfully');    
     }
     public function examSubject($examId)
     {
         return view('section.class.exam.subject',['exam'=>SectionClassTermlyExam::find($examId)]);
+    }
+
+    public function subjectQuestion($examId, $subjectId)
+    {
+        return view('section.class.exam.question',[
+            'sectionClassTermlyExam'=>SectionClassTermlyExam::find($examId),
+            'sectionClassSubject'=>SectionClassSubject::find($subjectId)
+        ]);
     }
     public function subjectQuestionPaper($examId, $subjectId)
     {
@@ -84,5 +79,46 @@ class ExamController extends Controller
             'exam'=>SectionClassTermlyExam::find($examId),
             'sectionClassSubject'=>SectionClassSubject::find($subjectId)
             ]);
+    }
+
+    public function newItem (Request $request, $exam, $question)
+    {
+       $question = Question::find($request->questionId);
+       $question->questionItems()->firstOrCreate(['name'=>$request->item]);
+       return redirect()->route('dashboard.section.class.exam.subject.question.view',
+       [$question->sectionClassSubject->sectionClass->id,$question->id]
+    )->withSuccess('Question Item Added');
+    }
+
+    public function newOption (Request $request, $exam, $question)
+    {
+       $question = Question::find($request->questionId);
+       $question->options()->firstOrCreate([
+           'name'=>$request->name,
+           'value'=>$request->value
+           ]);
+       return redirect()->route('dashboard.section.class.exam.subject.question.view',
+       [$question->sectionClassSubject->sectionClass->id,$question->id]
+    )->withSuccess('Question Option Added');
+    }
+
+    public function deleteOption ($classId, $optionId)
+    {
+        $option = Option::find($optionId);
+        $question = $option->question;
+        $option->delete();
+        return redirect()->route('dashboard.section.class.exam.subject.question',
+        [$question->sectionClassSubject->sectionClass->id,$question->sectionClassSubject->id]
+        )->withSuccess('Question Option deleted');
+    }
+
+    public function deleteItem ($classId, $itemId)
+    {
+        $item = QuestionItem::find($itemId);
+        $question = $item->question;
+        $item->delete();
+        return redirect()->route('dashboard.section.class.exam.subject.question',
+        [$question->sectionClassSubject->sectionClass->id,$question->sectionClassSubject->id]
+        )->withSuccess('Question item deleted');
     }
 }

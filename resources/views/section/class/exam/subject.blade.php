@@ -26,6 +26,9 @@
                     <a href="{{route('dashboard.section.class.exam.subject.question.paper',[$exam->id, $sectionClassSubject->id])}}">
                         <button class="btn btn-secondary">Question Papers</button>
                     </a>
+                    <a href="{{route('dashboard.section.class.exam.subject.question.index',[$sectionClassSubject->sectionClass->id, $sectionClassSubject->id])}}">
+                        <button class="btn btn-secondary">Questions</button>
+                    </a>
                     <button data-toggle="modal" data-target="#subject_{{$sectionClassSubject->id}}" class="btn btn-primary">Add Question</button>
                 </td>
             </tr>

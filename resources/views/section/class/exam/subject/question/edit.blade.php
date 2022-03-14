@@ -1,31 +1,32 @@
 
-<div class="modal fade" id="subject_{{$sectionClassSubject->id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit_{{$question->id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ADD {{$sectionClassSubject->subject->name}} QUESTION FOR {{$sectionClassSubject->sectionClass->name}} </h5>
+                <h5 class="modal-title" id="exampleModalLabel">EDIT QUESTION </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form  action="{{route('dashboard.section.class.exam.question.add',[$sectionClassSubject->sectionclass->id,$exam->id])}}" method="post">
+                <form  action="{{route('dashboard.section.class.exam.subject.question.update',[$sectionClassSubject->sectionclass->id,$question->id])}}" method="post">
                     @csrf
-                    <input type="hidden" value="{{$exam->id}}" name="section_class_termly_exam_id">
-                    <input type="hidden" value="{{$sectionClassSubject->id}}" name="section_class_subject_id">
+                    
                     <div class="form-group row">
                         <div class="col-md-3"><label for="">Question</label></div>
                         <div class="col-md-9">
-                            <textarea name="question" id="" cols="40" rows="4" placeholder="Please write your question statement here"></textarea>
+                            <textarea name="question" id="" cols="40" rows="4"  placeholder="Please write your question statement here">{{$question->question}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-3"><label for="">Question Type</label></div>
                         <div class="col-md-9">
                             <select name="question_type_id" id="" class="form-control">
-                                <option value="">Question Type</option>
+                                <option value="{{$question->questionType->id}}">{{$question->questionType->name}}</option>
                                 @foreach(App\Models\QuestionType::all() as $type)
+                                    @if($question->questionType->id != $type->id)
                                     <option value="{{$type->id}}">{{$type->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -37,7 +38,7 @@
                         </div>
                     </div>
                     
-                    <button class="btn btn-secondary">ADD QUESTION</button>
+                    <button class="btn btn-secondary">UPDATE QUESTION</button>
                 </form>
             </div>
             <div class="modal-footer">

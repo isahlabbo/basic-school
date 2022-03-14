@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-12 text text-center">
                     <hr style="background-color: gray; height: 2px;">
-                    <b>{{strtoupper($exam->sectionClass->name)}} {{$sectionClassSubject->subject->name}} QUESTION PAPER FOR {{strtoupper($exam->academicSessionTerm->term->name)}}</b><hr style="background-color: orange; height: 3px;">
+                    <b>{{strtoupper($exam->sectionClass->name)}} {{$sectionClassSubject->subject->name}} QUESTION PAPER FOR {{strtoupper($exam->academicSessionTerm->term->name)}} {{$exam->currentSession()->name}} SESSION</b><hr style="background-color: orange; height: 3px;">
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
@@ -34,7 +34,19 @@
                 <div class="col-md-1 text-right">Q {{$loop->iteration}}</div>
                 <div class="col-md-10">{{$question->question}}</div>
                 <div class="col-md-1"></div>
-                @if($question->questionType->name == 'Objectives')
+                @if(count($question->questionItems) > 0)
+                    <div class="col-md-1 text-right"></div>
+                    <div class="col-md-10">
+                        <ol class="row">
+                            @foreach($question->questionItems as $questionItem)
+                                <li class="col-md-3">{{$questionItem->name}}</li>
+                            @endforeach
+                        </ol>    
+                    </div>
+                    <div class="col-md-1"></div>
+                @endif
+                <br>
+                @if(count($question->options) > 0)
                     <div class="col-md-1 text-right"></div>
                     <div class="col-md-10">
                         <div class="row">
@@ -45,7 +57,9 @@
                     </div>
                     <div class="col-md-1"></div>
                 @endif
-                <hr>
+                @if($question->diagram)
+                    <img src="{{Storage::url($question->diagram)}}" alt="" width="100%">
+                @endif
             @endforeach
             <div class="col-md-12"><br></div>
         </div>  
