@@ -6,6 +6,7 @@
        {{Breadcrumbs::render('dashboard')}}
     @endsection
     @section('content')
+    
     <div class="container">
         <table class="table">
         <thead>
@@ -16,11 +17,13 @@
                 <th>Options</th>
                 <th>Items</th>
                 <th>Diagram</th>
-                <th></th>
+                <th><button data-toggle="modal" data-target="#subject_{{$sectionClassSubject->id}}" class="btn btn-primary">Add Question</button></th>
             </tr>
+            @include('section.class.exam.subject.question.create')
         </thead>
         <tbody>
-            @foreach($sectionClassSubject->questions as $question)
+            @foreach($sectionClassSubject->examSubjectQuestionSections as $questionSection)
+               @foreach($questionSection->questions as $question)
                     <tr>
                         <td>Q. {{$loop->iteration}}</td>
                         <td>{{$question->question}}</td>
@@ -42,6 +45,7 @@
                             </a>
                         </td>
                     </tr>
+            @endforeach
             @endforeach
         </tbody>
         </table>

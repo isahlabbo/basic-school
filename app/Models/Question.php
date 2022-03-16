@@ -12,9 +12,9 @@ class Question extends BaseModel
         return $this->belongsTo(QuestionType::class);
     }
 
-    public function sectionClassTermlyExam(Type $var = null)
+    public function examSubjectQuestionSection()
     {
-        return $this->belongsTo(SectionClassTermlyExam::class);
+        return $this->belongsTo(ExamSubjectQuestionSection::class);
     }
 
     public function sectionClassSubject(Type $var = null)
@@ -22,6 +22,21 @@ class Question extends BaseModel
         return $this->belongsTo(SectionClassSubject::class);
     }
 
+    public function availableOptions()
+    {
+        $available = [];
+        $remaining = [];
+        foreach ($this->options as $option) {
+            $available[] = $option->name;
+        }
+        foreach(['A','B','C','D','E'] as $name){
+            if(!in_array($name, $available)){
+                $remaining[] = $name;
+            }
+        }
+        return $remaining;
+
+    }
 
     public function options()
     {

@@ -9,14 +9,25 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form  action="{{route('dashboard.section.class.exam.question.add',[$sectionClassSubject->sectionclass->id,$exam->id])}}" method="post">
+                <form  action="{{route('dashboard.section.class.exam.subject.question.register',[$sectionClassSubject->sectionclass->id,$sectionClassSubject->currentExam()->id])}}" method="post">
                     @csrf
-                    <input type="hidden" value="{{$exam->id}}" name="section_class_termly_exam_id">
+                    <input type="hidden" value="{{$sectionClassSubject->currentExam()->id}}" name="section_class_termly_exam_id">
                     <input type="hidden" value="{{$sectionClassSubject->id}}" name="section_class_subject_id">
                     <div class="form-group row">
                         <div class="col-md-3"><label for="">Question</label></div>
                         <div class="col-md-9">
                             <textarea name="question" id="" cols="40" rows="4" placeholder="Please write your question statement here"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3"><label for="">Question Section</label></div>
+                        <div class="col-md-9">
+                            <select name="question_section_id" id="" class="form-control">
+                                <option value="">Question Section</option>
+                                @foreach($sectionClassSubject->currentQuestionSections() as $section)
+                                    <option value="{{$section->id}}">{{$section->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">

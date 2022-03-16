@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form  action="{{route('dashboard.section.class.exam.question.newOption',[$question->sectionClassTermlyExam->id, $question->id])}}" method="post">
+                <form  action="{{route('dashboard.section.class.exam.question.newOption',[$question->examSubjectQuestionSection->sectionClassTermlyExam->id, $question->id])}}" method="post">
                     @csrf
                     <input type="hidden" value="{{$question->id}}" name="questionId">
                     <div class="form-group row">
@@ -23,7 +23,7 @@
                         <div class="col-md-9">
                             <select name="name" id="" class="form-control">
                                 <option value="">Option Name</option>
-                                @foreach(['A','B','C','D','E'] as $name)
+                                @foreach($question->availableOptions() as $name)
                                     <option value="{{$name}}">{{$name}}</option>
                                 @endforeach
                             </select>

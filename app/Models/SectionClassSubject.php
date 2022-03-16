@@ -29,9 +29,22 @@ class SectionClassSubject extends BaseModel
         return $this->hasMany(SectionClassSubjectUploads::class);
     }
 
+    public function examSubjectQuestionSections()
+    {
+        return $this->hasMany(ExamSubjectQuestionSection::class);
+    }
+
     public function sectionClass()
     {
         return $this->belongsTo(SectionClass::class);
+    }
+    public function currentExam()
+    {
+        return $this->sectionClass->sectionClassTermlyExams->where('academic_session_term_id',$this->currentSessionTerm()->id)->first();
+    }
+    public function currentQuestionSections()
+    {
+        return $this->examSubjectQuestionSections->where('section_class_termly_exam_id', $this->currentExam()->id);
     }
 
     public function availableResultUploads()

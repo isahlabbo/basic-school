@@ -154,7 +154,7 @@ Route::name('dashboard.')
             ->prefix('{classId}/exam')
             ->group(function (){
                 Route::get('/', 'ExamController@index')->name('index');
-                Route::get('/subject/{subjectId}/questions', 'ExamController@subjectQuestion')->name('subject.question');
+
                 Route::post('/subject/{questId}/new-item', 'ExamController@newItem')->name('question.newItem');
                 Route::post('/subject/{questId}/new-option', 'ExamController@newOption')->name('question.newOption');
                 Route::get('/question/item/{itemId}/delete-item', 'ExamController@deleteItem')->name('question.delete.item');
@@ -162,18 +162,24 @@ Route::name('dashboard.')
                 Route::get('/{examId}/subjects', 'ExamController@examSubject')->name('subject');
                 Route::get('/subject/{subjectId}/question-papers', 'ExamController@subjectQuestionPaper')->name('subject.question.paper');
                 Route::post('/register', 'ExamController@register')->name('register');
-                Route::post('question/register', 'ExamController@addQuestion')->name('question.add');
+                
                 
                 Route::name('subject.')
-                ->prefix('/subject')
                 ->group(function (){
-
                     Route::name('question.')
                     ->group(function (){
-                        Route::get('{subjectId}/questions', 'QuestionController@index')->name('index');
-                        Route::get('/questions/{questionId}/view', 'QuestionController@view')->name('view');
-                        Route::get('/questions/{questionId}/delete', 'QuestionController@delete')->name('delete');
-                        Route::post('/questions/{questionId}/update', 'QuestionController@update')->name('update');
+                        Route::post('/subject/question/register', 'QuestionController@register')->name('register');
+                        Route::get('/subject/{subjectId}/questions', 'QuestionController@index')->name('index');
+                        Route::get('/subject/questions/{questionId}/view', 'QuestionController@view')->name('view');
+                        Route::get('/subject/questions/{questionId}/delete', 'QuestionController@delete')->name('delete');
+                        Route::post('/subject/questions/{questionId}/update', 'QuestionController@update')->name('update');
+                    //    question section route
+                        Route::name('section.')
+                        ->prefix('/subject/{subjectId}/section')
+                        ->group(function (){
+                            Route::get('/', 'QuestionSectionController@index')->name('index');
+                            Route::post('/register', 'QuestionSectionController@register')->name('register');
+                        });
                     });
                 });
             });

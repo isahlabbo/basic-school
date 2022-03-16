@@ -19,6 +19,19 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <div class="col-md-3"><label for="">Question Section</label></div>
+                        <div class="col-md-9">
+                            <select name="question_section_id" id="" class="form-control">
+                                <option value="{{$question->examSubjectQuestionSection->id}}">{{$question->examSubjectQuestionSection->name}}</option>
+                                @foreach($sectionClassSubject->currentQuestionSections() as $section)
+                                    @if($question->examSubjectQuestionSection->id != $section->id)
+                                    <option value="{{$section->id}}">{{$section->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="col-md-3"><label for="">Question Type</label></div>
                         <div class="col-md-9">
                             <select name="question_type_id" id="" class="form-control">

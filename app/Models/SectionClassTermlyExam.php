@@ -22,8 +22,8 @@ class SectionClassTermlyExam extends BaseModel
         return $this->belongsTo(AcademicSessionTerm::class);
     }
 
-    public function questions()
+    public function examSubjectQuestionSections()
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(ExamSubjectQuestionSection::class);
     }
 }

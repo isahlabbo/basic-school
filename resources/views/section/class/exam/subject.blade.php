@@ -12,16 +12,16 @@
         <thead>
             <tr>
                 <th>Subject Name</th>
-                <th>Question</th>
+                <th>Question Sections</th>
                 <th></th>
-                
             </tr>
         </thead>
         <tbody>
             @foreach($exam->sectionClass->sectionClassSubjects as $sectionClassSubject)
             <tr>
                 <td>{{$sectionClassSubject->subject->name}}</td>
-                <td>{{count($sectionClassSubject->questions->where('section_class_termly_exam_id',$exam->id))}}</td>
+                <td><a class="btn btn-primary" href="{{route('dashboard.section.class.exam.subject.question.section.index',[$exam->id,$sectionClassSubject->id])}}">
+                {{count($sectionClassSubject->examSubjectQuestionSections)}}</a></td>
                 <td>
                     <a href="{{route('dashboard.section.class.exam.subject.question.paper',[$exam->id, $sectionClassSubject->id])}}">
                         <button class="btn btn-secondary">Question Papers</button>
@@ -29,10 +29,10 @@
                     <a href="{{route('dashboard.section.class.exam.subject.question.index',[$sectionClassSubject->sectionClass->id, $sectionClassSubject->id])}}">
                         <button class="btn btn-secondary">Questions</button>
                     </a>
-                    <button data-toggle="modal" data-target="#subject_{{$sectionClassSubject->id}}" class="btn btn-primary">Add Question</button>
+                    
                 </td>
             </tr>
-            @include('section.class.exam.addQuestion')
+            
             @endforeach
         </tbody>
         </table>

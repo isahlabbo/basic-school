@@ -21,7 +21,7 @@ class ExamController extends Controller
         return view('section.class.exam.index',['sectionClass'=>SectionClass::find($sectionClassId)]);
     }
 
-    public function register(Request $request, $sectionClassIdad)
+    public function register(Request $request, $sectionClassId)
     {
         $request->validate([
             'session'=>'required',
@@ -38,30 +38,8 @@ class ExamController extends Controller
             return redirect()->route('dashboard.section.class.exam.index',[$sectionClassId]);    
     }
 
-    public function addQuestion(Request $request, $sectionClassId)
-    {
-        
-        $request->validate([
-            'question_type_id'=>'required',
-            'question'=>'required',
-            ]);
-        $exam = SectionClassTermlyExam::find($request->section_class_termly_exam_id);
-        $question = $exam->questions()->firstOrCreate([
-            'section_class_subject_id'=>$request->section_class_subject_id,
-            'question_type_id'=>$request->question_type_id,
-            'question'=>$request->question,
-            ]);
-        if($request->diagram){
-            $this->storeFile($question,'diagram',$request->diagram,
-            $exam->sectionClass->section->name.'/'
-            .$exam->sectionClass->name.'/'
-            .str_replace('/','-',$exam->currentSession()->name)
-            ."/Question/");
-        }
-        
-        return redirect()->route('dashboard.section.class.exam.subject',[$sectionClassId,$exam->id])->withSuccess('Question added successfully');    
-    }
-    public function examSubject($examId)
+    
+    public function examSubject($classId, $examId)
     {
         return view('section.class.exam.subject',['exam'=>SectionClassTermlyExam::find($examId)]);
     }
@@ -84,9 +62,9 @@ class ExamController extends Controller
     public function newItem (Request $request, $exam, $question)
     {
        $question = Question::find($request->questionId);
-       $question->questionItems()->firstOrCreate(['name'=>$request->item]);
+       $question->questionItems()->create(['name'=>$request->item]);
        return redirect()->route('dashboard.section.class.exam.subject.question.view',
-       [$question->sectionClassSubject->sectionClass->id,$question->id]
+       [$question->examSubjectQuestionSection->sectionClassSubject->sectionClass->id,$question->id]
     )->withSuccess('Question Item Added');
     }
 
@@ -98,7 +76,7 @@ class ExamController extends Controller
            'value'=>$request->value
            ]);
        return redirect()->route('dashboard.section.class.exam.subject.question.view',
-       [$question->sectionClassSubject->sectionClass->id,$question->id]
+       [$question->examSubjectQuestionSection->sectionClassSubject->sectionClass->id,$question->id]
     )->withSuccess('Question Option Added');
     }
 
@@ -107,8 +85,9 @@ class ExamController extends Controller
         $option = Option::find($optionId);
         $question = $option->question;
         $option->delete();
-        return redirect()->route('dashboard.section.class.exam.subject.question',
-        [$question->sectionClassSubject->sectionClass->id,$question->sectionClassSubject->id]
+        return redirect()->route('dashboard.section.class.exam.subject.question.view',
+        [$question->examSubjectQuestionSection->sectionClassSubject->sectionClass->id,
+        $question->id]
         )->withSuccess('Question Option deleted');
     }
 
@@ -117,8 +96,9 @@ class ExamController extends Controller
         $item = QuestionItem::find($itemId);
         $question = $item->question;
         $item->delete();
-        return redirect()->route('dashboard.section.class.exam.subject.question',
-        [$question->sectionClassSubject->sectionClass->id,$question->sectionClassSubject->id]
+        return redirect()->route('dashboard.section.class.exam.subject.question.view',
+        [$question->examSubjectQuestionSection->sectionClassSubject->sectionClass->id,
+        $question->id]
         )->withSuccess('Question item deleted');
     }
 }

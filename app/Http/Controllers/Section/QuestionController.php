@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\SectionClass;
 use App\Models\SectionClassSubject;
+use App\Models\ExamSubjectQuestionSection;
+use App\Models\SectionClassTermlyExam;
 use App\Services\Upload\FileUpload;
 
 class QuestionController extends Controller
@@ -29,17 +31,43 @@ class QuestionController extends Controller
             ]);
     }
 
+    public function register(Request $request, $sectionClassId)
+    {
+        $request->validate([
+            'question_type_id'=>'required',
+            'question_section_id'=>'required',
+            'question'=>'required',
+            ]);
+        $exam = ExamSubjectQuestionSection::find($request->question_section_id);
+        $question = $exam->questions()->firstOrCreate([
+            'exam_subject_question_section_id'=>$request->question_section_id,
+            'question_type_id'=>$request->question_type_id,
+            'question'=>$request->question,
+            ]);
+        if($request->diagram){
+            $this->storeFile($question,'diagram',$request->diagram,
+            $exam->sectionClass->section->name.'/'
+            .$exam->sectionClass->name.'/'
+            .str_replace('/','-',$exam->currentSession()->name)
+            ."/Question/");
+        }
+        
+        return redirect()->route('dashboard.section.class.exam.subject.question.index',[$sectionClassId, $request->section_class_subject_id])->withSuccess('Question added successfully');    
+    }
+
     public function update(Request $request, $sectionClassId, $questionId)
     {
         
         $request->validate([
             'question_type_id'=>'required',
             'question'=>'required',
+            'question_section_id'=>'required',
             ]);
         $question = Question::find($questionId);
         $question->update([
             'question_type_id'=>$request->question_type_id,
             'question'=>$request->question,
+            'exam_subject_question_section_id'=>$request->question_section_id,
             ]);
         if($request->diagram){
             $this->updateFile($question,'diagram',$request->diagram,

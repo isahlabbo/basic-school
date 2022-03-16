@@ -1,6 +1,6 @@
 <x-app-layout>
     @section('title')
-        {{config('app.name')}} {{$question->sectionClassSubject->subject->name}} exam question view
+        {{config('app.name')}} {{$question->examSubjectQuestionSection->sectionClassSubject->subject->name}} exam question view
     @endsection
     @section('breadcrumb')
        {{Breadcrumbs::render('dashboard')}}
@@ -27,7 +27,7 @@
                                 <td>{{$option->name}}</td>
                                 <td>{{$option->value}}</td>
                                 <td><a onclick="return confirm('are you sure you want to delete this Option')" href="{{route('dashboard.section.class.exam.question.delete.option',[
-                                $question->sectionclassSubject->sectionClass->id, $option->id])}}">
+                                $question->examSubjectQuestionSection->sectionclassSubject->sectionClass->id, $option->id])}}">
                                 <button class="btn btn-danger"><b>x</b></button></a></td>
                             </tr>
                         @endforeach
@@ -39,7 +39,7 @@
                     <ol>
                     @foreach($question->questionItems as $questionItem)
                         <li>{{$questionItem->name}} <a onclick="return confirm('are you sure you want to delete this Item')" href="{{route('dashboard.section.class.exam.question.delete.item',[
-                                $question->sectionclassSubject->sectionClass->id, $questionItem->id])}}">
+                                $question->examSubjectQuestionSection->sectionclassSubject->sectionClass->id, $questionItem->id])}}">
                                 <button class="btn btn-danger"><b>x</b></button></a></li> 
                     @endforeach
                     </ol>

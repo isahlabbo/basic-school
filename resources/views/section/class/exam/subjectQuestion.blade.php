@@ -12,7 +12,7 @@
     </div><br>
     <div id="report">
     @foreach($exam->sectionClass->sectionClassStudents as $sectionClassStudent)
-    <div class="card shadow" style="page-break-inside: avoid;">
+    <div class="card shadow" style="page-break-inside: avoid; color:black;">
         <div class="card-body">
             <div class="row">
                 @include('section.class.student.result.reportcard.component.schoolInfo')
@@ -29,9 +29,13 @@
             </div>
         </div>
         <hr>
-        <div class="row">
-            @foreach($exam->questions->where('section_class_subject_id',$sectionClassSubject->id) as $question)
-                <div class="col-md-1 text-right">Q {{$loop->iteration}}</div>
+        <div class="row h5">
+            @foreach($sectionClassSubject->examSubjectQuestionSections as $questionSection)
+            <div class="col-md-1"></div>
+            <div class="col-md-11"><b>{{strtoupper($questionSection->name)}}<br>
+            Instruction: <span>{{$questionSection->instruction}}</span></b></div>
+                @foreach($questionSection->questions as $question)
+                <div class="col-md-1 text-center">Q. {{$loop->iteration}}</div>
                 <div class="col-md-10">{{$question->question}}</div>
                 <div class="col-md-1"></div>
                 @if(count($question->questionItems) > 0)
@@ -39,7 +43,7 @@
                     <div class="col-md-10">
                         <ol class="row">
                             @foreach($question->questionItems as $questionItem)
-                                <li class="col-md-3">{{$questionItem->name}}</li>
+                                <li class="col-md-6">{{$questionItem->name}}</li>
                             @endforeach
                         </ol>    
                     </div>
@@ -60,6 +64,7 @@
                 @if($question->diagram)
                     <img src="{{Storage::url($question->diagram)}}" alt="" width="100%">
                 @endif
+            @endforeach
             @endforeach
             <div class="col-md-12"><br></div>
         </div>  
