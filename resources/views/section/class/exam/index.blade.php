@@ -3,7 +3,7 @@
         {{config('app.name')}} {{$sectionClass->name}} exam setting
     @endsection
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard')}}
+       {{Breadcrumbs::render('dashboard.section.class.exam',$sectionClass)}}
     @endsection
     @section('content')
     <div class="container">

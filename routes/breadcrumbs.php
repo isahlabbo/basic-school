@@ -73,6 +73,38 @@ Breadcrumbs::for('dashboard.section.class', function ($trail, $sectionClass) {
     $trail->push($sectionClass->name, route('dashboard.section.class.student',[$sectionClass->id]));
 });
 
+// dashboard/section/class/exam
+Breadcrumbs::for('dashboard.section.class.exam', function ($trail, $sectionClass) {
+    $trail->parent('dashboard.section.class',$sectionClass);
+    $trail->push('Exam Setting', route('dashboard.section.class.exam.index',[$sectionClass->id]));
+});
+
+// dashboard/section/class/exam/subject
+Breadcrumbs::for('dashboard.section.class.exam.subject', function ($trail, $exam) {
+    $trail->parent('dashboard.section.class.exam',$exam->sectionClass);
+    $trail->push('Subjects', route('dashboard.section.class.exam.subject',[$exam->sectionClass->id,$exam->id]));
+});
+
+// dashboard/section/class/exam/subject/question
+Breadcrumbs::for('dashboard.section.class.exam.subject.question', function ($trail, $subject) {
+    $trail->parent('dashboard.section.class.exam.subject',$subject->currentExam());
+    $trail->push($subject->subject->name.'-questions', 
+    route('dashboard.section.class.exam.subject.question.index',[$subject->sectionClass->id,$subject->id]));
+});
+// dashboard/section/class/exam/subject/question/view
+Breadcrumbs::for('dashboard.section.class.exam.subject.question.view', function ($trail, $question) {
+    $trail->parent('dashboard.section.class.exam.subject.question',$question->examSubjectQuestionSection->sectionClassSubject);
+    $trail->push('view', 
+    route('dashboard.section.class.exam.subject.question.index',[$question->examSubjectQuestionSection->sectionClassSubject->sectionClass->id,$question->id]));
+});
+
+// dashboard/section/class/exam/subject/question-section
+Breadcrumbs::for('dashboard.section.class.exam.subject.question.section', function ($trail, $exam, $subject) {
+    $trail->parent('dashboard.section.class.exam.subject',$exam);
+    $trail->push($subject->subject->name.'-question-section', 
+    route('dashboard.section.class.exam.subject.question.section.index',[$exam->sectionClass->id,$subject->id]));
+});
+
 // dashboard/section/class/edit student info
 Breadcrumbs::for('dashboard.section.class.student.edit', function ($trail, $student) {
     $trail->parent('dashboard.section.class',$student->activeSectionClass());

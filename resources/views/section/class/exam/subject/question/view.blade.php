@@ -3,7 +3,7 @@
         {{config('app.name')}} {{$question->examSubjectQuestionSection->sectionClassSubject->subject->name}} exam question view
     @endsection
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard')}}
+       {{Breadcrumbs::render('dashboard.section.class.exam.subject.question.view',$question)}}
     @endsection
     @section('content')
     <div class="container">
