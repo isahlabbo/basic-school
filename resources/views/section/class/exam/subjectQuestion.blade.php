@@ -40,7 +40,7 @@
                 <div class="col-md-1"></div>
                 @if($question->answer)
                 <div class="col-md-1 text-center"></div>
-                <div class="col-md-10"><b>Answer</b> {{$question->answer}}</div>
+                <div class="col-md-10">{{$question->answer}}</div>
                 <div class="col-md-1"></div>
                 @endif
                 @if(count($question->questionItems) > 0)
@@ -48,7 +48,7 @@
                     <div class="col-md-10">
                         <ol class="row">
                             @foreach($question->questionItems as $questionItem)
-                                <li class="col-md-6">{{$questionItem->name}}</li>
+                                <li class="col-md-4">{{$questionItem->name}}</li>
                             @endforeach
                         </ol>    
                     </div>

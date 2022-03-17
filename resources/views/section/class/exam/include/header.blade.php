@@ -10,10 +10,7 @@
             <td> <p class="mb-0">Student Name:</p></td>
             <td><p class="mb-0 text-left"><b>{{$sectionClassStudent->student->name}}</b></p></td>
         </tr>
-        <tr>
-            <td><p class="mb-0">Sex:</p></td>
-            <td><p class="mb-0 text-left"><b>{{$sectionClassStudent->student->gender->name ?? ''}}</b></p></td>
-        </tr>
+        
         <tr>
             <td><p class="mb-0">Class:</p></td>
             <td><p class="mb-0 text-left"><b>{{$exam->sectionClass->name ?? ''}}</b></p></td>
