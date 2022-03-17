@@ -12,7 +12,7 @@
     </div><br>
     <div id="report">
     @foreach($exam->sectionClass->sectionClassStudents as $sectionClassStudent)
-    <div class="card shadow" style="page-break-inside: avoid; color:black;">
+    <div class="card" height="100%" style="page-break-inside: avoid; color:black;">
         <div class="card-body">
             <div class="row">
                 @include('section.class.student.result.reportcard.component.schoolInfo')
@@ -38,6 +38,11 @@
                 <div class="col-md-1 text-center">Q. {{$loop->iteration}}</div>
                 <div class="col-md-10">{{$question->question}}</div>
                 <div class="col-md-1"></div>
+                @if($question->answer)
+                <div class="col-md-1 text-center"></div>
+                <div class="col-md-10"><b>Answer</b> {{$question->answer}}</div>
+                <div class="col-md-1"></div>
+                @endif
                 @if(count($question->questionItems) > 0)
                     <div class="col-md-1 text-right"></div>
                     <div class="col-md-10">

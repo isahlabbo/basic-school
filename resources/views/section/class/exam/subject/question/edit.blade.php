@@ -19,6 +19,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <div class="col-md-3"><label for="">Answer</label></div>
+                        <div class="col-md-9">
+                            <textarea name="answer" id="" cols="40" rows="4" placeholder="Please write your question answer here">{{$question->answer}}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="col-md-3"><label for="">Question Section</label></div>
                         <div class="col-md-9">
                             <select name="question_section_id" id="" class="form-control">

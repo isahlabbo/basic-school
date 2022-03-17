@@ -43,6 +43,7 @@ class QuestionController extends Controller
             'exam_subject_question_section_id'=>$request->question_section_id,
             'question_type_id'=>$request->question_type_id,
             'question'=>$request->question,
+            'answer'=>$request->answer,
             ]);
         if($request->diagram){
             $this->storeFile($question,'diagram',$request->diagram,
@@ -67,6 +68,7 @@ class QuestionController extends Controller
         $question->update([
             'question_type_id'=>$request->question_type_id,
             'question'=>$request->question,
+            'answer'=>$request->answer,
             'exam_subject_question_section_id'=>$request->question_section_id,
             ]);
         if($request->diagram){
