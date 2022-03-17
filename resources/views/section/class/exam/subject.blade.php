@@ -14,6 +14,7 @@
                 <th>Subject Name</th>
                 <th>Question Sections</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,8 @@
                 <td>{{$sectionClassSubject->subject->name}}</td>
                 <td><a class="btn btn-primary" href="{{route('dashboard.section.class.exam.subject.question.section.index',[$exam->id,$sectionClassSubject->id])}}">
                 {{count($sectionClassSubject->examSubjectQuestionSections)}}</a></td>
+                <td><button data-toggle="modal" data-target="#move_{{$sectionClassSubject->id}}" class="btn btn-danger">Move all Question To</button></td>
+                @include('section.class.exam.subject.question.move')
                 <td>
                     <a href="{{route('dashboard.section.class.exam.subject.question.paper',[$exam->id, $sectionClassSubject->id])}}">
                         <button class="btn btn-secondary">Question Papers</button>

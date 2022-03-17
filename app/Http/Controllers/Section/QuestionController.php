@@ -97,4 +97,16 @@ class QuestionController extends Controller
         return redirect()->route('dashboard.section.class.exam.subject.question.index',
         [$sectionClassId, $subject->id])->withSuccess('Question Deleted');    
     }
+
+    public function move(Request $request)
+    {
+        $request->validate(['to_subject_id'=>'required']);
+        $exam = SectionClassTermlyExam::find($request->exam_id);
+        foreach($exam->examSubjectQuestionSections->where('section_class_subject_id',$request->from_subject_id) as $examSubject){
+            $examSubject->update(['section_class_subject_id'=>$request->to_subject_id]);
+        }
+
+        return redirect()->route('dashboard.section.class.exam.subject',
+        [$exam->sectionClass, $exam->id])->withSuccess('All Question Was Moved Successfully');
+    }
 }
