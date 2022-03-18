@@ -71,10 +71,8 @@
                     </div>
                     <div class="col-md-1"></div>
                 @endif
-                
             @endforeach
             @endforeach
-            <div class="col-md-12"><br></div>
         </div>  
     </div>
     <br>
