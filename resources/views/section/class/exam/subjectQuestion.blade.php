@@ -43,6 +43,11 @@
                 <div class="col-md-10">{{$question->answer}}</div>
                 <div class="col-md-1"></div>
                 @endif
+                @if($question->diagram)
+                <div class="col-md-1 text-center"></div>
+                <div class="col-md-10"><img src="{{Storage::url($question->diagram)}}" alt="" height="120" width="90%"></div>
+                <div class="col-md-1"></div>
+                @endif
                 @if(count($question->questionItems) > 0)
                     <div class="col-md-1 text-right"></div>
                     <div class="col-md-10">
@@ -66,9 +71,7 @@
                     </div>
                     <div class="col-md-1"></div>
                 @endif
-                @if($question->diagram)
-                    <img src="{{Storage::url($question->diagram)}}" alt="" width="100%">
-                @endif
+                
             @endforeach
             @endforeach
             <div class="col-md-12"><br></div>

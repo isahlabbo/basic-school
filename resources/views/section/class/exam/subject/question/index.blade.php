@@ -34,6 +34,7 @@
                         <td>
                             {{count($question->questionItems)}}
                         </td>
+                        <td><img src="{{Storage::url($question->diagram)}}" alt=""></td>
                         <td>
                             <button data-toggle="modal" data-target="#edit_{{$question->id}}" class="btn btn-primary">Edit</button>
                             @include('section.class.exam.subject.question.edit')

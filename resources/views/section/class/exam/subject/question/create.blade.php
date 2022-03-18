@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form  action="{{route('dashboard.section.class.exam.subject.question.register',[$sectionClassSubject->sectionclass->id,$sectionClassSubject->currentExam()->id])}}" method="post">
+                <form  action="{{route('dashboard.section.class.exam.subject.question.register',[$sectionClassSubject->sectionclass->id,$sectionClassSubject->currentExam()->id])}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{$sectionClassSubject->currentExam()->id}}" name="section_class_termly_exam_id">
                     <input type="hidden" value="{{$sectionClassSubject->id}}" name="section_class_subject_id">

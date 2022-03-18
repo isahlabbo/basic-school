@@ -47,9 +47,9 @@ class QuestionController extends Controller
             ]);
         if($request->diagram){
             $this->storeFile($question,'diagram',$request->diagram,
-            $exam->sectionClass->section->name.'/'
-            .$exam->sectionClass->name.'/'
-            .str_replace('/','-',$exam->currentSession()->name)
+            $exam->sectionClassTermlyExam->sectionClass->section->name.'/'
+            .$exam->sectionClassTermlyExam->sectionClass->name.'/'
+            .str_replace('/','-',str_replace('/','-',$exam->currentSession()->name))
             ."/Question/");
         }
         
