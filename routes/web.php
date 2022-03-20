@@ -170,6 +170,7 @@ Route::name('dashboard.')
                     ->group(function (){
                         Route::post('/subject/question/register', 'QuestionController@register')->name('register');
                         Route::post('/subject/question/move', 'QuestionController@move')->name('move');
+                        Route::post('/subject/question/copy', 'QuestionController@copy')->name('copy');
                         Route::get('/subject/{subjectId}/questions', 'QuestionController@index')->name('index');
                         Route::get('/subject/questions/{questionId}/view', 'QuestionController@view')->name('view');
                         Route::get('/subject/questions/{questionId}/delete', 'QuestionController@delete')->name('delete');

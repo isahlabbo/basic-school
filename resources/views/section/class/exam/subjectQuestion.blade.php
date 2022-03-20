@@ -11,7 +11,7 @@
         <div class="col-md-1"><button class="btn btn-secondary btn-block" id="print" onclick="printContent('report');" >Print</button></div>
     </div><br>
     <div id="report">
-    @foreach($exam->sectionClass->sectionClassStudents as $sectionClassStudent)
+    @foreach($exam->sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent)
     <div class="card" height="100%" style="page-break-inside: avoid; color:black;">
         <div class="card-body">
             <div class="row">

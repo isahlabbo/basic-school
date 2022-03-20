@@ -26,6 +26,9 @@
                 <td><button data-toggle="modal" data-target="#move_{{$sectionClassSubject->id}}" class="btn btn-danger">Move all Question To</button></td>
                 @include('section.class.exam.subject.question.move')
                 <td>
+                <td><button data-toggle="modal" data-target="#copy_{{$sectionClassSubject->id}}" class="btn btn-danger">Copy Questions From</button></td>
+                @include('section.class.exam.subject.question.copy')
+                <td>
                     <a href="{{route('dashboard.section.class.exam.subject.question.paper',[$exam->id, $sectionClassSubject->id])}}">
                         <button class="btn btn-secondary">Question Papers</button>
                     </a>
