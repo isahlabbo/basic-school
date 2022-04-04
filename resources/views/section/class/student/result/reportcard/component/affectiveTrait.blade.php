@@ -9,10 +9,12 @@
     <tbody>
     @if($sectionClassStudentTerm->sectionClassStudentTermAccessment)
     @foreach($sectionClassStudentTerm->sectionClassStudentTermAccessment->sectionClassStudentTermAccessmentAffectiveTraits as $accessmentTrait)    
+    @if($accessmentTrait->affectiveTrait)
     <tr>
         <td>{{$accessmentTrait->affectiveTrait->name ?? 0}}</td>
         <td>{{$accessmentTrait->value ?? 0}}</td>
     </tr>
+    @endif
     @endforeach
     @endif
     </tbody>

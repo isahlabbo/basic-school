@@ -73,9 +73,9 @@ class QuestionController extends Controller
             ]);
         if($request->diagram){
             $this->updateFile($question,'diagram',$request->diagram,
-            $exam->sectionClassTermlyExam->sectionClass->section->name.'/'
-            .$exam->sectionClassTermlyExam->sectionClass->name.'/'
-            .str_replace('/','-',str_replace('/','-',$exam->currentSession()->name))
+            $question->examSubjectQuestionSection->sectionClassTermlyExam->sectionClass->section->name.'/'
+            .$question->examSubjectQuestionSection->sectionClassTermlyExam->sectionClass->name.'/'
+            .str_replace('/','-',str_replace('/','-',$question->examSubjectQuestionSection->currentSession()->name))
             ."/Question/");
         }
         
@@ -94,8 +94,7 @@ class QuestionController extends Controller
             $questionItem->delete();
         }
         $question->delete();
-        return redirect()->route('dashboard.section.class.exam.subject.question.index',
-        [$sectionClassId, $subject->id])->withSuccess('Question Deleted');    
+        return back()->withSuccess('Question Deleted');    
     }
 
     public function move(Request $request)
@@ -113,35 +112,39 @@ class QuestionController extends Controller
     public function copy(Request $request)
     {
         
-        $request->validate(['from_class_id'=>'required']);
+        $request->validate(['subject'=>'required']);
 
         $subject = SectionClassSubject::find($request->to_subject_id);
-        $fromSubject = SectionClass::find($request->from_class_id)->sectionClassSubjects
-        ->where('subject_id',$subject->subject->id)->first();
-        foreach($fromSubject->currentExam()->examSubjectQuestionSections as $examSubject){
-            $questionSection = $subject->currentExam()->examSubjectQuestionSections()->create([
-                'section_class_subject_id'=>$subject->id,
-                'instruction'=>$examSubject->instruction,
-                'name'=>$examSubject->name,
-                ]);
-            foreach($examSubject->questions as $question){
-                $newQuestion = $questionSection->questions()->create([
-                    'question_type_id'=>$question->question_type_id,
-                    'question'=>$question->question,
-                    'diagram'=>$question->diagram,
-                    ]);
-                if(count($question->questionItems)>0){
-                   foreach($question->questionItems as $item){
-                       $newQuestion->questionItems()->create(['name'=>$item->name]);
-                   }
-                }
-                if(count($question->options)>0){
-                    foreach($question->options as $option){
-                        $newQuestion->options()->create(['name'=>$option->name,'value'=>$option->value]);
+        $fromSubject = SectionClassSubject::find($request->subject);
+        
+                foreach($fromSubject->examSubjectQuestionSections as $examSubject){
+                    $questionSection = $subject->currentExam()->examSubjectQuestionSections()->create([
+                        'section_class_subject_id'=>$subject->id,
+                        'instruction'=>$examSubject->instruction,
+                        'name'=>$examSubject->name,
+                        ]);
+                    foreach($examSubject->questions as $question){
+                        $newQuestion = $questionSection->questions()->create([
+                            'question_type_id'=>$question->question_type_id,
+                            'question'=>$question->question,
+                            'diagram'=>$question->diagram,
+                            'answer'=>$question->answer,
+                            ]);
+                        if(count($question->questionItems)>0){
+                           foreach($question->questionItems as $item){
+                               $newQuestion->questionItems()->create(['name'=>$item->name]);
+                           }
+                        }
+                        if(count($question->options)>0){
+                            foreach($question->options as $option){
+                                $newQuestion->options()->create(['name'=>$option->name,'value'=>$option->value]);
+                            }
+                        }    
                     }
-                }    
-            }
-            }
+                }
+     
+
+        
        
 
         return redirect()->route('dashboard.section.class.exam.subject',

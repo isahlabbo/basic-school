@@ -22,7 +22,7 @@
                         <div class="col-md-3"><label for="">Option Name</label></div>
                         <div class="col-md-9">
                             <select name="name" id="" class="form-control">
-                                <option value="">Option Name</option>
+                                
                                 @foreach($question->availableOptions() as $name)
                                     <option value="{{$name}}">{{$name}}</option>
                                 @endforeach

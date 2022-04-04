@@ -124,7 +124,9 @@ class SectionClass extends BaseModel
         }else{
             $studentScores = [];
             foreach($this->sectionClassStudents->where('status','Active') as $sectionClassStudent){
-                $studentScores[] = $sectionClassStudent->totalExamScore($sectionClassStudent->currentStudentTerm()->academicSessionTerm->term);
+                if($sectionClassStudent->currentStudentTerm()){
+                    $studentScores[] = $sectionClassStudent->totalExamScore($sectionClassStudent->currentStudentTerm()->academicSessionTerm->term);
+                }
             }
             
             // remove the duplicate score from the array
@@ -248,10 +250,10 @@ class SectionClass extends BaseModel
     {
         
         $currentYear = date('Y');
+        
         if($currentYear == substr($this->currentSession()->name,'5',)){
             $currentYear = $currentYear - 1;
         }
-        
         $year = null;
         switch ($this->year_sequence) {
             case 'First':

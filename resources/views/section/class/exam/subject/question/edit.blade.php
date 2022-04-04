@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form  action="{{route('dashboard.section.class.exam.subject.question.update',[$sectionClassSubject->sectionclass->id,$question->id])}}" method="post">
+                <form enctype="multipart/form-data"  action="{{route('dashboard.section.class.exam.subject.question.update',[$sectionClassSubject->sectionclass->id,$question->id])}}" method="post">
                     @csrf
                     
                     <div class="form-group row">

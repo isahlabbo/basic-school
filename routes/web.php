@@ -26,6 +26,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/duplicate', function () {
+    $exist = [];
+    $count = 0;
+    foreach(App\Models\Student::all() as $student){
+        if(in_array($student->admission_no, $exist)){
+            return $student->admission_no;
+        }else{
+            $exist[] = $student->admission_no;
+        }
+    }
+    return $count;
+});
+
 
 Route::middleware(['auth:sanctum', 'verified','resumed'])->get('/dashboard', function () {
     return view('dashboard',['students'=>Student::all(),'teachers'=>Teacher::all(),'session'=>AcademicSession::find(1),'sections'=>Section::all()]);

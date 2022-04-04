@@ -30,13 +30,14 @@ class StudentResult extends BaseModel
     public function reComputeGrade()
     {
         $total = $this->total;
-        
+        $grade = 'F';
         if($total > 0){
             foreach(GradeScale::all() as $gradeScale){
                 if($this->total >= $gradeScale->from && $this->total <= $gradeScale->to){
                     $grade = $gradeScale->grade;
                 }
             }
+            
         }else{
             $grade = 'Absent';
         }    

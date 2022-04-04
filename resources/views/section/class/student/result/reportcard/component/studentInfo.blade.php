@@ -1,6 +1,6 @@
 
 
-<div class="col-md-5 text">
+<div class="col-md-4 text">
     <table style="width: 100%">
     <tr>
         <td style="width: 150px"><p class="mb-0">Admission No:</p></td>
@@ -48,13 +48,18 @@
         <td><p class="mb-0">No of subjects:</p></td>
         <td><p class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassSubjects)}}</b></p></td>
     </tr>
-            
+    @if(config('app.fee'))
+    <tr>
+        <td><p class="mb-0">Next Term Fee:</p></td>
+        <td><p class="mb-0 text-right"><b>#15,000.00</b></p></td>
+    </tr>
+    @endif        
     </table>
 </div>
 
-<div class="col-md-3">
+<div class="col-md-4">
     <p class="mb-0">
-    <tr><td>Next Term Begins:</td> <td><b>{{strtoupper(date('d-M-Y',strtotime($sectionClassStudent->nextSectionClassStudentTerm()->academicSessionTerm->start_at))) ?? 'Not available'}}</b></td></tr></p>
+    <tr><td>Next Term Begins:</td> <td class="text text-left"><b>{{strtoupper(date('d-M-Y',strtotime($sectionClassStudent->nextSectionClassStudentTerm()->academicSessionTerm->start_at))) ?? 'Not available'}}</b></td></tr></p>
     <p class="mb-0">Term: <b>{{strtoupper($sectionClassStudentTerm->academicSessionTerm->term->name)}}</b></p>
     <p class="mb-0">Class: <b>{{$sectionClassStudent->sectionClass->name}}</b></p>
     <p class="mb-0">Session: <b>{{$sectionClassStudentTerm->academicSessionTerm->academicSession->name}}</b></p>

@@ -8,7 +8,7 @@
             <th>EXAM</th>
             <th>TOTAL</th>
             <th>GRADE</th>
-            <th>POSIOTION</th>
+            <th>POSITION</th>
             <th>EFFORT</th>
             <th>REMARK</th>
             <th>TEACHER</th>
@@ -19,6 +19,7 @@
         $subjects = 0;
         $obtainedMarks = 0;
     @endphp
+    
     @foreach($sectionClassStudentTerm->studentResults as $studentResult)
         @php
             $subjects++;

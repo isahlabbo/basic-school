@@ -19,10 +19,14 @@
                 <div class="col-md-8"><input type="text" name="code"  value="{{$sectionClass->code}}" class="form-control"></div>
             </div><br>
             <div class="row from-group">
+                <div class="col-md-4"><label for="">Year Sequence</label></div>
+                <div class="col-md-8"><input type="text" name="year_sequence"  value="{{$sectionClass->year_sequence}}" class="form-control"></div>
+            </div><br>
+            <div class="row from-group">
                 <div class="col-md-4"><label for="">Class Pass Mark</label></div>
                 <div class="col-md-8">
                 <select name="pass_mark" class="form-control">
-                  <option value="">{{$sectionClass->pass_mark}}</option>
+                  <option value="{{$sectionClass->pass_mark}}}">{{$sectionClass->pass_mark}}</option>
                   @for($i=1; $i<=100; $i++)
                     @if($i != $sectionClass->pass_mark)
                       <option value="{{$i}}">{{$i}} %</option>

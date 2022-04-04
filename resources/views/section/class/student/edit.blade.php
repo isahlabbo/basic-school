@@ -78,13 +78,19 @@
                                             <div class="col-md-3"><label for="">Class</label></div>
                                             <div class="col-md-9">
                                                 <select name="class" id="" class="form-control">
-                                                    <option value="{{$student->sectionClass->id}}">{{$student->sectionClass->name}}</option>
+                                                    <option value="">{{$student->sectionClass->name}}</option>
                                                     @foreach($student->sectionClass->section->sectionClasses as $sectionClass)
                                                     @if($student->sectionClass->id != $sectionClass->id)
                                                     <option value="{{$sectionClass->id}}">{{$sectionClass->name}}</option>
                                                     @endif
                                                     @endforeach
                                                 </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-3"><label for="">Admission No</label></div>
+                                            <div class="col-md-9">
+                                                <input type="text" name="admission_no" id="" class="form-control" value="{{$student->admission_no}}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
