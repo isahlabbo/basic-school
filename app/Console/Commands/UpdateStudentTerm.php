@@ -3,8 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\SectionClassStudentTermAccessmentAffectiveTrait;
-use App\Models\SectionClassStudentTermAccessmentPsychomotor;
+use App\Models\SectionClass;
 
 class UpdateStudentTerm extends Command
 {
@@ -39,23 +38,14 @@ class UpdateStudentTerm extends Command
      */
     public function handle()
     {
-        $this->output->progressStart(100);
-        foreach (SectionClassStudentTermAccessmentPsychomotor::all() as $psycho) {
-           if(!$psycho->value && $psycho->psychomotor){
-            $psycho->psychomotor->delete();
-            $psycho->delete();
-           }
-            
+        $this->output->progressStart(count(SectionClass::all()));
+        foreach (SectionClass::all() as $sectionClass) {
+            foreach($sectionClass->sectionClassStudents as $sectionClassStudent){
+                $sectionClassStudent->updateActiveTerm();
+            }
             $this->output->progressAdvance();
         }
-        foreach (SectionClassStudentTermAccessmentAffectiveTrait::all() as $trait) {
-            if(!$trait->value && $trait->affectiveTrait){
-                $trait->affectiveTrait->delete();
-                $trait->delete();
-            }
-            
-             $this->output->progressAdvance();
-         }
+        
         $this->output->progressFinish();
     }
 }
