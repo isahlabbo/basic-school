@@ -19,7 +19,7 @@
                 <th>AWAITING RESULT</th>
                 @if(config('app.exam'))
                 <th></th>
-                @endifom
+                @endif
                 <th></th>
                 <th></th>
                 <th><button data-toggle="modal" data-target="#addClass" class="btn btn-primary">Add Class</button></th>
