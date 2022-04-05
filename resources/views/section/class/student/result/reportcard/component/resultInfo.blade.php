@@ -11,7 +11,9 @@
             <th>POSITION</th>
             <th>EFFORT</th>
             <th>REMARK</th>
+            @if(config('app.exam'))
             <th>TEACHER</th>
+            @endif
         </tr>
     </thead>
     <tbody class="m-0">
@@ -35,7 +37,9 @@
             <td class="text text-center">{{$studentResult->subjectTeacherTermlyUpload->position($studentResult->total)}}</td>
             <td class="text text-center">{{$studentResult->effort()}}</td>
             <td class="text text-center">{{$studentResult->remark()}}</td>
+            @if(config('app.exam'))
             <td class="text text-center">{{$studentResult->teacher()->user->name ?? 'Not Available'}}</td>
+            @endif            
         </tr>
     @endforeach
     <table class="table-bordered">
