@@ -3,50 +3,48 @@
 <div class="col-md-4 text">
     <table style="width: 100%">
     <tr style="color: black;">
-        <td style="width: 150px;"><p class="mb-0">Admission No:</p></td>
-        <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->student->admission_no}}</b></p></td>
+        <td class="mb-0" style="width: 150px;">Admission No:</td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudent->student->admission_no}}</b></td>
+    </tr>
+    <tr style="color: black;">
+        <td class="mb-0">Student Name:</td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudent->student->name}}</b></td>
     </tr>
     <tr style="color: black;">
         
-        <td> <p class="mb-0">Student Name:</p></td>
-        <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->student->name}}</b></p></td>
+        <td class="mb-0">Sex:</td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudent->student->gender->name ?? ''}}</b></td>
     </tr>
     <tr style="color: black;">
         
-        <td><p class="mb-0">Sex:</p></td>
-        <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->student->gender->name ?? ''}}</b></p></td>
+        <td class="mb-0">No in class:</td>
+        <td class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'))}}</b></td>
     </tr>
     <tr style="color: black;">
         
-        <td><p class="mb-0">No in class:</p></td>
-        <td><p class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'))}}</b></p></td>
-    </tr>
-    <tr style="color: black;">
-        
-        <td><p class="mb-0">
-
+        <td class="mb-0">
         @if(config('app.nursery_class_position') == true && $sectionClassStudent->sectionClass->section->name == 'NURSERY')
             Remark:
         @else
             Position:
         @endif
-        </p></td>
-        <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->studentPosition($sectionClassStudentTerm) ?? 0}}</b></p></b></p></td>
+        </td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->studentPosition($sectionClassStudentTerm) ?? 0}}</b></td>
     </tr>
     <tr style="color: black;">
         
-        <td><p class="mb-0">Class Average:</p></td>
-        <td><p class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->classAverage($sectionClassStudentTerm->academicSessionTerm->term)}}</b></p></td>
+        <td class="mb-0">Class Average:</td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->classAverage($sectionClassStudentTerm->academicSessionTerm->term)}}</b></td>
     </tr>
     <tr style="color: black;">
         
-        <td><p class="mb-0">Pupils Average:</p></td>
-        <td><p class="mb-0 text-right"><b>{{$sectionClassStudentTerm->studentAverage()}}</b></p></td>
+        <td class="mb-0">Pupils Average:</td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->studentAverage()}}</b></td>
     </tr>
     <tr style="color: black;">
         
-        <td><p class="mb-0">No of subjects:</p></td>
-        <td><p class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassSubjects)}}</b></p></td>
+        <td class="mb-0">No of subjects:</td>
+        <td class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassSubjects)}}</b></td>
     </tr>
     @if(config('app.fee'))
     <tr style="color: black;">
