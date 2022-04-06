@@ -1,6 +1,6 @@
 
 <table style="width: 100%;" class=" table-bordered table- table-striped table-hover">
-    <thead class="text text-center table-dark">
+    <thead class="text text-center">
         <tr>
             <th>SUBJECT</th>
             <th>1ST CA</th>

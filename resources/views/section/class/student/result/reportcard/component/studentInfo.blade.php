@@ -1,5 +1,5 @@
 
-
+<b>
 <div class="col-md-4 text">
     <table style="width: 100%">
     <tr>
@@ -91,3 +91,4 @@
     <img src="{{asset('assets/images/user.jpg')}}" width="200" height="170p" class="rounded" alt="">
     @endif
 </div>
+</b>
