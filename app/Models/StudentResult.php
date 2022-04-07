@@ -33,7 +33,7 @@ class StudentResult extends BaseModel
         $grade = 'F';
         if($total > 0){
             foreach(GradeScale::all() as $gradeScale){
-                if($this->total >= $gradeScale->from && $this->total <= $gradeScale->to){
+                if($this->total >= $gradeScale->from && $this->total <= $gradeScale->to.'.9'){
                     $grade = $gradeScale->grade;
                 }
             }
