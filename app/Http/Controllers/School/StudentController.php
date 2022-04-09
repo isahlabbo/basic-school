@@ -91,7 +91,7 @@ class StudentController extends Controller
             'admission_no'=>$sectionClass->generateAdmissionNo(),
             'section_class_id'=>$request->class,
             'academic_session_id'=>$sectionClass->classAdmissionSession()->id,
-            'gender'=>$request->gender
+            'gender_id'=>$request->gender
         ]);
         if($request->picture){
             $this->storeFile($student,'picture',$request->picture,

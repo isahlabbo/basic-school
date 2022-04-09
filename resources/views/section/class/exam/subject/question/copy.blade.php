@@ -15,13 +15,21 @@
                         <div class="col-md-3"><label for="">CLASS</label></div>
                         <div class="col-md-9">
                         <input type="hidden" name="to_subject_id" value="{{$sectionClassSubject->id}}">
-                            <select name="from_class_id" id="" class="form-control">
+                            <select name="class" id="" class="form-control">
                                 <option value="">Select Class</option>
                                 @foreach($sectionClassSubject->sectionClass->section->sectionClasses as $sectionClass)
                                     @if($sectionClassSubject->sectionClass->id != $sectionClass->id)
                                     <option value="{{$sectionClass->id}}">{{$sectionClass->name}}</option>
                                     @endif
                                 @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3"><label for="">SUBJECT</label></div>
+                        <div class="col-md-9">
+                            <select name="subject" id="" class="form-control">
+                                <option value="">Select Subject</option>
                             </select>
                         </div>
                     </div>

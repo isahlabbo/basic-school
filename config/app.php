@@ -25,7 +25,10 @@ return [
 
     'logo' => env('APP_LOGO', 'School Logo'),
 
-    'contact' => env('APP_CONTACT', 'School Contact'),
+    'contact' => env('APP_CONTACT', false),
+    
+    'fee' => env('APP_FEE', false),
+    'exam' => env('APP_EXAM', false),
 
     'mode' => env('APP_MODE', 'LIVE'),
     

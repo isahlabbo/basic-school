@@ -53,6 +53,17 @@ class Student extends BaseModel
         }
     }
 
+    public function currentSessionTerm()
+    {
+        $term = null;
+        foreach($this->sectionClassStudents->where('status', 'Active') as $sectionClassStudent){
+            foreach($sectionClassStudent->sectionClassStudentTerms->where('status','Active') as $sectionClassStudentTerm){
+                $term = $sectionClassStudentTerm;
+            }
+        }
+        return $term;
+    }
+
     public function repeatThisClass($sectionClassId,$status)
     {
         $this->sectionClassStudents->where('section_class_id',$this->activeSectionClass()->id)->update(['status'=>'Not Active']);

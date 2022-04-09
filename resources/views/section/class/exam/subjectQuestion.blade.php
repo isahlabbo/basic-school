@@ -12,7 +12,7 @@
     </div><br>
     <div id="report">
     @foreach($exam->sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent)
-    <div class="card" height="100%" style="page-break-inside: avoid; color:black;">
+    <div class="card" style="page-break-inside: avoid; color:black;">
         <div class="card-body">
             <div class="row">
                 @include('section.class.student.result.reportcard.component.schoolInfo')
@@ -31,12 +31,13 @@
         <hr>
         <div class="row h5">
             @foreach($sectionClassSubject->examSubjectQuestionSections as $questionSection)
+            @if(count($questionSection->questions) >0)
             <div class="col-md-1"></div>
             <div class="col-md-11"><b>{{strtoupper($questionSection->name)}}<br>
             Instruction: <span>{{$questionSection->instruction}}</span></b></div>
                 @foreach($questionSection->questions as $question)
                 <div class="col-md-1 text-center">Q. {{$loop->iteration}}</div>
-                <div class="col-md-10">{{$question->question}}</div>
+                <div class="col-md-10"style="page-break-inside: avoid;">{{$question->question}}</div>
                 <div class="col-md-1"></div>
                 @if($question->answer)
                 <div class="col-md-1 text-center"></div>
@@ -45,7 +46,7 @@
                 @endif
                 @if($question->diagram)
                 <div class="col-md-1 text-center"></div>
-                <div class="col-md-10"><img src="{{Storage::url($question->diagram)}}" alt="" height="120" width="90%"></div>
+                <div class="col-md-10"><img src="{{Storage::url($question->diagram)}}" alt="" height="180" width="90%"></div>
                 <div class="col-md-1"></div>
                 @endif
                 @if(count($question->questionItems) > 0)
@@ -53,7 +54,7 @@
                     <div class="col-md-10">
                         <ol class="row">
                             @foreach($question->questionItems as $questionItem)
-                                <li class="col-md-4">{{$questionItem->name}}</li>
+                                <li class="col-md-6">{{$questionItem->name}}</li>
                             @endforeach
                         </ol>    
                     </div>
@@ -65,13 +66,15 @@
                     <div class="col-md-10">
                         <div class="row">
                             @foreach($question->options as $option)
-                                <div class="col-md-3">{{$option->name}}. {{$option->value}}</div>
+                                <div class="col-md-6">{{$option->name}}. {{$option->value}}</div>
                             @endforeach
                         </div>
                     </div>
                     <div class="col-md-1"></div>
                 @endif
+                
             @endforeach
+            @endif
             @endforeach
         </div>  
     </div>

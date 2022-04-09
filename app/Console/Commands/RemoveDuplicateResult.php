@@ -38,19 +38,18 @@ class RemoveDuplicateResult extends Command
      */
     public function handle()
     {
-        $this->output->progressStart(count(SectionClassStudentTerm::all()));
-        foreach (SectionClassStudentTerm::all() as $sectionClassStudentTerm) {
-            $subjectIds = [];
-            foreach($sectionClassStudentTerm->studentResults as $studentResult){
-                if(in_array($studentResult->subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject->subject->id,$subjectIds)){
-                    $studentResult->delete();
-                }else{
-                    $subjectIds[] = $studentResult->subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject->subject->id;
+        $this->output->progressStart(count(SectionClassStudentTerm::where('status','Active')));
+        foreach (SectionClassStudentTerm::where('status','Active') as $sectionClassStudentTerm) {
+                $subjectIds = [];
+                foreach($sectionClassStudentTerm->studentResults as $studentResult){
+                    if(in_array($studentResult->subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject->subject->id,$subjectIds)){
+                        $studentResult->delete();
+                    }else{
+                        $subjectIds[] = $studentResult->subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject->subject->id;
+                    }
+                    $this->output->progressAdvance();
                 }
-                $this->output->progressAdvance();
-                
-            }
-            
+           
         }
         $this->output->progressFinish();
     }

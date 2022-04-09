@@ -49,12 +49,13 @@ class SectionClassController extends Controller
             'class'=>'required|string',
             'code'=>'required|string',
             'pass_mark'=>'required|string',
+            'year_sequence'=>'required|string',
             ]);
         $class = SectionClass::find($sectionClassId);
         $class->update([
             'name'=>strtoupper($request->class),
             'code'=>strtoupper($request->code),
-            'pass_mark'=>strtoupper($request->pass_mark),
+            'year_sequence'=> $request->year_sequence,
             ]);
             return redirect()->route('dashboard.section.index',$class->section->id)->withSuccess('Class Updated');
     }
@@ -126,12 +127,14 @@ class SectionClassController extends Controller
         $sectionClassStudent = $student->sectionClassStudents->where('status', 'Active')->first();
        
         if($request->section){
+            
             $sectionClassStudent->update(['status'=>'Not Active']);
             foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm){
                 $sectionClassStudentTerm->update(['status'=>'Not Active']);
             }
             // create new section student
             $sectionClass = SectionClass::find($request->class);
+            $sectionClass->reserveNumber($student->admission_no);
             $newStudent = $guardian->students()->create([
                 'name'=>strtoupper($request->name),
                 'date_of_birth'=>$request->date_of_birth,
@@ -143,7 +146,6 @@ class SectionClassController extends Controller
             ]);
             // assign him to the new section class
             $newStudent->assignToThisClass($sectionClass->id,'Active');
-            
         }else{
             
             if($request->class){
@@ -158,8 +160,7 @@ class SectionClassController extends Controller
                     }
                     $sectionClassStudent->delete();
                 }
-                $student->assignToThisClass($request->class,'Active');
-                
+                $student->assignToThisClass($request->class,'Active'); 
             }
         }
 
@@ -177,8 +178,13 @@ class SectionClassController extends Controller
             'section_class_id'=>$request->class,
             'gender_id'=>$request->gender
         ]);
+        if(!$request->section || !$request->class){
+            $student->update([
+                'admission_no'=>$request->admission_no,
+            ]);
+        }
         
-        return redirect()->route('dashboard.section.class.student',[$student->sectionClass->id])
+        return redirect()->route('dashboard.section.class.student',[$sectionClass->id])
         ->withSuccess('Updated');
         
     }

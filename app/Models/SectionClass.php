@@ -124,7 +124,9 @@ class SectionClass extends BaseModel
         }else{
             $studentScores = [];
             foreach($this->sectionClassStudents->where('status','Active') as $sectionClassStudent){
-                $studentScores[] = $sectionClassStudent->totalExamScore($sectionClassStudent->currentStudentTerm()->academicSessionTerm->term);
+                if($sectionClassStudent->currentStudentTerm()){
+                    $studentScores[] = $sectionClassStudent->totalExamScore($sectionClassStudent->currentStudentTerm()->academicSessionTerm->term);
+                }
             }
             
             // remove the duplicate score from the array
@@ -223,8 +225,16 @@ class SectionClass extends BaseModel
         return $students;
     }
 
+    public function reserveNumber($admissionNo)
+    {
+        $this->sectionClassReservedAdmissionNos()->create([
+            'academic_session_term'=>$this->currentSession()->id,
+            'admission_no'=>$admissionNo
+            ]);
+    }
     public function generateAdmissionNo($number = null)
     {
+
         if($admissionNo = $this->sectionClassReservedAdmissionNos->where('academic_session_id',$this->currentSession()->id)->first()->admission_no ?? null){
             return $admissionNo;
         }
@@ -248,10 +258,10 @@ class SectionClass extends BaseModel
     {
         
         $currentYear = date('Y');
+        
         if($currentYear == substr($this->currentSession()->name,'5',)){
             $currentYear = $currentYear - 1;
         }
-        
         $year = null;
         switch ($this->year_sequence) {
             case 'First':

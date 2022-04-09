@@ -1,6 +1,6 @@
 
 <table style="width: 100%;" class=" table-bordered table- table-striped table-hover">
-    <thead class="text text-center table-dark">
+    <thead class="text text-center">
         <tr>
             <th>SUBJECT</th>
             <th>1ST CA</th>
@@ -8,10 +8,12 @@
             <th>EXAM</th>
             <th>TOTAL</th>
             <th>GRADE</th>
-            <th>POSIOTION</th>
+            <th>POSITION</th>
             <th>EFFORT</th>
             <th>REMARK</th>
+            @if(config('app.exam'))
             <th>TEACHER</th>
+            @endif
         </tr>
     </thead>
     <tbody class="m-0">
@@ -19,6 +21,7 @@
         $subjects = 0;
         $obtainedMarks = 0;
     @endphp
+    
     @foreach($sectionClassStudentTerm->studentResults as $studentResult)
         @php
             $subjects++;
@@ -34,7 +37,9 @@
             <td class="text text-center">{{$studentResult->subjectTeacherTermlyUpload->position($studentResult->total)}}</td>
             <td class="text text-center">{{$studentResult->effort()}}</td>
             <td class="text text-center">{{$studentResult->remark()}}</td>
+            @if(config('app.exam'))
             <td class="text text-center">{{$studentResult->teacher()->user->name ?? 'Not Available'}}</td>
+            @endif            
         </tr>
     @endforeach
     <table class="table-bordered">
