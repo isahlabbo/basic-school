@@ -118,6 +118,7 @@ class QuestionController extends Controller
         $subject = SectionClassSubject::find($request->to_subject_id);
         $fromSubject = SectionClass::find($request->from_class_id)->sectionClassSubjects
         ->where('subject_id',$subject->subject->id)->first();
+        
         foreach($fromSubject->currentExam()->examSubjectQuestionSections as $examSubject){
             $questionSection = $subject->currentExam()->examSubjectQuestionSections()->create([
                 'section_class_subject_id'=>$subject->id,
