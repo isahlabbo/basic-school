@@ -134,6 +134,7 @@ class SectionClassController extends Controller
             }
             // create new section student
             $sectionClass = SectionClass::find($request->class);
+            $sectionClass->reserveNumber($student->admission_no);
             $newStudent = $guardian->students()->create([
                 'name'=>strtoupper($request->name),
                 'date_of_birth'=>$request->date_of_birth,

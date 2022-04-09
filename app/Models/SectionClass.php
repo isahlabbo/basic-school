@@ -225,8 +225,16 @@ class SectionClass extends BaseModel
         return $students;
     }
 
+    public function reserveNumber($admissionNo)
+    {
+        $this->sectionClassReservedAdmissionNos()->create([
+            'academic_session_term'=>$this->currentSession()->id,
+            'admission_no'=>$admissionNo
+            ]);
+    }
     public function generateAdmissionNo($number = null)
     {
+
         if($admissionNo = $this->sectionClassReservedAdmissionNos->where('academic_session_id',$this->currentSession()->id)->first()->admission_no ?? null){
             return $admissionNo;
         }
