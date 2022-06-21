@@ -81,6 +81,7 @@ Route::name('dashboard.')
     ->name('section.')
     ->prefix('/section')
     ->group(function (){
+
         Route::get('/{sectionId}/view', 'SectionController@view')->name('view');
         Route::get('/{sectionId}/delete', 'SectionController@delete')->name('delete');
         Route::post('/register', 'SectionController@register')->name('register');
@@ -93,6 +94,13 @@ Route::name('dashboard.')
             Route::get('create/', 'ClassTeacherController@create')->name('create');
             Route::get('re-create/', 'ClassTeacherController@reCreate')->name('reCreate');
             Route::post('register/', 'ClassTeacherController@register')->name('register');
+        });
+
+        Route::name('trobleshoot.')
+        ->group(function (){
+            Route::get('/{sectionId}/trobleshoot', 'TrobleshootController@index')->name('index');
+            Route::get('/class/{sectionClassId}/trobleshoot', 'TrobleshootController@classReport')->name('class');
+            Route::get('/class/{sectionClassId}/issue/{status}/fixed', 'TrobleshootController@fixedIssue')->name('issue.fixed');
         });
 
         Route::name('result.')

@@ -86,4 +86,27 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="card-header shadow">APPLICATION MODE</div>
+                    <table class="table">
+                        @foreach($sections as $section)
+                        <tr>
+                            <td>{{$section->name}}</td>
+                            @if($section->sectionReports() > 0)
+                            <td>{{$section->sectionReports()}} Issues Reported 
+                            <a href="{{route('dashboard.section.trobleshoot.index',[$section->id])}}">
+                                <button class="btn btn-primary">Trobleshoot</button>
+                            </a>
+                            </td>
+                            @else
+                                <td>Application is safe here and every thing seems to be OKAY</td>
+                            @endif
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+        </div>
 </div>

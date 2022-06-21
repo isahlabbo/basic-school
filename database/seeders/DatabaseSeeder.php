@@ -15,11 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(SectionAndClassTableSeeder::class);
         $this->call(UserTableSeeder::class);
+        $this->call(GenderTableSeeder::class);
         $this->call(TermTableSeeder::class);
         $this->call(AcademicSessionTableSeeder::class);
         $this->call(TeacherCommentTableSeeder::class);
         $this->call(HeadTeacherCommentTableSeeder::class);
         $this->call(PsychomotorAndAffectiveTraitTableSeeder::class);
+        $this->call(SectionAccessment::class);
         $this->call(GradeRemarkTableSeeder::class);
     }
 }

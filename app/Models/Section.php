@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends BaseModel
 {
+    
+
     public function sectionClasses()
     {
         return $this->hasMany(SectionClass::class);
@@ -21,7 +23,14 @@ class Section extends BaseModel
     {
         return $this->hasMany(AffectiveTrait::class);
     }
-
+    public function sectionReports()
+    {
+        $report = 0;
+        foreach($this->sectionClasses as $sectionClass){
+            $report += count($sectionClass->classReports());
+        }
+        return $report;
+    }
     public function subjectResultUploads()
     {
         $uploadedResult = [];

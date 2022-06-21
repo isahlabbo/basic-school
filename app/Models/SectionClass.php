@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Services\Diagnose\ClassMode as Diagnosable;
 
 class SectionClass extends BaseModel
 {
-
+    use Diagnosable;
+    
     public function section()
     {
         return $this->belongsTo(Section::class);
@@ -95,6 +97,7 @@ class SectionClass extends BaseModel
 
     public function updateAllStudentTerm()
     {
+        
         foreach ($this->sectionClassStudents->where('status','Active') as $sectionClassStudent) {
             $sectionClassStudent->updateActiveTerm();
         }
@@ -228,7 +231,7 @@ class SectionClass extends BaseModel
     public function reserveNumber($admissionNo)
     {
         $this->sectionClassReservedAdmissionNos()->create([
-            'academic_session_term'=>$this->currentSession()->id,
+            'academic_session_id'=>$this->currentSession()->id,
             'admission_no'=>$admissionNo
             ]);
     }

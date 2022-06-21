@@ -28,6 +28,7 @@ return [
     'contact' => env('APP_CONTACT', false),
     
     'fee' => env('APP_FEE', false),
+    
     'exam' => env('APP_EXAM', false),
 
     'mode' => env('APP_MODE', 'LIVE'),

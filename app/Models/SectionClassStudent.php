@@ -33,7 +33,7 @@ class SectionClassStudent extends BaseModel
         return $this->sectionClassStudentTerms->where('status','Active')->first();
     }
 
-    public function expectedScore(Type $var = null)
+    public function expectedScore()
     {
         return count($this->sectionclass->sectionClassSubjects) * 100;
     }
@@ -93,7 +93,6 @@ class SectionClassStudent extends BaseModel
     {
         
         foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
-            
             if($sectionClassStudentTerm->academicSessionTerm->term->id == $this->currentSessionTerm()->term->id){
                 $sectionClassStudentTerm->update(['status'=>'Active']);
             }else{
