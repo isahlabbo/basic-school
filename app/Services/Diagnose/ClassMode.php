@@ -48,10 +48,10 @@ trait ClassMode
 
     public function studentsWithNoCurrentTerm()
     {
-        $flag = true;
+        $flag = false;
         foreach ($this->sectionClassStudents as $sectionClassStudent) {
             if(!$sectionClassStudent->currentStudentTerm()){
-                $flag = false;
+                $flag = true;
             }
         }
         if($flag){
