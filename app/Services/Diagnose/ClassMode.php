@@ -36,7 +36,7 @@ trait ClassMode
     public function studentsWithFewOrNoTerm()
     {
         $flag = false;
-        foreach ($this->sectionClassStudents as $sectionClassStudent) {
+        foreach ($this->sectionClassStudents->where('status','Active') as $sectionClassStudent) {
             if(count($sectionClassStudent->sectionClassStudentTerms) < 3){
                 $flag = true;
             }
@@ -49,7 +49,7 @@ trait ClassMode
     public function studentsWithNoCurrentTerm()
     {
         $flag = false;
-        foreach ($this->sectionClassStudents as $sectionClassStudent) {
+        foreach ($this->sectionClassStudents->where('status','Active') as $sectionClassStudent) {
             if(!$sectionClassStudent->currentStudentTerm()){
                 $flag = true;
             }
@@ -62,7 +62,7 @@ trait ClassMode
     public function studentWithDuplicateActiveClass()
     {
         $flag = false;
-        foreach ($this->sectionClassStudents as $sectionClassStudent) {
+        foreach ($this->sectionClassStudents->where('status','Active') as $sectionClassStudent) {
             if(count($sectionClassStudent->student->sectionClassStudents->where('status','Active'))> 1){
                 $flag = true;
             }

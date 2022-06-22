@@ -271,6 +271,8 @@ Route::name('dashboard.')
         // score sheet route
         Route::get('/{sectionClassSubjecTeacherId}/download-score', 'ScoreSheetController@download')
         ->name('download.scoresheet');
+        Route::get('/{sectionClassSubjecTeacherId}/download-record-sheet', 'ScoreSheetController@downloadRecordSheet')
+        ->name('download.recordsheet');
 
         Route::get('/{sectionClassSubjecId}/upload-score', 'ScoreSheetController@upload')
         ->name('upload.scoresheet');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SectionClassSubjectTeacher;
 use App\Exports\Student\ScoreSheet;
+use App\Exports\Student\RecordSheet;
 use App\Models\SectionClassSubject;
 use App\Models\Term;
 use App\Imports\School\ScoreSheet as ScoreSheetImport;
@@ -13,6 +14,15 @@ use Auth;
 
 class ScoreSheetController extends Controller
 {
+    public function downloadRecordSheet($sectionClassSubjectTeacherId)
+    {
+        $sectionClassSubjectTeacher = SectionClassSubjectTeacher::find($sectionClassSubjectTeacherId);
+        return Excel::download(new RecordSheet($sectionClassSubjectTeacher
+        ->sectionClassSubject
+        ->sectionClass
+        ->currentStudents()), str_replace(' ','_',strtolower($sectionClassSubjectTeacher->sectionClassSubject->name)).'_for_'.
+        str_replace(' ','_',strtolower($sectionClassSubjectTeacher->currentSessionTerm()->term->name)).'_record_sheet.xlsx');
+    }
     public function download($sectionClassSubjectTeacherId)
     {
         $sectionClassSubjectTeacher = SectionClassSubjectTeacher::find($sectionClassSubjectTeacherId);
