@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class SectionClassStudentTerm extends BaseModel
 {
+    public function sectionClassStudentTermResultPublish()
+    {
+        return $this->hasOne(SectionClassStudentTermResultPublish::class);
+    }
     public function studentResults()
     {
         return $this->hasMany(StudentResult::class);
