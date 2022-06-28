@@ -5,6 +5,7 @@ use App\Models\Teacher;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\AcademicSession;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +16,11 @@ use App\Models\AcademicSession;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/qr', function () {
+    return QrCode::generate('Make me into a QrCode!');
+});
+
+
 Route::prefix('ajax')
    ->group(function() {
     Route::get('/section/{sectionId}/get-classes', 'AjaxController@getSectionClasses');
@@ -94,6 +100,14 @@ Route::name('dashboard.')
             Route::get('create/', 'ClassTeacherController@create')->name('create');
             Route::get('re-create/', 'ClassTeacherController@reCreate')->name('reCreate');
             Route::post('register/', 'ClassTeacherController@register')->name('register');
+        });
+
+        // section class teachers routes
+        Route::name('promotion.')
+        ->prefix('/promotion')
+        ->group(function (){
+            Route::get('/', 'promotionController@index')->name('index');
+            Route::get('/class/{sectionClassId}', 'promotionController@promoteAllStudent')->name('class');
         });
 
         Route::name('trobleshoot.')

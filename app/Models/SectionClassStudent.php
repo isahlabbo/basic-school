@@ -56,11 +56,12 @@ class SectionClassStudent extends BaseModel
 
     public function promoteToNextClass()
     {
-        if(100 * ($this->averageScore/$this->expectedScore) >= $this->sectionClass->pass_mark){
+        // dd($this->averageScore());
+        if(100 * ($this->averageScore()/$this->expectedScore()) >= $this->sectionClass->pass_mark){
             foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
                 $sectionClassStudentTerm->update(['status'=>'Not Active']);
             }
-            $this->update(['status','Not Active']);
+            $this->update(['status'=>'Not Active']);
             // assign the student to the next class
             $this->student->assignToThisClass($this->sectionClass->nextClass()->id,'Active');
         }else{
