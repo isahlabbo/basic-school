@@ -44,7 +44,6 @@ class SectionClass extends BaseModel
     {
         $uploadedResult = [];
         $awaitingResult = [];
-
         foreach ($this->sectionClassSubjects as $sectionClassSubject) {
             if($upload = $sectionClassSubject->hasCurrentTermUpload()){
                 $uploadedResult[] = $upload;
@@ -125,19 +124,20 @@ class SectionClass extends BaseModel
             }
             return $position;
         }else{
-            $studentScores = [];
+            $allStudentsScoreInTheClass = [];
             foreach($this->sectionClassStudents->where('status','Active') as $sectionClassStudent){
-                if($sectionClassStudent->currentStudentTerm()){
-                    $studentScores[] = $sectionClassStudent->totalExamScore($sectionClassStudent->currentStudentTerm()->academicSessionTerm->term);
+                foreach($sectionClassStudent->sectionClassStudentTerms as $studentTerm){
+                    if($studentTerm->academicSessionTerm->term->id == $sectionClassStudentTerm->academicSessionTerm->term->id){
+                        $allStudentsScoreInTheClass[] = $studentTerm->studentTermTotalScore();
+                    }
                 }
             }
-            
             // remove the duplicate score from the array
-            array_unique($studentScores);
+            array_unique($allStudentsScoreInTheClass);
         
             // sort array decending order
-            rsort($studentScores);
-            foreach($studentScores as $key => $value){
+            rsort($allStudentsScoreInTheClass);
+            foreach($allStudentsScoreInTheClass as $key => $value){
                 if($sectionClassStudentTerm->sectionClassStudent->totalExamScore($sectionClassStudentTerm->academicSessionTerm->term) == $value){
                     return $this->getValidPositionName(($key+1));
                 }
