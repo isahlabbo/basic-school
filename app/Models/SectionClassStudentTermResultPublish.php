@@ -21,5 +21,6 @@ class SectionClassStudentTermResultPublish extends BaseModel
             'class_average' => $this->sectionClassStudentTerm->sectionClassStudent->sectionClass->classAverage($this->sectionClassStudentTerm->academicSessionTerm->term),
             'student_average' => $this->sectionClassStudentTerm->studentAverage(),
         ]);
+        
     }
 }
