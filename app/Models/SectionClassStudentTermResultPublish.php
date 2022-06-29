@@ -15,10 +15,10 @@ class SectionClassStudentTermResultPublish extends BaseModel
     public function updatePublishRecord()
     {
         $this->update([
-            'position' => $this->sectionClassStudentTerm->sectionClassStudent->sectionClass->studentPosition($this->sectionClassStudentTerm),
-            'total_marks' => count($this->sectionClassStudentTerm->sectionClassStudent->sectionClass->sectionClassSubjects) * 100,
-            'obtain_marks' => $this->sectionClassStudentTerm->studentTermTotalScore(),
-            'class_average' => $this->sectionClassStudentTerm->sectionClassStudent->sectionClass->classAverage($this->sectionClassStudentTerm->academicSessionTerm->term),
+            'position' => $this->sectionClassStudentTerm->position(),
+            'total_marks' => $this->sectionClassStudentTerm->totalMarks(),
+            'obtain_marks' => $this->sectionClassStudentTerm->obtainMarks(),
+            'class_average' => $this->sectionClassStudentTerm->classAverage(),
             'student_average' => $this->sectionClassStudentTerm->studentAverage(),
         ]);
         

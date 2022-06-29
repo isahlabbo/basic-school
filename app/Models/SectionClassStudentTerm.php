@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Services\Publish\PublishAble;
 
 class SectionClassStudentTerm extends BaseModel
 {
+    use PublishAble;
+
     public function sectionClassStudentTermResultPublish()
     {
         return $this->hasOne(SectionClassStudentTermResultPublish::class);
@@ -51,13 +54,14 @@ class SectionClassStudentTerm extends BaseModel
         if($count == 0){
             $count = 1;
         }
-        
         return number_format($total/$count,2);
     }
     
-    public function publishThisTrmResult()
+    public function publishThisTermResult()
     {
         $publish = $this->sectionClassStudentTermResultPublish()->firstOrCreate([]);
         $publish->updatePublishRecord();
     }
+
+   
 }

@@ -17,7 +17,15 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 |
 */
 Route::get('/qr', function () {
-    return QrCode::generate('Make me into a QrCode!');
+    foreach (Section::all() as $section) {
+        foreach ($section->sectionClasses as $sectionClass) {
+            foreach($sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent){
+                foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm){
+                    $sectionClassStudentTerm->publishThisTrmResult();
+                }
+            }
+        }
+    }
 });
 
 

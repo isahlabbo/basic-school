@@ -25,7 +25,7 @@ class TrobleshootController extends Controller
         switch ($status) {
             case '1':
                 # regenerate admission number of all students in this class
-                
+                $sectionClass->updateAdmissionNo();
                 break;
             case '2':
                 # 

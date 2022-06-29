@@ -41,9 +41,11 @@ class PublishResult extends Command
         $this->output->progressStart(count(Section::all()));
         foreach (Section::all() as $section) {
             foreach ($section->sectionClasses as $sectionClass) {
-                foreach($sectionClass->sectionClassStudents as $sectionClassStudent){
+                foreach($sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent){
                     foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm){
-                        $sectionClassStudentTerm->publishThisTrmResult();
+                        if(count($sectionClassStudentTerm->studentResults) > 0){
+                            $sectionClassStudentTerm->publishThisTermResult();
+                        }
                     }
                 }
             }

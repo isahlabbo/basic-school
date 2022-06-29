@@ -32,6 +32,8 @@ return [
     'exam' => env('APP_EXAM', false),
 
     'mode' => env('APP_MODE', 'LIVE'),
+
+    'result' => env('APP_RESULT', 'SINGLE'),
     
     'nursery_class_position' => env('NURSERY_CLASS_REMARK', true),
 
