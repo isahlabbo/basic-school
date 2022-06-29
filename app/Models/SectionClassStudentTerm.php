@@ -54,4 +54,10 @@ class SectionClassStudentTerm extends BaseModel
         
         return number_format($total/$count,2);
     }
+    
+    public function publishThisTrmResult()
+    {
+        $publish = $this->sectionClassStudentTermResultPublish()->firstOrCreate([]);
+        $publish->updatePublishRecord();
+    }
 }
