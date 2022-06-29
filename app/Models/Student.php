@@ -47,10 +47,8 @@ class Student extends BaseModel
         $studentClass = $this->sectionClassStudents()->create(['status'=>$status,'section_class_id'=>$sectionClassId]);
         foreach($this->currentSession()->academicSessionTerms as $academicSessionTerm){
             $studentTerm = $studentClass->sectionClassStudentTerms()->create(['academic_session_term_id'=>$academicSessionTerm->id]);
-            if($studentTerm->academicSessionTerm->term->id == $this->currentSessionTerm()->term->id){
-                $studentTerm->update(['status'=>'Active']);
-            }
         }
+        $studentClass->updateActiveTerm();
     }
 
     public function currentSessionTerm()
