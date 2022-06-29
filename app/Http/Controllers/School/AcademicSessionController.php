@@ -87,8 +87,6 @@ class AcademicSessionController extends Controller
                         $sectionClass->updateAllStudentTerm();
                     }
                 }
-
-                
             }
         }
 

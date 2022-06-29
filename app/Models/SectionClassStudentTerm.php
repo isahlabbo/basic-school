@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class SectionClassStudentTerm extends BaseModel
 {
+    public function sectionClassStudentTermResultPublish()
+    {
+        return $this->hasOne(SectionClassStudentTermResultPublish::class);
+    }
     public function studentResults()
     {
         return $this->hasMany(StudentResult::class);
@@ -49,5 +53,11 @@ class SectionClassStudentTerm extends BaseModel
         }
         
         return number_format($total/$count,2);
+    }
+    
+    public function publishThisTrmResult()
+    {
+        $publish = $this->sectionClassStudentTermResultPublish()->firstOrCreate([]);
+        $publish->updatePublishRecord();
     }
 }

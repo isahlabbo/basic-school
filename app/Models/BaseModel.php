@@ -16,7 +16,6 @@ class BaseModel extends Model
 
     public function currentSessionTerm()
     {
-        
         return $this->currentSession()->academicSessionTerms->where('status','Active')->first();
     }
 

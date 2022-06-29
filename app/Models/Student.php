@@ -44,6 +44,7 @@ class Student extends BaseModel
 
     public function assignToThisClass($sectionClassId,$status)
     {
+        
         $studentClass = $this->sectionClassStudents()->create(['status'=>$status,'section_class_id'=>$sectionClassId]);
         foreach($this->currentSession()->academicSessionTerms as $academicSessionTerm){
             $studentTerm = $studentClass->sectionClassStudentTerms()->create(['academic_session_term_id'=>$academicSessionTerm->id]);
