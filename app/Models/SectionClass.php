@@ -40,6 +40,32 @@ class SectionClass extends BaseModel
         return $this->hasMany(SectionClassReservedAdmissionNo::class);
     }
 
+    public function nextClass()
+    {
+        return $this->section->sectionClasses->where('year_sequence',$this->getNextClassSequence())->first();
+    }
+
+    public function getNextClassSequence()
+    {
+        switch ($this->year_sequence) {
+            case 'First':
+                $sequence = 'Second';
+                break;
+            case 'Second':
+                $sequence = 'Third';
+                break;
+            case 'Third':
+                $sequence = 'Forth';
+                break;
+            case 'Forth':
+                $sequence = 'Fifth';
+                break;
+            default:
+                $sequence = 'Last';
+                break;
+        }
+        return $sequence;
+    }
     public function canPublishResult()
     {
         foreach($this->sectionClassStudents->where('status','Active') as $sectionClassStudent){
@@ -71,39 +97,6 @@ class SectionClass extends BaseModel
         return $this->hasMany(SectionClassTermlyExam::class);
     }
 
-    public function nextClass()
-    { 
-        $year = null;
-        
-        switch ($this->year_sequence) {
-            case 'First':
-                $year = 'Second';
-                break;
-            case 'Second':
-                $year = 'Third';
-                break;    
-            case 'Third':
-                $year = 'Forth';
-                break;
-            case 'Forth':
-                $year = 'Forth';
-                break;
-            case 'Fifth':
-                $year = 'Sixth';
-                break;        
-            default:
-                # code...
-                break;
-        }
-        if($year){
-            foreach($this->section->sectionClasses as $sectionClass){
-                if($sectionClass->year_sequence == $year){
-                    return $sectionClass;
-                }
-            }
-        }
-        return $year;
-    }
 
     public function updateAllStudentTerm()
     {

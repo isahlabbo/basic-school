@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SectionClassStudent extends BaseModel
 {
     
-    public function sectionClass(Type $var = null)
+    public function sectionClass()
     {
         return $this->belongsTo(SectionClass::class);
     }
@@ -45,7 +45,7 @@ class SectionClassStudent extends BaseModel
         foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
             if($sectionClassStudentTerm->sectionClassStudentTermResultPublish && $sectionClassStudentTerm->sectionClassStudentTermResultPublish->obtain_marks){
                 $denoMinator ++;
-                $totalScore += $sectionClassStudentTerm->sectionClassStudentTermResultPublish->obtain_marks;
+                $totalMarks += $sectionClassStudentTerm->sectionClassStudentTermResultPublish->obtain_marks;
             }
         }
         if($denoMinator == 0){

@@ -45,11 +45,11 @@
     <table class="table-bordered">
     <tr>
         <td width="200"><b>Total Marks:</b></td>
-        <td width="100"><b>{{$subjects*100}}</b></td>
+        <td width="100"><b>{{$sectionClassStudentTerm->publishedTotalMarks()}}</b></td>
     </tr>
     <tr>
         <td><b>Obtained Marks:</b></td>
-        <td colaps="7"><b>{{$obtainedMarks}}</b></td>
+        <td colaps="7"><b>{{$sectionClassStudentTerm->publishedObtainedMarks()}}</b></td>
     </tr>
     </table>    
     </tbody>

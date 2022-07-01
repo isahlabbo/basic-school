@@ -33,26 +33,32 @@
             Position:
         @endif
         </td>
-        <td class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->studentPosition($sectionClassStudentTerm) ?? 0}}</b></td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->publishedPosition() ?? 0}}</b></td>
     </tr>
     
     <tr style="color: black;">
         
         <td class="mb-0">Class Average:</td>
-        <td class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->classAverage($sectionClassStudentTerm->academicSessionTerm->term)}}</b></td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->publishedClassAverage()}}</b></td>
     </tr>
     
     <tr style="color: black;">
         
         <td class="mb-0">Pupils Average:</td>
-        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->studentAverage()}}</b></td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->publishedStudentAverage()}}</b></td>
     </tr>
 
     <tr style="color: black;">
-        
         <td class="mb-0">No of subjects:</td>
         <td class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassSubjects)}}</b></td>
     </tr>
+
+    @if($sectionClassStudentTerm->academicSessionTerm->term->id == 3)
+    <tr style="color: black;">
+        <td class="mb-0">Promoted To:</td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->nextClass()->name ?? 'Next Section'}}</b></td>
+    </tr>
+    @endif
     
     @if(config('app.fee'))
     <tr style="color: black;">
