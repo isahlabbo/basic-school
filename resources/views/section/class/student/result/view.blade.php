@@ -1,6 +1,6 @@
 <x-app-layout>
     @section('title')
-        {{config('app.name')}} register new teacher
+        {{config('app.name')}} student report card
     @endsection
     @section('breadcrumb')
        {{Breadcrumbs::render('dashboard.result.student',$student)}}

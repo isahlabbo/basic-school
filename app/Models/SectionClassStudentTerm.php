@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Services\Publish\PublishAble;
+use App\Services\Publish\PublishedResult;
 
 class SectionClassStudentTerm extends BaseModel
 {
-    use PublishAble;
+    use PublishAble, PublishedResult;
 
     public function sectionClassStudentTermResultPublish()
     {

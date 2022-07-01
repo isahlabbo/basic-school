@@ -50,6 +50,7 @@ class SectionClass extends BaseModel
         return false;
     }
 
+    
     public function subjectResultUploads()
     {
         $uploadedResult = [];

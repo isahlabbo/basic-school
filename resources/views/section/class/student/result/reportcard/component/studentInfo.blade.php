@@ -4,22 +4,26 @@
     <table style="width: 100%">
     <tr style="color: black;">
         <td class="mb-0" style="width: 150px;">Admission No:</td>
-        <td class="mb-0 text-right"><b>{{$sectionClassStudent->student->admission_no}}</b></td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudent->student->admission_no ?? ''}}</b></td>
     </tr>
+    
     <tr style="color: black;">
         <td class="mb-0">Student Name:</td>
-        <td class="mb-0 text-right"><b>{{$sectionClassStudent->student->name}}</b></td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudent->student->name ?? ''}}</b></td>
     </tr>
+    
     <tr style="color: black;">
         
         <td class="mb-0">Sex:</td>
         <td class="mb-0 text-right"><b>{{$sectionClassStudent->student->gender->name ?? ''}}</b></td>
     </tr>
+    
     <tr style="color: black;">
         
         <td class="mb-0">No in class:</td>
-        <td class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active'))}}</b></td>
+        <td class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active')) ?? ''}}</b></td>
     </tr>
+    
     <tr style="color: black;">
         
         <td class="mb-0">
@@ -31,21 +35,25 @@
         </td>
         <td class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->studentPosition($sectionClassStudentTerm) ?? 0}}</b></td>
     </tr>
+    
     <tr style="color: black;">
         
         <td class="mb-0">Class Average:</td>
         <td class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->classAverage($sectionClassStudentTerm->academicSessionTerm->term)}}</b></td>
     </tr>
+    
     <tr style="color: black;">
         
         <td class="mb-0">Pupils Average:</td>
         <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->studentAverage()}}</b></td>
     </tr>
+
     <tr style="color: black;">
         
         <td class="mb-0">No of subjects:</td>
         <td class="mb-0 text-right"><b>{{count($sectionClassStudent->sectionClass->sectionClassSubjects)}}</b></td>
     </tr>
+    
     @if(config('app.fee'))
     <tr style="color: black;">
         <td><p class="mb-0">Next Term Fee:</p></td>
@@ -57,10 +65,10 @@
 
 <div class="col-md-4" style="color: black;">
     <p class="mb-0">
-    <tr><td>Next Term Begins:</td> <td class="text text-left"><b>{{strtoupper(date('d-M-Y',strtotime($sectionClassStudent->nextSectionClassStudentTerm()->academicSessionTerm->start_at))) ?? 'Not available'}}</b></td></tr></p>
-    <p class="mb-0">Term: <b>{{strtoupper($sectionClassStudentTerm->academicSessionTerm->term->name)}}</b></p>
-    <p class="mb-0">Class: <b>{{$sectionClassStudent->sectionClass->name}}</b></p>
-    <p class="mb-0">Session: <b>{{$sectionClassStudentTerm->academicSessionTerm->academicSession->name}}</b></p>
+    <tr><td>Next Term Begins:</td> <td class="text text-left"><b>{{strtoupper(date('d-M-Y',strtotime($sectionClassStudent->nextSectionClassStudentTerm()->start_at))) ?? 'Not available'}}</b></td></tr></p>
+    <p class="mb-0">Term: <b>{{strtoupper($sectionClassStudentTerm->academicSessionTerm->term->name ?? '')}}</b></p>
+    <p class="mb-0">Class: <b>{{$sectionClassStudent->sectionClass->name ?? ''}}</b></p>
+    <p class="mb-0">Session: <b>{{$sectionClassStudentTerm->academicSessionTerm->academicSession->name ?? ''}}</b></p>
     <p class="mb-0"><b>ATTENDANCE:</b></p>
     <p class="mb-0">
         <tr>

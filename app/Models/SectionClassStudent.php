@@ -38,6 +38,22 @@ class SectionClassStudent extends BaseModel
         return count($this->sectionclass->sectionClassSubjects) * 100;
     }
     
+    public function pulishedResultAverage()
+    {
+        $denoMinator = 0;
+        $totalMarks = 0;
+        foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
+            if($sectionClassStudentTerm->sectionClassStudentTermResultPublish && $sectionClassStudentTerm->sectionClassStudentTermResultPublish->obtain_marks){
+                $denoMinator ++;
+                $totalScore += $sectionClassStudentTerm->sectionClassStudentTermResultPublish->obtain_marks;
+            }
+        }
+        if($denoMinator == 0){
+            $denoMinator += 1;
+        }
+        return $totalMarks/$denoMinator;
+    }
+
     public function averageScore()
     {
         $total = 0;
@@ -105,11 +121,22 @@ class SectionClassStudent extends BaseModel
 
     public function nextSectionClassStudentTerm()
     {
+        $term = null;
         foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
             if($sectionClassStudentTerm->academicSessionTerm->term_id == $this->currentSessionTerm()->term_id + 1){
-                return $sectionClassStudentTerm;
+                $term = $sectionClassStudentTerm->academicSessionTerm;
             }
         }
+        if(!$term){
+            $session = AcademicSession::find($this->currentSession()->id+1);
+            if($session){
+                $term = $session->academicSessionTerms->first();
+            }else{
+                // create next session
+            }
+            
+        }
+        return $term;
     }
     public function uploadedResult()
     {

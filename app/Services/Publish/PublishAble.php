@@ -3,9 +3,9 @@ namespace App\Services\Publish;
 
 trait PublishAble
 {
+   
     public function position()
     {
-        
         $allStudentsScoreInTheClass = [];
         foreach($this->sectionClassStudent->sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent){
             foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm){
