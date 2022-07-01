@@ -129,6 +129,7 @@ Route::name('dashboard.')
         ->group(function (){
             Route::get('/{sectionId}/result', 'SectionResultController@index')->name('index');
             Route::get('/class/{sectionClassId}/awaiting-result', 'SectionResultController@classAwaitingResult')->name('awaiting');
+            Route::get('/class/{sectionClassId}/publish', 'SectionResultController@publishResult')->name('publish');
         });
 
 

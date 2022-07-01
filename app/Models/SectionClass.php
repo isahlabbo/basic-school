@@ -40,6 +40,16 @@ class SectionClass extends BaseModel
         return $this->hasMany(SectionClassReservedAdmissionNo::class);
     }
 
+    public function canPublishResult()
+    {
+        foreach($this->sectionClassStudents->where('status','Active') as $sectionClassStudent){
+            if(!$sectionClassStudent->currentStudentTerm()->sectionClassStudentTermResultPublish){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function subjectResultUploads()
     {
         $uploadedResult = [];

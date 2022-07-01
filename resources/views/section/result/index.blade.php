@@ -14,23 +14,36 @@
                         <tr>
                             <th>S/N</th>
                             <th>CLASS</th>
-                            <th>UPLOADED RESULT</th>
-                            <th>AWAITING RESULT</th>
+                            <th></th>
+                            <th></th>
                             <th></th>
                             
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($section->sectionClasses as $sectionClass)
+                            @if(count($sectionClass->sectionClassStudents)>0)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$sectionClass->name}}</td>
                                 <td>
                                 <a href="{{route('dashboard.section.class.result.summary',[$sectionClass->id])}}">
-                                <button class="btn btn-primary">{{count($sectionClass->subjectResultUploads()['uploaded'])}}</button></a></td>
-                                <td><a href="{{route('dashboard.section.result.awaiting',[$sectionClass->id])}}">
-                                <button class="btn btn-primary">{{count($sectionClass->subjectResultUploads()['awaiting'])}}</button></a></td>
+                                <button class="btn btn-primary">{{count($sectionClass->subjectResultUploads()['uploaded'])}} Result Uploaded</button></a></td>
+                                <td>
+                                @if(count($sectionClass->subjectResultUploads()['awaiting'])==0)
+                                    @if($sectionClass->canPublishResult())
+                                    <a href="{{route('dashboard.section.result.publish',[$sectionClass->id])}}">
+                                    <button class="btn btn-danger">Publish Result Now</button></a>
+                                    @else
+                                        Result Published
+                                    @endif
+                                @else
+                                <a href="{{route('dashboard.section.result.awaiting',[$sectionClass->id])}}">
+                                <button class="btn btn-primary">{{count($sectionClass->subjectResultUploads()['awaiting'])}} Result Awaiting</button></a>
+                                @endif
+                                </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

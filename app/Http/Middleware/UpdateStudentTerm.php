@@ -30,7 +30,6 @@ class UpdateStudentTerm
                 return redirect()->route('dashboard.student.resume',[$sessionTerm->id])->withWarning('Please Confirmed The School Resumption');
             }else{
                 // handle the student promotion and student graduation
-                return redirect()->route('dashboard.student.promotion')->withWarning('Please Confirmed the compilation of all activities of the session');
             }
             
         }
