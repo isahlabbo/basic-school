@@ -34,6 +34,8 @@ return [
     'mode' => env('APP_MODE', 'LIVE'),
 
     'result' => env('APP_RESULT', 'SINGLE'),
+
+    'classGroups' => env('CLASS_GROUPS'),
     
     'nursery_class_position' => env('NURSERY_CLASS_REMARK', true),
 
@@ -89,7 +91,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'GMT',
 
     /*
     |--------------------------------------------------------------------------

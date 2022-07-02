@@ -15,6 +15,11 @@ class SectionClass extends BaseModel
         return $this->belongsTo(Section::class);
     }
 
+    public function sectionClassGroup()
+    {
+        return $this->belongsTo(SectionClassGroup::class);
+    }
+
     public function sectionClassStudents()
     {
         return $this->hasMany(SectionClassStudent::class);
@@ -42,7 +47,9 @@ class SectionClass extends BaseModel
 
     public function nextClass()
     {
-        return $this->section->sectionClasses->where('year_sequence',$this->getNextClassSequence())->first();
+        return $this->section->sectionClasses
+        ->where('section_class_group_id',$this->section_class_group_id)
+        ->where('year_sequence',$this->getNextClassSequence())->first();
     }
 
     public function getNextClassSequence()

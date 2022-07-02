@@ -11,6 +11,7 @@
             <tr>
                 <th>S/N</th>
                 <th>CLASS</th>
+                <th>CLASS GROUP</th>
                 <th>SUBJECTS</th>
                 <th>CURRENT STUDENTS</th>
                 <th>REPEATING STUDENTS</th>
@@ -32,6 +33,7 @@
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$sectionClass->name}}</td>
+                    <td>{{$sectionClass->sectionClassGroup->name ?? ''}}</td>
                     <td><a href="{{route('dashboard.section.class.subject.index',[$sectionClass->id])}}">{{count($sectionClass->sectionClassSubjects)}}</a></td>
                     <td>
                         <a href="{{route('dashboard.section.class.student',[$sectionClass->id])}}">

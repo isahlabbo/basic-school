@@ -36,8 +36,10 @@ class SectionClassController extends Controller
         }
         $section->sectionClasses()->create([
             'name'=>strtoupper($request->class),
-            'code'=>strtoupper($request->code),'year_sequence'=>$section->getYearSequence(),
-            'pass_mark'=>strtoupper($request->pass_mark),
+            'code'=>strtoupper($request->code),
+            'year_sequence'=>$section->getYearSequence(),
+            'pass_mark'=>$request->pass_mark,
+            'section_class_group_id'=>$request->group,
             ]);
         return redirect()->route('dashboard.section.index',$sectionId)->withSuccess('Class Registered');
         
@@ -49,6 +51,7 @@ class SectionClassController extends Controller
             'class'=>'required|string',
             'code'=>'required|string',
             'pass_mark'=>'required|string',
+            'group'=>'required',
             'year_sequence'=>'required|string',
             ]);
         $class = SectionClass::find($sectionClassId);
@@ -56,6 +59,8 @@ class SectionClassController extends Controller
             'name'=>strtoupper($request->class),
             'code'=>strtoupper($request->code),
             'year_sequence'=> $request->year_sequence,
+            'pass_mark'=> $request->pass_mark,
+            'section_class_group_id'=> $request->group,
             ]);
             return redirect()->route('dashboard.section.index',$class->section->id)->withSuccess('Class Updated');
     }
