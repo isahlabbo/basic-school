@@ -18,6 +18,11 @@ class SectionClassStudent extends BaseModel
         return $this->hasMany(SectionClassStudentTerm::class);
     }
 
+    public function sectionClassStudentRepeatings ()
+    {
+        return $this->hasMany(SectionClassStudentRepeating::class);
+    }
+
     public function sectionClassStudentPayments ()
     {
         return $this->hasMany(SectionClassStudentPayment::class);
@@ -73,16 +78,25 @@ class SectionClassStudent extends BaseModel
     public function promoteToNextClass()
     {
         // dd($this->averageScore());
+        foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
+            $sectionClassStudentTerm->update(['status'=>'Not Active']);
+        }
+        $this->update(['status'=>'Not Active']);
+
         if(100 * ($this->averageScore()/$this->expectedScore()) >= $this->sectionClass->pass_mark){
-            foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
-                $sectionClassStudentTerm->update(['status'=>'Not Active']);
+            // assign the student to the next class 
+            if($this->sectionClass->hasNextClass()){
+                $this->student->assignToThisClass($this->sectionClass->nextClass()->id,'Active',$this->nextSession());
+            }else{
+                //add to sectiongraduation list
+                $this->student->sectionStudentGraduations([
+                    'section_id'=>$this->sectionClass->section->id,
+                    'academic_session_id'=>$this->currentSession()->id,
+                ]);
             }
-            $this->update(['status'=>'Not Active']);
-            // assign the student to the next class
-            $this->student->assignToThisClass($this->sectionClass->nextClass()->id,'Active');
         }else{
             // repeat the class
-            $this->student->repeatThisClass($this->sectionClass->id,'Repeat');
+            $this->student->repeatThisClass($this, $this->nextSession());
         }
     }
 

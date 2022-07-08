@@ -33,19 +33,19 @@
             Position:
         @endif
         </td>
-        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->publishedPosition() ?? 0}}</b></td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->publishedPosition() ?? ''}}</b></td>
     </tr>
     
     <tr style="color: black;">
         
         <td class="mb-0">Class Average:</td>
-        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->publishedClassAverage()}}</b></td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->publishedClassAverage() ?? ''}}</b></td>
     </tr>
     
     <tr style="color: black;">
         
         <td class="mb-0">Pupils Average:</td>
-        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->publishedStudentAverage()}}</b></td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->publishedStudentAverage() ?? ''}}</b></td>
     </tr>
 
     <tr style="color: black;">
@@ -56,7 +56,7 @@
     @if($sectionClassStudentTerm->academicSessionTerm->term->id == 3)
     <tr style="color: black;">
         <td class="mb-0">Promoted To:</td>
-        <td class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->nextClass()->name.' '.$sectionClassStudent->sectionClass->sectionClassGroup->name ?? 'Next Section'}} </b></td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->nextClass()->name.' '.$sectionClassStudent->sectionClass->sectionClassGroup->name ?? 'Graduated From'.config('app.title')}} </b></td>
     </tr>
     @endif
     

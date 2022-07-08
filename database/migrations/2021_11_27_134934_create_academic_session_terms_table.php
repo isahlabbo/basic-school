@@ -15,7 +15,6 @@ class CreateAcademicSessionTermsTable extends Migration
     {
         Schema::create('academic_session_terms', function (Blueprint $table) {
             $table->id();
-            
             $table->integer('term_id')
             ->unsigned()
             ->nullable()

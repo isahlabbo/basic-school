@@ -45,6 +45,17 @@ class SectionClassController extends Controller
         
     }
 
+    public function promotion($sectionClassId)
+    {
+        $class = SectionClass::find($sectionClassId);
+        foreach ($class->sectionClassStudents
+            ->where('status','Active')->where('academic_session_id',$class->currentSession()->id) as $sectionClassStudent) {
+                
+            $sectionClassStudent->promoteToNextClass();
+        }
+        return back()->withSuccess('Promotion was Successfully Compilled');
+    }
+
     public function updateClass(Request $request, $sectionClassId)
     {
         $request->validate([

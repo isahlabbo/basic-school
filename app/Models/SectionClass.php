@@ -47,6 +47,18 @@ class SectionClass extends BaseModel
 
     public function nextClass()
     {
+        $class = $this->section->sectionClasses
+        ->where('section_class_group_id',$this->section_class_group_id)
+        ->where('year_sequence',$this->getNextClassSequence())->first();
+        if(!$class){
+            $class = $this->section->nextSection()->sectionClasses->where('year_sequence','First');
+        }
+        return $class;
+    }
+
+
+    public function hasNextClass()
+    {
         return $this->section->sectionClasses
         ->where('section_class_group_id',$this->section_class_group_id)
         ->where('year_sequence',$this->getNextClassSequence())->first();

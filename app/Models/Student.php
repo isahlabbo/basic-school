@@ -13,6 +13,11 @@ class Student extends BaseModel
         return $this->hasMany(SectionClassStudent::class);
     }
 
+    public function sectionStudentGraduations ()
+    {
+        return $this->hasMany(SectionStudentGraduation::class);
+    }
+
     public function sectionClass()
     {
         return $this->belongsTo(SectionClass::class);
@@ -42,11 +47,15 @@ class Student extends BaseModel
         return $this->belongsTo(Gender::class);
     }
 
-    public function assignToThisClass($sectionClassId,$status)
+    public function assignToThisClass($sectionClassId,$status,AcademicSession $session)
     {
-        
-        $studentClass = $this->sectionClassStudents()->create(['status'=>$status,'section_class_id'=>$sectionClassId]);
-        foreach($this->currentSession()->academicSessionTerms as $academicSessionTerm){
+       
+        $studentClass = $this->sectionClassStudents()->firstOrCreate([
+            'status'=>$status,
+            'section_class_id'=>$sectionClassId,
+            'academic_session_id'=>$session->id
+            ]);
+        foreach($session->academicSessionTerms as $academicSessionTerm){
             $studentTerm = $studentClass->sectionClassStudentTerms()->create(['academic_session_term_id'=>$academicSessionTerm->id]);
         }
         $studentClass->updateActiveTerm();
@@ -63,14 +72,22 @@ class Student extends BaseModel
         return $term;
     }
 
-    public function repeatThisClass($sectionClassId,$status)
+    public function repeatThisClass(SectionClassStudent $sectionClassStudent,AcademicSession $session)
     {
-        $this->sectionClassStudents->where('section_class_id',$this->activeSectionClass()->id)->update(['status'=>'Not Active']);
         
-        $studentClass = $this->sectionClassStudents()->create(['status'=>$status,'section_class_id'=>$sectionClassId]);
-        foreach($this->currentSession()->academicSessionTerms as $academicSessionTerm){
+        $this->sectionClassStudentRepeatings()->firstOrCreate([
+            'academic_session_id'=>$session->id,
+            'section_class_student_id'=>$sectionClassStudent->id,
+            ]);
+
+        $studentClass = $this->sectionClassStudents()->firstOrCreate([
+            'status'=>'Active',
+            'section_class_id'=>$sectionClassStudent->sectionClass->id,
+            'academic_session_id'=>$session->id,
+            ]);
+        foreach($session->academicSessionTerms as $academicSessionTerm){
             $studentTerm = $studentClass->sectionClassStudentTerms()->create(['academic_session_term_id'=>$academicSessionTerm->id]);
-            if($studentTerm->academicSessionTerm->term->id == $this->currentSessionTerm()->term->id){
+            if($studentTerm->academicSessionTerm->term->id == 1){
                 $studentTerm->update(['status'=>'Active']);
             }
         }

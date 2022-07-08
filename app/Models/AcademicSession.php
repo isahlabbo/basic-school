@@ -11,6 +11,16 @@ class AcademicSession extends BaseModel
     {
         return $this->hasMany(AcademicSessionTerm::class);
     }
+
+    public function sectionClassStudentRepeatings ()
+    {
+        return $this->hasMany(SectionClassStudentRepeating::class);
+    }
+
+    public function sectionStudentGraduations ()
+    {
+        return $this->hasMany(SectionStudentGraduation::class);
+    }
     
     public function students()
     {

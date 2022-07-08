@@ -17,11 +17,13 @@
                             <th></th>
                             <th></th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($section->sectionClasses as $sectionClass)
-                            @if(count($sectionClass->sectionClassStudents)>0)
+                        
+                            @if(count($sectionClass->sectionClassStudents->where('academic_session_id',$sectionClass->currentSession()->id)->where('status','Active'))>0)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$sectionClass->name}}</td>
@@ -33,6 +35,9 @@
                                     @if($sectionClass->canPublishResult())
                                     <a href="{{route('dashboard.section.result.publish',[$sectionClass->id])}}">
                                     <button class="btn btn-danger">Publish Result Now</button></a>
+                                    @elseif($sectionClass->currentSessionTerm()->term->id == 3)
+                                    <a href="{{route('dashboard.section.class.promotion',[$sectionClass->id])}}">
+                                    <button class="btn btn-danger">Make Promotion Now</button></a>
                                     @else
                                         Result Published
                                     @endif

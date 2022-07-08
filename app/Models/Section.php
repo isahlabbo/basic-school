@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Section extends BaseModel
 {
     
-
     public function sectionClasses()
     {
         return $this->hasMany(SectionClass::class);
@@ -22,6 +21,16 @@ class Section extends BaseModel
     public function affectiveTraits()
     {
         return $this->hasMany(AffectiveTrait::class);
+    }
+
+    public function sectionStudentGraduations ()
+    {
+        return $this->hasMany(SectionStudentGraduation::class);
+    }
+
+    public function nextSection()
+    {
+        return Section::where('level',$this->level+1)->get();
     }
     public function sectionReports()
     {

@@ -17,14 +17,9 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 |
 */
 Route::get('/qr', function () {
+    $count = 1;
     foreach (Section::all() as $section) {
-        foreach ($section->sectionClasses as $sectionClass) {
-            foreach($sectionClass->sectionClassStudents->where('status','Active') as $sectionClassStudent){
-                foreach($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm){
-                    $sectionClassStudentTerm->publishThisTrmResult();
-                }
-            }
-        }
+        $section->update(['level'=>$count++]);
     }
 });
 
@@ -181,6 +176,7 @@ Route::name('dashboard.')
             Route::post('/{sectionId}/register', 'SectionClassController@register')->name('register');
             Route::post('/{sectionClassId}/update', 'SectionClassController@updateClass')->name('update');
             Route::get('/{sectionClassId}/delete', 'SectionClassController@deleteClass')->name('delete');
+            Route::get('/{sectionClassId}/promotion', 'SectionClassController@promotion')->name('promotion');
             Route::name('result.')
             ->prefix('/{sectionClassId}/result')
             ->group(function (){
