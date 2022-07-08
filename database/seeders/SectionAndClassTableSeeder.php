@@ -147,9 +147,9 @@ class SectionAndClassTableSeeder extends Seeder
                 ]
             ]  
         ];
-        
+        $level = 1;
         foreach($sections as $section){
-            $newSection = Section::firstOrCreate(['name'=>strtoupper($section['name'])]);
+            $newSection = Section::firstOrCreate(['level'=>$level,'name'=>strtoupper($section['name'])]);
             foreach($section['classes'] as $class){
                 $newClass = $newSection->sectionClasses()->firstOrCreate([
                     'code'=>$class['code'],'name'=>strtoupper($class['name']),
@@ -160,6 +160,7 @@ class SectionAndClassTableSeeder extends Seeder
                     $newSubject->sectionClassSubjects()->firstOrCreate(['name'=>strtoupper($newSubject->name),'section_class_id'=>$newClass->id]);
                 }
             }
+            $level++;
         }
     }
 }

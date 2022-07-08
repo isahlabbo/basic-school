@@ -20,7 +20,7 @@ class AddAcademicSectionIdToSectionClassStudents extends Migration
             ->unsign()
             ->nullable()
             ->foreign()
-            ->default(Section::find(1)->currentSession()->id)
+            ->default(1)
             ->refrencies('id')
             ->on('academic_sessions');
         });
