@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Section;
-
+group
 class PublishResult extends Command
 {
     /**
