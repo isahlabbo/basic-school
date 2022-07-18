@@ -56,7 +56,7 @@
     @if($sectionClassStudentTerm->academicSessionTerm->term->id == 3)
     <tr style="color: black;">
         <td class="mb-0">Promoted To:</td>
-        <td class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->nextClass()->name.' '.$sectionClassStudent->sectionClass->sectionClassGroup->name ?? 'Graduated From'.config('app.title')}} </b></td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudent->sectionClass->nextClass()->name.' '.optional($sectionClassStudent->sectionClass->sectionClassGroup)->name ?? 'Graduated From'.config('app.title')}} </b></td>
     </tr>
     @endif
     

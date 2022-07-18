@@ -9,6 +9,7 @@ use App\Models\SubjectTeacherTermlyUpload;
 use App\Models\Term;
 use App\Models\Student;
 use App\Models\AcademicSession;
+use App\Events\ResultUploaded;
 
 class ScoreSheet implements ToModel
 {
@@ -53,7 +54,8 @@ class ScoreSheet implements ToModel
                 'second_ca' => $row[4],
                 'exam' => $row[5],
             ]);
-            $result->updateTotalAndComputeGrade(); 
+            $result->updateTotalAndComputeGrade();
+            event(new ResultUploaded($result)); 
         }   
         }
     }
