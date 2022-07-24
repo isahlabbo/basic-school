@@ -21,7 +21,7 @@
             <div class="row from-group">
                 <div class="col-md-4"><label for="">Class Group</label></div>
                 <div class="col-md-8">
-                  <select name="group" id="" class="form-control">
+                  <select name="class_group" id="" class="form-control">
                     <option value="{{$sectionClassGroup->id ?? ''}}">{{$sectionClassGroup->name ?? ''}}</option>
                     @foreach(App\Models\SectionClassGroup::all() as $sectionClassGroup)
                       <option value="{{$sectionClassGroup->id}}">{{$sectionClassGroup->name}}</option>

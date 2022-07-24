@@ -15,8 +15,26 @@
                 <div class="col-md-8"><input type="text" name="class" placeholder="{{$section->name}} CLASS NAME" value="{{old('class')}}" class="form-control"></div>
             </div><br>
             <div class="row from-group">
-                <div class="col-md-4"><label for="">Class Code</label></div>
-                <div class="col-md-8"><input type="text" name="code" placeholder="{{substr($section->name,0,1)}}A for primary A Class" value="{{old('code')}}" class="form-control"></div>
+                <div class="col-md-4"><label for="">Class Group</label></div>
+                <div class="col-md-8">
+                <select name="class_group" id="" class="form-control">
+                  <option value="">Class Group</option>
+                  @foreach(App\Models\SectionClassGroup::all() as $classGroup)
+                    <option value="{{$classGroup->id}}">{{$classGroup->name}}</option>
+                  @endforeach
+                </select>
+                </div>
+            </div><br>
+            <div class="row from-group">
+                <div class="col-md-4"><label for="">Class Year Sequence</label></div>
+                <div class="col-md-8">
+                <select name="year_sequence" id="" class="form-control">
+                  <option value="">Sequence Year</option>
+                  @foreach($section->yearSequences() as $sequence)
+                    <option value="{{$sequence}}">{{$sequence}}</option>
+                  @endforeach
+                </select>
+                </div>
             </div><br>
             <div class="row from-group">
                 <div class="col-md-4"><label for="">Class Pass Mark</label></div>

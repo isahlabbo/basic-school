@@ -12,6 +12,7 @@ use App\Models\SectionClass;
 use App\Models\SectionClassSubject;
 use App\Models\SubjectTeacherTermlyUpload;
 use App\Events\ResultDeleted;
+use App\Events\ResultUpdated;
 
 class ResultSearchController extends Controller
 {
@@ -95,7 +96,7 @@ class ResultSearchController extends Controller
         ]);
 
         $studentResult->updateTotalAndComputeGrade();
-
+        event(new ResultUpdated($studentResult));
         return redirect()->route('dashboard.section.class.subject.result.summary.detail.edit',[$request->studentResultId])->withSuccess('Result Updated');
 
     }

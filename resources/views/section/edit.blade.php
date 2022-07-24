@@ -14,6 +14,23 @@
                 <div class="col-md-4"><label for="">Section Name</label></div>
                 <div class="col-md-8"><input type="text" name="name" placeholder="PRIMARY" value="{{$section->name}}" class="form-control"></div>
             </div><br>
+            <div class="row from-group">
+                <div class="col-md-4"><label for="">Duration In Years</label></div>
+                <div class="col-md-8"><input type="number" name="duration"  value="{{$section->duration}}" class="form-control"></div>
+            </div><br>
+            <div class="row from-group">
+                <div class="col-md-4"><label for="">Section Level</label></div>
+                <div class="col-md-8">
+                  <select name="level" class="form-control" id="">
+                  <option value="{{$section->level}}">Level {{$section->level}}</option>
+                  @for($level = 1; $level <= count(App\Models\Section::all());$level++)
+                    @if($section->level != $level)
+                      <option value="{{$level}}">Level {{$level}}</option>
+                    @endif
+                  @endfor
+                  </select>
+                </div>
+            </div><br>
             <br>
             <button class="btn btn-primary">Update</button>
         </form>

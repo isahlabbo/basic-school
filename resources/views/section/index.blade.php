@@ -14,9 +14,9 @@
             <tr>
                 <th>S/N</th>
                 <th>SECTION</th>
+                <th>LEVEL</th>
+                <th>DURATION IN YAER</th>
                 <th>CLASSES</th>
-                <th>UPLOADED RESULT</th>
-                <th>AWAITING RESULT</th>
                 <th></th>
                 <th><button data-toggle="modal" data-target="#addSection" class="btn btn-primary">ADD SECTION</button></th>
                 @include('section.create')
@@ -24,13 +24,12 @@
         </thead>
         <tbody>
             @foreach($sections as $section)
-                
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$section->name}}</td>
+                    <td>{{$section->level}}</td>
+                    <td>{{$section->duration}}</td>
                     <td>{{count($section->sectionClasses)}}</td>
-                    <td>{{count($section->subjectResultUploads()['uploaded'])}}</td>
-                    <td>{{count($section->subjectResultUploads()['awaiting'])}}</td>
                     <td><a href="{{route('dashboard.section.result.index',[$section->id])}}">
                     <button class="btn btn-primary">Manage Result</button></a>
                     </td>
@@ -38,13 +37,11 @@
                         <a href="{{route('dashboard.section.view',[$section->id])}}"><button class="btn btn-secondary">
                             VIEW CLASSES
                         </button></a>
-                    
                         <button class="btn btn-primary" data-toggle="modal" data-target="#section_{{$section->id}}">EDIT</button>
                         @include('section.edit')
                         <a href="{{route('dashboard.section.delete',[$section->id])}}">
                         <button onclick="return confirm('Are you sure, you want to delete this section from this school')" class="btn btn-danger">DELETE</button></a>
                     </td>
-                    
                 </tr>
             @endforeach
         </tbody>

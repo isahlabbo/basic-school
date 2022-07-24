@@ -21,24 +21,38 @@ class SectionController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate(['name'=>'required|string']);
+        $request->validate([
+            'name'=>'required|string',
+            'level'=>'required',
+        ]);
         $section = Section::where('name',$request->name)->first();
 
         if($section){
             return redirect()->route('dashboard.section.index')->withWarning('Section Exist');
         }else{
-            Section::create(['name'=>strtoupper($request->name)]);
+            Section::create([
+                'name'=>strtoupper($request->name),
+                'level'=>$request->level,
+                'duration'=>$request->duration,
+                ]);
             return redirect()->route('dashboard.section.index')->withSuccess('Section Registered');
         }
-       
     }
     public function update(Request $request, $sectionId)
     {
-        $request->validate(['name'=>'required|string']);
+        $request->validate([
+            'name'=>'required|string',
+            'level'=>'required',
+            'duration'=>'required'
+            ]);
 
         $section = Section::find($sectionId);
-        $section->update(['name'=>strtoupper($request->name)]);
-        return redirect()->route('dashboard.section.view',[$section->id])->withSuccess('Section Updated');
+        $section->update([
+            'level'=>$request->level,
+            'name'=>strtoupper($request->name),
+            'duration'=>$request->duration,
+        ]);
+        return redirect()->route('dashboard.section.index',[$section->id])->withSuccess('Section Updated');
     }
 
     public function delete($sectionId){

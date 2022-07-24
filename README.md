@@ -70,3 +70,12 @@ git pull
 composer install
 php artisan migrate
 php artisan db:seed --class SectionAccessment
+
+## upgrade command for v3.0.3
+git pull
+composer install
+php artisan migrate
+php artisan school:publish-results
+// now goto dabase/seeders/SectionClassGroupTableSeeder and update your classes group by default is A B C D ...
+php artisan db:seed --class SectionClassGroupTableSeeder
+//goto the app inteface and update each class group

@@ -53,6 +53,36 @@ class Section extends BaseModel
         return ['uploaded' => $uploadedResult, 'awaiting' => $awaitingResult];
     }
 
+    public function yearSequences()
+    {
+        $sequences = [];
+        for ($sequence=1; $sequence <= $this->duration ; $sequence++) { 
+            switch ($sequence) {
+                case '1':
+                    $sequences[] = 'First';
+                    break;
+                case '2':
+                    $sequences[] = 'Second';
+                    break;
+                case '3':
+                    $sequences[] = 'Third';
+                    break;
+                case '4':
+                    $sequences[] = 'Forth';
+                    break;
+                case '5':
+                    $sequences[] = 'Fifth';
+                    break;
+                case '6':
+                    $sequences[] = 'Sixth';
+                    break;
+                default:
+                    break;
+            }
+        }
+        return $sequences;
+    }
+
     public function getYearSequence()
     {
         $sequence = null;
@@ -63,23 +93,23 @@ class Section extends BaseModel
         if($sequence){
             switch ($sequence) {
                 case 'First':
-                    $squence = 'Second';
+                    $sequence = 'Second';
                     break;
                 case 'Second':
-                    $squence = 'Third';
+                    $sequence = 'Third';
                     break;
                 case 'Third':
-                    $squence = 'Forth';
+                    $sequence = 'Forth';
                     break;
                 case 'Forth':
-                    $squence = 'Fifth';
+                    $sequence = 'Fifth';
                     break;
                 case 'Fifth':
-                    $squence = 'Sixth';
+                    $sequence = 'Sixth';
                     break;
                 
                 default:
-                    $squence = 'Seventh';
+                    $sequence = 'Seventh';
                     break;
             }
         }else{

@@ -26,8 +26,9 @@ class SectionClassController extends Controller
     {
         $request->validate([
             'class'=>'required|string',
-            'code'=>'required|string',
+            'class_group'=>'required|string',
             'pass_mark'=>'required|string',
+            'year_sequence'=>'required',
             ]);
         $section = Section::find($sectionId);
 
@@ -36,8 +37,9 @@ class SectionClassController extends Controller
         }
         $section->sectionClasses()->create([
             'name'=>strtoupper($request->class),
-            'code'=>strtoupper($request->code),
-            'year_sequence'=>$section->getYearSequence(),
+            'section_class_group_id'=>$request->class_group,
+            'year_sequence'=>$request->year_sequence,
+            'code'=>substr($section->name,0,1),
             'pass_mark'=>$request->pass_mark,
             'section_class_group_id'=>$request->group,
             ]);
@@ -45,35 +47,25 @@ class SectionClassController extends Controller
         
     }
 
-    public function promotion($sectionClassId)
-    {
-        $class = SectionClass::find($sectionClassId);
-        foreach ($class->sectionClassStudents
-            ->where('status','Active')->where('academic_session_id',$class->currentSession()->id) as $sectionClassStudent) {
-                
-            $sectionClassStudent->promoteToNextClass();
-        }
-        return back()->withSuccess('Promotion was Successfully Compilled');
-    }
+    
 
     public function updateClass(Request $request, $sectionClassId)
     {
         $request->validate([
             'class'=>'required|string',
-            'code'=>'required|string',
+            'class_group'=>'required|string',
             'pass_mark'=>'required|string',
-            'group'=>'required',
-            'year_sequence'=>'required|string',
+            'year_sequence'=>'required',
             ]);
         $class = SectionClass::find($sectionClassId);
         $class->update([
             'name'=>strtoupper($request->class),
-            'code'=>strtoupper($request->code),
+            'code'=>substr($class->section->name,0,1),
             'year_sequence'=> $request->year_sequence,
             'pass_mark'=> $request->pass_mark,
-            'section_class_group_id'=> $request->group,
-            ]);
-            return redirect()->route('dashboard.section.index',$class->section->id)->withSuccess('Class Updated');
+            'section_class_group_id'=> $request->class_group,
+        ]);
+        return redirect()->route('dashboard.section.index',$class->section->id)->withSuccess('Class Updated');
     }
 
     public function deleteClass($sectionClassId)
@@ -210,5 +202,16 @@ class SectionClassController extends Controller
         $sectionClass = SectionClass::find($sectionClassId);
         $sectionClass->updateAdmissionNo();
         return back()->withSuccess('All admission number regenerated');
+    }
+
+    public function promotion($sectionClassId)
+    {
+        $class = SectionClass::find($sectionClassId);
+        foreach ($class->sectionClassStudents
+            ->where('status','Active')->where('academic_session_id',$class->currentSession()->id) as $sectionClassStudent) {
+                
+            $sectionClassStudent->promoteToNextClass();
+        }
+        return back()->withSuccess('Promotion was Successfully Compilled');
     }
 }
