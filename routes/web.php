@@ -166,7 +166,6 @@ Route::name('dashboard.')
                     Route::post('/{gradeId}/update', 'GradeController@update')->name('update');
                     Route::get('/{gradeId}/delete', 'GradeController@delete')->name('delete');
                 });
-
                 Route::get('/', 'ReportCardConfigurationController@index')->name('index');
             });
         });

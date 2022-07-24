@@ -11,6 +11,7 @@ use App\Models\StudentResult;
 use App\Models\SectionClass;
 use App\Models\SectionClassSubject;
 use App\Models\SubjectTeacherTermlyUpload;
+use App\Events\ResultDeleted;
 
 class ResultSearchController extends Controller
 {
@@ -66,6 +67,7 @@ class ResultSearchController extends Controller
         
         foreach ($upload->studentResults as $studentResult) {
             $studentResult->delete();
+            event(new ResultDeleted($studentResult));
         }
         $upload->delete();
           
