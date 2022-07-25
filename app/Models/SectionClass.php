@@ -20,6 +20,11 @@ class SectionClass extends BaseModel
         return $this->belongsTo(SectionClassGroup::class);
     }
 
+    public function remarkType()
+    {
+        return $this->belongsTo(RemarkType::class);
+    }
+
     public function sectionClassStudents()
     {
         return $this->hasMany(SectionClassStudent::class);

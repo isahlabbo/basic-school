@@ -12,9 +12,10 @@
                 <th>S/N</th>
                 <th>CLASS</th>
                 <th>CLASS GROUP</th>
+                <th>RESULT REMARK</th>
                 <th>SUBJECTS</th>
                 <th>CURRENT STUDENTS</th>
-                <th>REPEATING STUDENTS</th>
+                
                 <th>CLASS TEACHER</th>
                 <th>UPLOADED RESULT</th>
                 <th>AWAITING RESULT</th>
@@ -34,12 +35,12 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$sectionClass->name}}</td>
                     <td>{{$sectionClass->sectionClassGroup->name ?? ''}}</td>
+                    <td>{{$sectionClass->remarkType->name ?? ''}}</td>
                     <td><a href="{{route('dashboard.section.class.subject.index',[$sectionClass->id])}}">{{count($sectionClass->sectionClassSubjects)}}</a></td>
                     <td>
                         <a href="{{route('dashboard.section.class.student',[$sectionClass->id])}}">
                         {{count($sectionClass->sectionClassStudents->where('status','Active'))}}</a>
                     </td>
-                    <td>{{count($sectionClass->sectionClassStudents->where('status','Repeat'))}}</td>
                     <td>
                         {{$sectionClass->activeClassTeacher() ? $sectionClass->activeClassTeacher()->teacher->user->name : 'Not available'}}
                     </td>

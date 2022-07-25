@@ -56,6 +56,7 @@ class SectionClassController extends Controller
             'class_group'=>'required|string',
             'pass_mark'=>'required|string',
             'year_sequence'=>'required',
+            'remark_type'=>'required',
             ]);
         $class = SectionClass::find($sectionClassId);
         $class->update([
@@ -64,6 +65,7 @@ class SectionClassController extends Controller
             'year_sequence'=> $request->year_sequence,
             'pass_mark'=> $request->pass_mark,
             'section_class_group_id'=> $request->class_group,
+            'remark_type_id'=> $request->remark_type,
         ]);
         return redirect()->route('dashboard.section.index',$class->section->id)->withSuccess('Class Updated');
     }
