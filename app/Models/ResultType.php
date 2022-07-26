@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RemarkType extends BaseModel
+class ResultType extends BaseModel
 {
     public function sectionClasses()
     {

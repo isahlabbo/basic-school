@@ -20,9 +20,9 @@ class SectionClass extends BaseModel
         return $this->belongsTo(SectionClassGroup::class);
     }
 
-    public function remarkType()
+    public function resultType()
     {
-        return $this->belongsTo(RemarkType::class);
+        return $this->belongsTo(ResultType::class);
     }
 
     public function sectionClassStudents()

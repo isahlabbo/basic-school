@@ -27,16 +27,27 @@
             </div><br>
             <div class="row from-group">
                 <div class="col-md-4"><label for="">Year Sequence</label></div>
-                <div class="col-md-8"><input type="text" name="year_sequence"  value="{{$sectionClass->year_sequence}}" class="form-control"></div>
+                <div class="col-md-8">
+                  <select name="year_sequence" id="" class="form-control">
+                    <option value="{{$sectionClass->year_sequence}}">{{$sectionClass->year_sequence}}</option>
+                    @foreach($sectionClass->section->yearSequences() as $yearSequence)
+                      @if($sectionClass->year_sequence != $yearSequence)
+                      <option value="{{$yearSequence}}">{{$yearSequence}}</option>
+                      @endif
+                    @endforeach
+                  </select>
+                </div>
             </div><br>
             <div class="row from-group">
                 <div class="col-md-4"><label for="">Class Result Type</label></div>
                 <div class="col-md-8">
-                <select name="remark_type" class="form-control">
-                  <option value="{{$sectionClass->remark_type_id}}}">{{$sectionClass->remarkType->name ?? 'Result Type'}}</option>
-                  @foreach(App\Models\RemarkType::all() as $type)
+                <select name="result_type" class="form-control">
+                  <option value="{{$sectionClass->result_type_id}}}">{{$sectionClass->resultType->name ?? 'Result Type'}}</option>
+                  @foreach(App\Models\ResultType::all() as $type)
                     @if($type->id != $sectionClass->remark_type_id)
-                      <option value="{{$type->id}}">{{$type->name}}</option>
+                      @if($type->id != $sectionClass->result_type_id)
+                        <option value="{{$type->id}}">{{$type->name}}</option>
+                      @endif
                     @endif
                   @endforeach
                 </select>

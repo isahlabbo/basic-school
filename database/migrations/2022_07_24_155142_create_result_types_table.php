@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRemarkTypesTable extends Migration
+class CreateResultTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,23 @@ class CreateRemarkTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('remark_types', function (Blueprint $table) {
+        Schema::create('result_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
         });
 
         Schema::table('section_classes', function (Blueprint $table) {
-            $table->integer('remark_type_id')
+            $table->integer('result_type_id')
             ->unsign()
             ->default(1)
             ->foreign()
             ->refrencies('id')
-            ->on('remark_types');
+            ->on('result_types');
         });
 
-        foreach(['Position', 'Remark'] as $remark){
-            App\Models\RemarkType::firstOrCreate(['name'=>$remark]);
+        foreach(['Position', 'Remark'] as $result){
+            App\Models\ResultType::firstOrCreate(['name'=>$result]);
         }
     }
 
@@ -40,6 +40,6 @@ class CreateRemarkTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('remark_types');
+        Schema::dropIfExists('result_types');
     }
 }

@@ -37,6 +37,17 @@
                 </div>
             </div><br>
             <div class="row from-group">
+                <div class="col-md-4"><label for="">Class Result Type</label></div>
+                <div class="col-md-8">
+                <select name="result_type" class="form-control">
+                  <option value="">Result Type</option>
+                  @foreach(App\Models\ResultType::all() as $type)
+                    <option value="{{$type->id}}">{{$type->name}}</option>
+                  @endforeach
+                </select>
+                </div>  
+            </div><br>
+            <div class="row from-group">
                 <div class="col-md-4"><label for="">Class Pass Mark</label></div>
                 <div class="col-md-8">
                 <select name="pass_mark" class="form-control">

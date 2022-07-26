@@ -12,13 +12,11 @@
                 <th>S/N</th>
                 <th>CLASS</th>
                 <th>CLASS GROUP</th>
-                <th>RESULT REMARK</th>
+                <th>RESULT TYPE</th>
+                <th>CLASS YEAR</th>
                 <th>SUBJECTS</th>
                 <th>CURRENT STUDENTS</th>
-                
                 <th>CLASS TEACHER</th>
-                <th>UPLOADED RESULT</th>
-                <th>AWAITING RESULT</th>
                 @if(config('app.exam'))
                 <th></th>
                 @endif
@@ -35,7 +33,8 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$sectionClass->name}}</td>
                     <td>{{$sectionClass->sectionClassGroup->name ?? ''}}</td>
-                    <td>{{$sectionClass->remarkType->name ?? ''}}</td>
+                    <td>{{$sectionClass->resultType->name ?? ''}}</td>
+                    <td>{{$sectionClass->year_sequence}}</td>
                     <td><a href="{{route('dashboard.section.class.subject.index',[$sectionClass->id])}}">{{count($sectionClass->sectionClassSubjects)}}</a></td>
                     <td>
                         <a href="{{route('dashboard.section.class.student',[$sectionClass->id])}}">
@@ -44,8 +43,6 @@
                     <td>
                         {{$sectionClass->activeClassTeacher() ? $sectionClass->activeClassTeacher()->teacher->user->name : 'Not available'}}
                     </td>
-                    <td>{{count($sectionClass->subjectResultUploads()['uploaded'])}}</td>
-                    <td>{{count($sectionClass->subjectResultUploads()['awaiting'])}}</td>
                     @if(config('app.exam'))
                     <td><a href="{{route('dashboard.section.class.exam.index',[$sectionClass->id])}}">
                     <button class="btn btn-primary">Exam</button></a></td>

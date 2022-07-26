@@ -27,11 +27,7 @@
     <tr style="color: black;">
         
         <td class="mb-0">
-        @if(config('app.nursery_class_position') == true && $sectionClassStudent->sectionClass->section->name == 'NURSERY')
-            Remark:
-        @else
-            Position:
-        @endif
+        {{$sectionClassStudent->sectionClass->resultType->name}}:
         </td>
         <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->publishedPosition() ?? ''}}</b></td>
     </tr>
