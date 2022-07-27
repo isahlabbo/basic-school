@@ -28,7 +28,7 @@
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$sectionClass->name}}</td>
                                 <td>
-                                <a href="{{route('dashboard.section.class.result.summary',[$sectionClass->id])}}">
+                                <a href="{{route('dashboard.section.class.result.summary',[$sectionClass->id,$sectionClass->currentSession()->id,$sectionClass->currentSessionTerm()->term->id])}}">
                                 <button class="btn btn-primary">{{count($sectionClass->subjectResultUploads()['uploaded'])}} Result Uploaded</button></a></td>
                                 <td>
                                 @if(count($sectionClass->subjectResultUploads()['awaiting'])==0)

@@ -49,6 +49,13 @@ class SectionClassSubject extends BaseModel
 
     public function availableResultUploads($sessionId, $termId)
     {
+        $session = Section::find(1);
+        if(!$sessionId){
+            $sessionId = $session->currentSession()->id;
+        }
+        if(!$termId){
+            $termId = $session->currentSessionTerm()->term->id;
+        }
         $uploads = [];
         foreach ($this->sectionClassSubjectTeachers as $classTeacher) {
             foreach($classTeacher->subjectTeacherTermlyUploads->where('term_id',$termId) as $upload){
