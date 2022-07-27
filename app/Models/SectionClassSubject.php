@@ -47,12 +47,14 @@ class SectionClassSubject extends BaseModel
         return $this->examSubjectQuestionSections->where('section_class_termly_exam_id', $this->currentExam()->id);
     }
 
-    public function availableResultUploads()
+    public function availableResultUploads($sessionId, $termId)
     {
         $uploads = [];
         foreach ($this->sectionClassSubjectTeachers as $classTeacher) {
-            foreach($classTeacher->subjectTeacherTermlyUploads->where('term_id',$this->currentSessionTerm()->term->id) as $upload){
-                $uploads[] = $upload;
+            foreach($classTeacher->subjectTeacherTermlyUploads->where('term_id',$termId) as $upload){
+                if($upload->academicSessionTerm->academicSession->id == $sessionId){
+                    $uploads[] = $upload;
+                }
             }
         }
         return $uploads;

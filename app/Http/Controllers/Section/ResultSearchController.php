@@ -13,6 +13,7 @@ use App\Models\SectionClassSubject;
 use App\Models\SubjectTeacherTermlyUpload;
 use App\Events\ResultDeleted;
 use App\Events\ResultUpdated;
+use App\Models\AcademicSession;
 
 class ResultSearchController extends Controller
 {
@@ -23,6 +24,13 @@ class ResultSearchController extends Controller
 
     public function checkResult(Request $request)
     {
+        $request->validate([
+            "session" => "required",
+            "term" => "required",
+            "section" => "required",
+            "class" => "required"
+        ]);
+
         if($request->admission_no){
             $student = Student::where('admission_no',$request->admission_no)->first();
             if($student){
@@ -32,29 +40,26 @@ class ResultSearchController extends Controller
             }
         }elseif($request->subject){
             $sectionClassSubject = SectionClassSubject::find($request->subject);
-            if(count($sectionClassSubject->availableResultUploads())>0){
-                return redirect()->route('dashboard.section.class.subject.result.summary',[$sectionClassSubject->id])->withSuccess(count($sectionClassSubject->availableResultUploads()).' Result Summary Found');
+            if(count($sectionClassSubject->availableResultUploads($request->session, $request->term))>0){
+                return redirect()->route('dashboard.section.class.subject.result.summary',[$sectionClassSubject->id, $request->session, $request->term])->withSuccess(count($sectionClassSubject->availableResultUploads($request->session, $request->term)).' Result Summary Found');
             }else{
                 return redirect()->route('dashboard.section.class.subject.result.index')->withWarning('No Result uploaded for '.$sectionClassSubject->sectionClass->name.' '.$sectionClassSubject->subject->name);
             }
-
         }elseif($request->class){
             $sectionClass = SectionClass::find($request->class);
-            if($sectionClass->availableResultUploads()>0){
-                return redirect()->route('dashboard.section.class.result.summary',[$sectionClass->id])->withSuccess($sectionClass->availableResultUploads().' Result Summary Found');
+            if($sectionClass->availableResultUploads($request->session, $request->term)>0){
+                return redirect()->route('dashboard.section.class.result.summary',[$sectionClass->id, $request->session,  $request->term])->withSuccess($sectionClass->availableResultUploads($request->session, $request->term).' Result Summary Found');
             }else{
-                return redirect()->route('dashboard.section.class.subject.result.index')->withWarning('No Result uploaded for '.$sectionClass->name.' at '.$sectionClass->currentSession()->name);
+                return redirect()->route('dashboard.section.class.subject.result.index')->withWarning('No Result uploaded for '.$sectionClass->name.' at '.AcademicSession::find($request->session)->name);
             }
-        }elseif($request->section){
-
         }else{
             return redirect()->route('dashboard.section.class.subject.result.index')->withWarning('PLs give us some thing to search for');
         }
     }
 
-    public function viewResultSummary($sectionClassSubjectId)
+    public function viewResultSummary($sectionClassSubjectId,$sessionId, $termId)
     {
-        return view('section.class.subject.result.search.summary',['sectionClassSubject'=>SectionClassSubject::find($sectionClassSubjectId)]);
+        return view('section.class.subject.result.search.summary',['term'=>Term::find($termId),'session'=>AcademicSession::find($sessionId),'sectionClassSubject'=>SectionClassSubject::find($sectionClassSubjectId)]);
     }
 
     public function viewDetail($subcetTeacherTermlyUploadId)

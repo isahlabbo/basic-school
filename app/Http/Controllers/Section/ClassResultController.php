@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Section;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Term;
+use App\Models\AcademicSession;
 use App\Models\SectionClass;
 use App\Models\Psychomotor;
 use App\Models\AffectiveTrait;
@@ -18,9 +20,9 @@ use App\Imports\StudentAccessmentImport;
 
 class ClassResultController extends Controller
 {
-    public function summary($sectionClassId)
+    public function summary($sectionClassId, $sessionId, $termId)
     {
-        return view('section.class.result.summary',['sectionClass'=>SectionClass::find($sectionClassId)]);
+        return view('section.class.result.summary',['session'=>AcademicSession::find($sessionId),'term'=>Term::find($termId),'sectionClass'=>SectionClass::find($sectionClassId)]);
     }
 
     public function report($sectionClassId)

@@ -43,9 +43,9 @@ Breadcrumbs::for('dashboard.result.student', function ($trail, $student) {
 });
 
 // Dashboard/Check  Result/subject class
-Breadcrumbs::for('dashboard.result.summary', function ($trail, $sectionClassSubject) {
+Breadcrumbs::for('dashboard.result.summary', function ($trail, $session, $term, $sectionClassSubject) {
     $trail->parent('dashboard.result');
-    $trail->push($sectionClassSubject->sectionClass->name.' '.$sectionClassSubject->name, route('dashboard.section.class.subject.result.summary',[$sectionClassSubject->id]));
+    $trail->push($sectionClassSubject->sectionClass->name.' '.$sectionClassSubject->name, route('dashboard.section.class.subject.result.summary',[$session->id, $term->id, $sectionClassSubject->id]));
 });
 
 // Dashboard/Check  Result/subject class/detail

@@ -179,7 +179,7 @@ Route::name('dashboard.')
             Route::name('result.')
             ->prefix('/{sectionClassId}/result')
             ->group(function (){
-                Route::get('/summary', 'ClassResultController@summary')->name('summary');
+                Route::get('session/{sessionId}/term/{termId}/summary', 'ClassResultController@summary')->name('summary');
                 Route::get('/report', 'ClassResultController@report')->name('report');
                 Route::get('/accessment/download', 'ClassResultController@downloadAccessment')->name('accessment.download');
                 Route::get('/accessment/view', 'ClassResultController@viewAccessment')->name('accessment.view');
@@ -258,7 +258,7 @@ Route::name('dashboard.')
                     ->group(function (){
                         Route::get('/', 'ResultSearchController@index')->name('index');
                         Route::post('/check-result', 'ResultSearchController@checkResult')->name('check');
-                        Route::get('/{sectionClassSubjectId}/summary', 'ResultSearchController@viewResultSummary')->name('summary');
+                        Route::get('{sectionClassSubjectId}/session/{sessionId}/term/{termId}/summary', 'ResultSearchController@viewResultSummary')->name('summary');
                         Route::get('/summary/{subjectTeacherUploadId}/detail', 'ResultSearchController@viewDetail')->name('summary.detail');
                         Route::get('/summary/{subjectTeacherUploadId}/delete', 'ResultSearchController@deleteUpload')->name('summary.delete');
                         Route::get('/summary/detail/{studentResultId}/edit', 'ResultSearchController@editResult')->name('summary.detail.edit');

@@ -339,11 +339,11 @@ class SectionClass extends BaseModel
         return $number;
     }
 
-    public function availableResultUploads(Type $var = null)
+    public function availableResultUploads($sessionId, $termId)
     {
         $uploadCounts = 0;
         foreach($this->sectionClassSubjects as $sectionClassSubject){
-            $uploadCounts = $uploadCounts + count($sectionClassSubject->availableResultUploads());
+            $uploadCounts = $uploadCounts + count($sectionClassSubject->availableResultUploads($sessionId, $termId));
         }
         return $uploadCounts;
     }

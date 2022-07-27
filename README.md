@@ -75,7 +75,12 @@ php artisan db:seed --class SectionAccessment
 git pull
 composer install
 php artisan migrate
-php artisan school:publish-results
-// now goto dabase/seeders/SectionClassGroupTableSeeder and update your classes group by default is A B C D ...
+
+// now goto dabase/seeders/SectionClassGroupTableSeeder and update your classes group by default is A B C D ..
 php artisan db:seed --class SectionClassGroupTableSeeder
-//goto the app inteface and update each class group
+
+<!-- goto the app inteface and update each section update its level -->
+
+<!-- goto the app inteface and update each class group, year sequence, and result type -->
+
+php artisan school:publish-results

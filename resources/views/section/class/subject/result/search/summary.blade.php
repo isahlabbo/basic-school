@@ -3,7 +3,7 @@
         {{$sectionClassSubject->name}} of {{$sectionClassSubject->sectionClass->name}}  Result Summary
     @endsection
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard.result.summary',$sectionClassSubject)}}
+       {{Breadcrumbs::render('dashboard.result.summary',$session, $term, $sectionClassSubject)}}
     @endsection
     @section('content')
     <div class="card shadow">
@@ -12,7 +12,7 @@
             <b>{{$sectionClassSubject->name}} of {{$sectionClassSubject->sectionClass->name}}  Result Summary</b>
             </div><br>
             <div class="row">
-            @foreach($sectionClassSubject->availableResultUploads() as $result)
+            @foreach($sectionClassSubject->availableResultUploads($session->id,$term->id) as $result)
                <div class="col-md-3">
                     <div class="card shadow">
                         <div class="card-body">

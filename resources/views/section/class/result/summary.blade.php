@@ -14,8 +14,9 @@
             <a href="{{route('dashboard.section.class.result.report',[$sectionClass->id])}}"><button class="btn btn-secondary">View Report Sheets</button></a>
             </div><br>
             <div class="row">
+            
             @foreach($sectionClass->sectionClassSubjects as $sectionClassSubject)
-                @foreach($sectionClassSubject->availableResultUploads() as $result)
+                @foreach($sectionClassSubject->availableResultUploads($session->id, $term->id) as $result)
                 <div class="col-md-3"><br>
                         <div class="card shadow">
                             <div class="card-body">
