@@ -36,6 +36,33 @@ class SubjectTeacherTermlyUpload extends BaseModel
         return number_format(100 * ($this->gradeCount($grade)/$count),2);
     }
 
+    public function expectedScoresOfAllStudents()
+    {
+        return count($this->studentResults) * 100;
+    }
+
+    public function actualScoresOfAllStudents()
+    {
+        return $this->average * count($this->studentResults);
+    }
+
+    public function diviatedScoresOfAllStudents()
+    {
+        return $this->expectedScoresOfAllStudents() - $this->actualScoresOfAllStudents();
+    }
+
+    public function computeAndSaveUploadAverage()
+    {
+        $scores = 0;
+        $students = 0;
+        foreach($this->studentResults as $result){
+            $scores += $result->total;
+            $students++;
+        }
+        $this->average = $scores/$students;
+        $this->save();
+    }
+
     public function gradeCount($grade)
     {
         return count($this->studentResults->where('grade',$grade));

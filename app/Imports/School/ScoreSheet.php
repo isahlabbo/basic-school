@@ -34,29 +34,30 @@ class ScoreSheet implements ToModel
                 'section_class_subject_teacher_id'=>$this->sectionClassSubject->activeSectionClassSubjectTeacher()->id,
             ]);
             if($this->getThisStudent($row[2])->currentSessionTerm()){
-            $result = $subjectTeacherTermlyUpload->studentResults()->firstOrCreate([
-                'section_class_student_term_id'  => $this->getThisStudent($row[2])->currentSessionTerm()->id,
-            ]);
-           
-            if($row[3] == null || !is_numeric($row[3])){
-                $row[3] = 0;
-            }
+                $result = $subjectTeacherTermlyUpload->studentResults()->firstOrCreate([
+                    'section_class_student_term_id'  => $this->getThisStudent($row[2])->currentSessionTerm()->id,
+                ]);
+            
+                if($row[3] == null || !is_numeric($row[3])){
+                    $row[3] = 0;
+                }
 
-            if($row[4] == null || !is_numeric($row[4])){
-                $row[4] = 0;
-            }
-            if($row[5] == null || !is_numeric($row[5])){
-                $row[5] = 0;
-            } 
+                if($row[4] == null || !is_numeric($row[4])){
+                    $row[4] = 0;
+                }
+                if($row[5] == null || !is_numeric($row[5])){
+                    $row[5] = 0;
+                } 
 
-            $result->update([ 
-                'first_ca' => $row[3],
-                'second_ca' => $row[4],
-                'exam' => $row[5],
-            ]);
-            $result->updateTotalAndComputeGrade();
-            event(new ResultUploaded($result)); 
-        }   
+                $result->update([ 
+                    'first_ca' => $row[3],
+                    'second_ca' => $row[4],
+                    'exam' => $row[5],
+                ]);
+                $result->updateTotalAndComputeGrade();
+                event(new ResultUploaded($result)); 
+            }
+            $subjectTeacherTermlyUpload->computeAndSaveUploadAverage();   
         }
     }
     

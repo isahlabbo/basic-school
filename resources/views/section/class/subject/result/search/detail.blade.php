@@ -3,7 +3,9 @@
         {{$subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject->name}} of {{$subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject->sectionClass->name}}  Result Detail
     @endsection
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard.result.summary.detail',$subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject)}}
+       {{Breadcrumbs::render('dashboard.result.summary.detail',
+       $subjectTeacherTermlyUpload->academicSessionTerm->academicSession, 
+       $subjectTeacherTermlyUpload->term,$subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject)}}
     @endsection
     @section('content')
     <div class="card shadow">

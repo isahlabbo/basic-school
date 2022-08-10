@@ -8,6 +8,27 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/appStyle.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+    <style>
+        div.nav ul li.dropdown{
+            position: relative;
+            display: inline-block;
+        }
+
+        div.nav ul li.dropdown ul{
+            display: none;
+            position: absolute;
+            list-style-type: none;
+            box-shadow: 10px 6px 0px 0px rgba(0,0,0,0.2);
+            background-color: #f9f9f9;
+            min-width: 290px;
+            padding: 5px;
+            z-index: 1;
+        }
+
+        div.nav ul li.dropdown:hover div.nav ul li.dropdown ul{
+            display: block;
+        }
+    </style>
     <!-- jquery -->
     <script src="{{asset('js/jquery-1.8.2.min.js')}}"></script>
    
@@ -31,7 +52,7 @@
         <div class="loader"></div>
     </div>
     <div id="header">
-        <div> 
+        <div class="nav"> 
         <a href="{{url('/dashboard')}}"><img src="{{asset(config('app.logo'))}}" alt=""></a>
             <ul>
                 <li class="current"><a href="{{ url('/dashboard') }}"><i class="fa fa-users"></i> Dashboard</a></li>
@@ -43,16 +64,17 @@
                     @else
                     <!-- other user here -->
                     @endif
-                <li class="">
-                    <a href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                        {{ __('Log out') }}
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </li>
+                
+                    <li>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                            {{ __('Log out') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
             </ul>
         </div>
         <hr class="separator">

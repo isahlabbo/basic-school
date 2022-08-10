@@ -304,6 +304,14 @@ Route::name('dashboard.')
         Route::post('/register', 'TeacherController@register')->name('register');
         Route::post('/{teacherId}/update', 'TeacherController@update')->name('update');
         Route::get('/{teacherId}/delete', 'TeacherController@delete')->name('delete');
+
+        // school.teacher.evaluation
+        Route::name('evaluation.')
+        ->prefix('/evaluation')
+        ->group(function (){
+            Route::get('/session/{sessionId}', 'TeachingEvaluationController@index')->name('index');
+        });
+        
     });
     
     // student routes

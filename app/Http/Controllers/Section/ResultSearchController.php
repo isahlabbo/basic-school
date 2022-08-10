@@ -77,7 +77,8 @@ class ResultSearchController extends Controller
         }
         $upload->delete();
           
-        return redirect()->route('dashboard.section.class.result.summary',[$upload->sectionClassSubjectTeacher->sectionClassSubject->sectionClass->id])->withSuccess(' Result Deleted');
+        return redirect()->route('dashboard.section.class.result.summary',[$upload->sectionClassSubjectTeacher->sectionClassSubject->sectionClass->id,
+             $upload->academicSessionTerm->academicSession->id,$upload->term_id])->withSuccess(' Result Deleted');
     }
 
     public function editResult($studentResultId)

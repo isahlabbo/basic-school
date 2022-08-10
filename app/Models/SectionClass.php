@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Charts\TeachingEvaluation;
 use App\Services\Diagnose\ClassMode as Diagnosable;
 
 class SectionClass extends BaseModel

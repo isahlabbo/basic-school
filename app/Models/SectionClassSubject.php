@@ -46,7 +46,17 @@ class SectionClassSubject extends BaseModel
     {
         return $this->examSubjectQuestionSections->where('section_class_termly_exam_id', $this->currentExam()->id);
     }
-
+    public function thisSessionTermResultUpload($session, $term)
+    {
+        foreach ($this->sectionClassSubjectTeachers as $classTeacher) {
+            foreach($classTeacher->subjectTeacherTermlyUploads->where('term_id',$term->id) as $upload){
+                if($upload->academicSessionTerm->academicSession->id == $session->id){
+                    return $upload;
+                }
+            }
+        }
+    }
+    
     public function availableResultUploads($sessionId, $termId)
     {
         $session = Section::find(1);

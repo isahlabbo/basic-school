@@ -49,14 +49,14 @@ Breadcrumbs::for('dashboard.result.summary', function ($trail, $session, $term, 
 });
 
 // Dashboard/Check  Result/subject class/detail
-Breadcrumbs::for('dashboard.result.summary.detail', function ($trail, $sectionClassSubject) {
-    $trail->parent('dashboard.result.summary',$sectionClassSubject);
+Breadcrumbs::for('dashboard.result.summary.detail', function ($trail,  $session, $term, $sectionClassSubject) {
+    $trail->parent('dashboard.result.summary', $session, $term, $sectionClassSubject);
     $trail->push('Detail', route('dashboard.section.class.subject.result.summary.detail',[$sectionClassSubject->id]));
 });
 
 // Dashboard/Check  Result/subject class/detail/edit
-Breadcrumbs::for('dashboard.result.summary.detail.edit', function ($trail, $studentResult) {
-    $trail->parent('dashboard.result.summary.detail',$studentResult->subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject);
+Breadcrumbs::for('dashboard.result.summary.detail.edit', function ($trail,  $session, $term, $studentResult) {
+    $trail->parent('dashboard.result.summary.detail', $session, $term, $studentResult->subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject);
     $trail->push('Edit', route('dashboard.section.class.subject.result.summary.detail',[$studentResult->id]));
 });
 

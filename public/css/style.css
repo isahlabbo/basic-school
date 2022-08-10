@@ -38,6 +38,7 @@ body {
 	font-family: "Helvetica 65 Medium", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
+
 }
 
 h1,
@@ -91,6 +92,8 @@ button:focus,
 textarea:focus {
 	outline: none;
 }
+
+
 
 a:hover,
 a:focus {

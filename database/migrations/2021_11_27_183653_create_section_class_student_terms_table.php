@@ -18,7 +18,7 @@ class CreateSectionClassStudentTermsTable extends Migration
             $table->integer('section_class_student_id')
             ->unsigned()
             ->nullable()
-            ->foreign()
+            ->foreaeign()
             ->references('id')
             ->on('section_class_students')
             ->delete('restrict')

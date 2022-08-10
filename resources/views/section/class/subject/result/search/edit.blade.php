@@ -3,9 +3,13 @@
         {{config('app.name')}} register new teacher
     @endsection
     @section('breadcrumb')
-       {{Breadcrumbs::render('dashboard.result.summary.detail.edit',$studentResult)}}
+        {{Breadcrumbs::render('dashboard.result.summary.detail.edit',
+        $studentResult->subjectTeacherTermlyUpload->academicSessionTerm,
+        $studentResult->subjectTeacherTermlyUpload->term,
+        $studentResult)}}
     @endsection
     @section('content')
+    
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
@@ -22,7 +26,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-md-3"><label for="">Admission NO</label></div>
+                            <div class="col-md-3"><label for="">Admission No</label></div>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" disabled name="admission_no" value="{{$studentResult->sectionClassStudentTerm->sectionClassStudent->student->admission_no}}" placeholder="Enter Teacher's Phone number">
                             </div>
