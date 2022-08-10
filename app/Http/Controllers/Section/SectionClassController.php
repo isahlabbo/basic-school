@@ -62,12 +62,27 @@ class SectionClassController extends Controller
         $class->update([
             'name'=>strtoupper($request->class),
             'code'=>substr($class->section->name,0,1),
-            'year_sequence'=> $request->year_sequence,
-            'pass_mark'=> $request->pass_mark,
+            
             'section_class_group_id'=> $request->class_group,
-            'result_type_id'=> $request->result_type,
+            
         ]);
-        return redirect()->route('dashboard.section.index',$class->section->id)->withSuccess('Class Updated');
+        if($class->year_sequence != $request->year_sequence){
+            $class->update(['year_sequence'=> $request->year_sequence]);
+        }
+
+        if($class->pass_mark != $request->pass_mark){
+            $class->update(['pass_mark'=> $request->pass_mark]);
+        }
+
+        if($class->result_type_id != $request->result_type){
+            $class->update(['result_type_id'=> $request->result_type]);
+        }
+
+        if($class->section_class_group_id != $request->class_group){
+            $class->update(['section_class_group_id'=> $request->class_group]);
+        }
+
+        return redirect()->route('dashboard.section.view',$class->section->id)->withSuccess('Class Updated');
     }
 
     public function deleteClass($sectionClassId)

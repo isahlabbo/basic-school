@@ -14,6 +14,7 @@
                 <th>CLASS GROUP</th>
                 <th>RESULT TYPE</th>
                 <th>CLASS YEAR</th>
+                <th>PASS MARKS</th>
                 <th>SUBJECTS</th>
                 <th>CURRENT STUDENTS</th>
                 <th>CLASS TEACHER</th>
@@ -35,6 +36,7 @@
                     <td>{{$sectionClass->sectionClassGroup->name ?? ''}}</td>
                     <td>{{$sectionClass->resultType->name ?? ''}}</td>
                     <td>{{$sectionClass->year_sequence}}</td>
+                    <td>{{$sectionClass->pass_mark}}</td>
                     <td><a href="{{route('dashboard.section.class.subject.index',[$sectionClass->id])}}">{{count($sectionClass->sectionClassSubjects)}}</a></td>
                     <td>
                         <a href="{{route('dashboard.section.class.student',[$sectionClass->id])}}">

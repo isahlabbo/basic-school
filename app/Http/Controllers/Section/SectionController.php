@@ -48,10 +48,18 @@ class SectionController extends Controller
 
         $section = Section::find($sectionId);
         $section->update([
-            'level'=>$request->level,
             'name'=>strtoupper($request->name),
             'duration'=>$request->duration,
         ]);
+
+        if($section->level != $request->level){
+            $section->update(['level'=>$request->level]);
+        }
+
+        if($section->duration != $request->duration){
+            $section->update(['duration'=>$request->duration]);
+        }
+        
         return redirect()->route('dashboard.section.index',[$section->id])->withSuccess('Section Updated');
     }
 
