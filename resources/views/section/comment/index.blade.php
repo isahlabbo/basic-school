@@ -9,10 +9,11 @@
         <div>
         <button class="btn btn-secondary" id="print" onclick="printContent('report');" >Print</button>
         <a href="{{route('dashboard.comment.view')}}"><button class="btn btn-primary">View Coments</button></a>
+        
         </div>
+        
         <div id="report">
        
-    
             <div class="card shadow" style="page-break-inside: avoid;">
                 <div class="card-body">
                 <p class="text text-center"><b>Teacher Comment</b></a></p>

@@ -25,6 +25,18 @@ class CommentController extends Controller
         ]);
     }
 
+    public function addComment(Request $request)
+    {
+        $request->validate(['comment'=>'required','type'=>'required']);
+        if($request->type == 1){
+            TeacherComment::firstOrCreate(['name'=>$request->comment,'gender'=>$request->gender]);
+        }else{
+            HeadTeacherComment::firstOrCreate(['name'=>$request->comment,'gender'=>$request->gender]);
+        }
+        return redirect()->route('dashboard.comment.view')->withSuccess('Comment Added');
+    }
+    
+
     public function updateTeacherComment (Request $request, $teacherCommentId)
     {
         $comment = TeacherComment::find($teacherCommentId);

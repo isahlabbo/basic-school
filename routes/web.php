@@ -80,6 +80,7 @@ Route::name('dashboard.')
     ->group(function (){
         Route::get('/', 'CommentController@index')->name('index');
         Route::get('/view', 'CommentController@view')->name('view');
+        Route::post('/add', 'CommentController@addComment')->name('add');
         Route::post('/teacher-comment/{teacherCommentId}/update', 'CommentController@updateTeacherComment')->name('teacher.update');
         Route::post('/head-teacher-comment/{headteacherCommentId}/update', 'CommentController@updateHeadTeacherComment')->name('headteacher.update');
         Route::get('/teacher-comment/{teacherCommentId}/delete', 'CommentController@deleteTeacherComment')->name('teacher.delete');

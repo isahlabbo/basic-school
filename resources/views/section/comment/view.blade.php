@@ -16,7 +16,8 @@
                             <th>S/N</th>
                             <th>Name</th>
                             <th>Gender</th>
-                            <th></th>
+                            <th><button class="btn btn-primary" data-toggle="modal" data-target="#newComment">New Comment</button>
+        @include('section.comment.create')</th>
                             <th></th>
                         </tr>
                     </thead>
