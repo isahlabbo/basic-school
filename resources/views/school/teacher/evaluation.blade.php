@@ -31,16 +31,8 @@
                                 <td style="page-break-inside: avoid;">
                                     <table>
                                         <tr>
-                                            <td>Expected</td>
-                                            <td>{{optional($subject->thisSessionTermResultUpload($session,$term))->expectedScoresOfAllStudents() ?? ''}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Actual</td>
-                                            <td>{{optional($subject->thisSessionTermResultUpload($session,$term))->actualScoresOfAllStudents() ?? ''}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Diviation</td>
-                                            <td>{{optional($subject->thisSessionTermResultUpload($session,$term))->diviatedScoresOfAllStudents() ?? ''}}</td>
+                                            <td>Percentage</td>
+                                            <td>{{optional($subject->thisSessionTermResultUpload($session,$term))->percentageScoresOfAllStudents() ?? ''}}</td>
                                         </tr>
                                     </table>
                                 </td>

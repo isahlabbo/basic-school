@@ -51,6 +51,11 @@ class SubjectTeacherTermlyUpload extends BaseModel
         return $this->expectedScoresOfAllStudents() - $this->actualScoresOfAllStudents();
     }
 
+    public function percentageScoresOfAllStudents()
+    {
+        return (100 * $this->actualScoresOfAllStudents())/ $this->expectedScoresOfAllStudents();
+    }
+
     public function computeAndSaveUploadAverage()
     {
         $scores = 0;
