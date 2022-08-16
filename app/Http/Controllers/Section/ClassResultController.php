@@ -96,7 +96,7 @@ class ClassResultController extends Controller
             'accessment'=>'required',
         ]);
         $sectionClass = SectionClass::find($sectionClassId);
-        Excel::import(new StudentAccessmentImport($sessionClass), request()->file('accessment'));
+        Excel::import(new StudentAccessmentImport($sectionClass), request()->file('accessment'));
         
         return redirect()->route('dashboard.section.class.result.summary',[$sectionClass->id,$sectionClass->currentSession()->id,$sectionClass->currentSessionTerm()->term->id])->withSuccess('Student Accessment Uploaded Successfully');
     }
