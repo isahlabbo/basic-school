@@ -39,11 +39,11 @@ class UpdateStudentTerm extends Command
     public function handle()
     {
         $this->output->progressStart(count(SectionClass::all()));
-        dd(SectionClass::find(1)->currentSession()->name, count(SectionClass::find(1)->currentSession()->academicSessionTerms));
-        // foreach (SectionClass::all() as $sectionClass) {
-        //     $sectionClass->updateAllStudentTerm();
-        //     $this->output->progressAdvance();
-        // }
+        SectionClass::find(1)->currentSession()->updateCurrentSessionTerm();
+        foreach (SectionClass::all() as $sectionClass) {
+            $sectionClass->updateAllStudentTerm();
+            $this->output->progressAdvance();
+        }
         $this->output->progressFinish();
     }
 }

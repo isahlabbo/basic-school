@@ -124,6 +124,7 @@ class SectionClassStudent extends BaseModel
     {
         
         foreach($this->sectionClassStudentTerms as $sectionClassStudentTerm){
+            
             if($sectionClassStudentTerm->academicSessionTerm->term->id == $this->currentSessionTerm()->term->id){
                 $sectionClassStudentTerm->update(['status'=>'Active']);
             }else{

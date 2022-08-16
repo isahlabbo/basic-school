@@ -48,6 +48,17 @@ class AcademicSession extends BaseModel
         }
     }
 
+    public function updateCurrentSessionTerm()
+    {
+        $canUpdate = false;
+        foreach($this->academicSessionTerms as $academicSessionTerm){
+            if($canUpdate && strtotime($academicSessionTerm->end_at) > time()){
+                $academicSessionTerm->update(['status','Active']);
+                $canUpdate = true;
+            }
+        }
+    }
+
     public function nextAcademicSessionTerm($term)
     {
         foreach ($this->academicSessionTerms as $academicSessionTerm) {
