@@ -45,7 +45,6 @@ class UpdateStudentTerm extends Command
             }
             $this->output->progressAdvance();
         }
-        
         $this->output->progressFinish();
     }
 }

@@ -30,7 +30,8 @@ class Section extends BaseModel
 
     public function nextSection()
     {
-        return Section::where('level',$this->level+1)->get();
+        
+        return Section::where('level',$this->level+1)->first();
     }
     public function sectionReports()
     {
