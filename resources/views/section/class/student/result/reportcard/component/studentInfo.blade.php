@@ -66,26 +66,26 @@
 </div>
 
 <div class="col-md-4" style="color: black;">
-    <p class="mb-0">
+    <p class="mb-0" style="color: black;">
     <tr><td>Next Term Begins:</td> <td class="text text-left"><b>{{strtoupper(date('d-M-Y',strtotime($sectionClassStudent->nextSectionClassStudentTerm()->start_at))) ?? 'Not available'}}</b></td></tr></p>
-    <p class="mb-0">Term: <b>{{strtoupper($sectionClassStudentTerm->academicSessionTerm->term->name ?? '')}}</b></p>
-    <p class="mb-0">Class: <b>{{$sectionClassStudent->sectionClass->name ?? ''}}</b></p>
-    <p class="mb-0">Session: <b>{{$sectionClassStudentTerm->academicSessionTerm->academicSession->name ?? ''}}</b></p>
-    <p class="mb-0"><b>ATTENDANCE:</b></p>
-    <p class="mb-0">
+    <p class="mb-0" style="color: black;">Term: <b>{{strtoupper($sectionClassStudentTerm->academicSessionTerm->term->name ?? '')}}</b></p>
+    <p class="mb-0" style="color: black;">Class: <b>{{$sectionClassStudent->sectionClass->name ?? ''}}</b></p>
+    <p class="mb-0" style="color: black;">Session: <b>{{$sectionClassStudentTerm->academicSessionTerm->academicSession->name ?? ''}}</b></p>
+    <p class="mb-0" style="color: black;"><b>ATTENDANCE:</b></p>
+    <p class="mb-0" style="color: black;">
         <tr>
             <td>Days school open:</td>
             <td><b>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->days_school_open ?? 0}}</b></td>
         </tr>
     </p>
-    <p class="mb-0">
+    <p class="mb-0" style="color: black;">
     <tr>
         <td>Day(s) Present:</td>
         <td><b>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->days_present ?? 0}}</b></td>
     </tr>
     
     </p>
-    <p class="mb-0">
+    <p class="mb-0" style="color: black;">
         <tr>
             <td>Day(s) Absent:</td>
             <td><b>{{$sectionClassStudentTerm->sectionClassStudentTermAccessment->days_absent ?? 0}}</b></td>

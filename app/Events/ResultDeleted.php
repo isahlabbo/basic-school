@@ -23,7 +23,6 @@ class ResultDeleted
     public function __construct(StudentResult $result)
     {
         $result->sectionClassStudentTerm->publishThisTermResult();
-        $result->subjectTeacherTermlyUpload->computeAndSaveUploadAverage();
     }
 
     /**

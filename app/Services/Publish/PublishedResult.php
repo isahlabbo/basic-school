@@ -1,5 +1,6 @@
 <?php
 namespace App\Services\Publish;
+use App\Models\RemarkScale;
 
 trait PublishedResult
 {
@@ -11,15 +12,26 @@ trait PublishedResult
             foreach($this->sectionClassStudent->sectionClass->sectionClassStudents->where('academic_session_id',$this->academicSessionTerm->academicSession->id) as $sectionClassStudent){
                 $allStudentsScoreInTheClass[] = $sectionClassStudent->pulishedResultAverage();
             }
-            // remove the duplicate score from the array
-            array_unique($allStudentsScoreInTheClass);
-            // sort array decending order
-            rsort($allStudentsScoreInTheClass);
-            foreach($allStudentsScoreInTheClass as $key => $value){
-                if($this->sectionClassStudent->pulishedResultAverage() == $value){
-                    return $this->getValidPositionName(($key+1));
+            if($this->sectionClassStudent->sectionClass->resultType->id == 1){
+                // remove the duplicate score from the array
+                array_unique($allStudentsScoreInTheClass);
+                // sort array decending order
+                rsort($allStudentsScoreInTheClass);
+                foreach($allStudentsScoreInTheClass as $key => $value){
+                    if($this->sectionClassStudent->pulishedResultAverage() == $value){
+                        return $this->getValidPositionName(($key+1));
+                    }
                 }
-            }
+            }else{
+                $score = $this->studentTermTotalScore();
+                $totalMarks = count($this->sectionClassStudent->sectionClass->sectionClassSubjects)*100;
+                $percentage = 100 * ($score/$totalMarks);
+                foreach(RemarkScale::all() as $scale){
+                    if($percentage >= $scale->percent){
+                        return $scale->remark;
+                    }
+                }
+            }    
         }else{
             $posiotion = $this->sectionClassStudentTermResultPublish->position;
         }
