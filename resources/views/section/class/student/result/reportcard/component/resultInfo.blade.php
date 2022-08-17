@@ -45,15 +45,15 @@
     <table class="table-bordered">
     <tr>
         <td width="200"><b>Total Marks:</b></td>
-        <td width="100"><b>{{$sectionClassStudentTerm->publishedTotalMarks()}}</b></td>
+        <td width="100"><b>{{$sectionClassStudentTerm->publishedTotalMarks() ?? ''}}</b></td>
     </tr>
     <tr>
         <td><b>Current Term Aggregate:</b></td>
-        <td colaps="7"><b>{{$sectionClassStudentTerm->sectionClassStudentTermResultPublish->obtain_marks}}</b></td>
+        <td colaps="7"><b>{{$sectionClassStudentTerm->sectionClassStudentTermResultPublish->obtain_marks ?? ''}}</b></td>
     </tr>
     <tr>
         <td><b>Cumulative Aggregate:</b></td>
-        <td colaps="7"><b>{{$sectionClassStudentTerm->publishedObtainedMarks()}}</b></td>
+        <td colaps="7"><b>{{$sectionClassStudentTerm->publishedObtainedMarks() ?? ''}}</b></td>
     </tr>
     </table>    
     </tbody>
