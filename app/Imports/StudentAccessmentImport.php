@@ -28,6 +28,21 @@ class StudentAccessmentImport implements ToModel
         if($row[0] != 'NAME'){
             $sectionClassStudentTerm = $this->getThisStudentSessionTerm($row[1]);
             if($sectionClassStudentTerm){
+                if(!$row[2]){
+                    $row[2] = 0;
+                }
+                if(!$row[3]){
+                    $row[3] = 0;
+                }
+                if(!$row[4]){
+                    $row[4] = 0;
+                }
+                if(!$row[5]){
+                    $row[5] = 1;
+                }
+                if(!$row[6]){
+                    $row[6] = 1;
+                }
                 
                 $section = $this->getStudentSection($sectionClassStudentTerm);
                 $accessment = $sectionClassStudentTerm->sectionClassStudentTermAccessment;

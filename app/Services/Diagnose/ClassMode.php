@@ -72,6 +72,20 @@ trait ClassMode
         }
     }
 
+    public function studentAreNotInTheSameTermWithSession()
+    {
+        $flag = false;
+        foreach ($this->sectionClassStudents->where('status','Active') as $sectionClassStudent) {
+            if($sectionClassStudent->sectionClassStudentTerms->where('status','Active')->first()
+            ->academicSessionTerm->term->id != $this->currentSessionTerm()->term->id){
+                $flag = true;
+            }
+        }
+        if($flag){
+            $this->reports[] = ['status'=>6, 'message'=>$this->name.' Has some students term differently than session term'];
+        }
+    }
+
     public function classReports()
     {
         if(count($this->sectionClassStudents) > 0){
@@ -80,6 +94,7 @@ trait ClassMode
             $this->studentsWithFewOrNoTerm();
             $this->studentsWithNoCurrentTerm();
             $this->studentWithDuplicateActiveClass();
+            $this->studentAreNotInTheSameTermWithSession();
         }
         return $this->reports;
     }

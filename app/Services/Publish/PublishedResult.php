@@ -86,7 +86,7 @@ trait PublishedResult
             $classScore = 0;
             foreach($this->sectionclassStudent->sectionClassStudentTerms as $sectionClassStudentTerm){
                 if($sectionClassStudentTerm->sectionClassStudentTermResultPublish && $sectionClassStudentTerm->sectionClassStudentTermResultPublish->total_marks){
-                    $denominator+=1;
+                    $denominator++;
                     $classScore += $sectionClassStudentTerm->sectionClassStudentTermResultPublish->total_marks;
                 }
             }
