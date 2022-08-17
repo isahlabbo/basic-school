@@ -13,7 +13,7 @@
                 <th>ACADEMIC SESSION</th>
                 <th>START AT</th>
                 <th>END AT</th>
-                
+                <th></th>
                 <th></th>
                 
             </tr>
@@ -27,11 +27,11 @@
                     <td>{{$academicSession->end_at}}</td>
                     
                     <td>
-                        @if($academicSession->status =='Not Active')
-                            <a href="{{route('dashboard.session.activate',[$academicSession->id])}}"><button class="btn btn-success">Save as Current Session</button></a>
-                        @else
+                        
+                        <a href="{{route('dashboard.session.activate',[$academicSession->id])}}"><button class="btn btn-success">Save as Current Session</button></a>
+                    </td>
+                    <td>    
                         <a href="{{route('dashboard.session.configure',[$academicSession->id])}}"><button class="btn btn-warning">Configure Academic Session</button></a>
-                        @endif
                     </td>
                 </tr>
             @endforeach
