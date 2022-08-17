@@ -48,7 +48,7 @@ class TrobleshootController extends Controller
                 break;
             case '6':
                 foreach($sectionClass->sectionClassStudents as $sectionClassStudent){
-                    foreach ($sectionClassStudentTerms as $sectionClassStudentTerm) {
+                    foreach ($sectionClassStudent->sectionClassStudentTerms as $sectionClassStudentTerm) {
                         if($sectionClassStudentTerm->academicSessionTerm->term->id == $sectionClassStudentTerm->currentSessionTerm()->term->id){
                             $sectionClassStudentTerm->update(['status', 'Active']);
                         }else{
