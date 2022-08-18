@@ -25,9 +25,7 @@
                     <td>{{$academicSession->name}}</td>
                     <td>{{$academicSession->start_at}}</td>
                     <td>{{$academicSession->end_at}}</td>
-                    
                     <td>
-                        
                         <a href="{{route('dashboard.session.activate',[$academicSession->id])}}"><button class="btn btn-success">Save as Current Session</button></a>
                     </td>
                     <td>    

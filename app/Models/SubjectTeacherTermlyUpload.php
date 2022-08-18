@@ -76,6 +76,7 @@ class SubjectTeacherTermlyUpload extends BaseModel
     public function position($total)
     {
         $scoreBoard = [];
+        dd(count($this->studentResults));
         foreach ($this->studentResults as $studentResult) {
             $scoreBoard[] = $studentResult->total;
         }
