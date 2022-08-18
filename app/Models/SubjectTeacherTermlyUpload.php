@@ -80,7 +80,7 @@ class SubjectTeacherTermlyUpload extends BaseModel
         foreach ($this->studentResults as $studentResult) {
             $scoreBoard[] = $studentResult->total;
         }
-        dd(count($scoreBoard));
+        
         // remove the duplicate score from the array
         array_unique($scoreBoard);
        
