@@ -76,11 +76,11 @@ class SubjectTeacherTermlyUpload extends BaseModel
     public function position($total)
     {
         $scoreBoard = [];
-        dd(count($this->sectionClassSubjectTeacher->SubjectTeacherTermlyUploads));
+        
         foreach ($this->studentResults as $studentResult) {
             $scoreBoard[] = $studentResult->total;
         }
-        
+        dd(count($scoreBoard));
         // remove the duplicate score from the array
         array_unique($scoreBoard);
        
