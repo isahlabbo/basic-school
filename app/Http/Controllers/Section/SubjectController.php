@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Subject;
 use App\Models\SectionClass;
 use App\Models\SectionClassSubject;
+use App\Models\AcademicSessionTerm;
+use App\Models\SubjectTeacherTermlyUpload;
 
 class SubjectController extends Controller
 {
@@ -67,5 +69,15 @@ class SubjectController extends Controller
     public function termResult ($classId, $subjectId, $termId)
     {
         return view('section.class.subject.upload',['termId'=>$termId, 'sectionClassSubject'=>SectionClassSubject::find($subjectId)]);
+    }
+
+    public function updateUpload (Request $request, $classId, $subjectId, $termId, $uploadId)
+    {
+        $upload = SubjectTeacherTermlyUpload::find($uploadId);
+        $sessionTerm = AcademicSessionTerm::find($request->academic_session_term_id);
+        $upload->update(['term_id'=>$sessionTerm->term->id,
+        'academic_session_term_id'=>$request->academic_session_term_id]);
+        return redirect()->route('dashboard.section.class.subject.termResult',[
+            $classId, $subjectId, $termId])->withSuccess('Upload updated');
     }
 }
