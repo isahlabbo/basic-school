@@ -62,7 +62,15 @@ class SectionClass extends BaseModel
         return $class;
     }
 
-
+    public function activeStudentIds()
+    {
+        $ids = [];
+        foreach($this->sectionClassStudents->where('status','Active') as $student){
+            $ids[] = $student->id;
+        }
+        return $ids;
+    }
+    
     public function hasNextClass()
     {
         return $this->section->sectionClasses

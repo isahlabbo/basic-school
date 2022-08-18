@@ -80,4 +80,9 @@ class SubjectController extends Controller
         return redirect()->route('dashboard.section.class.subject.termResult',[
             $classId, $subjectId, $termId])->withSuccess('Upload updated');
     }
+
+    public function updateResult ($classId, $subjectId, $termId, $uploadId)
+    {
+        return view('section.class.subject.result',['upload'=>SubjectTeacherTermlyUpload::find($uploadId)]);
+    }
 }

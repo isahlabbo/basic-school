@@ -240,6 +240,7 @@ Route::name('dashboard.')
                 Route::get('/', 'SubjectController@index')->name('index');
                 Route::get('/{subjectId}/term/{termId}', 'SubjectController@termResult')->name('termResult');
                 Route::post('/{subjectId}/term/{termId}/upload/{uploadId}/save', 'SubjectController@updateUpload')->name('update.upload');
+                Route::get('/{subjectId}/term/{termId}/upload/{uploadId}/result', 'SubjectController@updateResult')->name('upload.result');
                 Route::post('/register', 'SubjectController@register')->name('register');
                 Route::post('/{sectionClassSubjectId}/update', 'SubjectController@update')->name('update');
                 Route::get('/{sectionClassSubjectId}/delete', 'SubjectController@delete')->name('delete');

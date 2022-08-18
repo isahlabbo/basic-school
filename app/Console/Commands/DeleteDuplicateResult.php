@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\SectionClassStudentTerm;
+use App\Models\SubjectTeacherTermlyUpload;
 
 class DeleteDuplicateResult extends Command
 {
@@ -38,25 +38,25 @@ class DeleteDuplicateResult extends Command
      */
     public function handle()
     {
-        $this->output->progressStart(count(SectionClassStudentTerm::all()));
-        foreach (SectionClassStudentTerm::all() as $studentTerm) {
-            $term = $studentTerm->academicSessionTerm->term;
-            if ($term->id == 1) {
-                $subject = null;
-                foreach($studentTerm->studentResults as $studentResult){
-                    $currentSubject = $studentResult->subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject->subject->name;
-                    if($subject == $currentSubject){
-                        $studentResult->delete();
+        $this->output->progressStart(count(SubjectTeacherTermlyUpload::all()));
+        foreach (SubjectTeacherTermlyUpload::all() as $upload) {
+            if(count($upload->studentResults) > count($upload->sectionClassSubjectTeacher->sectionClassSubject->sectionClass->activeStudentIds())){
+                foreach($upload->studentResults as $result){
+                    if(!in_array($result->sectionClassStudentTerm->sectionClassStudent->id,
+                    $upload->sectionClassSubjectTeacher->sectionClassSubject->sectionClass->activeStudentIds())){
+                        $result->delete();
                     }else{
-                        $subject = $currentSubject;
+                        $subject = null;
+                        foreach($upload->studentResults as $studentResult){
+                            $currentSubject = $studentResult->subjectTeacherTermlyUpload->sectionClassSubjectTeacher->sectionClassSubject->subject->name;
+                            if($subject == $currentSubject){
+                                $studentResult->delete();
+                            }else{
+                                $subject = $currentSubject;
+                            }
+                        }  
                     }
-                }  
-            }else if($term->id == 2){
-                foreach($studentTerm->studentResults as $studentResult){
-                    if((time() - strtotime($studentResult->created_at)) < 6040800){
-                        $studentResult->delete();
-                    }
-                } 
+                }
             }
             $this->output->progressAdvance();
         }

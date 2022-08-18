@@ -29,19 +29,18 @@
         <td class="mb-0">
         {{$sectionClassStudent->sectionClass->resultType->name}}:
         </td>
-        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->publishedPosition() ?? ''}}</b></td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->sectionClassStudentTermResultPublish->position}}</b></td>
     </tr>
     
     <tr style="color: black;">
-        
         <td class="mb-0">Class Average:</td>
-        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->publishedClassAverage() ?? ''}}</b></td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->sectionClassStudentTermResultPublish->class_average}}</b></td>
     </tr>
     
     <tr style="color: black;">
         
         <td class="mb-0">Pupils Average:</td>
-        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->publishedStudentAverage() ?? ''}}</b></td>
+        <td class="mb-0 text-right"><b>{{$sectionClassStudentTerm->sectionClassStudentTermResultPublish->student_average}}</b></td>
     </tr>
 
     <tr style="color: black;">
@@ -69,7 +68,7 @@
     <p class="mb-0" style="color: black;">
     <tr><td>Next Term Begins:</td> <td class="text text-left"><b>{{strtoupper(date('d-M-Y',strtotime($sectionClassStudent->nextSectionClassStudentTerm()->start_at))) ?? 'Not available'}}</b></td></tr></p>
     <p class="mb-0" style="color: black;">Term: <b>{{strtoupper($sectionClassStudentTerm->academicSessionTerm->term->name ?? '')}}</b></p>
-    <p class="mb-0" style="color: black;">Class: <b>{{$sectionClassStudent->sectionClass->name ?? ''}}</b></p>
+    <p class="mb-0" style="color: black;">Class: <b>{{$sectionClassStudent->sectionClass->name ?? ''}} {{$sectionClassStudent->sectionClass->sectionClassGroup->name ?? ''}}</b></p>
     <p class="mb-0" style="color: black;">Session: <b>{{$sectionClassStudentTerm->academicSessionTerm->academicSession->name ?? ''}}</b></p>
     <p class="mb-0" style="color: black;"><b>ATTENDANCE:</b></p>
     <p class="mb-0" style="color: black;">

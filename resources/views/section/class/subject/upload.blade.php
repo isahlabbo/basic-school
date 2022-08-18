@@ -19,7 +19,7 @@
                 @foreach($sectionClassSubject->termlyUpload($termId) as $upload)
                     <tr>
                     <td>{{count($sectionClassSubject->sectionClass->sectionClassStudents->where('status','Active'))}}</td>
-                    <td>{{count($upload->studentResults)}}</td>
+                    <td><a href="{{route('dashboard.section.class.subject.upload.result',[$sectionClassSubject->sectionClass->id,$sectionClassSubject->id,$upload->academicSessionTerm->term->id,$upload->id])}}">{{count($upload->studentResults)}}</a></td>
                     <td>{{$upload->created_at}}</td>
                     <td><button class="btn btn-warning" data-toggle="modal" data-target="#edit_{{$upload->id}}">Edit Upload</button></td>
                     </tr>
