@@ -163,6 +163,8 @@ class SectionClassStudent extends BaseModel
         }
         return $results;
     }
+
+    
     public function totalExamScore($term)
     {
         $total = 0;

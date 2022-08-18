@@ -12,6 +12,9 @@
                 <th>S/N</th>
                 <th>SUBJECTS</th>
                 <th>TEACHER</th>
+                <th>FIRST TERM</th>
+                <th>SECOND TERM</th>
+                <th>THIRD TERM</th>
                 <th></th>
                 <th><button data-toggle="modal" data-target="#addSubject" class="btn btn-primary">Add Subject</button></th>
                 @include('section.class.subject.create')
@@ -23,6 +26,9 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$sectionClassSubject->subject->name}}</td>
                     <td>{{$sectionClassSubject->activeSectionClassSubjectTeacher()->teacher->user->name ?? 'Not Available'}}</td>
+                    <td><a href="{{route('dashboard.section.class.subject.termResult',[$sectionClass->id,$sectionClassSubject->id,'1'])}}">{{count($sectionClassSubject->termlyUpload(1))}}</a></td>
+                    <td><a href="{{route('dashboard.section.class.subject.termResult',[$sectionClass->id,$sectionClassSubject->id,'2'])}}">{{count($sectionClassSubject->termlyUpload(2))}}</a></td>
+                    <td><a href="{{route('dashboard.section.class.subject.termResult',[$sectionClass->id,$sectionClassSubject->id,'3'])}}">{{count($sectionClassSubject->termlyUpload(3))}}</a></td>
                     <td>
                     @if(count($sectionClassSubject->sectionClassSubjectTeachers) > 0)
                     <a href="{{route('dashboard.section.class.subject.allocation.reCreate',[$sectionClassSubject->activeSectionClassSubjectTeacher()->id])}}"><button class="btn btn-primary">change the teacher</button></a>

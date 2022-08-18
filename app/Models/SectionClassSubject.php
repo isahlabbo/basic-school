@@ -85,6 +85,24 @@ class SectionClassSubject extends BaseModel
         }
         return $flag;
     }
+
+    public function termlyUpload($termId)
+    {
+        $uploads = [];
+        foreach($this->currentSession()->academicSessionTerms as $academicSessionTerm){
+            if($academicSessionTerm->term->id == $termId){
+                $sessionTerm = $academicSessionTerm;
+            }
+        }
+
+        foreach($this->activeSectionClassSubjectTeacher()->subjectTeacherTermlyUploads
+        ->where('academic_session_term_id',$sessionTerm->id) as $upload){
+            $uploads[] = $upload;
+        }
+        
+        return $uploads;
+    }
+    
     
     public function activeSectionClassSubjectTeacher()
     {

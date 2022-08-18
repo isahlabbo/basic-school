@@ -63,4 +63,9 @@ class SubjectController extends Controller
             ->withSuccess('Class Subject Deleted');
         }
     }
+
+    public function termResult ($classId, $subjectId, $termId)
+    {
+        return view('section.class.subject.upload',['termId'=>$termId, 'sectionClassSubject'=>SectionClassSubject::find($subjectId)]);
+    }
 }
