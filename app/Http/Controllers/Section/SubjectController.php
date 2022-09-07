@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Section;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subject;
+use App\Models\Teacher;
 use App\Models\SectionClass;
 use App\Models\SectionClassSubject;
 use App\Models\AcademicSessionTerm;
@@ -32,7 +33,11 @@ class SubjectController extends Controller
             ->withwarning('Class Subject already exist');
         }else{
             $subject = Subject::firstOrCreate(['name'=>strtoupper($request->name)]);
-            $sectionClass->sectionClassSubjects()->create(['name'=>strtoupper($request->name),'subject_id'=>$subject->id]);
+            $subjectClass = $sectionClass->sectionClassSubjects()->create(['name'=>strtoupper($request->name),'subject_id'=>$subject->id]);
+            $subjectClass->sectionClassSubjectTeachers()->create([
+                'teacher_id'=>rand(1,count(Teacher::all()))
+            ]);
+            
             return redirect()->route('dashboard.section.class.subject.index',[$sectionClassId])
             ->withSuccess('Class Subject Registered');
         }

@@ -57,7 +57,7 @@ class SectionClassSubject extends BaseModel
         }
     }
     
-    public function availableResultUploads($sessionId, $termId)
+    public function availableResultUploads($sessionId=null, $termId=null)
     {
         $session = Section::find(1);
         if(!$sessionId){
@@ -94,15 +94,15 @@ class SectionClassSubject extends BaseModel
                 $sessionTerm = $academicSessionTerm;
             }
         }
-
-        foreach($this->activeSectionClassSubjectTeacher()->subjectTeacherTermlyUploads
-        ->where('academic_session_term_id',$sessionTerm->id) as $upload){
-            $uploads[] = $upload;
-        }
         
-        return $uploads;
+            foreach($this->activeSectionClassSubjectTeacher()->subjectTeacherTermlyUploads
+            ->where('academic_session_term_id',$sessionTerm->id) as $upload){
+                $uploads[] = $upload;
+            }
+            
+            return $uploads;
+       
     }
-    
     
     public function activeSectionClassSubjectTeacher()
     {

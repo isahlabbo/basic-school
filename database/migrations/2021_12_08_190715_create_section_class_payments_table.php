@@ -31,9 +31,16 @@ class CreateSectionClassPaymentsTable extends Migration
             ->on('terms')
             ->delete('restrict')
             ->update('cascade');
+            $table->integer('gender_id')
+            ->unsigned()
+            ->nullable()
+            ->foreign()
+            ->references('id')
+            ->on('genders')
+            ->delete('restrict')
+            ->update('cascade');
             $table->string('name');
             $table->string('amount');
-            $table->string('gender');
             $table->timestamps();
         });
     }

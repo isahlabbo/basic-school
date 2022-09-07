@@ -9,6 +9,7 @@ use App\Models\GradeScale;
 use App\Models\RemarkScale;
 use App\Models\Psychomotor;
 use App\Models\AffectiveTrait;
+use App\Models\AdmissionLetter;
 
 class ReportCardConfigurationController extends Controller
 {
@@ -21,6 +22,17 @@ class ReportCardConfigurationController extends Controller
             'psychomotors'=>Psychomotor::all(),
             'affectiveTraits'=>AffectiveTrait::all()
             ]);
+    }
+
+    public function updateLetter(Request $request)
+    {
+        $letter = AdmissionLetter::find(1);
+        foreach($request->all() as $field => $data){
+            if($field != "_token"){
+                $letter->update([$field=>$data]);
+            }
+        }
+        return redirect()->route('dashboard.section.configuration.reportcard.index');
     }
 
 }

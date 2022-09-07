@@ -125,6 +125,11 @@ class SectionClassController extends Controller
         return view('section.class.student.edit',['genders'=>Gender::all(),'sections'=>Section::all(),'student'=>Student::find($studentId)]);
     }
 
+    public function letter($studentId)
+    {
+        return view('section.class.student.letter',['genders'=>Gender::all(),'sections'=>Section::all(),'student'=>Student::find($studentId)]);
+    }
+
     public function delete($studentId)
     {
         $student = Student::find($studentId);

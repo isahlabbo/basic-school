@@ -14,7 +14,7 @@ class SectionClassGroupTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (['A','B','C','D'] as $classGroup) {
+        foreach (['ASH','GREEN','ORANGE','WHITE'] as $classGroup) {
             SectionClassGroup::firstOrCreate(['name'=>$classGroup]);
         }
     }

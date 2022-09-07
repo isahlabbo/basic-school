@@ -167,6 +167,11 @@ Route::name('dashboard.')
                     Route::post('/{gradeId}/update', 'GradeController@update')->name('update');
                     Route::get('/{gradeId}/delete', 'GradeController@delete')->name('delete');
                 });
+                Route::name('letter.')
+                ->prefix('/letter')
+                ->group(function (){
+                    Route::post('/update', 'ReportCardConfigurationController@updateLetter')->name('update');
+                });
                 Route::get('/', 'ReportCardConfigurationController@index')->name('index');
             });
         });
@@ -229,6 +234,7 @@ Route::name('dashboard.')
             Route::get('/{sectionClassId}/student-admission-no', 'SectionClassController@reGenerateAdmissionNo')->name('admission.number.regenerate');
             Route::get('/{sectionClassId}', 'SectionClassController@index')->name('index');
             Route::get('/{sectionClassId}/students', 'SectionClassController@student')->name('student');
+            Route::get('/student/{studentId}/letter', 'SectionClassController@letter')->name('student.letter');
             Route::get('/student/{studentId}/delete', 'SectionClassController@delete')->name('student.delete');
             Route::get('/student/{studentId}/edit', 'SectionClassController@edit')->name('student.edit');
             Route::post('/student/{studentId}/update', 'SectionClassController@update')->name('student.update');

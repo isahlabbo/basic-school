@@ -153,6 +153,68 @@
         </div>
     </div>
     </div>
+    <div class="card">
+    <div class="card-body">
+    @php
+        $letter = App\Models\AdmissionLetter::find(1);
+    @endphp
+    <div class="offer" style="page-break-inside: avoid;">
+    <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <!-- address start -->
+        <div class="row">
+            <div class="col-md-8 text text-left" style="line-height: 2.5;">
+            <img src="{{asset('images/instituteLogo.JPG')}}" alt=""><br>
+                <h5 class="text" style="line-height: 2.5;">{{config('app.title')}}</h5>
+                <h5 class="text" style="line-height: 2.5;">{{config('app.address')}}</h5>
+                <h5 class="text" style="line-height: 2.5;">STUDENT SECTION</h5>
+                <h5 class="text" style="line-height: 2.5;">{{config('app.email')}}</h5>
+                <h5 class="text" style="line-height: 2.5;">{{config('app.contact')}}</h5>
+                <h5 class="text" style="line-height: 2.5;">{{date('d M, Y')}}.</h5>
+            </div>
+            <div class="col-md-4 text" style="line-spacing: 2;">
+            <img src="{{asset(config('app.logo'))}}">
+            </div>
+        </div>
+        <!-- address end -->
+        
+        <div class="col-md-12">
+            <br>
+            <br>
+            <br>
+        </div>
+        <u><h5 class="text text-center"><b><a href="#" data-toggle="modal" data-target="#heading">{{$letter->heading}}</a> Class Name </b></h5></u>
+        @include('section.configuration.letter.heading')
+        <br>
+        <p style="color:black;">Dear; Student Name's Guardian</p>
+        <p style="text-align: justify; line-height: 2.5; color: black;">
+        <a href="#" data-toggle="modal" data-target="#introduction_start">{{$letter->introduction_start}}</a>
+            <b><i>Student Class</i></b> 
+            <a href="#" data-toggle="modal" data-target="#introduction_contenue">{{$letter->introduction_contenue}}</a> section duration in year <a href="#" data-toggle="modal" data-target="#introduction_end">{{$letter->introduction_end}}</a> <b><i>Student Admission No</i></b>
+        </p>
+        
+        <p style="text-align: justify; line-height: 2.5; color: black;">
+            <b>Note,</b> <a href="#" data-toggle="modal" data-target="#payment_note_start">{{$letter->payment_note_start}}</a> <b><i>#fee amount</i></b> <a href="#" data-toggle="modal" data-target="#payment_note_contenue">{{$letter->payment_note_contenue}}</a> <b># fee amount/2</b> <a href="#" data-toggle="modal" data-target="#payment_note_end">{{$letter->payment_note_end}}</a>
+        </p>
+        
+        <p style="text-align: justify; line-height: 2.5; color: black;">
+            <b>Congratulation</b> <a href="#" data-toggle="modal" data-target="#congratulatory_note">{{$letter->congratulatory_note}}</a>
+        </p>
+        <div class="col-md-12">
+            
+        </div>
+        <div id="sign" class="text text-center">
+            <p style="text-align: center; line-height: 2.5; color: black;">SIGN:</p>
+            <br>
+            <p style="text-align: center; color: black;">SECTION HEAD TEACHER</h4></p>
+        </div>
+        
+    </div>
+    </div>
+</div>
+    </div>
+    </div>
     </div>   
         
     @endsection

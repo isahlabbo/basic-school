@@ -59,6 +59,24 @@ trait ClassMode
         }
     }
 
+    public function resultAreMoreThanStudentInClass()
+    {
+        $flag = false;
+        foreach ($this->sectionClassSubjects as $classSubject) {
+            foreach($classSubject->sectionClassSubjectTeachers->where('status','Active') as $subjectTeacher){
+                foreach($subjectTeacher->subjectTeacherTermlyUploads->where('academic_session_term_id',$this->currentSessionTerm()->id) as $upload){
+                    if(count($upload->studentResults) > count($upload->sectionClassSubjectTeacher->sectionClassSubject->sectionClass->activeStudentIds())){
+                        $flag = true;
+                    }
+                }
+            }
+            
+        }
+        if($flag){
+            $this->reports[] = ['status' => 7, 'message'=>' Has some some duplicate uploade'];
+        }
+    }
+
     public function studentWithDuplicateActiveClass()
     {
         $flag = false;
@@ -95,6 +113,7 @@ trait ClassMode
             $this->studentsWithNoCurrentTerm();
             $this->studentWithDuplicateActiveClass();
             $this->studentAreNotInTheSameTermWithSession();
+            $this->resultAreMoreThanStudentInClass();
         }
         return $this->reports;
     }

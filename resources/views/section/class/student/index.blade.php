@@ -13,7 +13,7 @@
                 <th>S/N</th>
                 <th>PICTURE</th>
                 <th>NAME</th>
-                <th>ADMISSION NO</th>
+                <th>ADM NO</th>
                 <th>GENDER</th>
                 <th>CURRENT CLASS</th>
                 <th>GUARDIAN NAME</th>
@@ -47,7 +47,7 @@
                     </td>
                     <td>{{$sectionClassStudent->student->name}}</td>
                     <td>{{$sectionClassStudent->student->admission_no}}</td>
-                    <td>{{$sectionClassStudent->student->gender->name}}</td>
+                    <td>{{$sectionClassStudent->student->gender->name ?? ''}}</td>
                     <td>{{$sectionClassStudent->student->activeSectionClass()->name ?? 'Not Available'}}</td>
                     <td>{{$sectionClassStudent->currentSessionTerm()->id}}</td>
                     <td>{{$sectionClassStudent->student->guardian->name}}</td>
@@ -58,6 +58,7 @@
                         
                     </td>
                     <td>
+                        <a href="{{route('dashboard.section.class.student.letter',[$sectionClassStudent->student->id])}}"><button class="btn btn-success">Admission Letter</button></a>
                         <a href="{{route('dashboard.section.class.student.edit',[$sectionClassStudent->student->id])}}">
                             <button class="btn btn-secondary">Edit</button>
                         </a>

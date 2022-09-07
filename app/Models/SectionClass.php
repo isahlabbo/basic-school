@@ -51,6 +51,22 @@ class SectionClass extends BaseModel
         return $this->hasMany(SectionClassReservedAdmissionNo::class);
     }
 
+    public function totalFee($gender)
+    {
+        $fee = 0;
+        if($gender){
+            foreach($this->sectionClassPayments->where('gender', $gender->id) as $payment){
+                $fee += $payment->amount;
+            }
+        }
+
+        foreach($this->sectionClassPayments->where('gender', 3) as $payment){
+            $fee += $payment->amount;
+        }
+        
+        return $fee;
+    }
+
     public function nextClass()
     {
         $class = $this->section->sectionClasses
@@ -279,7 +295,7 @@ class SectionClass extends BaseModel
             return $admissionNo;
         }
         
-        return config('app.code').'/'.$this->getAdmissionYear().$this->code.'/'.$this->getAdmissionSerialNo($number);
+        return config('app.code').'/'.$this->getAdmissionYear().substr($this->section->name,0,1).substr($this->sectionClassGroup->name,0,1).'/'.$this->getAdmissionSerialNo($number);
     }
 
     public function getAdmissionSerialNo($number)

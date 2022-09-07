@@ -34,4 +34,9 @@ class BaseModel extends Model
         return $session;
     }
 
+    public function admissionLetter()
+    {
+        return AdmissionLetter::firstOrCreate([]);
+    }
+
 }
