@@ -64,6 +64,7 @@ Route::name('dashboard.')
         Route::get('/', 'PaymentController@index')->name('index');
         Route::get('/class/{sectionClassId}', 'PaymentController@classStudentPayment')->name('class.index');
         Route::post('/class/student/{sectionClassStudentId}/pay', 'PaymentController@addStudentPayment')->name('class.student.pay');
+        Route::get('/class/student/{sectionClassStudentId}/term/{termId}/receipt', 'PaymentController@receipt')->name('class.student.receipt');
         Route::post('/search', 'PaymentController@search')->name('search');
         Route::name('class.fee.')
         ->prefix('/class/{classId}/fee')

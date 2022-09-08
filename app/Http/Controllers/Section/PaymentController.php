@@ -41,4 +41,10 @@ class PaymentController extends Controller
         ]);
         return redirect()->route('dashboard.payment.class.index',[$sectionClassStudent->sectionClass->id])->withSuccess('Payment Regiostered Successfully');
     }
+
+    public function receipt($sectionClassStudentId, $termId)
+    {
+        
+        return view('section.payment.class.student.receipt',['term'=>Term::find($termId),'sectionClassStudent'=>SectionClassStudent::find($sectionClassStudentId)]);
+    }
 }

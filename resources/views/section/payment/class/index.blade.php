@@ -40,16 +40,16 @@
                         <td><b>#</b>{{$sectionClassStudent->paidAmount($term)}}</td>
                         <td><b>#</b>{{$sectionClassStudent->feeAmount($term)-$sectionClassStudent->paidAmount($term)}}</td>
                         <td>
-                            <button data-toggle="modal" data-target="#info_{{$sectionClassStudent->id}}" class="btn btn-info">Detail</button>
+                            @if($sectionClassStudent->paidAmount($term) > 0)
+                            <a href="{{route('dashboard.payment.class.student.receipt',[$sectionClassStudent->id,$term->id])}}"><button class="btn btn-success">Reciept</button></a>
+                            @endif
                         </td>
                         <td>
-                            @if($sectionClassStudent->feeAmount($term)-$sectionClassStudent->paidAmount($term) == 0)
-                            <button class="btn btn-success">Reciept</button>
-                            @else
+                            @if($sectionClassStudent->feeAmount($term)-$sectionClassStudent->paidAmount($term)>0)
                             <button data-toggle="modal" data-target="#payment_{{$sectionClassStudent->id}}" class="btn btn-secondary">Add Payment</button>
                             @endif
                         </td>
-                        <td><button class="btn btn-success">Report</button></td>
+                        
                     </tr>
                     @include('section.payment.class.student.addPayment')
                     @endforeach
