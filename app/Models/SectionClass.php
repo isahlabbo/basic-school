@@ -50,12 +50,21 @@ class SectionClass extends BaseModel
     {
         return $this->hasMany(SectionClassReservedAdmissionNo::class);
     }
-
-    public function totalFee($gender)
+    public function hasThisSubject(Subject $subject = null)
+    {
+        $flag = false;
+        foreach($this->sectionClassSubjects as $classSubject){
+            if($classSubject->subject->id == $subject->id){
+                $flag = true;
+            }
+        }
+        return $flag;
+    }
+    public function totalFee($term,$gender)
     {
         $fee = 0;
         if($gender){
-            foreach($this->sectionClassPayments->where('gender', $gender->id) as $payment){
+            foreach($this->sectionClassPayments->where(['term_id'=>$term->id,'gender_id'=> $gender->id]) as $payment){
                 $fee += $payment->amount;
             }
         }

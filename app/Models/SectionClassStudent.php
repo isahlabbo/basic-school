@@ -113,11 +113,22 @@ class SectionClassStudent extends BaseModel
     {
         $amount = 0;
         foreach ($this->SectionClass->sectionClassPayments->where('term_id',$term->id) as $payment) {
-            if($payment->gender = $this->student->gender || $payment->gender == 3){
+            if($payment->gender_id == $this->student->gender_id || $payment->gender_id == 3){
                 $amount = $amount + $payment->amount;
             }
         }
         return $amount;
+    }
+
+    public function modeOfPayment($term)
+    {
+        $mode = 'Cash';
+        foreach($this->sectionClassStudentPayments->where('term_id',$term->id) as $payment){
+            if($payment->mode){
+                $mode = $payment->mode;
+            }
+        }
+        return $mode;
     }
 
     public function updateActiveTerm()

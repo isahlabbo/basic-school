@@ -46,7 +46,7 @@
                         </td>
                         <td>
                             @if($sectionClassStudent->feeAmount($term)-$sectionClassStudent->paidAmount($term)>0)
-                            <button data-toggle="modal" data-target="#payment_{{$sectionClassStudent->id}}" class="btn btn-secondary">Add Payment</button>
+                            <button data-toggle="modal" data-target="#payment_{{$sectionClassStudent->id.$term->id}}" class="btn btn-secondary">Add Payment</button>
                             @endif
                         </td>
                         

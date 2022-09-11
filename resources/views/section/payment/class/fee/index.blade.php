@@ -29,13 +29,7 @@
                     <td>{{$sectionClassPayment->name}}</td>
                     <td>{{$sectionClassPayment->amount}}</td>
                     <td>
-                        @if($sectionClassPayment->gender ==1)
-                            Male
-                        @elseif($sectionClassPayment->gender == 2)
-                            Female
-                        @else
-                            Both
-                        @endif
+                        {{$sectionClassPayment->gender->name ?? 'Both'}}
                     </td>
 
                     <td>

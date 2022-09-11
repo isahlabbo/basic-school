@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\SectionClassGroup;
+use App\Models\Section;
+use App\Events\SectionCreated;
 
 class SectionClassGroupTableSeeder extends Seeder
 {
@@ -14,8 +16,11 @@ class SectionClassGroupTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (['ASH','GREEN','ORANGE','WHITE'] as $classGroup) {
+        foreach (['BLUE','GREEN','RED','YELLOW'] as $classGroup) {
             SectionClassGroup::firstOrCreate(['name'=>$classGroup]);
         }
+
+        $section = Section::create(['name'=>'Nursery','duration'=>3,'level'=>1]);
+        event(new SectionCreated($section));
     }
 }

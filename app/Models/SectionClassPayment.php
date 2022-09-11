@@ -15,19 +15,8 @@ class SectionClassPayment extends BaseModel
         return $this->belongsTo(Term::class);
     }
 
-    public function gender(Type $var = null)
+    public function gender()
     {
-        switch ($this->gender) {
-            case '1':
-                $gender = 'Male';
-                break;
-            case '2':
-                $gender = 'Female';
-                break;
-            default:
-            $gender = 'Both';
-                break;
-        }
-        return $gender;
+        return $this->belongsTo(Gender::class);
     }
 }

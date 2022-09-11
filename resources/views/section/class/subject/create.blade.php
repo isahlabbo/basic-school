@@ -10,11 +10,23 @@
       <div class="modal-body">
         <form action="{{route('dashboard.section.class.subject.register',[$sectionClass->id])}}" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="row from-group">
-                <div class="col-md-4"><label for="">Class Name</label></div>
-                <div class="col-md-8"><input type="text" name="name" placeholder="{{$sectionClass->name}} SUBJECT NAME" value="{{old('class')}}" class="form-control"></div>
+            <div class="row">
+            @foreach(App\Models\Subject::all() as $subject)
+            <div class="col-md-6">
+              <div class="row from-group">
+                  <div class="col-md-10"><label for="">{{$subject->name}}</label></div>
+                  <div class="col-md-2">
+                  @if($sectionClass->hasThisSubject($subject))
+                    <input type="checkbox" name="{{$subject->id}}" checked value="{{old('class')}}" class=""></div>
+                  @else
+                    <input type="checkbox" name="{{$subject->id}}" value="{{old('class')}}" class=""></div>                  
+                  @endIf
+              </div>
+              <hr>
             </div>
-            <button class="btn btn-primary">Register</button>
+            @endforeach
+            </div>
+            <button class="btn btn-primary">Update</button>
         </form>
       </div>
       <div class="modal-footer">

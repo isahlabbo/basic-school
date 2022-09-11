@@ -32,6 +32,7 @@ class CreateSectionClassStudentPaymentsTable extends Migration
             ->delete('restrict')
             ->update('cascade');
             $table->string('amount');
+            $table->string('mode');
             $table->timestamps();
         });
     }

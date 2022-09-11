@@ -15,152 +15,34 @@ class SectionAndClassTableSeeder extends Seeder
      */
     public function run()
     {
-        $sections = [
-            [
-                'name'=>'Nursery',
-                'classes'=>[
-                    [
-                        'name'=>'Nursery one','subjects'=>[
-                            "qur'an",
-                            "Mathematics",
-                            "English",
-                            "Nursery Science",
-                            "Handwriting",
-                            "arabic",
-                        ],
-                        'code'=>'N',
-                        'year_sequence'=>'First',
-                    ],
-                    [
-                        'name'=>'Nursery two','subjects'=>[
-                            "qur'an",
-                            "Mathematics",
-                            "English",
-                            "Nursery Science",
-                            "Handwriting",
-                            "arabic",
-                        ],
-                        'code'=>'N',
-                        'year_sequence'=>'Second',
-                    ],
-                    
-                    [
-                        'name'=>'Nursery three','subjects'=>[
-                            "qur'an",
-                            "Mathematics",
-                            "English",
-                            "Nursery Science",
-                            "Handwriting",
-                            "arabic",
-                        ],
-                        'code'=>'N',
-                        'year_sequence'=>'Third',
-                    ],
-                    
-                ]
-            ],
-            [
-                'name'=>'PRIMARY',
-                'classes'=>[
-                    [
-                        'name'=>'PRIMARY ONE','subjects'=>[
-                            "qur'an",
-                            "Mathematics",
-                            "English",
-                            "basic Science and Technology",
-                            "Handwriting",
-                            "national value",
-                            "arabic",
-                            "hadith",
-                        ],
-                        'code'=>'P',
-                        'year_sequence'=>'First'
-                    ],
-                    [
-                        'name'=>'PRIMARY TWO','subjects'=>[
-                            "qur'an",
-                            "Mathematics",
-                            "English",
-                            "basic Science and Technology",
-                            "Handwriting",
-                            "national value",
-                            "arabic",
-                            "hadith",
-                        ],
-                        'code'=>'P',
-                        'year_sequence'=>'Second'
-                    ],
-                    [
-                        'name'=>'primary three','subjects'=>[
-                            "qur'an",
-                            "Mathematics",
-                            "English",
-                            "basic Science and Technology",
-                            "Handwriting",
-                            "national value",
-                            "arabic",
-                            "hadith",
-                        ],
-                        'code'=>'P',
-                        'year_sequence'=>'Third'
-                    ],
-                    [
-                        'name'=>'primary four','subjects'=>[
-                            "qur'an",
-                            "Mathematics",
-                            "English",
-                            "basic Science and Technology",
-                            "national value",
-                            "arabic",
-                            "hadith"
-                        ],
-                        'code'=>'P',
-                        'year_sequence'=>'Forth'
-                    ],
-
-                    [
-                        'name'=>'primary five','subjects'=>[
-                            "qur'an",
-                            "Mathematics",
-                            "English",
-                            "basic Science and Technology",
-                            "national value",
-                            "arabic",
-                            "hadith"
-                        ],
-                        'code'=>'P',
-                        'year_sequence'=>'Fifth'
-                    ],
-                    [
-                        'name'=>'primary six','subjects'=>[
-                            "qur'an",
-                            "Mathematics",
-                            "English",
-                            "basic Science and Technology",
-                            "national value",
-                            "arabic",
-                            "hadith"
-                        ],
-                        'code'=>'P',
-                        'year_sequence'=>'Last'
-                    ],
-                ]
-            ]  
+        $subjects =[
+            "Islamic Religious Studies",
+            "Mathematics",
+            "English Studies",
+            "Nursery Science",
+            "Writing",
+            "Al-Quar'an",
+            "Al-Adhkaar",
+            "Al-Arabiyyah",
+            "Al-Huruuf",
+            "Al-Kitabah",
+            "Basic Science And Technology",
+            "Religion and National Value",
+            "Hausa",
+            "Business Studies",
+            "Pre-vocational Studies",
+            "Computer",
+            "At-tahdheeb",
+            "Al-Qiraah",
+            "An-Nahw",
+            "Al-Tajweed",
+            "Al-khatt"
         ];
-        $level = 1;
-        foreach($sections as $section){
-            $newSection = Section::firstOrCreate(['level'=>$level,'name'=>strtoupper($section['name'])]);
-            foreach($section['classes'] as $class){
-                $newClass = $newSection->sectionClasses()->firstOrCreate([
-                    'code'=>$class['code'],'name'=>strtoupper($class['name']),
-                    'year_sequence'=>$class['year_sequence']
-                    ]);
-                foreach($class['subjects'] as $subject){
-                    $newSubject = Subject::firstOrCreate(['name'=>strtoupper($subject)]);
-                    $newSubject->sectionClassSubjects()->firstOrCreate(['name'=>strtoupper($newSubject->name),'section_class_id'=>$newClass->id]);
-                }
+        
+        foreach($subjects as $subject){
+            {
+                $newSubject = Subject::firstOrCreate(['name'=>strtoupper($subject)]);
             }
-            $level++;
         }
     }
 }

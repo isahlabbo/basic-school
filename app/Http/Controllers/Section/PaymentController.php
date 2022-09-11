@@ -34,10 +34,16 @@ class PaymentController extends Controller
 
     public function addStudentPayment(Request $request, $sectionClassStudentId)
     {
+        $request->validate([
+            'term_id'=>'required',
+            'amount'=>'required',
+            'mode'=>'required'
+        ]);
         $sectionClassStudent = SectionClassStudent::find($sectionClassStudentId);
         $sectionClassStudent->sectionClassStudentPayments()->create([
             'term_id'=>$request->term_id,
-            'amount' =>$request->amount
+            'amount' =>$request->amount,
+            'mode' =>$request->mode
         ]);
         return redirect()->route('dashboard.payment.class.index',[$sectionClassStudent->sectionClass->id])->withSuccess('Payment Regiostered Successfully');
     }

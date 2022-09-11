@@ -22,11 +22,11 @@
                 <div class="col-md-4"><label for="">Applying Gender</label></div>
                 <div class="col-md-8">
                 <select name="gender" id="" class="form-control">
-                    <option value="{{$sectionClassPayment->gender}}">{{$sectionClassPayment->gender()}}</option>
-                    @foreach([['name'=>'Male','id'=>1],['name'=>'Female','id'=>2],['name'=>'Both','id'=>3]] as $gender)
-                       @if($sectionClassPayment->gender != $gender['id'])
-                       <option value="{{$gender['id']}}">{{$gender['name']}}</option>
-                       @endif
+                    <option value="{{$sectionClassPayment->gender->id ?? 3}}">{{$sectionClassPayment->gender->name ?? 'Both'}}</option>
+                    @foreach(App\Models\Gender::all() as $gender)
+                        @if($sectionClassPayment->gender_id != $gender->id)
+                           <option value="{{$gender->id}}">{{$gender->name}}</option>
+                        @endif
                     @endforeach
                 </select>
                 </div>

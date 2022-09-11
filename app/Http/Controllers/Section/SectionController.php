@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Section;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Section;
+use App\Events\SectionCreated;
 
 class SectionController extends Controller
 {
@@ -30,11 +31,13 @@ class SectionController extends Controller
         if($section){
             return redirect()->route('dashboard.section.index')->withWarning('Section Exist');
         }else{
-            Section::create([
+            $section = Section::create([
                 'name'=>strtoupper($request->name),
                 'level'=>$request->level,
                 'duration'=>$request->duration,
                 ]);
+                event(new SectionCreated($section));
+
             return redirect()->route('dashboard.section.index')->withSuccess('Section Registered');
         }
     }

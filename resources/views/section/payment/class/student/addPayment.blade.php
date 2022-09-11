@@ -1,4 +1,4 @@
-<div class="modal fade" id="payment_{{$sectionClassStudent->id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="payment_{{$sectionClassStudent->id.$term->id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -15,6 +15,17 @@
                 <div class="col-md-4"><label for="">Amount</label></div>
                 <div class="col-md-8"><input type="text" name="amount"  value="{{$sectionClassStudent->feeAmount($term)-$sectionClassStudent->paidAmount($term)}}" class="form-control"></div>
             </div><br>
+            <div class="row from-group">
+                <div class="col-md-4"><label for="">Mode</label></div>
+                <div class="col-md-8">
+                <select name="mode" id="" class="form-control">
+                    <option value="">Mode of Payment</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Bank">Bank</option>
+                </select>
+                
+                </div>
+            </div>
             <button class="btn btn-primary">ADD PAYMENT</button>
         </form>
       </div>

@@ -118,4 +118,50 @@ class Section extends BaseModel
         }
         return $sequence;
     }
+
+
+
+
+    // section class generations methods
+
+    public function requiredClasses()
+    {
+        $classes = [];
+        $name = $this->name;
+        if(strpos($this->name,' ')){
+            $name = substr($this->name,0, strpos($this->name,' '));
+        }
+        for ($level=1; $level <= $this->duration ; $level++) {
+            foreach(SectionClassGroup::all() as $classGroup){
+                $classes[] = ['section_class_group_id'=>$classGroup->id,'name'=>$name.' '.$level.' '.$classGroup->name,'sequence'=>$this->levelYearSequence($level)];
+            }
+        }
+        return $classes;
+    }
+
+    public function levelYearSequence($level)
+    {
+        switch ($level) {
+            case '1':
+                $sequence = 'First';
+                break;
+            case '2':
+                $sequence = 'Second';
+                break;
+            case '3':
+                $sequence = 'Third';
+                break;
+            case '4':
+                $sequence = 'Forth';
+                break;
+            case '5':
+                $sequence = 'Fifth';
+                break;
+            
+            default:
+                $sequence = 'Sixth';
+                break;
+        }
+        return $sequence;
+    }
 }

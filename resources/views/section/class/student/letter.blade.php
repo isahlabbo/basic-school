@@ -46,7 +46,8 @@
         </p>
         
         <p style="text-align: justify; line-height: 2.5; color: black;">
-            <b>Note,</b> {{$student->admissionLetter()->payment_note_start}} <b><i>#{{$student->sectionClass->totalFee($student->gender)}}</i></b> {{$student->admissionLetter()->payment_note_contenue}} <b>#{{$student->sectionClass->totalFee($student->gender)/2}}</b> {{$student->admissionLetter()->payment_note_end}}
+        
+            <b>Note,</b> {{$student->admissionLetter()->payment_note_start}} <b><i>#{{$student->sectionClass->totalFee($student->currentSessionTerm()->academicSessionTerm->term,$student->gender)}}</i></b> {{$student->admissionLetter()->payment_note_contenue}} <b>#{{$student->sectionClass->totalFee($student->currentSessionTerm()->academicSessionTerm->term,$student->gender)/2}}</b> {{$student->admissionLetter()->payment_note_end}}
         </p>
         
         <p style="text-align: justify; line-height: 2.5; color: black;">

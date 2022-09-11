@@ -29,7 +29,7 @@ class ClassFeeController extends Controller
         $sectionClass->sectionClassPayments()->firstOrCreate([
             "name" => $request->name,
             "amount" => $request->amount,
-            "gender" => $request->gender,
+            "gender_id" => $request->gender,
             "term_id" => $request->term
         ]);
 
@@ -50,7 +50,7 @@ class ClassFeeController extends Controller
         $fee->update([
             "name" => $request->name,
             "amount" => $request->amount,
-            "gender" => $request->gender,
+            "gender_id" => $request->gender,
             "term_id" => $request->term
         ]);
 

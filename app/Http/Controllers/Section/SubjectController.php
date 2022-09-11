@@ -25,22 +25,20 @@ class SubjectController extends Controller
 
     public function register(Request $request, $sectionClassId)
     {
-        $request->validate(['name'=>'required|string']);
-
         $sectionClass = SectionClass::find($sectionClassId);
-        if(count($sectionClass->sectionClassSubjects->where('name',$request->name)) > 0){
-            return redirect()->route('dashboard.section.class.subject.index',[$sectionClassId])
-            ->withwarning('Class Subject already exist');
-        }else{
-            $subject = Subject::firstOrCreate(['name'=>strtoupper($request->name)]);
-            $subjectClass = $sectionClass->sectionClassSubjects()->create(['name'=>strtoupper($request->name),'subject_id'=>$subject->id]);
-            $subjectClass->sectionClassSubjectTeachers()->create([
-                'teacher_id'=>rand(1,count(Teacher::all()))
-            ]);
-            
-            return redirect()->route('dashboard.section.class.subject.index',[$sectionClassId])
-            ->withSuccess('Class Subject Registered');
+        foreach($request->all() as $subjectId => $subjectName){
+            $subject = Subject::find($subjectId);
+            if($subject){
+                $subjectClass = $sectionClass->sectionClassSubjects()->firstOrCreate(['name'=>strtoupper($subject->name),'subject_id'=>$subject->id]);
+                $subjectClass->sectionClassSubjectTeachers()->create([
+                    'teacher_id'=>rand(1,count(Teacher::all()))
+                ]);
+            }
         }
+
+        return redirect()->route('dashboard.section.class.subject.index',[$sectionClassId])
+            ->withSuccess('Class Subject Registered');
+       
     }
 
     public function update(Request $request, $sectionClassId, $sectionClassSubjectId)
