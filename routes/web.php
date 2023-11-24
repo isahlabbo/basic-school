@@ -309,7 +309,6 @@ Route::name('dashboard.')
         Route::post('/{sectionClassSubjecId}/upload-now', 'ScoreSheetController@uploadNow')
         ->name('scoresheet.uploadNow');
 
-
         Route::get('/', 'TeacherController@index')->name('index');
         Route::get('/create', 'TeacherController@create')->name('create');
         Route::post('/register', 'TeacherController@register')->name('register');

@@ -15,6 +15,7 @@ class ReportCardConfigurationController extends Controller
 {
     public function index()
     {
+        
         return view('section.configuration.reportcard',[
             'sections'=>Section::all(),
             'gradeScales'=>GradeScale::all(),

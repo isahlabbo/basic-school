@@ -20,7 +20,7 @@ class SectionClassGroupTableSeeder extends Seeder
             SectionClassGroup::firstOrCreate(['name'=>$classGroup]);
         }
 
-        $section = Section::create(['name'=>'Nursery','duration'=>3,'level'=>1]);
+        $section = Section::create(['name'=>'NURSERY','duration'=>3,'level'=>1]);
         event(new SectionCreated($section));
     }
 }

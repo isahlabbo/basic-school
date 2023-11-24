@@ -157,6 +157,9 @@
     <div class="card-body">
     @php
         $letter = App\Models\AdmissionLetter::find(1);
+        if($letter){
+            $letter = App\Models\AdmissionLetter::create([]);
+        }
     @endphp
     <div class="offer" style="page-break-inside: avoid;">
     <div class="row">

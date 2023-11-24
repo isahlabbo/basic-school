@@ -64,7 +64,7 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($sectionClassStudent->sectionClass->sectionClassPayments as $payment)
+            @foreach($sectionClassStudent->sectionClass->sectionClassPayments->where('term_id',$term->id) as $payment)
             
                 @if($payment->gender_id == $sectionClassStudent->student->gender_id || $payment->gender_id == 3)
                 <tr>

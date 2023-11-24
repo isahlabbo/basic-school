@@ -96,7 +96,7 @@ class StudentAccessmentController extends Controller
                 "days_present" => $request->days_present,
                 "days_absent" => $request->days_absent,
                 "teacher_comment_id" => $request->comment,
-                'head_teacher_comment_id'= rand(1,10)
+                'head_teacher_comment_id'= rand(1,10),
             ]);
         }
 

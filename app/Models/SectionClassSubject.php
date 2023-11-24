@@ -99,7 +99,6 @@ class SectionClassSubject extends BaseModel
             ->where('academic_session_term_id',$sessionTerm->id) as $upload){
                 $uploads[] = $upload;
             }
-            
             return $uploads;
        
     }
@@ -110,6 +109,11 @@ class SectionClassSubject extends BaseModel
         foreach ($this->sectionClassSubjectTeachers->where('status','Active') as $sectionClassSubjectTeacher) {
             return $sectionClassSubjectTeacher;
         }
+
+        if(!$sectionClassSubjectTeacher){
+            $sectionClassSubjectTeacher = $this->sectionClassSubjectTeachers()->create(['teacher_id'=>rand(1,10)])
+        }
+        
         return $sectionClassSubjectTeacher;
     }
 }

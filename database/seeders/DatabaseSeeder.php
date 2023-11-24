@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PsychomotorAndAffectiveTraitTableSeeder::class);
         $this->call(SectionAccessment::class);
         $this->call(GradeRemarkTableSeeder::class);
+        AdmissionLetter::firstOrCreate([]);
     }
 }
