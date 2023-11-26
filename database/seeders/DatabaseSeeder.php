@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Model\AdmissionLetter;
 
 class DatabaseSeeder extends Seeder
 {

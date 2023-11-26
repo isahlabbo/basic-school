@@ -111,7 +111,7 @@ class SectionClassSubject extends BaseModel
         }
 
         if(!$sectionClassSubjectTeacher){
-            $sectionClassSubjectTeacher = $this->sectionClassSubjectTeachers()->create(['teacher_id'=>rand(1,10)])
+            $sectionClassSubjectTeacher = $this->sectionClassSubjectTeachers()->create(['teacher_id'=>rand(1,10)]);
         }
         
         return $sectionClassSubjectTeacher;

@@ -1,3 +1,6 @@
+@if(!Auth::user()->app->configured)
+
+@else
 
 <div class="row">
         
@@ -109,4 +112,5 @@
                 </div>
             </div>
         </div>
+    @endif    
 </div>
